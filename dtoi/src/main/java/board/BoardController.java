@@ -156,6 +156,7 @@ public class BoardController {
 	
 	@GetMapping("/board/delete.do")
 	public void delete(BoardVo vo, HttpServletResponse res) throws IOException {
+		System.out.println("서민구");
 		res.getWriter().print(boardService.delete(vo));
 	}
 	
