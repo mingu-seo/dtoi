@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="customer">
+
+	<sql id ="customerWhere">
+		<where> <!-- 아래 조건이 있으면 where 붙임 -->
+			<!-- 이름이나 아이디 검색 -->
+			<if test="searchWord != null and searchWord != ''"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+			and (cst_name like '%${searchWord}%' or cst_id like '%${searchWord}%')
+			</if>
+			<!-- 가입일 검색(기간 검색) 시작일 sdate, 종료일 edate -->
+			<if test="sdate != null and sdate != '' ">
+				<if test="edate != null and edate != '' ">
+					and cst_regdate between '${sdate} 00:00:00' and '${edate} 23:59:59'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<select id ="count" parameterType="customer.CustomerVo" resultType="int">
+		select count(*) as cnt from CUSTOMER
+		<include refid="customerWhere"/>
+	</select>
+	
+	<select id ="selectList" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
+		select * from CUSTOMER
+		<include refid="customerWhere"/>
+		ORDER BY ${orderby} ${direct}
+		limit ${startIdx}, ${pageRow}
+	</select>
+	
+	<select id ="selectOne" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
+		select * from CUSTOMER where cst_no=${cst_no }
+	</select>
+	
+	<select id ="isDuplicateId" parameterType="String" resultType="int">
+		select count(*) from CUSTOMER where cst_id =#{cst_id }
+	</select>
+	
+	<insert id ="insertCustomer" parameterType="customer.CustomerVo">
+		INSERT INTO CUSTOMER (
+			cst_id ,
+			cst_pwd,
+			cst_name,
+			cst_email,
+			cst_tel,
+			cst_gender,
+			cst_regdate,
+			cst_birth,
+			cst_disease,
+			cst_height,
+			cst_weight,
+			cst_grade,
+			zipcode,
+			addr1,
+			addr2
+		) VALUES (
+			#{cst_id},
+			password(#{cst_pwd}),
+			#{cst_name},
+			#{cst_email},
+			#{cst_tel},
+			#{cst_gender},
+			NOW(),
+			#{cst_birth},
+			#{cst_disease},
+			#{cst_height},
+			#{cst_weight},
+			#{cst_grade},
+			#{zipcode},
+			#{addr1},
+			#{addr2}
+		)
+	</insert>
+	
+	<update id ="updateCustomer" parameterType="customer.CustomerVo">
+		UPDATE CUSTOMER SET
+			cst_name = #{cst_name},
+			cst_email = #{cst_email},
+			cst_tel = #{cst_tel},
+			cst_gender = #{cst_gender},
+			cst_birth = #{cst_birth},
+			cst_disease	= #{cst_disease},
+			cst_height = #{cst_height},
+			cst_weight = #{cst_weight},
+			cst_grade = #{cst_grade},
+			zipcode = #{zipcode},
+			addr1 = #{addr1},
+			addr2 = #{addr2},
+			cst_pwd = password(#{cst_pwd})
+		WHERE
+			cst_no  = #{cst_no }
+	</update>
+	
+	<delete id ="deleteCustomer" parameterType="customer.CustomerVo">
+		DELETE FROM CUSTOMER WHERE cst_no = #{cst_no}
+	</delete>
+	
+	<select id ="login" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
+		SELECT * FROM CUSTOMER WHERE cst_id =#{cst_id } AND cst_pwd=password(#{cst_pwd})
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
