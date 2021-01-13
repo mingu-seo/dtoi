@@ -48,6 +48,8 @@ function moveWrite() {
 </script>
 </head>
 <body>
+<h2>회원관리</h2>
+<%@ include file="/WEB-INF/view/include/common.jsp" %>
 <form action="index.do" id="frm" onsubmit="getOrderby();">
 <input type="text" size="6" name="sdate" id="sdate" value="${param.sdate }" readonly> ~ 
 <input type="text" size="6" name="edate" id="edate" value="${param.edate }" readonly>
@@ -107,6 +109,7 @@ ${authUser.cst_name }님 안녕하세요.
 
 <br>
 <!-- JSP(java코드로) -->
+
 
 </body>
 </html>
