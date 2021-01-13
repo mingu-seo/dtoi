@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bulletin_board">
+
+	
+	<select id="count" parameterType="bulletin_board.Bulletin_boardVo" resultType="int">
+		select count(*) as cnt from bulletin_board		
+	</select>
+	
+	<select id="selectList" parameterType="bulletin_board.Bulletin_boardVo" resultType="bulletin_board.Bulletin_boardVo">
+		select * from bulletin_board		
+	</select>
+	
+	<select id="selectOne" parameterType="bulletin_board.Bulletin_boardVo" resultType="bulletin_board.Bulletin_boardVo">
+		select * from bulletin_board where bb_no=${bb_no }
+	</select>
+	
+	<insert id="insertBulletin_board" parameterType="bulletin_board.Bulletin_boardVo">
+		INSERT INTO bulletin_board (
+			bb_regdate,bb_title,bb_content
+		) VALUES (			
+			NOW(),
+			#{bb_title},
+			#{bb_content}			
+		)
+	</insert>
+	
+	<update id="updateBulletin_board" parameterType="bulletin_board.Bulletin_boardVo">
+		UPDATE bulletin_board SET
+			bb_title = #{bb_title}
+			, bb_content = #{bb_content}			
+		WHERE
+			bb_no = #{bb_no}
+	</update>
+	
+</mapper>
