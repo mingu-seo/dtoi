@@ -5,7 +5,7 @@
 <input type="button" value="로그인" onclick="location.href='/dtoi/customer/login.do?url=/customer/index.do'">
 </c:if>
 <c:if test="${!empty authUser}">
-${authUser.name }님 반갑습니다.
+
 <input type="button" value="로그아웃" onclick="location.href='/dtoi/customer/logout.do'">
 </c:if>
 <input type="button" value="main" onclick="location.href='/dtoi/';">
