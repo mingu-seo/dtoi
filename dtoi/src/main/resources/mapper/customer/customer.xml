@@ -18,27 +18,27 @@
 	</sql>
 	
 	<select id ="count" parameterType="customer.CustomerVo" resultType="int">
-		select count(*) as cnt from CUSTOMER
+		select count(*) as cnt from customer
 		<include refid="customerWhere"/>
 	</select>
 	
 	<select id ="selectList" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
-		select * from CUSTOMER
+		select * from customer
 		<include refid="customerWhere"/>
 		ORDER BY ${orderby} ${direct}
 		limit ${startIdx}, ${pageRow}
 	</select>
 	
 	<select id ="selectOne" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
-		select * from CUSTOMER where cst_no=${cst_no }
+		select * from customer where cst_no=${cst_no }
 	</select>
 	
 	<select id ="isDuplicateId" parameterType="String" resultType="int">
-		select count(*) from CUSTOMER where cst_id =#{cst_id }
+		select count(*) from customer where cst_id =#{cst_id }
 	</select>
 	
 	<insert id ="insertCustomer" parameterType="customer.CustomerVo">
-		INSERT INTO CUSTOMER (
+		INSERT INTO customer (
 			cst_id ,
 			cst_pwd,
 			cst_name,
@@ -74,7 +74,7 @@
 	</insert>
 	
 	<update id ="updateCustomer" parameterType="customer.CustomerVo">
-		UPDATE CUSTOMER SET
+		UPDATE customer SET
 			cst_name = #{cst_name},
 			cst_email = #{cst_email},
 			cst_tel = #{cst_tel},
@@ -93,11 +93,11 @@
 	</update>
 	
 	<delete id ="deleteCustomer" parameterType="customer.CustomerVo">
-		DELETE FROM CUSTOMER WHERE cst_no = #{cst_no}
+		DELETE FROM customer WHERE cst_no = #{cst_no}
 	</delete>
 	
 	<select id ="login" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
-		SELECT * FROM CUSTOMER WHERE cst_id =#{cst_id } AND cst_pwd=password(#{cst_pwd})
+		SELECT * FROM customer WHERE cst_id =#{cst_id } AND cst_pwd=password(#{cst_pwd})
 	</select>
 	
 	

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
 function loginCheck(){
 	if ( $("#id").val().length < 1 ) {

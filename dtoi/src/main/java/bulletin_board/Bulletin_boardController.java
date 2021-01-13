@@ -26,7 +26,7 @@ public class Bulletin_boardController {
 	@Autowired
 	private Bulletin_boardService bulletin_boardService;
 	
-	@RequestMapping("/admin/bulletin_board/index.do")
+	@RequestMapping("/bulletin_board/index.do")
 	public String index(HttpServletRequest req, Bulletin_boardVo vo) {
 		// 서비스(로직) 처리(호출)
 		int[] rowPageCount = bulletin_boardService.getRowPageCount(vo);
@@ -45,14 +45,14 @@ public class Bulletin_boardController {
 		req.setAttribute("vo", vo);
 
 		// jsp 포워딩
-		return "admin/bulletin_board/index";
+		return "bulletin_board/index";
 	}
-	@GetMapping("/admin/bulletin_board/write.do")
+	@GetMapping("/bulletin_board/write.do")
 	public String write() {
-		return "admin/bulletin_board/write";
+		return "/bulletin_board/write";
 	}
 	
-	@RequestMapping("/admin/bulletin_board/insert.do")
+	@RequestMapping("/bulletin_board/insert.do")
 	public void insert(Bulletin_boardVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
 				
 		res.setContentType("text/html;charset=utf-8");
@@ -60,7 +60,7 @@ public class Bulletin_boardController {
 		out.print("<script>");
 		if (bulletin_boardService.insert(vo)) {
 			out.print("alert('정상적으로 등록되었습니다.');");
-			out.print("location.href='/admin/bulletin_board/index.do';");
+			out.print("location.href='/dtoi/bulletin_board/index.do';");
 		} else {
 			out.print("alert('등록실패.');");
 			out.print("history.back();");
@@ -69,7 +69,7 @@ public class Bulletin_boardController {
 		out.flush();
 	}
 	
-	@RequestMapping("/admin/bulletin_board/detail.do")
+	@RequestMapping("/bulletin_board/detail.do")
 	public String detail(HttpServletRequest req, Bulletin_boardVo vo) {
 		
 		Bulletin_boardVo uv = bulletin_boardService.selectOne(vo);		
@@ -77,10 +77,10 @@ public class Bulletin_boardController {
 		req.setAttribute("vo", uv);	
 		
 		// jsp 포워딩
-		return "admin/bulletin_board/detail";
+		return "bulletin_board/detail";
 	}
 	
-	@PostMapping("/admin/bulletin_board/update.do")
+	@PostMapping("/bulletin_board/update.do")
 	public void update(Bulletin_boardVo vo, HttpServletResponse res, HttpServletRequest req, MultipartFile file) throws IOException {		
 		
 		res.setContentType("text/html;charset=utf-8");
@@ -88,7 +88,7 @@ public class Bulletin_boardController {
 		out.print("<script>");
 		if (bulletin_boardService.update(vo)) {
 			out.print("alert('정상적으로 수정되었습니다.');");
-			out.print("location.href='/admin/bulletin_board/detail.do?no="+vo.getBb_no()+"';");
+			out.print("location.href='/bulletin_board/detail.do?no="+vo.getBb_no()+"';");
 		} else {
 			out.print("alert('수정실패.');");
 			out.print("history.back();");
@@ -97,7 +97,7 @@ public class Bulletin_boardController {
 		out.flush();
 	}
 	
-	@RequestMapping("/admin/bulletin_board/edit.do")
+	@RequestMapping("/bulletin_board/edit.do")
 	public String edit(HttpServletRequest req, Bulletin_boardVo vo) {
 		
 		Bulletin_boardVo uv = bulletin_boardService.selectOne(vo);
@@ -105,6 +105,6 @@ public class Bulletin_boardController {
 		req.setAttribute("vo", uv);
 		
 		// jsp 포워딩
-		return "/admin/bulletin_board/edit";
+		return "/bulletin_board/edit";
 	}
 }

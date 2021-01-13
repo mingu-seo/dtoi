@@ -8,7 +8,9 @@
 	</select>
 	
 	<select id="selectList" parameterType="bulletin_board.Bulletin_boardVo" resultType="bulletin_board.Bulletin_boardVo">
-		select * from bulletin_board		
+		select * from bulletin_board	
+		ORDER BY ${orderby} ${direct}
+		limit ${startIdx}, ${pageRow}	
 	</select>
 	
 	<select id="selectOne" parameterType="bulletin_board.Bulletin_boardVo" resultType="bulletin_board.Bulletin_boardVo">
@@ -17,8 +19,11 @@
 	
 	<insert id="insertBulletin_board" parameterType="bulletin_board.Bulletin_boardVo">
 		INSERT INTO bulletin_board (
-			bb_regdate,bb_title,bb_content
-		) VALUES (			
+			cst_no, cst_grade, cst_id, bb_regdate, bb_title, bb_content
+		) VALUES (		
+			1,
+			1,
+			'test_id',	
 			NOW(),
 			#{bb_title},
 			#{bb_content}			

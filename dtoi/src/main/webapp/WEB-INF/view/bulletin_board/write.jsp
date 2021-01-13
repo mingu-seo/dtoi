@@ -1,11 +1,12 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
+var oEditors = [];
 $(function() {
-	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
 		elPlaceHolder: "contents", // textarea ID
@@ -25,6 +26,19 @@ $(function() {
 		fCreator: "createSEditor2"
 	});
 });
+function formCheck() {
+	if ($("#title").val().trim() == '') {
+		alert('제목을 입력하세요');
+		$("#title").focus();
+		return false;
+	}
+	//
+	var html = oEditors.getById["contents"].getIR(); // 값 가져오기
+	if (html == '') {
+		alert('내용을 입력하세요');
+	}
+	oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]); // 에디터있던 내용을 textarea에 담기
+}
 </script>
 </head>
 <body> 
@@ -32,20 +46,20 @@ $(function() {
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
+		<%@ include file="/WEB-INF/view/include/top.jsp" %>
 		<!-- E N D :: headerArea--> 
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [쓰기]</h2>
+					<h2>자유게시판 - [쓰기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
+							<form action="insert.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -59,31 +73,24 @@ $(function() {
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="title" name="bb_title" class="w100" title="제목을 입력해주세요" />	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">*내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="contents" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+											<textarea id="contents" name="bb_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
-										</td>
-									</tr>
+									</tr>									
 								</tbody>
-							</table>
-							<input type="hidden" name="cmd" value="write" />
+							</table>							
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="index.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;"><strong>저장</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:$('#frm').submit();"><strong>저장</strong></a>
 								</div>
 							</div>
 							<!--//btn-->
