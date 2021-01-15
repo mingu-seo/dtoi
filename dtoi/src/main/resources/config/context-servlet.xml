@@ -10,6 +10,9 @@
 	<!-- 컴퍼넌트 스캔:해당패키지부터 하위패키지의 모든 클래스를 스캔 -->	
 	<context:component-scan base-package="board"/>
 	<context:component-scan base-package="admin"/>
+	<context:component-scan base-package="bulletin_board"/>
+	<context:component-scan base-package="util"/>
+	<context:component-scan base-package="customer"/>
 	
 	<!-- 어노테이션 활성화 -->
 	<mvc:annotation-driven/>
@@ -26,9 +29,9 @@
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
-		<property name="url" value="jdbc:mariadb://192.168.0.105:3306/user"/>
+		<property name="url" value="jdbc:mariadb://3.34.47.4:3306/dtoi"/>
 		<property name="username" value="root"/>
-		<property name="password" value="db1234"/>
+		<property name="password" value="ai1234"/>
 	</bean>
 	
 	<!-- mybatis -->
