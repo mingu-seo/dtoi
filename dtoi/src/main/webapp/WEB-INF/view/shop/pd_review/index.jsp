@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="shop.pd_review.*" %>
+<%@ page import="customer.*" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,7 @@ ${reqPage }/${totalPage }
 <c:forEach var="vo" items="${list}">
 	<tr>
 		<td>${vo.no }</td>
-		<td><a href="detail.do?no=${vo.no }">${vo.title }</a></td>
+		<td><a href="detail.do?no=${vo.no }">${vo.title } [${vo.commentCount }]</a></td>
 		<td>${vo.regdate }</td>
 	</tr>
 </c:forEach>
