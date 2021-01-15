@@ -13,6 +13,7 @@
 	<context:component-scan base-package="bulletin_board"/>
 	<context:component-scan base-package="util"/>
 	<context:component-scan base-package="customer"/>
+	<context:component-scan base-package="shop"/>
 	
 	<!-- 어노테이션 활성화 -->
 	<mvc:annotation-driven/>
