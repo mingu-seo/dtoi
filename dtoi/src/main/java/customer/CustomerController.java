@@ -162,7 +162,7 @@ public class CustomerController {
 		PrintWriter out = res.getWriter();
 		out.print("<script>");
 		out.print("alert('로그아웃되었습니다.');");
-		out.print("location.href='/customer/customer/index.do';");
+		out.print("location.href='/dtoi/customer/index.do';");
 		out.print("</script>");
 		out.flush();
 	}
