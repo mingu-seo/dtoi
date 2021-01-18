@@ -14,26 +14,26 @@ public class PdReviewDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public int count(PdReviewVo vo) { 
-		return sqlSession .selectOne("pd_review.count",vo);
+		return sqlSession .selectOne("pdreview.count",vo);
 	}
 	public List<PdReviewVo> selectList(PdReviewVo vo) {
-		return sqlSession .selectList("pd_review.selectList",vo);
+		return sqlSession .selectList("pdreview.selectList",vo);
 	}
 	public PdReviewVo selectOne(PdReviewVo vo) {
-		sqlSession.update("pd_review.updateReadCount",vo);
-		return sqlSession .selectOne("pd_review.selectOne",vo);
+		sqlSession.update("pdreview.updateReadCount",vo);
+		return sqlSession .selectOne("pdreview.selectOne",vo);
 	}
 	public int insert(PdReviewVo vo) {
-		 return sqlSession.insert("pd_review.insertBoard", vo); 
+		 return sqlSession.insert("pdreview.insert", vo); 
 	}
 	public int update(PdReviewVo vo) {
-		 return sqlSession.update("pd_review.updateBoard", vo); 
+		 return sqlSession.update("pdreview.update", vo); 
 	}
 	public int delete(PdReviewVo vo) {
-		return sqlSession.delete("pd_review.deleteBoard", vo); 		
+		return sqlSession.delete("pdreview.delet", vo); 		
 	}
 	public void updateReadcount(int re_no) {
-	sqlSession.update("pd_review.updateBoard",re_no);
+	sqlSession.update("pdreview.update",re_no);
 	}
 	
 }

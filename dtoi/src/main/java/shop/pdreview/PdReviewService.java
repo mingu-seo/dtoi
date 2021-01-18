@@ -12,7 +12,7 @@ public class PdReviewService {
 	private PdReviewDao pdreviewDao;
 	
 		public int[] getRowPageCount(PdReviewVo vo) {
-			int totCount = pdreviewDao.count(vo); // �Ѱ���
+			int totCount = pdreviewDao.count(vo);
 	
 			int totPage = totCount / vo.getPageRow();
 			if (totCount % vo.getPageRow() > 0) totPage++;
