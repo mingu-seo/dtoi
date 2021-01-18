@@ -70,7 +70,9 @@ ${reqPage }/${totalPage }
 	<option value="ASC" <c:if test="${param.direct == 'ASC' }">selected</c:if>>오름차순</option>
 </select>
 <c:if test="${empty authUser}">
-<input type="button" value="로그인" onclick="location.href='login.do'">
+<input type="button" value="로그인" onclick="window.open('login.do', 'PopupWin', 'width=500,height=600')">
+
+
 </c:if>
 <c:if test="${!empty authUser}">
 ${authUser.cst_name }님 안녕하세요.
