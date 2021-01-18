@@ -8,10 +8,10 @@
 ${authUser.name }님 반갑습니다.
 <input type="button" value="로그아웃" onclick="location.href='/dtoi/customer/logout.do'">
 </c:if>
-<input type="button" value="main" onclick="location.href='/dtoi/';">
+<input type="button" value="메인창" onclick="location.href='/dtoi/';">
 <input type="button" value="고객정보" onclick="location.href='/dtoi/customer/index.do';">
 <input type="button" value="자유게시판" onclick="location.href='/dtoi/bulletin_board/index.do';">
-<input type="button" value="pd_review" onclick="location.href='/dtoi/pdreview/index.do';">
+<input type="button" value="상품후기 게시판" onclick="location.href='/dtoi/pdreview/index.do';">
 
 
 <!-- 현재 URL 가져오는 방법 request.getAttribute("javax.servlet.forward.request_uri") -->
