@@ -9,6 +9,7 @@
 <%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
 function moveWrite() {
+	
 	<c:if test="${!empty authUser}">
 	location.href='write.do';
 	</c:if>
@@ -17,6 +18,7 @@ function moveWrite() {
 	location.href='/dtoi/customer/login.do'
 	</c:if>	
 }
+
 </script>
 </head>
 <body> 
@@ -62,7 +64,7 @@ function moveWrite() {
 								<tbody>
 								<c:forEach var="vo" items="${list}">
 									<tr>
-										<td class="first"><input type="checkbox" name="nos" id="no" value=""/></td>
+										<td class="first"><input type="checkbox" name="nos" id="no" value="${vo.bb_no }"/></td>
 										<td>${vo.bb_no }</td>
 										<td class="title"><a href="detail.do?bb_no=${vo.bb_no }">${vo.bb_title} [${vo.commentCount }]</a></td>
 										<td>${vo.bb_regdate }</td>
@@ -78,7 +80,7 @@ function moveWrite() {
 									<a class="btns" href="javascript:;" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="javascript:moveWrite();"><strong>등록</strong> </a>
+									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->

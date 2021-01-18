@@ -101,7 +101,7 @@ public class Bulletin_boardController {
 		out.print("<script>");
 		if (bulletin_boardService.update(vo)) {
 			out.print("alert('정상적으로 수정되었습니다.');");
-			out.print("location.href='/bulletin_board/detail.do?no="+vo.getBb_no()+"';");
+			out.print("location.href='/dtoi/bulletin_board/detail.do?bb_no="+vo.getBb_no()+"';");
 		} else {
 			out.print("alert('수정실패.');");
 			out.print("history.back();");

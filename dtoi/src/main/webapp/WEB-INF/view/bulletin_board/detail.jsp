@@ -73,6 +73,12 @@ function delComment(no){
 										</td>
 									</tr>
 									<tr>
+										<th scope="row"><label for="">작성자</label></th>
+										<td colspan="10">
+											${vo.cst_id }
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
 											${vo.bb_content }
@@ -91,13 +97,12 @@ function delComment(no){
 													</c:if>
 													<c:forEach var="vo" items="${clist}">	
 													<dl>
-														<dt><strong>홍길동</strong> ${vo.regdate }</dt>
+														<dt><strong>${vo.cst_no }</strong> ${vo.regdate }</dt>
 														<dd>${vo.bb_comment }
-															<c:if test='${vo.cst_no == authUser.no }'>
+															
 															<span class="reEdit">
-																<strong class="btn_in inbtn"><input type="button" class="r_delete" value="삭제" onclick='goDel(${vo.no })'/></strong>
+																<strong class="btn_in inbtn"><input type="button" class="r_delete" value="삭제" onclick='delComment(${vo.no })'/></strong>
 															</span>
-															</c:if>
 														</dd>
 													</dl>
 													</c:forEach>
@@ -118,7 +123,7 @@ function delComment(no){
 															</dd>
 														</dl>
 														<input type='hidden' name='bb_no' value="${vo.bb_no }">
-														<input type='hidden' name='user_no' value="0">														
+														<input type='hidden' name='user' value="${vo.cst_id }">														
 													</form>
 												</div>
 												<!-- //rego -->
