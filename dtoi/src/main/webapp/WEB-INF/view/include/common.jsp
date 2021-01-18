@@ -3,6 +3,6 @@
 
 <!-- 현재 URL 가져오는 방법 request.getAttribute("javax.servlet.forward.request_uri") -->
 
-<input type="button" value="main" onclick="location.href='/customer/';">
-<input type="button" value="customer" onclick="location.href='/customer/customer/index.do';">
-<input type="button" value="bulletin_board" onclick="location.href='/customer/bulletin_board/index.do';">
+
+<input type="button" value="고객정보" onclick="location.href='/dtoi/customer/index.do';">
+<input type="button" value="자유게시판" onclick="location.href='/dtoi/bulletin_board/index.do';">

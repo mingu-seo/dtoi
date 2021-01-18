@@ -106,7 +106,7 @@ public class CustomerController {
 	
 	// 로그인처리
 	@PostMapping("/customer/login.do")
-	public String loginProcess(CustomerVo vo, HttpServletRequest req) {
+	public String loginProcess(CustomerVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		/*
 		 세션(session) : 브라우저 단위로 저장되는 저장소		 
 		 
@@ -129,8 +129,21 @@ public class CustomerController {
 			
 			// 위 코드와 동일하게
 			//req.getSession().setAttribute("authUser", uv);
+//			String url = "/customer/index.do";
+//			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
+//				url = req.getParameter("url"); 
+//			}
+//			return "redirect:"+url;
 			
-			return "redirect:/customer/index.do";
+			res.setContentType("text/html;charset=utf-8");
+			PrintWriter out = res.getWriter();
+			out.print("<script>");
+			out.print("opener.parent.location.reload();");
+			out.print("window.close();");
+			out.print("</script>");
+			out.flush();
+			
+			return null;
 			
 		} else { // 로그인 실패
 			req.setAttribute("msg", "아이디와 비밀번호가 올바르지 않습니다.");
