@@ -62,7 +62,7 @@ $(window).load(function(){
 		<div class="util">
 			<ul>
 				<li class="frist"><a href="#" onclick="">Home</a></li>
-				<li><a href="<%=request.getContextPath()%>/customer/login.do">LogIn</a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/login.do">LogIn</a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/logout.do">LogOut</a></li>
 			</ul>
 		</div>
