@@ -10,6 +10,7 @@ public class CommentVo {
 	private int cst_no;
 	
 	
+	
 	public int getNo() {
 		return no;
 	}
