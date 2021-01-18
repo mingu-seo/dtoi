@@ -20,11 +20,21 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 
+
+
+
+
+
+
+
+
 @Controller
 public class Bulletin_boardController {
 
 	@Autowired
 	private Bulletin_boardService bulletin_boardService;
+	@Autowired
+	private CommentService commentService;
 	
 	@RequestMapping("/bulletin_board/index.do")
 	public String index(HttpServletRequest req, Bulletin_boardVo vo) {
@@ -72,9 +82,12 @@ public class Bulletin_boardController {
 	@RequestMapping("/bulletin_board/detail.do")
 	public String detail(HttpServletRequest req, Bulletin_boardVo vo) {
 		
-		Bulletin_boardVo uv = bulletin_boardService.selectOne(vo);		
+		
+		Bulletin_boardVo uv = bulletin_boardService.selectOne(vo,true);	
+		List<CommentVo> clist = commentService.getList(uv.getBb_no());
 		
 		req.setAttribute("vo", uv);	
+		req.setAttribute("clist", clist);
 		
 		// jsp 포워딩
 		return "bulletin_board/detail";
@@ -100,11 +113,78 @@ public class Bulletin_boardController {
 	@RequestMapping("/bulletin_board/edit.do")
 	public String edit(HttpServletRequest req, Bulletin_boardVo vo) {
 		
-		Bulletin_boardVo uv = bulletin_boardService.selectOne(vo);
+		Bulletin_boardVo uv = bulletin_boardService.selectOne(vo,false);
 		
 		req.setAttribute("vo", uv);
 		
 		// jsp 포워딩
 		return "/bulletin_board/edit";
 	}
+	@GetMapping("/bulletin_board/delete.do")
+	public void delete(Bulletin_boardVo vo, HttpServletResponse res) throws IOException {
+		res.getWriter().print(bulletin_boardService.delete(vo));
+	}
+	
+	@RequestMapping("/bulletin_board/groupDelete.do")
+	public void groupDelete(Bulletin_boardVo vo, HttpServletResponse res,HttpServletRequest req) throws IOException {
+		/*
+		 컨트롤러에서 파라미터를 받는 3가지 방법
+		 1. request객체
+		 2. @RequestParam
+		 3. 커맨드객체 (스프링이 커맨드객체의 필드명과 클라이언트에서 전송되어 오는 파라미터)
+		 */		
+		int delCount = 0;
+		for(int i = 0; i < vo.getNos().length; i++) {			
+			vo.setBb_no(Integer.parseInt(vo.getNos()[i]));
+			if (bulletin_boardService.delete(vo)) delCount++;
+		}
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print("<script>");
+		if (delCount > 0) {
+			out.print("alert('"+vo.getNos().length+ "건중에"+delCount+ " 건이 삭제되었습니다.');");
+			out.print("location.href='/dtoi/bulletin_board/index.do';");
+		} else {
+			out.print("alert('삭제실패.');");
+			out.print("history.back();");
+		}
+		out.print("</script>");
+		out.flush();
+	}
+	
+	@RequestMapping("/bulletin_board/insertComment.do")
+	public void insertComment(CommentVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print("<script>");
+		if (commentService.insert(vo)) {
+			out.print("alert('정상적으로 등록되었습니다.');");
+			out.print("location.href='/dtoi/bulletin_board/detail.do?bb_no="+vo.getBb_no()+"';");
+		} else {
+			out.print("alert('등록실패.');");
+			out.print("history.back();");
+		}
+		out.print("</script>");
+		out.flush();
+	}
+	
+	@GetMapping("/bulletin_board/deleteComment.do")
+	public void deleteComment(CommentVo vo, HttpServletResponse res) throws IOException {
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print("<script>");
+		if (commentService.delete(vo.getNo())) {
+			out.print("alert('정상적으로 삭제되었습니다.');");
+			out.print("location.href='/dtoi/bulletin_board/detail.do?bb_no="+vo.getBb_no()+"';");
+		} else {
+			out.print("alert('삭제실패.');");
+			out.print("history.back();");
+		}
+		out.print("</script>");
+		out.flush();
+	}
+	
+	
 }

@@ -14,7 +14,7 @@ public class CommonVo {
 	public CommonVo() {
 		this.pageRow = 10;
 		this.reqPage = 1;
-		this.orderby = "bb_regdate";
+		this.orderby = "bb_no";
 		this.direct = "DESC";
 	}
 	

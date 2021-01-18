@@ -13,6 +13,10 @@ public class Bulletin_boardVo extends CommonVo {
 	private Timestamp bb_regdate;
 	private String bb_title;
 	private String bb_content;
+	private int commentCount;
+	private String user_name;
+	private int readCnt;
+	private String[] nos;
 	
 	public Bulletin_boardVo() {
 		// 부모에서 초기값으로 10을 대입했지만, 자식에서 5로 변경
@@ -68,4 +72,38 @@ public class Bulletin_boardVo extends CommonVo {
 	public void setBb_content(String bb_content) {
 		this.bb_content = bb_content;
 	}
+
+	public String[] getNos() {
+		return nos;
+	}
+
+	public void setNos(String[] nos) {
+		this.nos = nos;
+	}
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public int getReadCnt() {
+		return readCnt;
+	}
+
+	public void setReadCnt(int readCnt) {
+		this.readCnt = readCnt;
+	}
+	
+	
 }

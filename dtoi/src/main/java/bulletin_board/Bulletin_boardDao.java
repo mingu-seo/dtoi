@@ -25,16 +25,19 @@ public class Bulletin_boardDao {
 	}
 	
 	public int insert(Bulletin_boardVo vo) {
-		return sqlSession.insert("bulletin_board.insertBulletin_board",vo);
+		return sqlSession.insert("bulletin_board.insert",vo);
 	}
 	
 	public int update(Bulletin_boardVo vo) {
-		return sqlSession.update("bulletin_board.updateBulletin_board", vo);
+		return sqlSession.update("bulletin_board.update", vo);
 	}
 	
 	public int delete(Bulletin_boardVo vo) {
-		return sqlSession.delete("bulletin_board.deleteBoard", vo);
+		return sqlSession.delete("bulletin_board.delete", vo);
 	}
+	public void updateReadCnt(int no) {
+		sqlSession.update("bulletin_board.updateReadCnt",no);
+	}	
 	
 	
 }

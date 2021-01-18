@@ -41,7 +41,8 @@ public class Bulletin_boardService {
 		return bulletin_boardDao.selectList(vo);
 	}
 	
-	public Bulletin_boardVo selectOne(Bulletin_boardVo uv) {
+	public Bulletin_boardVo selectOne(Bulletin_boardVo uv, boolean isUser) {
+		if(isUser) bulletin_boardDao.updateReadCnt(uv.getBb_no());
 		return bulletin_boardDao.selectOne(uv);
 	}
 	
