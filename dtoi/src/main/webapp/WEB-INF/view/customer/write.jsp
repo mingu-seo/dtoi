@@ -17,7 +17,7 @@ function formCheck() {
 	var con = true;
 	if ($("#cst_id").val().length >= 3) { // 아이디 값이 3자 이상인 경우
 		$.ajax({
-			url:'/customer/customer/isDuplicateId.do',
+			url:'/dtoi/customer/isDuplicateId.do',
 			data:{id:$("#cst_id").val()},
 			type:'HTML',
 			method:'GET',
@@ -52,7 +52,7 @@ function formCheck() {
 	var data = $("#frm").serialize();
 	console.log(data);
 	$.ajax({
-		url:'/customer/customer/insert.do',
+		url:'/dtoi/customer/insert.do',
 		data:data,
 		type:'HTML',
 		method:'POST',
@@ -81,7 +81,7 @@ $(function() {
 		//console.log($(this).val().length);
 		if ($(this).val().length >= 3) { // 아이디 값이 3자 이상인 경우
 			$.ajax({
-				url:'/customer/customer/isDuplicateId.do',
+				url:'/dtoi/customer/isDuplicateId.do',
 				data:{id:$(this).val()},
 				type:'HTML',
 				method:'GET',
