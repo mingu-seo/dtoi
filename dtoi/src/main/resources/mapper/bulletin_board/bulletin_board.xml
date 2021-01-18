@@ -2,13 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bulletin_board">
 
-	
+	<sql id="bulletin_boardWhere">
+		<where> <!-- 아래 조건이 있으면 where 붙임 -->
+			<!-- 이름이나 아이디 검색 -->
+			<if test="searchWord != null and searchWord != ''"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+			and (bb_title like '%${searchWord}%' or bb_content like '%${searchWord}%')
+			</if>
+			<!-- 마이페이지 -->
+			<if test="cst_no != 0">
+			and cst_no=#{cst_no}
+			</if>
+		</where>
+	</sql>
 	<select id="count" parameterType="bulletin_board.Bulletin_boardVo" resultType="int">
-		select count(*) as cnt from bulletin_board		
+		select count(*) as cnt from bulletin_board	
+		<include refid="bulletin_boardWhere"/>	
 	</select>
 	
 	<select id="selectList" parameterType="bulletin_board.Bulletin_boardVo" resultType="bulletin_board.Bulletin_boardVo">
-		select * from bulletin_board	
+		select *,
+			(select count(*) from bb_comment where bb_no = bulletin_board.bb_no) as commentCount,
+			ifnull((select cst_name from customer where cst_no=bulletin_board.cst_no),'관리자') as user_name
+		 from bulletin_board
+		<include refid="bulletin_boardWhere"/>		
 		ORDER BY ${orderby} ${direct}
 		limit ${startIdx}, ${pageRow}	
 	</select>
@@ -17,7 +33,7 @@
 		select * from bulletin_board where bb_no=${bb_no }
 	</select>
 	
-	<insert id="insertBulletin_board" parameterType="bulletin_board.Bulletin_boardVo">
+	<insert id="insert" parameterType="bulletin_board.Bulletin_boardVo">
 		INSERT INTO bulletin_board (
 			cst_no, cst_grade, cst_id, bb_regdate, bb_title, bb_content
 		) VALUES (		
@@ -30,12 +46,25 @@
 		)
 	</insert>
 	
-	<update id="updateBulletin_board" parameterType="bulletin_board.Bulletin_boardVo">
+	<update id="update" parameterType="bulletin_board.Bulletin_boardVo">
 		UPDATE bulletin_board SET
 			bb_title = #{bb_title}
 			, bb_content = #{bb_content}			
 		WHERE
 			bb_no = #{bb_no}
 	</update>
+	
+	<delete id="delete" parameterType="bulletin_board.Bulletin_boardVo">
+		DELETE FROM bulletin_board WHERE bb_no = #{bb_no}
+	</delete>
+	
+	<update id="updateReadCnt" parameterType="int">
+		UPDATE bulletin_board SET
+			readCnt = readCnt + 1			
+		WHERE
+			bb_no = #{bb_no}
+	</update>
+	
+	
 	
 </mapper>

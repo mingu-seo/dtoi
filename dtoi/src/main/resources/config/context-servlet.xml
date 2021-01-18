@@ -7,8 +7,8 @@
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 				http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
-	<!-- 컴퍼넌트 스캔:해당패키지부터 하위패키지의 모든 클래스를 스캔 -->	
-	<context:component-scan base-package="board"/>
+	<!-- 컴퍼넌트 스캔:해당패키지부터 하위패키지의 모든 클래스를 스캔 -->
+	
 	<context:component-scan base-package="admin"/>
 	<context:component-scan base-package="bulletin_board"/>
 	<context:component-scan base-package="util"/>

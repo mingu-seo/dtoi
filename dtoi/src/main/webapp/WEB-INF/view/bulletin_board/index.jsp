@@ -8,9 +8,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
-function moveWrite() {	
-    location.href='write.do';    	
+function moveWrite() {
+	
+	<c:if test="${!empty authUser}">
+	location.href='write.do';
+	</c:if>
+	<c:if test="${empty authUser}">
+	alert('로그인 후 이용가능합니다.');
+	location.href='/dtoi/customer/login.do'
+	</c:if>	
 }
+
 </script>
 </head>
 <body> 
@@ -33,7 +41,7 @@ function moveWrite() {
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
-							<form name="frm" id="frm" action="groupDelete2.do" method="post">
+							<form name="frm" id="frm" action="groupDelete.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
@@ -50,17 +58,18 @@ function moveWrite() {
 										<th scope="col">제목</th> 
 										<th scope="col">작성일</th> 
 										<th scope="col">작성자</th>
-										
+										<th scope="col">조회수</th>
 									</tr>
 								</thead>
 								<tbody>
 								<c:forEach var="vo" items="${list}">
 									<tr>
-										<td class="first"><input type="checkbox" name="nos" id="no" value=""/></td>
+										<td class="first"><input type="checkbox" name="nos" id="no" value="${vo.bb_no }"/></td>
 										<td>${vo.bb_no }</td>
-										<td class="title"><a href="detail.do?bb_no=${vo.bb_no }">${vo.bb_title}</a></td>
+										<td class="title"><a href="detail.do?bb_no=${vo.bb_no }">${vo.bb_title} [${vo.commentCount }]</a></td>
 										<td>${vo.bb_regdate }</td>
-										<td>${vo.cst_id }</td>										
+										<td>${vo.cst_id }</td>	
+										<td scope="col">${vo.readCnt }</td>									
 									</tr>
 								</c:forEach>
 								</tbody>
