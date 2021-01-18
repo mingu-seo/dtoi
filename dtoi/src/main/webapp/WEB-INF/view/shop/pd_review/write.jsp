@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/user/smarteditor/js/HuskyEZCreator.js"></script><!-- 에디터에서 사용될 스크립트 -->
-<script src="/user/js/common.js"></script>
+<script src="/dtoi/smarteditor/js/HuskyEZCreator.js"></script><!-- 에디터에서 사용될 스크립트 -->
+<script src="/dtoi/js/common.js"></script>
 <script>
 // 에디터 적용
 var oEditor;

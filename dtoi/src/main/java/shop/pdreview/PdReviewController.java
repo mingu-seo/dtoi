@@ -1,4 +1,4 @@
-package shop.pd_review;
+package shop.pdreview;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,16 +8,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import util.CommonVo;
 
 //@Controller
 public class PdReviewController {
@@ -25,7 +23,7 @@ public class PdReviewController {
 	@Autowired
 	private PdReviewService pdreviewService;
 	
-	@RequestMapping("/pd_review/index.do")
+	@RequestMapping("/pdreview/index.do")
 	public String index(HttpServletRequest req, PdReviewVo vo) {
 	
 		int[] rowPageCount = pdreviewService.getRowPageCount(vo);
@@ -39,10 +37,10 @@ public class PdReviewController {
 				req.setAttribute("reqPage", vo.getReqPage());
 				req.setAttribute("vo", vo);
 			
-				return "pd_review/index";
+				return "pdreview/index";
 	}
 	
-	@RequestMapping("/pd_review/detail.do")
+	@RequestMapping("/pdreview/detail.do")
 	public String detail(HttpServletRequest req, PdReviewVo vo) {
 		
 		PdReviewVo uv = pdreviewService.selectOne(vo);
@@ -52,15 +50,15 @@ public class PdReviewController {
 		req.setAttribute("clist", clist);
 	
 	
-	return "pd_review/detail";	
+	return "pdreview/detail";	
 	}
 	
-	@RequestMapping("/pd_review/write.do")
+	@RequestMapping("/pdreview/write.do")
 	public String write() {
-			return "pd_review/write";
+			return "pdreview/write";
 	}
 	
-	@RequestMapping("/pd_review/insert.do")
+	@RequestMapping("/pdreview/insert.do")
 	public void insert(PdReviewVo vo, HttpServletResponse res, HttpServletRequest req, MultipartFile file) throws IOException { 
 		
 		if (!file.isEmpty()) {
@@ -90,28 +88,28 @@ public class PdReviewController {
 		PrintWriter out = res.getWriter();
 		out.print("<script>");
 		if (pdreviewService.insert(vo)) {
-			out.print("alert('Á¤»óÀûÀ¸·Î µî·ÏµÇ¾ú½À´Ï´Ù.');");
-			out.print("location.href='/shop/pd_review/index.do';");
+			out.print("alert('ì •ìƒì ìœ¼ë¡œ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.');");
+			out.print("location.href='/dtoi/pdreview/index.do';");
 		} else {
-			out.print("alert('µî·Ï½ÇÆĞ.');");
+			out.print("alert('ë“±ë¡ì‹¤íŒ¨';");
 			out.print("history.back();");
 		}
 		out.print("</script>");
 		out.flush();
 	}
 	
-	@RequestMapping("/pd_review/edit.do")
+	@RequestMapping("/pdreview/edit.do")
 	public String edit(PdReviewVo vo, HttpServletRequest req) throws IOException {
 	
 		PdReviewVo uv = pdreviewService.selectOne(vo);
 		req.setAttribute("vo", uv);
 		
-		return "pd_review/edit";	
+		return "pdreview/edit";	
 		}
 	
 	
 	
-	@PostMapping("/pd_review/update.do")
+	@PostMapping("/pdreview/update.do")
 	public void update(PdReviewVo vo, HttpServletResponse res, HttpServletRequest req, MultipartFile file) throws IOException {
 	
 				if (!file.isEmpty()) {
@@ -141,17 +139,17 @@ public class PdReviewController {
 				PrintWriter out = res.getWriter();
 				out.print("<script>");
 				if (pdreviewService.update(vo)) {
-					out.print("alert('Á¤»óÀûÀ¸·Î ¼öÁ¤µÇ¾ú½À´Ï´Ù.');");
-					out.print("location.href='/shop/pd_review/detail.do?no="+vo.getPd_no()+"';");
+					out.print("alert('ì •ìƒì ìœ¼ë¡œ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤');");
+					out.print("location.href='/dtoi/pdreview/detail.do?no="+vo.getPd_no()+"';");
 				} else {
-					out.print("alert('¼öÁ¤½ÇÆĞ');");
+					out.print("alert('ìˆ˜ì •ì‹¤íŒ¨');");
 					out.print("history.back();");
 				}
 				out.print("</script>");
 				out.flush();
 			}
 	
-	@GetMapping("/pd_review/delete.do")
+	@GetMapping("/pdreview/delete.do")
 	public void delete(PdReviewVo vo, HttpServletResponse res) throws IOException {
 		res.getWriter().print(pdreviewService.delete(vo));
 	}

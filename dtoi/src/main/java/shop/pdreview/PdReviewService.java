@@ -1,4 +1,4 @@
-package shop.pd_review;
+package shop.pdreview;
 
 import java.util.List;
 
@@ -10,17 +10,15 @@ public class PdReviewService {
 
 	@Autowired
 	private PdReviewDao pdreviewDao;
-	// 총갯수와 총페이지수를 구하는 메서드
+	
 		public int[] getRowPageCount(PdReviewVo vo) {
-			int totCount = pdreviewDao.count(vo); // 총갯수
-			// 총페이지 수 = 총갯수/페이지당갯수, 만약 총갯수에서 페이지당갯수로 나눈 나머지가 있으면 +1
+			int totCount = pdreviewDao.count(vo); // 占싼곤옙占쏙옙
+	
 			int totPage = totCount / vo.getPageRow();
 			if (totCount % vo.getPageRow() > 0) totPage++;
 			
-			// 목록하단에 노출되는 페이지 범위 구하기
-			// 시작페이지값 = (사용자가요청한페이지-1)/페이지당갯수*페이지당갯수+1
 			int startpage = (vo.getReqPage()-1)/vo.getPageRow()*vo.getPageRow()+1;
-			// 마지막페이지값 = 시작페이지-1+페이지당갯수
+	
 			int endpage = startpage-1+vo.getPageRow();
 			if (endpage > totPage) endpage = totPage;
 			
@@ -31,12 +29,9 @@ public class PdReviewService {
 			rowPageCount[3] = endpage;
 			return rowPageCount;
 		}
-		
-		// 목록을 구하는 메서드
+
 		public List<PdReviewVo> getList(PdReviewVo vo) {
-			// limit 시작값 = (사용자가 요청한 페이지번호 - 1) * 페이지당갯수
-			//int startIdx = (vo.getReqPage() - 1) * vo.getPageRow();
-			//vo.setStartIdx((vo.getReqPage() - 1) * vo.getPageRow());
+	
 			return pdreviewDao.selectList(vo);
 		}
 		

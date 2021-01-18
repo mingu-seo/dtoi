@@ -11,3 +11,5 @@
 <input type="button" value="main" onclick="location.href='/dtoi/';">
 <input type="button" value="customer" onclick="location.href='/dtoi/customer/index.do';">
 <input type="button" value="bulletin_board" onclick="location.href='/dtoi/bulletin_board/index.do';">
+<input type="button" value="pd_review" onclick="location.href='/dtoi/pd_review/index.do';">
+
