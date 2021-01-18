@@ -133,7 +133,7 @@ public class CustomerController {
 //			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 //				url = req.getParameter("url"); 
 //			}
-//			return "redirect:"+url;
+//			return "redirect:"+url; 실험
 			
 			res.setContentType("text/html;charset=utf-8");
 			PrintWriter out = res.getWriter();
