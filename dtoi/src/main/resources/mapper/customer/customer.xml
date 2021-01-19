@@ -55,7 +55,7 @@
 			addr1,
 			addr2
 		) VALUES (
-			#{cst_id},
+			#{cst_id},   
 			password(#{cst_pwd}),
 			#{cst_name},
 			#{cst_email},

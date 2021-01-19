@@ -129,21 +129,12 @@ public class CustomerController {
 			
 			// 위 코드와 동일하게
 			//req.getSession().setAttribute("authUser", uv);
-//			String url = "/customer/index.do";
-//			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
-//				url = req.getParameter("url"); 
-//			}
-//			return "redirect:"+url; 실험
-			
-			res.setContentType("text/html;charset=utf-8");
-			PrintWriter out = res.getWriter();
-			out.print("<script>");
-			out.print("opener.parent.location.reload();");
-			out.print("window.close();");
-			out.print("</script>");
-			out.flush();
-			
-			return null;
+			String url = "/dtoi/customer/index.do";
+			System.out.println(req.getParameter("url"));
+		if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
+				url = req.getParameter("url"); 
+			}
+			return "redirect: "+url; 
 			
 		} else { // 로그인 실패
 			req.setAttribute("msg", "아이디와 비밀번호가 올바르지 않습니다.");
@@ -152,7 +143,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/customer/logout.do")
-	public void logout(HttpServletResponse res, HttpSession sess) throws IOException {
+	public void logout(HttpServletResponse res, HttpSession sess, HttpServletRequest req) throws IOException {
 		
 		sess.invalidate(); // 세션초기화(모든 세션)
 		// authUser만 세션 제거
@@ -162,7 +153,11 @@ public class CustomerController {
 		PrintWriter out = res.getWriter();
 		out.print("<script>");
 		out.print("alert('로그아웃되었습니다.');");
-		out.print("location.href='/dtoi/customer/index.do';");
+		String url = "/dtoi/customer/index.do";
+		if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
+			url = req.getParameter("url"); 
+		}
+		out.print("location.href='"+url+"';");
 		out.print("</script>");
 		out.flush();
 	}

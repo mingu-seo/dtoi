@@ -5,8 +5,8 @@
 <input type="button" value="로그인" onclick="location.href='/dtoi/customer/login.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>'">
 </c:if>
 <c:if test="${!empty authUser}">
-${authUser.name }님 반갑습니다.
-<input type="button" value="로그아웃" onclick="location.href='/dtoi/customer/logout.do'">
+${authUser.cst_name}님 반갑습니다.
+<input type="button" value="로그아웃" onclick="location.href='/dtoi/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>'">
 </c:if>
 <input type="button" value="메인창" onclick="location.href='/dtoi/';">
 <input type="button" value="고객정보" onclick="location.href='/dtoi/customer/index.do';">
