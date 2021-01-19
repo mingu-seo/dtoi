@@ -28,8 +28,7 @@ public class Admin_ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@Autowired
-	private ProductVo productvo;
+
 	
 	@RequestMapping("/admin/product/index.do")
 	public String index(HttpServletRequest req, ProductVo vo) {
