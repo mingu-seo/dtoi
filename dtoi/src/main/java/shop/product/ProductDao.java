@@ -16,13 +16,33 @@ public class ProductDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public int count(ProductVo vo) {
-		return sqlSession .selectOne("product.count",vo);
+		return sqlSession.selectOne("product.count", vo);
 	}
+	
 	public List<ProductVo> selectList(ProductVo vo) {
-		return sqlSession .selectList("product.selectList",vo);
+		return sqlSession.selectList("product.selectList", vo);
 	}
+	
 	public ProductVo selectOne(ProductVo vo) {
-		return sqlSession .selectOne("product.selectOne",vo);
+		return sqlSession.selectOne("product.selectOne", vo);
 	}
+	
+	public int insert(ProductVo vo) {
+		return sqlSession.insert("product.insert",vo);
+	}
+	
+	public int update(ProductVo vo) {
+		return sqlSession.update("product.update",vo);
+	}
+	
+	public int delete(ProductVo vo) {
+		return sqlSession.delete("product.delete", vo);
+	}
+	
+	public void updateReadcnt(int pd_no) {
+		sqlSession.update("product.updateReadcnt",pd_no);
+	}
+	
+	
 	
 }
