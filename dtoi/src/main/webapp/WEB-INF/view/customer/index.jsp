@@ -99,7 +99,7 @@ ${reqPage }/${totalPage }
 <a href="index.do?reqPage=${endPage+1 }&sdate=${param.sdate}&edate=${param.edate}&searchWord=${param.searchWord}&orderby=${vo.orderby}&direct=${vo.direct}">[다음]</a>
 </c:if>
 
-<a href="javascript:moveWrite();"><input type="button" value="회원가입"></a>
+
 
 <br>
 <!-- JSP(java코드로) -->

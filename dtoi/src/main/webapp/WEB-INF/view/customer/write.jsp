@@ -61,10 +61,11 @@ function formCheck() {
 			//console.log(data);
 			if (data == 'true') {
 				alert("정상적으로 등록되었습니다.");
+				
 				// 모든 입력란을 초기화
 				//$("input[type='text'], input[type='password']").val("");
 				//$("#frm")[0].reset();
-				location.href="index.do";
+				location.href="${param.url}";
 			} else {
 				alert("등록 실패");
 			}
@@ -183,10 +184,11 @@ $(function() {
 	</tr>
 	<tr>
 		<td>성별</td>
-		<td><input type="text" name="cst_gender"></td>
+		<td><input type="radio" name = "cst_gender" value="남성">남성
+		<input type="radio" name = "cst_gender" value="여성">여성 </td>
 	</tr>
 	<tr>
-		<td>생일</td>
+		<td>생일<br></td>
 		<td><input type="text" name="cst_birth"></td>
 	</tr>
 	<tr>
