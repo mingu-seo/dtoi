@@ -62,11 +62,16 @@ $(window).load(function(){
 		<div class="util">
 			<ul>
 				<li class="frist"><a href="#" onclick="">Home</a></li>
+				
 				<c:if test="${empty authUser}">
 				<li><a href='/dtoi/customer/login.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>'>LogIn</a></li>
+				<li><a href="<%=request.getContextPath()%>/customer/write.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">회원가입</a></li>
 				</c:if>
 				<c:if test="${!empty authUser}">
 				<li><a href="<%=request.getContextPath()%>/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">LogOut</a></li>
+				
+				
+				
 				</c:if>
 				
 			</ul>
