@@ -124,7 +124,8 @@ $(function() {
 	</tr>
 	<tr>
 		<td>성별</td>
-		<td><input type="text" name="cst_gender"></td>
+		<td><input type="radio" name = "cst_gender" value="남성">남성
+		<input type="radio" name = "cst_gender" value="여성">여성 </td>
 	</tr>
 	<tr>
 		<td>생일</td>
