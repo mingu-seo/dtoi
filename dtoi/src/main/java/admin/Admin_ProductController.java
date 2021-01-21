@@ -73,7 +73,7 @@ public class Admin_ProductController {
 				
 				
 				// request.getRealPath() -> 실제 경로를 리턴
-				String path = req.getRealPath("/upload/admin/product/");
+				String path = req.getRealPath("/upload/");
 				System.out.println(path);
 				//path = "D:\\AI\\workspace\\user\\src\\main\\webapp\\upload\\";
 				file.transferTo(new File(path+filename));

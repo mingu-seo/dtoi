@@ -53,7 +53,7 @@ function formCheck() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [수정]</h2>
+					<h2>상품목록 - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -62,7 +62,7 @@ function formCheck() {
 						<div id="bread">
 							<form action="update.do" onsubmit="return formCheck()" method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
 							<input type="hidden" name="no" value="${vo.no }">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 상품수정 관리 페이지입니다.">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />
@@ -71,23 +71,38 @@ function formCheck() {
 									<col width="10%" />
 									<col width="15%" />
 								</colgroup>
-								<tbody>
+							<tbody>
+									<tr>
+										<th scope="row"><label for="">메인 이미지</label></th>
+										<td colspan="10">
+											<input type="file" id="filename_tmp" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
+										</td>
+									</tr>
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" value="${vo.title }"/>	
+											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" />	
 										</td>
 									</tr>
+
+									<tr>
+										<th scope="row"><label for="">카테고리</label></th>
+										<td colspan="10">
+											<input id="title" name="pd_category" class="w100" title="제목을 입력해주세요" />	
+										</td>
+									</tr>
+									
+									<tr>
+										<th scope="row"><label for="">*가격</label></th>
+										<td colspan="10">
+											<textarea name="pd_price" title="가격입력" style="width:100%;"></textarea>	
+										</td>
+									</tr>
+									
 									<tr>
 										<th scope="row"><label for="">*내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="content" title="내용을 입력해주세요" style="width:100%;">${vo.content }</textarea>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="file" id="filename_tmp" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
+											<textarea id="contents" name="pd_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
 									</tr>
 								</tbody>

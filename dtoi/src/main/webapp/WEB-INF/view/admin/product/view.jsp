@@ -17,7 +17,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [읽기]</h2>
+					<h2>상품 - [보기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -35,15 +35,27 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">제목</label></th>
+										<th scope="row"><label for="">상품번호</label></th>
 										<td colspan="10">
-											${vo.title }
+											${vo.pd_no }
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">내용</label></th>
+										<th scope="row"><label for="">상품이름</label></th>
 										<td colspan="10">
-											${vo.content }
+											${vo.pd_name }
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">상품가격</label></th>
+										<td colspan="10">
+											${vo.pd_price }
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">상품리뷰</label></th>
+										<td colspan="10">
+											${vo.pd_recom }
 										</td>
 									</tr>
 									<tr>
