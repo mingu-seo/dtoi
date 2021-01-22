@@ -48,6 +48,47 @@ function formCheck() {
 		$("#cst_name").focus();
 		return false;
 	}
+	if ($("#cst_email").val().trim() == '') {
+		alert('e메일 주소를 입력하세요');
+		$("#cst_email").focus();
+		return false;
+	}
+	if ($("#cst_tel").val().trim() == '') {
+		alert('연락처를 입력하세요');
+		$("#cst_tel").focus();
+		return false;
+	}
+
+	if ($("#cst_birth").val().trim() == '') {
+		alert('생일을 입력하세요');
+		$("#cst_birth").focus();
+		return false;
+	}
+	if ($("#cst_height").val().trim() == '') {
+		alert('키를 입력하세요');
+		$("#cst_height").focus();
+		return false;
+	}
+	if ($("#cst_weight").val().trim() == '') {
+		alert('몸무게를 입력하세요');
+		$("#cst_weight").focus();
+		return false;
+	}
+	if ($("#cst_grade").val().trim() == '') {
+		alert('비만도를 입력하세요');
+		$("#cst_grade").focus();
+		return false;
+	}
+	if ($("#zipcode").val().trim() == '') {
+		alert('우편번호를 입력하세요');
+		$("#zipcode").focus();
+		return false;
+	}
+	if ($("#addr1").val().trim() == '') {
+		alert('주소를 입력하세요');
+		$("#addr1").focus();
+		return false;
+	}
 	// 폼에 있는 모든 데이터를 한번에 읽어오는 방법
 	var data = $("#frm").serialize();
 	console.log(data);
@@ -176,36 +217,36 @@ $(function() {
 	</tr>
 	<tr>
 		<td>이메일</td>
-		<td><input type="text" name="cst_email"></td>
+		<td><input type="text" name="cst_email" id="cst_email"></td>
 	</tr>
 	<tr>
 		<td>연락처</td>
-		<td><input type="text" name="cst_tel"></td>
+		<td><input type="text" name="cst_tel" id="cst_tel"></td>
 	</tr>
 	<tr>
 		<td>성별</td>
-		<td><input type="radio" name = "cst_gender" value="남성">남성
-		<input type="radio" name = "cst_gender" value="여성">여성 </td>
+		<td><input type="radio" name = "cst_gender" value="남성" id="cst_gender">남성
+		<input type="radio" name = "cst_gender" value="여성" id="cst_gender">여성 </td>
 	</tr>
 	<tr>
 		<td>생일<br></td>
-		<td><input type="text" name="cst_birth"></td>
+		<td><input type="text" name="cst_birth" id="cst_birth"></td>
 	</tr>
 	<tr>
 		<td>기저질환(없으면 공란)</td>
-		<td><input type="text" name="cst_disease"></td>
+		<td><input type="text" name="cst_disease" id="cst_disease"></td>
 	</tr>
 	<tr>
 		<td>키(cm)</td>
-		<td><input type="text" name="cst_height"></td>
+		<td><input type="text" name="cst_height" id="cst_height"></td>
 	</tr>
 	<tr>
 		<td>몸무게(kg)</td>
-		<td><input type="text" name="cst_weight"></td>
+		<td><input type="text" name="cst_weight" id="cst_weight"></td>
 	</tr>
 	<tr>
 		<td>비만도</td>
-		<td><input type="text" name="cst_grade"></td>
+		<td><input type="text" name="cst_grade" id="cst_grade"></td>
 	</tr>
 	<tr>
 		<td>주소</td>

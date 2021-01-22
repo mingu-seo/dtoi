@@ -69,7 +69,7 @@ $(window).load(function(){
 				</c:if>
 				<c:if test="${!empty authUser}">
 				<li><a href="<%=request.getContextPath()%>/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">LogOut</a></li>
-				<li><a href="<%=request.getContextPath()%>/customer/detail.do?cst_no=${authUser.cst_no }">회원정보</a></li>
+				<li><a href="<%=request.getContextPath()%>/customer/detail.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">회원정보</a></li>
 				
 				
 				</c:if>

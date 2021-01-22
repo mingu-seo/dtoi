@@ -73,7 +73,7 @@
 function del() {
 	if (confirm('정말 탈퇴하시겠습니까?')) {
 		$.ajax({
-			url:'/customer/customer/delete.do',
+			url:'/dtoi/customer/delete.do',
 			data:{cst_no:${vo.cst_no}},
 			type:'HTML',
 			method:'GET',
@@ -83,7 +83,7 @@ function del() {
 				//console.log(data);
 				if (res == 'true') {
 					alert('정상적으로 탈퇴되었습니다.');
-					location.href='/dtoi/customer/index.do';
+					location.href="${param.url}";
 				} else {
 					alert('탈퇴 오류');
 				}
