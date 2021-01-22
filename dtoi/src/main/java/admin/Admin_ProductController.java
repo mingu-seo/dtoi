@@ -103,18 +103,7 @@ public class Admin_ProductController {
 		res.getWriter().print(productService.delete(vo));
 	}
 	
-	@RequestMapping("/admin/product/dogAjax.do")
-	public String dogAjax(Model model, @RequestParam(required = false) String no, HttpServletRequest req, ProductVo vo) {
-//		System.out.println(no);
-//		System.out.println(req.getParameter("no"));
-//		System.out.println(vo.getNo());
-		
-		ProductVo gvo = productService.selectOne(vo, true);
-		model.addAttribute("data",gvo);
-		//req.setAttribute("data", gvo);
-		
-		return "admin/product/dogAjax";
-	}
+
 	
 	@RequestMapping("/admin/product/edit.do")
 	public String edit(Model model, @RequestParam(required = false) String no, HttpServletRequest req, ProductVo vo) {

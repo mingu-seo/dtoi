@@ -41,8 +41,10 @@ function moveWrite() {
 									<col class="w6" />
 									<col class="w7" />
 									<col class="w8" />
-									<col class="w9" />
-									<col class="w10" />
+									<col class="w5" />
+									<col class="w5" />
+									<col class="w5" />
+									<col class="w5" />
 								</colgroup>
 								<thead>
 									<tr>
@@ -53,7 +55,9 @@ function moveWrite() {
 										<th scope="col">상품 이름</th> 
 										<th scope="col">가격</th> 
 										<th scope="col">상품 별점</th>  
-										<th scope="col" class="last">상품 정보</th>
+										<th scope="col">상품 작성일</th>  
+										<th scope="col">상품 조회수</th>  
+										<th scope="col" class="last">상품 주문수</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -66,7 +70,9 @@ function moveWrite() {
 										<td class="pd_name"><a href="detail.do?_no=${vo.pd_no }">${vo.pd_image } ${vo.pd_name } ${vo.pd_price } ${vo.pd_recom } </a></td>
 										<td>${vo.pd_price }</td>
 										<td>${vo.pd_recom }</td>
-										<td class="last">${vo.pd_info }</td>
+										<td>${vo.pd_regdate }</td>
+										<td>${vo.pd_clickcount }</td>
+										<td class="last">${vo.pd_ordercount }</td>
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -78,6 +84,9 @@ function moveWrite() {
 								</div>
 								<div class="btnRight">
 									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
+								</div>
+								<div class="btnRight">
+									<a class="wbtn" href="edit.do"><strong>수정</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->

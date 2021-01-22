@@ -9,7 +9,7 @@
 	<select id="selectList" resultType="shop.product.ProductVo">
 		select * from product
 		
-		ORDER BY ${orderby} ${direct}
+		ORDER BY pd_no DESC
 		limit ${startIdx}, ${pageRow}
 		
 	</select>
@@ -24,16 +24,24 @@
 			pd_price,
 			pd_content,
 			pd_category,
+			pd_recom,
 			pd_info,
-			pd_image
+			pd_image,
+			pd_regdate,
+			pd_clickcount,
+			pd_ordercount,
 			
 		) VALUES (
 			#{pd_name},
 			#{pd_price},
 			#{pd_content},
 			#{pd_category},
+			#{pd_recom},
 			#{pd_info},
-			#{pd_image}
+			#{pd_image},
+			NOW(),
+			#{pd_clickcount},
+			#{pd_ordercount},
 		)
 	</insert>
 	
@@ -47,14 +55,17 @@
 			, pd_price = #{pd_price}
 			, pd_content = #{pd_content}
 			, pd_category = #{pd_category}
-			, pd_recom = #{pd_recom}
 			, pd_info = #{pd_info}
-			<if test="image != null">
+			
+			<if test="pd_image != null">
 			, pd_image=#{pd_image}
 			</if>
 		WHERE
 			pd_no = #{pd_no}
 	</update>
 	
+	<update id="updateReadcount" parameterType="int">
+		UPDATE product SET pd_clickcount=pd_clickcount+1 WHERE pd_no=#{pd_no}
+	</update>
 	
 </mapper>

@@ -78,7 +78,7 @@ function formCheck() {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">*제목</label></th>
+										<th scope="row"><label for="">*상품명</label></th>
 										<td colspan="10">
 											<input type="text" id="title" name="pd_name" class="w100" title="제목을 입력해주세요" />	
 										</td>

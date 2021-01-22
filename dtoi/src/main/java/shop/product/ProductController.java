@@ -40,15 +40,7 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping("/product/productAjax.do")
-	public String productAjax(Model model, @RequestParam(required = false) String pd_no, HttpServletRequest req, ProductVo vo) { 
-	
-		ProductVo pvo = productService.selectOne(vo,true);
-		model.addAttribute("data",pvo);
 
-		
-		return "shop/product/productAjax";
-	} 
 	
 	
 }

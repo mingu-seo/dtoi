@@ -8,7 +8,10 @@
 	"pd_category": "${data.pd_category}",
 	"pd_recom": "${data.pd_recom}",
 	"pd_info": "${data.pd_info}",	
-	"pd_image": "${data.image}"
+	"pd_image": "${data.pd_image}",
+	"pd_regdate": "${data.pd_regdate}",
+	"pd_clickcount": "${data.pd_clickcount}",
+	"pd_ordercount": "${data.pd_ordercount}"
 	
 }	
 	    
