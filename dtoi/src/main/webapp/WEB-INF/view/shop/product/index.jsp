@@ -31,7 +31,7 @@ ${reqPage }/${totalPage }
 	</tr>
 <c:forEach var="vo" items="${list}">
 	<tr>
-		<td><a href="detail.do?no=${vo.pd_no }">${vo.pd_name } </a></td>
+		<td><a href="detail.do?pd_no=${vo.pd_no }">${vo.pd_name } </a></td>
 		<td>${vo.pd_price }</td>
 		<td>${vo.pd_category }</td>
 		<td>${vo.pd_recom }</td>

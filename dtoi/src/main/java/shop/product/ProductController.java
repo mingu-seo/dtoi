@@ -40,7 +40,15 @@ public class ProductController {
 	}
 	
 	
+	@RequestMapping("/product/detail.do")
+	public String detail(HttpServletRequest req, ProductVo vo) {
+		ProductVo uv = productService.selectOne(vo, false);
+		
+		req.setAttribute("vo", uv);
 
+		// jsp 포워딩
+		return "shop/product/detail";
+	}
 	
 	
 }

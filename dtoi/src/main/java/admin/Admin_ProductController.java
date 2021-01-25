@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import shop.product.ProductService;
 import shop.product.ProductVo;
 
@@ -56,10 +57,18 @@ public class Admin_ProductController {
 		return "admin/product/write";
 	}
 	
-	@GetMapping("/admin/product/detail.do")
-	public String detail() {
+	@RequestMapping("/admin/product/detail.do")
+	public String detail(HttpServletRequest req, ProductVo vo) {
+		
+		ProductVo uv = productService.selectOne(vo, false);
+		
+		req.setAttribute("vo", uv);
+
+	
+		// jsp 포워딩
 		return "admin/product/detail";
 	}
+	
 	@RequestMapping("/admin/product/insert.do")
 	public void insert(ProductVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
 		// 등록처리

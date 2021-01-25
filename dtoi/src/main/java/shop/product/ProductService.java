@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 
 import shop.product.ProductVo;
 
+
 @Service 
 public class ProductService {
 
 	@Autowired
 	private ProductDao productDao;
+	
 
 	public List<ProductVo> getList(ProductVo vo) {
 		return productDao.selectList(vo);
