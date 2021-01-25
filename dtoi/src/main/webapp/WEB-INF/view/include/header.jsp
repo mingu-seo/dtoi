@@ -81,11 +81,11 @@ function CookieVal(cookieName) {
                 <h1 class="logo"><a href="/index.do"><img src="/dtoi/img/user/googlelogo.png"/></a></h1>
                <div class="util clear">
                 <c:if test="${empty authUser}">
-                    <a href="#;" id="login_click">로그인</a>
+                    <a href="<%=request.getContextPath()%>/customer/login.do" id="login_click">로그인</a>
                     <a href="">회원가입</a>
                </c:if>
                <c:if test="${!empty authUser}">
-                	<a href="/customer/logout.do">로그아웃</a>
+                	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
                     <a href="">마이페이지</a>
                </c:if>
                 </div>

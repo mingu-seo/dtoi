@@ -154,7 +154,7 @@ public class CustomerController {
 		PrintWriter out = res.getWriter();
 		out.print("<script>");
 		out.print("alert('로그아웃되었습니다.');");
-		String url = "/dtoi/customer/index.do";
+		String url = "/dtoi/bulletin_board/index.do";
 		if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 			url = req.getParameter("url"); 
 		}

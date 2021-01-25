@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
+ <%@ page import="customer.*" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -89,5 +90,15 @@ function formCheck() {
 </div>
 
  <%@ include file="/WEB-INF/view/include/footer.jsp" %>
+ <%
+// 세션객체 가져오기
+CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");
+%>
+<% if (authUser == null) { %>
+로그인전
+<% } %>
+<% if (authUser != null) { %>
+<%=authUser.getCst_name() %>님 안녕하세요!
+<% } %>
 </body>
 </html>

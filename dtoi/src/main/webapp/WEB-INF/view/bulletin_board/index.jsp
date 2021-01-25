@@ -32,6 +32,7 @@ function moveWrite() {
 			<div class="bbs">
 				<table class="list">
 				<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
+				<form><input type="hidden" name="cst_no" value="${authUser.cst_no }"></form>
 					<caption>게시판 목록</caption>
 					<colgroup>
 						<col width="80px" />
@@ -64,6 +65,7 @@ function moveWrite() {
 						</tr>
 						
 					</c:forEach>
+					
 					</tbody>
 				</table>
 					<div class="btnSet clear">
