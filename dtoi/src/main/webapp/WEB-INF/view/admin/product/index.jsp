@@ -67,7 +67,7 @@ function moveWrite() {
 										<td>${vo.pd_no }</td>
 										<td>${vo.pd_category }</td>
 										<td>${vo.pd_image }</td>
-										<td class="pd_name"><a href="detail.do?no=${vo.pd_no }">${vo.pd_name }</a></td>
+										<td class="pd_name"><a href="detail.do?pd_no=${vo.pd_no }">${vo.pd_name }</a></td>
 										<td>${vo.pd_price }</td>
 										<td>${vo.pd_recom }</td>
 										<td>${vo.pd_regdate }</td>

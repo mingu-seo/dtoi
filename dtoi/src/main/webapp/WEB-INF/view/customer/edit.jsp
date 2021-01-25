@@ -29,6 +29,10 @@ $(function() {
 			$("#cst_tel").focus();
 			return false;
 		}
+		if(!$(':input:radio[id=cst_gender]:checked').val()) {   
+			   alert("성별을 선택해 주세요.");
+			   return;
+			}
 
 		if ($("#cst_birth").val().trim() == '') {
 			alert('생일을 입력하세요');
