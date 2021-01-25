@@ -56,6 +56,10 @@ public class Admin_ProductController {
 		return "admin/product/write";
 	}
 	
+	@GetMapping("/admin/product/detail.do")
+	public String detail() {
+		return "admin/product/detail";
+	}
 	@RequestMapping("/admin/product/insert.do")
 	public void insert(ProductVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
 		// 등록처리

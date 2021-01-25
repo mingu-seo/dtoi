@@ -67,7 +67,7 @@ function moveWrite() {
 										<td>${vo.pd_no }</td>
 										<td>${vo.pd_category }</td>
 										<td>${vo.pd_image }</td>
-										<td class="pd_name"><a href="detail.do?_no=${vo.pd_no }">${vo.pd_image } ${vo.pd_name } ${vo.pd_price } ${vo.pd_recom } </a></td>
+										<td class="pd_name"><a href="detail.do?no=${vo.pd_no }">${vo.pd_name }</a></td>
 										<td>${vo.pd_price }</td>
 										<td>${vo.pd_recom }</td>
 										<td>${vo.pd_regdate }</td>
@@ -84,9 +84,6 @@ function moveWrite() {
 								</div>
 								<div class="btnRight">
 									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
-								</div>
-								<div class="btnRight">
-									<a class="wbtn" href="edit.do"><strong>수정</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->

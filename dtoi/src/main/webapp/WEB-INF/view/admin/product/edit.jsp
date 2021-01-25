@@ -3,6 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/admin/smarteditor/js/HuskyEZCreator.js"></script><!-- 에디터에서 사용될 스크립트 -->
+<script src="/admin/js/common.js"></script>
 <script>
 var oEditors = [];
 $(function() {
