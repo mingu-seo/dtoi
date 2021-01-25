@@ -31,6 +31,30 @@
 		<td>${vo.cst_tel }</td>
 	</tr>
 	<tr>
+		<td>성별</td>
+		<td>${vo.cst_gender }</td>
+	</tr>
+	<tr>
+		<td>생일</td>
+		<td>${vo.cst_birth }</td>
+	</tr>
+	<tr>
+		<td>기저질환</td>
+		<td>${vo.cst_disease}</td>
+	</tr>
+	<tr>
+		<td>키</td>
+		<td>${vo.cst_height}</td>
+	</tr>
+	<tr>
+		<td>몸무게</td>
+		<td>${vo.cst_weight}</td>
+	</tr>
+	<tr>
+		<td>비만도</td>
+		<td>${vo.cst_grade}</td>
+	</tr>
+	<tr>
 		<td>주소</td>
 		<td> ${vo.addr1 } ${vo.addr2 }</td>
 	</tr>
@@ -47,9 +71,9 @@
 <input type="button" value="회원탈퇴" onclick="del();">
 <script>
 function del() {
-	if (confirm('정말 삭제하시겠습니까?')) {
+	if (confirm('정말 탈퇴하시겠습니까?')) {
 		$.ajax({
-			url:'/customer/customer/delete.do',
+			url:'/dtoi/customer/delete.do',
 			data:{cst_no:${vo.cst_no}},
 			type:'HTML',
 			method:'GET',
@@ -59,7 +83,7 @@ function del() {
 				//console.log(data);
 				if (res == 'true') {
 					alert('정상적으로 탈퇴되었습니다.');
-					location.href='/customer/customer/index.do';
+					location.href="${param.url}";
 				} else {
 					alert('탈퇴 오류');
 				}

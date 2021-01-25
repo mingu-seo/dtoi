@@ -12,17 +12,42 @@ public class ProductService {
 
 	@Autowired
 	private ProductDao productDao;
-	
-	// 목록을 구하는 메서드
+
 	public List<ProductVo> getList(ProductVo vo) {
-		// limit 시작값 = (사용자가 요청한 페이지번호 - 1) * 페이지당갯수
-		//int startIdx = (vo.getReqPage() - 1) * vo.getPageRow();
-		//vo.setStartIdx((vo.getReqPage() - 1) * vo.getPageRow());
 		return productDao.selectList(vo);
 	}
 	
 	public ProductVo selectOne(ProductVo uv, boolean isView) {
+		if (isView) productDao.updateReadcnt(uv.getPd_no());
 		return productDao.selectOne(uv);
 	}
+	
+	public boolean insert(ProductVo vo) {
+		int r = productDao.insert(vo);
+		if (r > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean update(ProductVo vo) {
+		int r = productDao.update(vo);
+		if (r > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean delete(ProductVo vo) {
+		int r = productDao.delete(vo);
+		if (r > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	
 }

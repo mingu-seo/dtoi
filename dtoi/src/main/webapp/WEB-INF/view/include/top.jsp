@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="java.util.ArrayList"%>
-<%@ page import="customer.*" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
 
 function OpenWinCount(URL,width,height) {
@@ -71,6 +69,10 @@ $(window).load(function(){
 					<li><span style="color:white">${authUser.cst_id }님 반갑습니다.</span></li>
 					<li><a href="<%=request.getContextPath()%>/customer/logout.do">LogOut</a></li>
 				</c:if>
+				
+				
+				
+
 			</ul>
 		</div>
 		<!-- util : e --> 

@@ -32,6 +32,7 @@
 <body>
 <h2>회원 로그인</h2>
 <form action="login.do" method="post" class="loginFrm">
+<input type="hidden" name="url" value="${param.url }"/>
 <table border="1">
 	<tr>
 		<td>아이디</td>

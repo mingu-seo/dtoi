@@ -8,8 +8,9 @@
 	
 	<select id="selectList" resultType="shop.pdreview.PdReviewVo">
 		select * from pd_review
-		ORDER BY ${orderby} ${direct}
-		limit ${startIdx}, ${pageRow}	
+		
+		ORDER BY pd_no DESC
+		limit ${startIdx}, ${pageRow}
 	</select>
 	
 	<select id="selectOne" parameterType="shop.pdreview.PdReviewVo" resultType="shop.pdreview.PdReviewVo">

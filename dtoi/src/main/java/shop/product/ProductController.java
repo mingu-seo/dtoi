@@ -29,38 +29,18 @@ public class ProductController {
 	
 	@RequestMapping("/product/index.do")
 	public String index(HttpServletRequest req, ProductVo vo) {
-		// 서비스(로직) 처리(호출)
-		//int[] rowPageCount = GalleryService.getRowPageCount(vo);
+		
 		List<ProductVo> list = productService.getList(vo);
-				// 값 저장
-				// totalPage, list, reqPage
-			//	req.setAttribute("totalPage", rowPageCount[1]);
-			//	req.setAttribute("startPage", rowPageCount[2]); // 시작페이지
-			//	req.setAttribute("endPage", rowPageCount[3]); // 마지막페이지
-				req.setAttribute("list", list);
-				// /gallery/index.do?reqPage=2 -> GalleryVo에 reqPage 필드에 바인딩 (커맨드객체)
-				// /gallery/index.do
-			//	req.setAttribute("reqPage", vo.getReqPage());
-				req.setAttribute("vo", vo);
 				
-				// jsp 포워딩
+				req.setAttribute("list", list);
+			
+				req.setAttribute("vo", vo);
+	
 				return "shop/product/index";
 	}
 	
 	
-	@RequestMapping("/product/productAjax.do")
-	public String productAjax(Model model, @RequestParam(required = false) String pd_no, HttpServletRequest req, ProductVo vo) { 
-	//public String dogAjax(Model model, @RequestParam int no, HttpServletRequest req, GalleryVo vo) { //RequestParam는 no에 값이 없으면 에러난다
-	//	System.out.println(no);
-	//	System.out.println(req.getParameter("no"));
-	//	System.out.println(vo.getNo());
-		
-		ProductVo pvo = productService.selectOne(vo,true);// 위의 매개변수에서 vo로 사용중이기떄문에 vo로 사용불가능함. 변경해서 사용해 주어야함
-		model.addAttribute("data",pvo);
-		//req.addAttribute("data",gvo);
-		
-		return "shop/product/productAjax";
-	} 
+
 	
 	
 }

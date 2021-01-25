@@ -19,15 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 
-
-
-
-
-
-
-
-
-
 @Controller
 public class Bulletin_boardController {
 
@@ -59,7 +50,7 @@ public class Bulletin_boardController {
 	}
 	@GetMapping("/bulletin_board/write.do")
 	public String write() {
-		return "/bulletin_board/write";
+		return "bulletin_board/write";
 	}
 	
 	@RequestMapping("/bulletin_board/insert.do")
@@ -118,7 +109,7 @@ public class Bulletin_boardController {
 		req.setAttribute("vo", uv);
 		
 		// jsp 포워딩
-		return "/bulletin_board/edit";
+		return "bulletin_board/edit";
 	}
 	@GetMapping("/bulletin_board/delete.do")
 	public void delete(Bulletin_boardVo vo, HttpServletResponse res) throws IOException {
@@ -186,5 +177,28 @@ public class Bulletin_boardController {
 		out.flush();
 	}
 	
+	
+	
+	@RequestMapping("/board/index.do")
+	public String index2(HttpServletRequest req, Bulletin_boardVo vo) {
+		// 서비스(로직) 처리(호출)
+		int[] rowPageCount = bulletin_boardService.getRowPageCount(vo);
+		List<Bulletin_boardVo> list = bulletin_boardService.getList(vo);
+
+		// 값 저장
+		// totalPage, list, reqPage
+		req.setAttribute("totCount", rowPageCount[0]);
+		req.setAttribute("totalPage", rowPageCount[1]);
+		req.setAttribute("startPage", rowPageCount[2]); // 시작페이지
+		req.setAttribute("endPage", rowPageCount[3]); // 마지막페이지
+		req.setAttribute("list", list);
+		// /board/index.do?reqPage=2 -> BoardVo에 reqPage 필드에 바인딩 (커맨드객체)
+		// /board/index.do
+		req.setAttribute("reqPage", vo.getReqPage());
+		req.setAttribute("vo", vo);
+
+		// jsp 포워딩
+		return "board/index";
+	}
 	
 }

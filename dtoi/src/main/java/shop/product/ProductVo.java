@@ -1,7 +1,10 @@
 package shop.product;
 
+import java.sql.Timestamp;
 
-public class ProductVo {
+import util.CommonVo;
+
+public class ProductVo extends CommonVo{
 
 	private int pd_no;
 	private String pd_name;
@@ -11,8 +14,32 @@ public class ProductVo {
 	private String pd_recom;
 	private String pd_info;
 	private String pd_image;
+	private Timestamp pd_regdate;
+	private int pd_clickcount;
+	private int pd_ordercount;	
 	
 	
+	
+	
+	
+	public Timestamp getPd_regdate() {
+		return pd_regdate;
+	}
+	public void setPd_regdate(Timestamp pd_regdate) {
+		this.pd_regdate = pd_regdate;
+	}
+	public int getpd_clickcount() {
+		return pd_clickcount;
+	}
+	public void setpd_clickcount(int pd_clickcount) {
+		this.pd_clickcount = pd_clickcount;
+	}
+	public int getpd_ordercount() {
+		return pd_ordercount;
+	}
+	public void setpd_ordercount(int pd_ordercount) {
+		this.pd_ordercount = pd_ordercount;
+	}
 	public int getPd_no() {
 		return pd_no;
 	}

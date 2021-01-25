@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script>
 var oEditors = [];
 $(function() {
@@ -42,75 +42,49 @@ function formCheck() {
 </script>
 </head>
 <body> 
-<div id="wrap">
-	<!-- canvas -->
-	<div id="canvas">
-		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/include/top.jsp" %>
-		<!-- E N D :: headerArea--> 
-		<!-- S T A R T :: containerArea-->
-		<div id="container">
-			<div id="content">
-				<div class="con_tit">
-					<h2>자유게시판 - [수정]</h2>
-				</div>
-				<!-- //con_tit -->
-				<div class="con">
-					<!-- 내용 : s -->
-					<div id="bbs">
-						<div id="bread">
-							<form action="update.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
-							<input type='hidden' name='bb_no' value='${vo.bb_no }'>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
-								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="15%" />
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row"><label for="">*제목</label></th>
-										<td colspan="10">
-											<input type="text" id="title" name="bb_title" class="w100" title="제목을 입력해주세요" value=${vo.bb_title } />	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">*내용</label></th>
-										<td colspan="10">
-											<textarea id="contents" name="bb_content" title="내용을 입력해주세요" style="width:100%;">${vo.bb_content }</textarea>	
-										</td>
-									</tr>									
-								</tbody>
-							</table>							
-							</form>
-							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="index.do"><strong>목록</strong></a>
-								</div>
-								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="javascript:$('#frm').submit();"><strong>저장</strong></a>
-								</div>
-							</div>
-							<!--//btn-->
-						</div>
-						<!-- //bread -->
-					</div>
-					<!-- //bbs --> 
-					<!-- 내용 : e -->
-				</div>
-				<!--//con -->
-			</div>
-			<!--//content -->
+<%@ include file="/WEB-INF/view/include/header.jsp" %>
+<div class="sub">
+<!-- canvas -->
+	<div class="size">
+	<h3 class="sub_title">자유게시판-글쓰기</h3>
+		<div class="bbs">
+			<form action="update.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
+			<input type='hidden' name='bb_no' value='${vo.bb_no }'>
+			<input type="hidden" name="cst_no" value="${authUser.cst_no }">
+			<table class="list">
+				<colgroup>
+					<col width="80px" />
+					<col width="80px" />
+					<col width="*" />
+					<col width="100px" />
+					<col width="100px" />
+					<col width="80px" />
+				</colgroup>
+				
+				<tbody>
+					<tr>
+						<th scope="row"><label for="">*제목</label></th>
+						<td colspan="10">
+							<input type="text" id="title" name="bb_title" class="w100" title="제목을 입력해주세요" value=${vo.bb_title } />	
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="">*내용</label></th>
+						<td colspan="10">
+							<textarea id="contents" name="bb_content" title="내용을 입력해주세요" style="width:100%;">${vo.bb_content }</textarea>	
+						</td>
+					</tr>									
+				</tbody>
+			</table>							
+			</form>
+			<div class="btnSet clear">
+			<div class="fl_l"><a href="index.do" class="btn">목록으로</a></div>			
+			<div class="fl_l"><a href="javascript:$('#frm').submit();" class="btn"><strong>저장</strong></a></div>
 		</div>
-		<!--//container --> 
-		<!-- E N D :: containerArea-->
+		</div>
 	</div>
-	<!--//canvas -->
 </div>
-<!--//wrap -->
 
+ <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 </body>
 </html>
