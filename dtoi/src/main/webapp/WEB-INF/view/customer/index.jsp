@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>회원 목록</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -69,9 +70,9 @@ ${reqPage }/${totalPage }
 	<option value="DESC" <c:if test="${param.direct == 'DESC' }">selected</c:if>>내림차순</option>
 	<option value="ASC" <c:if test="${param.direct == 'ASC' }">selected</c:if>>오름차순</option>
 </select>
-
 <br>
-<table border="1">
+<table class="table table-striped">
+<thead>
 	<tr>
 		<td>회원번호</td>
 		<td>회원명</td>
@@ -79,6 +80,7 @@ ${reqPage }/${totalPage }
 		<td>연락처</td>
 		<td>가입일</td>
 	</tr>
+</thead>
 <c:forEach var="vo" items="${list}">
 	<tr>
 		<td>${vo.cst_no }</td>

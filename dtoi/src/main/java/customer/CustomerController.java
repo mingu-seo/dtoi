@@ -95,6 +95,7 @@ public class CustomerController {
 	
 	@GetMapping("/customer/delete.do")
 	public void delete(CustomerVo vo, HttpServletResponse res) throws IOException {
+		
 		res.getWriter().print(cService.delete(vo));
 	}
 	
