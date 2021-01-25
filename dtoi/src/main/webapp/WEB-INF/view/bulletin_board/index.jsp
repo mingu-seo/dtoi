@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="util.*" %>
+<%@ page import="customer.*" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@ function moveWrite() {
 	</c:if>
 	<c:if test="${empty authUser}">
 	alert('로그인 후 이용가능합니다.');
-	location.href='/dtoi/customer/login.do'
+	location.href='/dtoi/customer/login.do?url=/bulletin_board/index.do'
 	</c:if>	
 }
 
@@ -68,7 +69,7 @@ function moveWrite() {
 										<td>${vo.bb_no }</td>
 										<td class="title"><a href="detail.do?bb_no=${vo.bb_no }">${vo.bb_title} [${vo.commentCount }]</a></td>
 										<td>${vo.bb_regdate }</td>
-										<td>${vo.cst_id }</td>	
+										<td>${vo.user_name }</td>	
 										<td scope="col">${vo.readCnt }</td>									
 									</tr>
 								</c:forEach>
@@ -80,7 +81,7 @@ function moveWrite() {
 									<a class="btns" href="javascript:;" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
+									<a class="wbtn" href="javascript:moveWrite();"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->
@@ -120,6 +121,16 @@ function moveWrite() {
 	<!--//canvas -->
 </div>
 <!--//wrap -->
-
+<%
+// 세션객체 가져오기
+CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");
+%>
+<% if (authUser == null) { %>
+로그인전
+<% } %>
+<% if (authUser != null) { %>
+로그인후 
+<%=authUser.getCst_name() %>님 안녕하세요!
+<% } %>
 </body>
 </html>

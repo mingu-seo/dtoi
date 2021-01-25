@@ -22,7 +22,7 @@
 	<select id="selectList" parameterType="bulletin_board.Bulletin_boardVo" resultType="bulletin_board.Bulletin_boardVo">
 		select *,
 			(select count(*) from bb_comment where bb_no = bulletin_board.bb_no) as commentCount,
-			ifnull((select cst_name from customer where cst_no=bulletin_board.cst_no),'관리자') as user_name
+			ifnull((select cst_id from customer where cst_no=bulletin_board.cst_no),'관리자') as user_name
 		 from bulletin_board
 		<include refid="bulletin_boardWhere"/>		
 		ORDER BY ${orderby} ${direct}
@@ -35,11 +35,9 @@
 	
 	<insert id="insert" parameterType="bulletin_board.Bulletin_boardVo">
 		INSERT INTO bulletin_board (
-			cst_no, cst_grade, cst_id, bb_regdate, bb_title, bb_content
+			cst_no, bb_regdate, bb_title, bb_content
 		) VALUES (		
-			1,
-			1,
-			'test_id',	
+			#{cst_no},			
 			NOW(),
 			#{bb_title},
 			#{bb_content}			
