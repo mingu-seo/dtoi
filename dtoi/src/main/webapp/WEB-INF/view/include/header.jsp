@@ -34,10 +34,10 @@ function loginCheck(){
 	}
 	var f = document.loginFrm;
 	if (f.reg.checked) {
-	   document.cookie = "cookie_useremail=" + $("#loginEmail").val() + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	   document.cookie = "cookie_cst_id=" + $("#cst_id").val() + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_useremail=null;path=/;expires="+now;
+	   document.cookie = "cookie_cst_id=null;path=/;expires="+now;
 	}
 	return true;
 }
@@ -81,30 +81,31 @@ function CookieVal(cookieName) {
                 <h1 class="logo"><a href="/index.do"><img src="/dtoi/img/user/googlelogo.png"/></a></h1>
                <div class="util clear">
                 <c:if test="${empty authUser}">
-                    <a href="<%=request.getContextPath()%>/customer/login.do" id="login_click">로그인</a>
-                    <a href="">회원가입</a>
+                      <a id="login_click">로그인</a>
+                    
+                    <a href="<%=request.getContextPath()%>/customer/write.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">회원가입</a>
                </c:if>
                <c:if test="${!empty authUser}">
-                	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
+                	<a href="<%=request.getContextPath()%>/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">로그아웃</a>
                     <a href="">마이페이지</a>
                </c:if>
                 </div>
-                <form action="/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
+                <form action="/dtoi/customer/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
                 <div class="login_info">
                 	<div class="top_area"><img src="/img/btn_del.gif"/></div>
                 	<div class="title_area"><span>DtoI 로그인</span></div>
                 	<div class="middle_area">
                 		<div class="input_area">
-                			<input type="text" id="loginEmail" name="email" value="" placeholder="아이디"/>
-                			<input type="password" id="loginPw" name="pw" value="" placeholder="비밀번호"/>
+                			<input type="text" id="cst_id" name="cst_id" placeholder="아이디"/>
+                			<input type="password" id="cst_pwd" name="cst_pwd" placeholder="비밀번호"/>
                 		</div>
                 		<div class="login_btn">
                 			<input type="submit" value="로그인"/>
                 		</div>
                 	</div>
                 	<div class="bottom_area">
-                		<input type="checkbox" id="reg" name="reg"/><label for="reg">이메일 저장</label>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;
-                		<a href="/member/emailsearch.do">이메일찾기</a>&nbsp;/&nbsp;<a href="/member/pwsearch.do">비밀번호 찾기</a>
+                		<input type="checkbox" id="reg" name="reg"/><label for="reg">아이디 저장</label>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;
+                		<a href="/member/emailsearch.do">아이디찾기</a>&nbsp;/&nbsp;<a href="/member/pwsearch.do">비밀번호 찾기</a>
                 	</div>
                 </div>
                 </form>

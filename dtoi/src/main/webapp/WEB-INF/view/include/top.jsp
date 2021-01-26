@@ -63,11 +63,11 @@ $(window).load(function(){
 			<ul>
 				<li class="frist"><a href="#" onclick="">Home</a></li>
 				<c:if test="${empty authUser}">
-					<li><a href="<%=request.getContextPath()%>/customer/login.do">LogIn</a></li>
+					<li><a href='/dtoi/customer/login.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>'>LogIn</a></li>
 				</c:if>
 				<c:if test="${!empty authUser}">
 					<li><span style="color:white">${authUser.cst_id }님 반갑습니다.</span></li>
-					<li><a href="<%=request.getContextPath()%>/customer/logout.do">LogOut</a></li>
+					<li><a href="<%=request.getContextPath()%>/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">LogOut</a></li>
 				</c:if>
 				
 				
