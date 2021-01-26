@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="/dtoi/js/swiper.min.js"></script>
 <script>
 
@@ -78,7 +78,7 @@ function CookieVal(cookieName) {
                         <a href=""></a>
                     </div>
                 </div>
-                <h1 class="logo"><a href="/index.do"><img src="/dtoi/img/user/googlelogo.png"/></a></h1>
+                <h1 class="logo"><a href="/dtoi/index.do"><img src="/dtoi/img/user/DtoI.png"/></a></h1>
                <div class="util clear">
                 <c:if test="${empty authUser}">
                     <a href="<%=request.getContextPath()%>/customer/login.do" id="login_click">로그인</a>

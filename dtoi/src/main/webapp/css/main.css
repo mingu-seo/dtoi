@@ -26,10 +26,10 @@
 .main .visual .swiper-pagination-bullet {width:15px; height:15px; border-radius:15px; background:#fff; opacity:0.5; }
 .main .visual .swiper-pagination-bullet-active {opacity:1; }
 
-.main .visual .bg1 {background-image:url('/img/visual1.png')}
-.main .visual .bg2 {background-image:url('/img/visual2.png');}
-.main .visual .bg3 {background-image:url('/img/visual3.png');}
-.main .visual .bg4 {background-image:url('/img/visual4.png');}
+.main .visual .bg1 {background-image:url('/dtoi/img/user/main.png')}
+.main .visual .bg2 {background-image:url('/dtoi/img/user/main2.png');}
+.main .visual .bg3 {background-image:url('/dtoi/img/user/main3.png');}
+/*.main .visual .bg4 {background-image:url('/img/visual4.png');}*/
 
 .main .movie { width:100%; max-width: 1200px; height:auto; margin:30px auto;}
 .main .movie .poster { width:30%; float:left; text-align:center;}

@@ -1,104 +1,91 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="util.*" %>
-<html>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="customer.*" %>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes"> 
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>MOVIE</title>
+<%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script>
-function loginCheck(){
-	if ( $("#id").val().length < 1 ) {
-		alert("아이디를 입력해주세요.");
-		$("#id").val().focus();
-		return false;
-	}
-	if ( $("#password").val().length < 1 ) {
-		alert("비밀번호를 입력해주세요.");
-		$("#password").val().focus();
-		return false;
-	}
-	var f = document.board;
-	if (f.reg.checked) {
-	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
-	} else {
-	   var now = new Date();	
-	   document.cookie = "cookie_userid=null;path=/;expires="+now;
-	}
-	return true;
-}
-
-function userid_chk() {
-	var f=document.board;
-	var useridname = CookieVal("cookie_userid");
-	
-	if (useridname=="null"){	
-		f.id.focus();
-		f.id.value="";
-	} else {
-		f.password.focus();
-		f.id.value=useridname;
-		f.reg.checked=true;
-	}
-}
-
-function CookieVal(cookieName) {
-	thisCookie = document.cookie.split("; ");
-	for (var i = 0; i < thisCookie.length;i++) {
-		if (cookieName == thisCookie[i].split("=")[0]) {
-			return thisCookie[i].split("=")[1];
-		}
-	}
-	return "null" ;
-}
-//-->
-
+$(function(){
+	var swiper = new Swiper('.swiper-container', {
+		loop: true,
+		autoplay: {
+		    delay: 5000,
+		  },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+       	},
+	});
+});
 </script>
 </head>
-<body onload="userid_chk();">
-<div id="login">
-	<div class="title">
-		<h1>SAMPLE <span>관리자모드</span></h1>
-		<p>관리자 로그인 후 이용가능합니다.</p>
-	</div>
-	<div class="login"> 
-	<form name="board" id="board" method="post" action="" onsubmit="return loginCheck();">
-		<fieldset>
-			<legend>관리자모드 로그인</legend>
-			<div class="bgBox">
-				<div class="infoBox">
-					<dl>
-						<dt>
-							<label for="id"><strong>아이디</strong></label>
-						</dt>
-						<dd>
-							<input type="text" id="id" name="id" value="" title="아이디를 입력해주세요." style="ime-mode:inactive"/>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<label for="password"><strong>비밀번호</strong></label>
-						</dt>
-						<dd>
-							<input type="password" id="password" name="password" value="" title="비밀번호를 입력해주세요." />
-						</dd>
-					</dl>
+<body>
+<%@ include file="/WEB-INF/view/include/header.jsp" %>
+    
+    <div class="main">
+        <div class="visual animate">
+            <div class="swiper1 swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide bg1">
+                    </div>
+                    <div class="swiper-slide bg2">
+                    </div>
+                    <div class="swiper-slide bg3">
+                    </div>
+                   
+                </div>
+    
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+        <div class="movie">
+        	<div class="poster">
+        		<div class="tit"><h4>BOXOFFICE</h4></div>
+        		<img src="/img/poster1.jpg">
+        	</div>
+        	<div class="bxoffice">
+        		<ul>
+        			<li><span class="rank">1</span><a href="">주먹왕 랄프2 : 인터넷 속으로</a></li>
+        			<li><span class="rank">2</span><a href="">극장판 공룡메카드: 타이니소어의 섬</a></li>
+        			<li><span class="rank">3</span><a href="">말모이</a></li>
+        			<li><span class="rank">4</span><a href="">아쿠아맨</a></li>
+        			<li><span class="rank">5</span><a href="">범블비</a></li>
+        			<li><span class="rank">6</span><a href="">주먹왕 랄프2 : 인터넷 속으로</a></li>
+        			<li><span class="rank">7</span><a href="">극장판 공룡메카드: 타이니소어의 섬</a></li>
+        			<li><span class="rank">8</span><a href="">말모이</a></li>
+        			<li><span class="rank">9</span><a href="">아쿠아맨</a></li>
+        			<li><span class="rank">10</span><a href="">범블비</a></li>
+        		</ul>
+        	</div>
+        	<div class="youtube">
+        		<div class="video_container">
+					<iframe src="https://www.youtube.com/watch?v=Ye6Iaf_QzTA" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 				</div>
-				<!-- //infoBox -->
-				<input type="image" src="<%=request.getContextPath()%>/img/admin/member_login_btn.gif" alt="로그인" class="loginBtn" title="" />
-			</div>
-			<!-- //bgBox -->
-			<div class="joinList">
-				<input type="checkbox" name="reg" id="reg"/> <label for="reg">아이디 저장</label>
-			</div>
-			<!-- //joinList -->
-			<input type="hidden" name="url" id="url" value="<%//=url%>"/>
-			<input type="hidden" name="param" id="param" value="<%//=param%>"/>
-			<input type="hidden" name="ip" id="ip" value="<%=request.getRemoteAddr()%>"/>
-		</fieldset>
-	</form>
-	</div>
-	<div class="footer">
-		Copyrights (c) 2020 <a href="#" target="_blank">SAMPLE</a>. All Rights Reserved.  
-	</div>
-</div>
+        	</div>
+        </div>
+    </div>
+<%@ include file="/WEB-INF/view/include/footer.jsp" %>
+<%
+// 세션객체 가져오기
+CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");
+%>
+<% if (authUser == null) { %>
+로그인전
+<% } %>
+<% if (authUser != null) { %>
+<%=authUser.getCst_name() %>님 안녕하세요!
+<% } %>
 </body>
 </html>

@@ -99,6 +99,7 @@ function moveWrite() {
 		</div>
     </div>
 
+<%@ include file="/WEB-INF/view/include/footer.jsp" %>
 <!--//wrap -->
 <%
 // 세션객체 가져오기
@@ -110,6 +111,5 @@ CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");
 <% if (authUser != null) { %>
 <%=authUser.getCst_name() %>님 안녕하세요!
 <% } %>
- <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 </body>
 </html>
