@@ -58,6 +58,7 @@
 			<bean class="interceptor.AdminInterceptor"/>
 		</mvc:interceptor>
 		 -->
+	<mvc:view-controller path="/index.do"/>
 </beans>
 	
 

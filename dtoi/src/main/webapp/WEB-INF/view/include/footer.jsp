@@ -4,7 +4,7 @@
 			<div class="inner">					
 				<div class="address">
 					<div class="f_logo">
-						<a href="#;"><img class="footer_logo" src="/dtoi/img/user/googlelogo.png"></a>
+						<a href="#;"><img class="footer_logo" src="/dtoi/img/user/DtoI.png"></a>
 					</div>
 					<ul>
 						<li>
