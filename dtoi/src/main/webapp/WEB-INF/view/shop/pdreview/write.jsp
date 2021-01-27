@@ -34,7 +34,7 @@ function formCheck() {
 </head>
 <body>
 <form action="insert.do" method="post" enctype="multipart/form-data" id="frm" onsubmit="return formCheck()">
-<input type="hidden" name="cst_no" value="${authUser.cst_no }">
+<!-- <input type="hidden" name="cst_no" value="${authUser.cst_no }"> -->
 <table border="1" style="width:800px">
 	<tr>
 		<td>제목</td>
@@ -49,7 +49,7 @@ function formCheck() {
 	<tr>
 		<td>첨부파일</td>
 		<td>
-			<input type="re_file" name="re_file">
+			<input type="file" name="re_file">
 		</td>
 	</tr>
 </table>

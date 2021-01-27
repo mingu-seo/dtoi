@@ -12,7 +12,7 @@
 <table border="1">
 	<tr>
 		<td>메인 이미지</td>
-		<td><a href="/common/download.jsp?path=/upload/&r_file=${vo.pd_image}" target="_blank">${vo.pd_image}</a></td>
+		<img src="/dtoi/img/product/main_image/${vo.pd_image }" alt=""/>
 	</tr>
 	<tr>
 		<td>상품명</td>
@@ -28,7 +28,8 @@
 	</tr>
 	<tr>
 		<td>내용</td>
-		<td>${vo.pd_content }<a href="common/download.jsp?path=/upload/&r_file=${vo.pd_image}" target="_blank">${vo.pd_image}</a></td>
+		<td>${vo.pd_content }</td>
+		<td><img src="/dtoi/img/product/main_image/${vo.pd_image }" alt=""/></td>
 	</tr>
 </table>
 
@@ -36,7 +37,7 @@
 
 <form action="commentInsert.do" method="post">
 <input type="hidden" name="pd_no" value="${vo.pd_no }">
-<!--input type="hidden" name="user_no" value="${authUser.no }">  -->
+<input type="hidden" name="customer_no" value="${authUser.no }"> 
 <table border="1">
 	<tr>
 		<td>

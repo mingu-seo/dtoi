@@ -90,9 +90,7 @@ function CookieVal(cookieName) {
                     <a href="">마이페이지</a>
                </c:if>
                 </div>
-<<<<<<< HEAD
-               
-=======
+
                 <form action="/dtoi/customer/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
                 <div class="login_info">
                 	<div class="top_area"><img src="/img/btn_del.gif"/></div>
@@ -112,7 +110,7 @@ function CookieVal(cookieName) {
                 	</div>
                 </div>
                 </form>
->>>>>>> branch 'master' of https://github.com/mingu-seo/dtoi.git
+
             </div>
         </div>
         <div class="head_bot">
@@ -129,7 +127,7 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>상품 목록</span></a>
                             <ul class="depth2">
-								<li><a href="<%=request.getContextPath()%>"><span>상품 주문/조회하기</span></a></li>
+								<li><a href="<%=request.getContextPath()%>/product/index.do"><span>상품 주문/조회하기</span></a></li>
 								<li><a href="<%=request.getContextPath()%>"><span>상품 주문 내역 조회</span></a></li>
                             </ul>
                         </li>
