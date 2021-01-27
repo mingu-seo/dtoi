@@ -92,6 +92,7 @@ function CookieVal(cookieName) {
                 </div>
 
                 <form action="/dtoi/customer/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
+                <input type="hidden" name="url" value="<%=request.getAttribute("javax.servlet.forward.request_uri")%>"/>
                 <div class="login_info">
                 	<div class="top_area"><img src="/img/btn_del.gif"/></div>
                 	<div class="title_area"><span>DtoI 로그인</span></div>
@@ -142,7 +143,7 @@ function CookieVal(cookieName) {
                             <a href="" class="parent"><span>고객센터</span></a>
                             <ul class="depth2">
 								<li><a href="<%=request.getContextPath()%>/board/faq/index.do"><span>FAQ</span></a></li>
-                               	<li><a href="<%=request.getContextPath()%>"><span>1:1 문의</span></a></li>
+                               	<li><a href="<%=request.getContextPath()%>/board/qna/index.do"><span>1:1 문의</span></a></li>
                             </ul>
                         </li>
                     </ul>
