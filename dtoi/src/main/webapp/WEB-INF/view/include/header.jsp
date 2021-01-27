@@ -90,10 +90,9 @@ function CookieVal(cookieName) {
                     <a href="">마이페이지</a>
                </c:if>
                 </div>
-<<<<<<< HEAD
-               
-=======
+
                 <form action="/dtoi/customer/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
+                <input type="hidden" name="url" value="<%=request.getAttribute("javax.servlet.forward.request_uri")%>"/>
                 <div class="login_info">
                 	<div class="top_area"><img src="/img/btn_del.gif"/></div>
                 	<div class="title_area"><span>DtoI 로그인</span></div>
@@ -112,7 +111,7 @@ function CookieVal(cookieName) {
                 	</div>
                 </div>
                 </form>
->>>>>>> branch 'master' of https://github.com/mingu-seo/dtoi.git
+
             </div>
         </div>
         <div class="head_bot">

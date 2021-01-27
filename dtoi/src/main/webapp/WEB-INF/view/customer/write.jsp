@@ -1,11 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
+<meta name="format-detection" content="cst_tel=no, addr1=no, cst_email=no">
+<meta name="keywords" content="">
+<meta name="description" content="">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
 
 function formCheck() {
@@ -39,22 +44,22 @@ function formCheck() {
 	}
 	if (con == false) return false;
 	if ($("#cst_pwd").val().trim() == '') {
-		alert('비밀번호를 입력하세요');
+		alert('비밀번호를 입력해 주세요');
 		$("#cst_pwd").focus();
 		return false;
 	}
 	if ($("#cst_name").val().trim() == '') {
-		alert('이름을 입력하세요');
+		alert('이름을 입력해 주세요');
 		$("#cst_name").focus();
 		return false;
 	}
 	if ($("#cst_email").val().trim() == '') {
-		alert('e메일 주소를 입력하세요');
+		alert('e메일 주소를 입력해 주세요');
 		$("#cst_email").focus();
 		return false;
 	}
 	if ($("#cst_tel").val().trim() == '') {
-		alert('연락처를 입력하세요');
+		alert('연락처를 입력해 주세요');
 		$("#cst_tel").focus();
 		return false;
 	}
@@ -64,32 +69,32 @@ function formCheck() {
 		}
 
 	if ($("#cst_birth").val().trim() == '') {
-		alert('생일을 입력하세요');
+		alert('생일을 입력해 주세요');
 		$("#cst_birth").focus();
 		return false;
 	}
 	if ($("#cst_height").val().trim() == '') {
-		alert('키를 입력하세요');
+		alert('키를 입력해 주세요');
 		$("#cst_height").focus();
 		return false;
 	}
 	if ($("#cst_weight").val().trim() == '') {
-		alert('몸무게를 입력하세요');
+		alert('몸무게를 입력해 주세요');
 		$("#cst_weight").focus();
 		return false;
 	}
 	if ($("#cst_grade").val().trim() == '') {
-		alert('비만도를 입력하세요');
+		alert('비만도를 입력해 주세요');
 		$("#cst_grade").focus();
 		return false;
 	}
 	if ($("#zipcode").val().trim() == '') {
-		alert('우편번호를 입력하세요');
+		alert('우편번호를 입력해 주세요');
 		$("#zipcode").focus();
 		return false;
 	}
 	if ($("#addr1").val().trim() == '') {
-		alert('주소를 입력하세요');
+		alert('주소를 입력해 주세요');
 		$("#addr1").focus();
 		return false;
 	}
@@ -202,66 +207,82 @@ $(function() {
 </script>
 </head>
 <body>
-<form action="insert.do" method="post" id="frm" onsubmit="return false;">
-<table border="1">
-	<tr>
-		<td>아이디</td>
-		<td>
-			<input type="text" name="cst_id" id="cst_id"><br>
-			<span id="idMsg">아이디를 입력하세요</span>
-		</td>
-	</tr>
-	<tr>
-		<td>비밀번호</td>
-		<td><input type="password" name="cst_pwd" id="cst_pwd"></td>
-	</tr>
-	<tr>
-		<td>이름</td>
-		<td><input type="text" name="cst_name" id="cst_name"></td>
-	</tr>
-	<tr>
-		<td>이메일</td>
-		<td><input type="text" name="cst_email" id="cst_email"></td>
-	</tr>
-	<tr>
-		<td>연락처</td>
-		<td><input type="text" name="cst_tel" id="cst_tel"></td>
-	</tr>
-	<tr>
-		<td>성별</td>
-		<td><input type="radio" name = "cst_gender" value="남성" id="cst_gender">남성
-		<input type="radio" name = "cst_gender" value="여성" id="cst_gender">여성 </td>
-	</tr>
-	<tr>
-		<td>생일<br></td>
-		<td><input type="text" name="cst_birth" id="cst_birth"></td>
-	</tr>
-	<tr>
-		<td>기저질환(없으면 공란)</td>
-		<td><input type="text" name="cst_disease" id="cst_disease"></td>
-	</tr>
-	<tr>
-		<td>키(cm)</td>
-		<td><input type="text" name="cst_height" id="cst_height"></td>
-	</tr>
-	<tr>
-		<td>몸무게(kg)</td>
-		<td><input type="text" name="cst_weight" id="cst_weight"></td>
-	</tr>
-	<tr>
-		<td>비만도</td>
-		<td><input type="text" name="cst_grade" id="cst_grade"></td>
-	</tr>
-	<tr>
-		<td>주소</td>
-		<td>
-			<input type="text" name="zipcode" id="zipcode" size="5" readonly><input type="button" value="우편번호" onclick="zip_api();"><br>
-			<input type="text" name="addr1" id="addr1" readonly><br>
-			<input type="text" name="addr2" id="addr2">
-		</td>
-	</tr>
-</table>
-<input type="submit" value="등록" id="submitBtn">
-</form>
+	<%@ include file="/WEB-INF/view/include/header.jsp" %>
+	
+	  <div class="sub">
+		<div class="size">
+			<h3 class="sub_title">회원가입</h3>
+							<form action="insert.do" method="post" id="frm" onsubmit="return false;">
+								<table class="board_write">
+									<caption>회원가입</caption>
+									<colgroup>
+										<col width="20%" />
+										<col width="*" />
+									</colgroup>
+									<tbody>
+										<tr>
+											<td>*아이디</td>
+												<td>
+													<input type="text" name="cst_id" id="cst_id" class="inNextBtn" class="wid200" style="float:left;"><br>
+													<span id="idMsg">아이디를 입력하세요</span>
+													</td>
+												</tr>
+												<tr>
+													<td>비밀번호</td>
+													<td><input type="password" name="cst_pwd" id="cst_pwd"></td>
+												</tr>
+												<tr>
+													<td>이름</td>
+													<td><input type="text" name="cst_name" id="cst_name"></td>
+												</tr>
+												<tr>
+													<td>이메일</td>
+													<td><input type="text" name="cst_email" id="cst_email"></td>
+												</tr>
+												<tr>
+													<td>연락처</td>
+													<td><input type="text" name="cst_tel" id="cst_tel"></td>
+												</tr>
+												<tr>
+													<td>성별</td>
+													<td><input type="radio" name = "cst_gender" value="남성" id="cst_gender">남성
+													<input type="radio" name = "cst_gender" value="여성" id="cst_gender">여성 </td>
+												</tr>
+												<tr>
+													<td>생일<br></td>
+													<td><input type="text" name="cst_birth" id="cst_birth"></td>
+												</tr>
+												<tr>
+													<td>기저질환(없으면 공란)</td>
+													<td><input type="text" name="cst_disease" id="cst_disease"></td>
+												</tr>
+												<tr>
+													<td>키(cm)</td>
+													<td><input type="text" name="cst_height" id="cst_height"></td>
+												</tr>
+												<tr>
+													<td>몸무게(kg)</td>
+													<td><input type="text" name="cst_weight" id="cst_weight"></td>
+												</tr>
+												<tr>
+													<td>비만도</td>
+													<td><input type="text" name="cst_grade" id="cst_grade"></td>
+												</tr>
+												<tr>
+													<td>주소</td>
+													<td>
+														<input type="text" name="zipcode" id="zipcode" size="5" readonly><input type="button" value="우편번호" onclick="zip_api();"><br>
+														<input type="text" name="addr1" id="addr1" readonly><br>
+														<input type="text" name="addr2" id="addr2">
+													</td>
+												</tr>
+											</table>
+							<input type="submit" value="등록" id="submitBtn">
+							</form>
+			</div>
+    </div>
+
+<%@ include file="/WEB-INF/view/include/footer.jsp" %>
+
 </body>
 </html>

@@ -10,7 +10,7 @@ ${authUser.cst_name}님 반갑습니다.<br>
 </c:if>
 <input type="button" value="메인창" onclick="location.href='/dtoi/';">
 <input type="button" value="고객정보" onclick="location.href='/dtoi/customer/index.do';">
-<input type="button" value="자유게시판" onclick="location.href='/dtoi/bulletin_board/index.do';">
+<input type="button" value="자유게시판" onclick="location.href='/dtoi/index.do';">
 <input type="button" value="상품후기 게시판" onclick="location.href='/dtoi/pdreview/index.do';">
 <br>
 
