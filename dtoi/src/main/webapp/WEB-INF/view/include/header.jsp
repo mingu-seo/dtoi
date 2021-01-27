@@ -89,25 +89,7 @@ function CookieVal(cookieName) {
                     <a href="">마이페이지</a>
                </c:if>
                 </div>
-                <form action="/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
-                <div class="login_info">
-                	<div class="top_area"><img src="/img/btn_del.gif"/></div>
-                	<div class="title_area"><span>DtoI 로그인</span></div>
-                	<div class="middle_area">
-                		<div class="input_area">
-                			<input type="text" id="loginEmail" name="email" value="" placeholder="아이디"/>
-                			<input type="password" id="loginPw" name="pw" value="" placeholder="비밀번호"/>
-                		</div>
-                		<div class="login_btn">
-                			<input type="submit" value="로그인"/>
-                		</div>
-                	</div>
-                	<div class="bottom_area">
-                		<input type="checkbox" id="reg" name="reg"/><label for="reg">이메일 저장</label>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;
-                		<a href="/member/emailsearch.do">이메일찾기</a>&nbsp;/&nbsp;<a href="/member/pwsearch.do">비밀번호 찾기</a>
-                	</div>
-                </div>
-                </form>
+               
             </div>
         </div>
         <div class="head_bot">
@@ -115,33 +97,31 @@ function CookieVal(cookieName) {
                 <div class="gnb">
                     <ul class="depth1 clear">
                         <li>
-                            <a href="<%=request.getContextPath()%>/admin/member/index.do" class="parent"><span>마이페이지</span></a>
+                            <a href="<%=request.getContextPath()%>" class="parent"><span>마이페이지</span></a>
                             <ul class="depth2">
-                                <li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>개인정보 수정</span></a></li>
-                                <li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span>식단 입력</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>"><span>개인정보 수정</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>"><span>식단 입력</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>상품 주문/조회</span></a>
+                            <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>상품 목록</span></a>
                             <ul class="depth2">
-								<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>상품목록</span></a></li>
-								<li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span>상품 주문 내역 조회</span></a></li>
+								<li><a href="<%=request.getContextPath()%>"><span>상품 주문/조회하기</span></a></li>
+								<li><a href="<%=request.getContextPath()%>"><span>상품 주문 내역 조회</span></a></li>
                             </ul>
                         </li>
                         <li>
-                           <a href="<%=request.getContextPath()%>/admin/board/index.do" class="parent"><span>게시판</span></a>
+                           <a href="<%=request.getContextPath()%>/board/notice/index.do" class="parent"><span>게시판</span></a>
                             <ul class="depth2">
-                                <li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>공지사항</span></a></li>
-								<li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span>답변게시판</span></a></li>
-								<li><a href="<%=request.getContextPath()%>/bulletin_board/index.do"><span>자유게시판</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>/board/notice/index.do"><span>공지사항</span></a></li>
+								<li><a href="<%=request.getContextPath()%>/board/bulletin_board/index.do"><span>자유게시판</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/admin/admin/index.do" class="parent"><span>고객센터</span></a>
+                            <a href="" class="parent"><span>고객센터</span></a>
                             <ul class="depth2">
-								<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>FAQ</span></a></li>
-                               	<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>1:1 문의</span></a></li>
-								<li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span>자주묻는질문</span></a></li>			
+								<li><a href="<%=request.getContextPath()%>/board/faq/index.do"><span>FAQ</span></a></li>
+                               	<li><a href="<%=request.getContextPath()%>"><span>1:1 문의</span></a></li>
                             </ul>
                         </li>
                     </ul>

@@ -1,4 +1,4 @@
-package bulletin_board;
+package board.bulletin_board;
 
 
 
@@ -27,7 +27,7 @@ public class Bulletin_boardController {
 	@Autowired
 	private CommentService commentService;
 	
-	@RequestMapping("/bulletin_board/index.do")
+	@RequestMapping("/board/bulletin_board/index.do")
 	public String index(HttpServletRequest req, Bulletin_boardVo vo) {
 		// 서비스(로직) 처리(호출)
 		int[] rowPageCount = bulletin_boardService.getRowPageCount(vo);
@@ -46,14 +46,14 @@ public class Bulletin_boardController {
 		req.setAttribute("vo", vo);
 
 		// jsp 포워딩
-		return "bulletin_board/index";
+		return "board/bulletin_board/index";
 	}
-	@GetMapping("/bulletin_board/write.do")
+	@GetMapping("/board/bulletin_board/write.do")
 	public String write() {
-		return "bulletin_board/write";
+		return "board/bulletin_board/write";
 	}
 	
-	@RequestMapping("/bulletin_board/insert.do")
+	@RequestMapping("/board/bulletin_board/insert.do")
 	public void insert(Bulletin_boardVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
 				
 		res.setContentType("text/html;charset=utf-8");
@@ -61,7 +61,7 @@ public class Bulletin_boardController {
 		out.print("<script>");
 		if (bulletin_boardService.insert(vo)) {
 			out.print("alert('정상적으로 등록되었습니다.');");
-			out.print("location.href='/dtoi/bulletin_board/index.do';");
+			out.print("location.href='/dtoi/board/bulletin_board/index.do';");
 		} else {
 			out.print("alert('등록실패.');");
 			out.print("history.back();");
@@ -70,7 +70,7 @@ public class Bulletin_boardController {
 		out.flush();
 	}
 	
-	@RequestMapping("/bulletin_board/detail.do")
+	@RequestMapping("/board/bulletin_board/detail.do")
 	public String detail(HttpServletRequest req, Bulletin_boardVo vo) {
 		
 		
@@ -81,10 +81,10 @@ public class Bulletin_boardController {
 		req.setAttribute("clist", clist);
 		
 		// jsp 포워딩
-		return "bulletin_board/detail";
+		return "board/bulletin_board/detail";
 	}
 	
-	@PostMapping("/bulletin_board/update.do")
+	@PostMapping("/board/bulletin_board/update.do")
 	public void update(Bulletin_boardVo vo, HttpServletResponse res, HttpServletRequest req, MultipartFile file) throws IOException {		
 		
 		res.setContentType("text/html;charset=utf-8");
@@ -92,7 +92,7 @@ public class Bulletin_boardController {
 		out.print("<script>");
 		if (bulletin_boardService.update(vo)) {
 			out.print("alert('정상적으로 수정되었습니다.');");
-			out.print("location.href='/dtoi/bulletin_board/detail.do?bb_no="+vo.getBb_no()+"';");
+			out.print("location.href='/dtoi/board/bulletin_board/detail.do?bb_no="+vo.getBb_no()+"';");
 		} else {
 			out.print("alert('수정실패.');");
 			out.print("history.back();");
@@ -101,7 +101,7 @@ public class Bulletin_boardController {
 		out.flush();
 	}
 	
-	@RequestMapping("/bulletin_board/edit.do")
+	@RequestMapping("/board/bulletin_board/edit.do")
 	public String edit(HttpServletRequest req, Bulletin_boardVo vo) {
 		
 		Bulletin_boardVo uv = bulletin_boardService.selectOne(vo,false);
@@ -109,14 +109,14 @@ public class Bulletin_boardController {
 		req.setAttribute("vo", uv);
 		
 		// jsp 포워딩
-		return "bulletin_board/edit";
+		return "board/bulletin_board/edit";
 	}
-	@GetMapping("/bulletin_board/delete.do")
+	@GetMapping("/board/bulletin_board/delete.do")
 	public void delete(Bulletin_boardVo vo, HttpServletResponse res) throws IOException {
 		res.getWriter().print(bulletin_boardService.delete(vo));
 	}
 	
-	@RequestMapping("/bulletin_board/groupDelete.do")
+	@RequestMapping("/board/bulletin_board/groupDelete.do")
 	public void groupDelete(Bulletin_boardVo vo, HttpServletResponse res,HttpServletRequest req) throws IOException {
 		/*
 		 컨트롤러에서 파라미터를 받는 3가지 방법
@@ -135,7 +135,7 @@ public class Bulletin_boardController {
 		out.print("<script>");
 		if (delCount > 0) {
 			out.print("alert('"+vo.getNos().length+ "건중에"+delCount+ " 건이 삭제되었습니다.');");
-			out.print("location.href='/dtoi/bulletin_board/index.do';");
+			out.print("location.href='/dtoi/board/bulletin_board/index.do';");
 		} else {
 			out.print("alert('삭제실패.');");
 			out.print("history.back();");
@@ -144,7 +144,7 @@ public class Bulletin_boardController {
 		out.flush();
 	}
 	
-	@RequestMapping("/bulletin_board/insertComment.do")
+	@RequestMapping("/board/bulletin_board/insertComment.do")
 	public void insertComment(CommentVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
 		
 		res.setContentType("text/html;charset=utf-8");
@@ -152,7 +152,7 @@ public class Bulletin_boardController {
 		out.print("<script>");
 		if (commentService.insert(vo)) {
 			out.print("alert('정상적으로 등록되었습니다.');");
-			out.print("location.href='/dtoi/bulletin_board/detail.do?bb_no="+vo.getBb_no()+"';");
+			out.print("location.href='/dtoi/board/bulletin_board/detail.do?bb_no="+vo.getBb_no()+"';");
 		} else {
 			out.print("alert('등록실패.');");
 			out.print("history.back();");
@@ -161,14 +161,14 @@ public class Bulletin_boardController {
 		out.flush();
 	}
 	
-	@GetMapping("/bulletin_board/deleteComment.do")
+	@GetMapping("/board/bulletin_board/deleteComment.do")
 	public void deleteComment(CommentVo vo, HttpServletResponse res) throws IOException {
 		res.setContentType("text/html;charset=utf-8");
 		PrintWriter out = res.getWriter();
 		out.print("<script>");
 		if (commentService.delete(vo.getNo())) {
 			out.print("alert('정상적으로 삭제되었습니다.');");
-			out.print("location.href='/dtoi/bulletin_board/detail.do?bb_no="+vo.getBb_no()+"';");
+			out.print("location.href='/dtoi/board/bulletin_board/detail.do?bb_no="+vo.getBb_no()+"';");
 		} else {
 			out.print("alert('삭제실패.');");
 			out.print("history.back();");
@@ -178,27 +178,5 @@ public class Bulletin_boardController {
 	}
 	
 	
-	
-	@RequestMapping("/board/index.do")
-	public String index2(HttpServletRequest req, Bulletin_boardVo vo) {
-		// 서비스(로직) 처리(호출)
-		int[] rowPageCount = bulletin_boardService.getRowPageCount(vo);
-		List<Bulletin_boardVo> list = bulletin_boardService.getList(vo);
-
-		// 값 저장
-		// totalPage, list, reqPage
-		req.setAttribute("totCount", rowPageCount[0]);
-		req.setAttribute("totalPage", rowPageCount[1]);
-		req.setAttribute("startPage", rowPageCount[2]); // 시작페이지
-		req.setAttribute("endPage", rowPageCount[3]); // 마지막페이지
-		req.setAttribute("list", list);
-		// /board/index.do?reqPage=2 -> BoardVo에 reqPage 필드에 바인딩 (커맨드객체)
-		// /board/index.do
-		req.setAttribute("reqPage", vo.getReqPage());
-		req.setAttribute("vo", vo);
-
-		// jsp 포워딩
-		return "board/index";
-	}
 	
 }

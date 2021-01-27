@@ -10,6 +10,7 @@
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script>
 function del() {	
+	
 	if (confirm('정말 삭제하시겠습니까?')) {
 		$.ajax({
 			url:'delete.do',
@@ -29,6 +30,7 @@ function del() {
 			}
 		});
 	}
+
 }
 function delComment(no){
 	if (confirm('삭제하시겠습니까')){
@@ -71,7 +73,9 @@ function delComment(no){
 									<dd>${vo.bb_comment }
 										
 										<span class="reEdit">
-											<strong class="btn_in inbtn"><input type="button" class="r_delete" value="삭제" onclick='delComment(${vo.no })'/></strong>
+											<c:if test="${authUser == authUser}">
+												<strong class="btn_in inbtn"><input type="button" class="r_delete" value="삭제" onclick='delComment(${vo.no })'/></strong>
+											</c:if>
 										</span>
 									</dd>
 								</dl>
@@ -102,8 +106,10 @@ function delComment(no){
 					</tr>	
 					<div class="btnSet clear">
 						<div class="fl_l"><a href="index.do" class="btn">목록으로</a></div>
-						<div class="fl_l"><a href="edit.do?bb_no=${vo.bb_no }" class="btn"><strong>수정</strong></a></div>
-						<div class="fl_l"><a href="javascript:;" onclick='del()' class="btn"><strong>삭제</strong></a></div>
+						<c:if test="${authUser == authUser}">
+							<div class="fl_l"><a href="edit.do?bb_no=${vo.bb_no }" class="btn"><strong>수정</strong></a></div>
+							<div class="fl_l"><a href="javascript:;" onclick='del()' class="btn"><strong>삭제</strong></a></div>
+						</c:if>
 					</div>
 			
 				</div>

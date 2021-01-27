@@ -1,4 +1,4 @@
-package bulletin_board;
+package board.faq;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Bulletin_boardService {
+public class FaqService {
 
 	@Autowired
-	private Bulletin_boardDao bulletin_boardDao;
+	private FaqDao faqDao;
 	
 	// 총갯수와 총페이지수를 구하는 메서드
-	public int[] getRowPageCount(Bulletin_boardVo vo) {
-		int totCount = bulletin_boardDao.count(vo); // 총갯수
+	public int[] getRowPageCount(FaqVo vo) {
+		int totCount = faqDao.count(vo); // 총갯수
 		// 총페이지 수 = 총갯수/페이지당갯수, 만약 총갯수에서 페이지당갯수로 나눈 나머지가 있으면 +1
 		int totPage = totCount / vo.getPageRow();
 		if (totCount % vo.getPageRow() > 0) totPage++;
@@ -34,20 +34,19 @@ public class Bulletin_boardService {
 	}
 	
 	// 목록을 구하는 메서드
-	public List<Bulletin_boardVo> getList(Bulletin_boardVo vo) {
+	public List<FaqVo> getList(FaqVo vo) {
 		// limit 시작값 = (사용자가 요청한 페이지번호 - 1) * 페이지당갯수
 		//int startIdx = (vo.getReqPage() - 1) * vo.getPageRow();
 		//vo.setStartIdx((vo.getReqPage() - 1) * vo.getPageRow());
-		return bulletin_boardDao.selectList(vo);
+		return faqDao.selectList(vo);
 	}
 	
-	public Bulletin_boardVo selectOne(Bulletin_boardVo uv, boolean isUser) {
-		if(isUser) bulletin_boardDao.updateReadCnt(uv.getBb_no());
-		return bulletin_boardDao.selectOne(uv);
+	public FaqVo selectOne(FaqVo uv) {
+		return faqDao.selectOne(uv);
 	}
 	
-	public boolean insert(Bulletin_boardVo vo) {
-		int r = bulletin_boardDao.insert(vo);
+	public boolean insert(FaqVo vo) {
+		int r = faqDao.insert(vo);
 		if (r > 0) {
 			return true;
 		} else {
@@ -55,8 +54,8 @@ public class Bulletin_boardService {
 		}
 	}
 	
-	public boolean update(Bulletin_boardVo vo) {
-		int r = bulletin_boardDao.update(vo);
+	public boolean update(FaqVo vo) {
+		int r = faqDao.update(vo);
 		if (r > 0) {
 			return true;
 		} else {
@@ -64,8 +63,8 @@ public class Bulletin_boardService {
 		}
 	}
 	
-	public boolean delete(Bulletin_boardVo vo) {
-		int r = bulletin_boardDao.delete(vo);
+	public boolean delete(FaqVo vo) {
+		int r = faqDao.delete(vo);
 		if (r > 0) {
 			return true;
 		} else {

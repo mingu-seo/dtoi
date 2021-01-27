@@ -71,7 +71,7 @@ $(function(){
         	</div>
         	<div class="youtube">
         		<div class="video_container">
-					<iframe src="https://www.youtube.com/watch?v=Ye6Iaf_QzTA" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
+					<iframe src="https://www.youtube.com/embed/Ye6Iaf_QzTA" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 				</div>
         	</div>
         </div>

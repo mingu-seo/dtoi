@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="comment">	
 	
-	<select id="selectList" parameterType="int" resultType="bulletin_board.CommentVo">
+	<select id="selectList" parameterType="int" resultType="board.bulletin_board.CommentVo">
 		select * from bb_comment where bb_no=#{bb_no}		
 	</select>	
 	
-	<insert id="insert" parameterType="bulletin_board.CommentVo">
+	<insert id="insert" parameterType="board.bulletin_board.CommentVo">
 		INSERT INTO bb_comment (
 			bb_no,bb_comment, regdate, cst_no
 		) VALUES (			

@@ -1,4 +1,4 @@
-package bulletin_board;
+package board.bulletin_board;
 
 import java.util.List;
 

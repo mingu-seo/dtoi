@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+
+	
+	<select id="count" parameterType="board.notice.NoticeVo" resultType="int">
+		select count(*) as cnt from notice	
+			
+	</select>
+	
+	<select id="selectList" parameterType="board.notice.NoticeVo" resultType="board.notice.NoticeVo">
+		select * from notice				
+		ORDER BY notice_no ${direct}
+		limit ${startIdx}, ${pageRow}	
+	</select>
+	
+	<select id="selectOne" parameterType="board.notice.NoticeVo" resultType="board.notice.NoticeVo">
+		select * from notice where notice_no = #{notice_no}
+	</select>
+	
+	<insert id="insert" parameterType="board.notice.NoticeVo">
+		INSERT INTO notice ( 
+			notice_title, notice_contents,notice_regdate
+		) VALUES (		
+			#{notice_title},			
+			#{notice_contents},
+			NOW()
+		)
+	</insert>
+	
+	<update id="update" parameterType="board.notice.NoticeVo">
+		UPDATE notice SET
+			notice_title = #{notice_title}
+			, notice_contents = #{notice_contents}			
+		WHERE
+			notice_no = #{notice_no}
+	</update>
+	
+	<delete id="delete" parameterType="board.notice.NoticeVo">
+		DELETE FROM notice WHERE notice_no = #{notice_no}
+	</delete>
+	
+	<update id="updateReadCnt" parameterType="int">
+		UPDATE notice SET
+			readCnt = readCnt + 1			
+		WHERE
+			notice_no = #{notice_no}
+	</update>
+	
+	
+	
+</mapper>

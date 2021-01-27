@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import bulletin_board.Bulletin_boardService;
-import bulletin_board.Bulletin_boardVo;
-import bulletin_board.CommentService;
-import bulletin_board.CommentVo;
+import board.bulletin_board.Bulletin_boardService;
+import board.bulletin_board.Bulletin_boardVo;
+import board.bulletin_board.CommentService;
+import board.bulletin_board.CommentVo;
 
 
 

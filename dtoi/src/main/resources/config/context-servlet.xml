@@ -10,7 +10,7 @@
 	<!-- 컴퍼넌트 스캔:해당패키지부터 하위패키지의 모든 클래스를 스캔 -->
 	
 	<context:component-scan base-package="admin"/>
-	<context:component-scan base-package="bulletin_board"/>
+	<context:component-scan base-package="board"/>
 	<context:component-scan base-package="util"/>
 	<context:component-scan base-package="customer"/>
 	<context:component-scan base-package="shop"/>
