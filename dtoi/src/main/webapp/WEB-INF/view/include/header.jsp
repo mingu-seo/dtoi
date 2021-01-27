@@ -143,7 +143,7 @@ function CookieVal(cookieName) {
                             <a href="" class="parent"><span>고객센터</span></a>
                             <ul class="depth2">
 								<li><a href="<%=request.getContextPath()%>/board/faq/index.do"><span>FAQ</span></a></li>
-                               	<li><a href="<%=request.getContextPath()%>"><span>1:1 문의</span></a></li>
+                               	<li><a href="<%=request.getContextPath()%>/board/qna/index.do"><span>1:1 문의</span></a></li>
                             </ul>
                         </li>
                     </ul>
