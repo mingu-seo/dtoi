@@ -30,14 +30,12 @@ public class PdReviewService {
 			return rowPageCount;
 		}
 
-		public List<PdReviewVo> getList(PdReviewVo vo) {
+		public List<PdReviewVo> getList(int pd_no) {
 	
-			return pdreviewDao.selectList(vo);
+			return pdreviewDao.selectList(pd_no);
 		}
 		
-		public PdReviewVo selectOne(PdReviewVo uv) {
-			return pdreviewDao.selectOne(uv);
-		}
+		
 		
 		public boolean insert(PdReviewVo vo) {
 			int r = pdreviewDao.insert(vo);
@@ -56,7 +54,7 @@ public class PdReviewService {
 				return false;
 			}
 		}
-		
+
 		public boolean delete(PdReviewVo vo) {
 			int r = pdreviewDao.delete(vo);
 			if (r > 0) {

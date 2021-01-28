@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+
 @Repository
 public class PdReviewDao {
 	
@@ -16,8 +17,9 @@ public class PdReviewDao {
 	public int count(PdReviewVo vo) { 
 		return sqlSession .selectOne("pdreview.count",vo);
 	}
-	public List<PdReviewVo> selectList(PdReviewVo vo) {
-		return sqlSession .selectList("pdreview.selectList",vo);
+	public List<PdReviewVo> selectList(int pd_no) {
+		List<PdReviewVo> list = sqlSession.selectList("pdreview.selectList", pd_no);
+		return list;
 	}
 	public PdReviewVo selectOne(PdReviewVo vo) {
 		sqlSession.update("pdreview.updateReadCount",vo);
@@ -30,10 +32,8 @@ public class PdReviewDao {
 		 return sqlSession.update("pdreview.update", vo); 
 	}
 	public int delete(PdReviewVo vo) {
-		return sqlSession.delete("pdreview.delet", vo); 		
+		return sqlSession.delete("pdreview.delete", vo); 		
 	}
-	public void updateReadcount(int re_no) {
-	sqlSession.update("pdreview.update",re_no);
-	}
+	
 	
 }

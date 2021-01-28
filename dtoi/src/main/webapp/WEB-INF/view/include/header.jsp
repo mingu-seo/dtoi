@@ -128,7 +128,7 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>상품 목록</span></a>
                             <ul class="depth2">
-								<li><a href="<%=request.getContextPath()%>"><span>상품 주문/조회하기</span></a></li>
+								<li><a href="<%=request.getContextPath()%>/product/index.do"><span>상품 주문/조회하기</span></a></li>
 								<li><a href="<%=request.getContextPath()%>"><span>상품 주문 내역 조회</span></a></li>
                             </ul>
                         </li>
