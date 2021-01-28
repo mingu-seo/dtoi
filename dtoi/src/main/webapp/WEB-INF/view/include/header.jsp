@@ -17,7 +17,7 @@ $(function() {
 	$(".login_info > .top_area > img").click(function() {
 		$(".login_info").hide();
 	});
-	
+
 });
 
 //로그인, 이메일 체크
