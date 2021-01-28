@@ -25,7 +25,7 @@
 				<ul>
 					<c:forEach var="vo" items="${list}">
 					<li>
-						<a href="detail2.do?pd_no=${vo.pd_no }";>
+						<a href="detail.do?pd_no=${vo.pd_no }";>
 							<dl>
 							<dt class="img">
 								<img src="/dtoi/img/product/main_image/${vo.pd_image }" alt=""/>
