@@ -1,6 +1,7 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of https\://github.com/mingu-seo/dtoi.git
 eclipse.preferences.version=1
 encoding//src/main/java=utf-8
-<<<<<<< HEAD
-=======
+encoding//src/main/webapp/WEB-INF/view/customer/edit.jsp=UTF-8
 encoding//src/test/java=utf-8
->>>>>>> branch 'master' of https://github.com/mingu-seo/dtoi.git

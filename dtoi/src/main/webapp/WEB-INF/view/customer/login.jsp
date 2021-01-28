@@ -27,14 +27,14 @@ String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&cli
 </c:if>
 	$(function() {
 		$("form input[type='button']").click(function(){
-			if ($("#cst_id").val().trim() == '') {
+			if ($("#cst_id1").val().trim() == '') {
 				alert('아이디를 입력하세요');
 				$("#cst_id").focus();
 				return false;
 			}
-			if ($("#cst_pwd").val().trim() == '') {
+			if ($("#cst_pwd1").val().trim() == '') {
 				alert('비밀번호를 입력하세요');
-				$("#cst_pwd").focus();
+				$("#cst_pwd1").focus();
 				return false;
 			}
 			// 폼전송
@@ -107,13 +107,13 @@ $(function() {
 	<tr>
 		<td>아이디</td>
 		<td>
-			<input type="text" name="cst_id" id="cst_id">
+			<input type="text" name="cst_id" id="cst_id1">
 		</td>
 	</tr>
 	<tr>
 		<td>비밀번호</td>
 		<td>
-			<input type="password" name="cst_pwd" id="cst_pwd">
+			<input type="password" name="cst_pwd" id="cst_pwd1">
 		</td>
 	</tr>
 	<tr>

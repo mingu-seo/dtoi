@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
-<meta name="format-detection" content="telephone=no, address=no, email=no">
+
 <meta name="keywords" content="">
 <meta name="description" content="">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>dtoi 회원가입</title>
-<%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script>
 
 function formCheck() {
@@ -43,7 +43,6 @@ function formCheck() {
 		$("#cst_id").focus();
 		return false;
 }
-function goSave() {
 	if ($("#cst_pwd").val().trim() == '') {
 		alert('비밀번호를 입력해 주세요');
 		$("#cst_pwd").focus();
@@ -208,7 +207,7 @@ $(function() {
 </script>
 </head>
 <body>
-	
+	<%@ include file="/WEB-INF/view/include/header.jsp" %>
 	
 	  <div class="sub">
 		<div class="size">
@@ -224,8 +223,8 @@ $(function() {
 					<tr>
 						<th>*아이디</th>
 						<td>
-							<input type="text" name="cst_id" id="cst_id" class="inNextBtn" class="wid200" style="float:left;"><br>
-							<span class="cst_id_check"><a href="javascript:;" onclick="formcheck();" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
+							<input type="text" name="cst_id" id="cst_id" class="inNextBtn" class="wid200" style="float:left;">
+							<span class="cst_id_check"><a href="javascript:;" onclick="formCheck();" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
 						</td>
 					</tr>
 					<tr>
@@ -244,15 +243,11 @@ $(function() {
 						<th>*연락처</th>
 						<td><input type="text" name="cst_tel" id="cst_tel" value=""  class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;"></td>
 					</tr>
-					<tr>
-						<th>*성별</th>
-						<td>
-						<select name="gender" id="gender">
-						<option value="1">남성</option>
-						<option value="2">여성</option>
-						</select> 
-						</td>
-					</tr>
+						<tr>
+							<th>*성별</th>
+							<td><input type="radio" name = "cst_gender" value="남성" id="cst_gender">남성
+							<input type="radio" name = "cst_gender" value="여성" id="cst_gender">여성 </td>
+						</tr>
 					<tr>
 						<th>*생년월일<br></th>
 						<td><input type="text" name="cst_birth" id="cst_birth" class="wid200" style="float:left;"></td>
@@ -262,7 +257,7 @@ $(function() {
 						<td><input type="text" name="cst_disease" id="cst_disease" class="wid200" style="float:left;"></td>
 					</tr>
 					<tr>
-						<th>키(cm)</th>
+						<th>*키(cm)</th>
 						<td><input type="text" name="cst_height" id="cst_height" class="wid200" style="float:left;"></td>
 					</tr>
 					<tr>
@@ -276,17 +271,17 @@ $(function() {
 					<tr>
 						<th>*주소</th>
 						<td>
-							<input type="text" name="zipcode" id="zipcode" size="5" readonly><input type="button" value="우편번호" onclick="zip_api();" class="wid200" style="float:left;"><br>
-							<input type="text" name="addr1" id="addr1" readonly class="wid200" style="float:left;"><br>
+							<input type="button" value="우편번호" onclick="zip_api();" class="btn bgGray" style="float:left;">
+							<input type="text" name="zipcode" id="zipcode" size="5" readonly>
+							<input type="text" name="addr1" id="addr1" readonly class="wid50" maxlength="15" style="float:left;">
 							<input type="text" name="addr2" id="addr2" class="wid200" style="float:left;">
 						</td>
 					</tr>
 					</tbody>
 				</table>
-					<input type="submit" value="등록" id="submitBtn"> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
 				</form>
 				<div class="btnSet clear">
-					<div><a href="javascript:;" class="btn" onclick="goSave();">가입</a> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
+					<div><input type="submit" class="btn" value="등록" id="submitBtn"> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
 				</div>
 			</div>
     	</div>
