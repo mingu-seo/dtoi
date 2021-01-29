@@ -34,10 +34,7 @@ $(function() {
 			$("#cst_tel").focus();
 			return false;
 		}
-		if(!$(':input:radio[id=cst_gender]:checked').val()) {   
-			   alert("성별을 선택해 주세요.");
-			   return;
-			}
+
 
 		if ($("#cst_birth").val().trim() == '') {
 			alert('생일을 입력해 주세요');
@@ -171,52 +168,52 @@ $(function() {
 					</tr>
 					<tr>
 						<th>*비밀번호</th>
-						<td><input type="password" name="cst_pwd" id="cst_pwd" class="wid200" style="float:left;"> </td>
+						<td><input type="password" name="cst_pwd" id="cst_pwd" class="wid200" style="float:left;" value=""> </td>
 					</tr>
 					<tr>
 						<th>*이름</th>
-						<td><input type="text" name="cst_name" id="cst_name" class="wid200" style="float:left;"></td>
+						<td><input type="text" name="cst_name" id="cst_name" class="wid200" style="float:left;" value="${vo.cst_name }" ></td>
 					</tr>
 					<tr>
 						<th>*이메일</th>
-						<td><input type="text" name="cst_email" id="cst_email" class="wid200" style="float:left;"></td>
+						<td><input type="text" name="cst_email" id="cst_email" class="wid200" style="float:left;" value="${vo.cst_email }"></td>
 					</tr>
 					<tr>
 						<th>*연락처</th>
-						<td><input type="text" name="cst_tel" id="cst_tel" value=""  class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;"></td>
+						<td><input type="text" name="cst_tel" id="cst_tel" value=""  class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;" value="${vo.cst_tel }"></td>
 					</tr>
-					<tr>
-						<th>*성별</th>
-						<td><input type="radio" name = "cst_gender" value="남성" id="cst_gender">남성
-						<input type="radio" name = "cst_gender" value="여성" id="cst_gender">여성 </td>
-					</tr>
+						<tr>
+							<th>*성별</th>
+							<td><input type="radio" name = "cst_gender" value="남성" id="cst_gender" value="${vo.cst_gender }">남성
+							<input type="radio" name = "cst_gender" value="여성" id="cst_gender" value="${vo.cst_gender }">여성 </td>
+						</tr>
 					<tr>
 						<th>*생년월일<br></th>
-						<td><input type="text" name="cst_birth" id="cst_birth" class="wid200" style="float:left;"></td>
+						<td><input type="text" name="cst_birth" id="cst_birth" class="wid200" style="float:left;" value="${vo.cst_birth }"></td>
 					</tr>
 					<tr>
 						<th>*기저질환(없으면 공란)</th>
-						<td><input type="text" name="cst_disease" id="cst_disease" class="wid200" style="float:left;"></td>
+						<td><input type="text" name="cst_disease" id="cst_disease" class="wid200" style="float:left;" value="${vo.cst_disease }"></td>
 					</tr>
 					<tr>
 						<th>*키(cm)</th>
-						<td><input type="text" name="cst_height" id="cst_height" class="wid200" style="float:left;"></td>
+						<td><input type="text" name="cst_height" id="cst_height" class="wid200" style="float:left;" value="${vo.cst_height }"></td>
 					</tr>
 					<tr>
 						<th>*몸무게(kg)</th>
-						<td><input type="text" name="cst_weight" id="cst_weight" class="wid200" style="float:left;"></td>
+						<td><input type="text" name="cst_weight" id="cst_weight" class="wid200" style="float:left;" value="${vo.cst_weight }"></td>
 					</tr>
 					<tr>
 						<th>*비만도</th>
-						<td><input type="text" name="cst_grade" id="cst_grade" class="wid200" style="float:left;"></td>
+						<td><input type="text" name="cst_grade" id="cst_grade" class="wid200" style="float:left;" value="${vo.cst_grade }"></td>
 					</tr>
 					<tr>
 						<th>*주소</th>
 						<td>
 							<input type="button" value="우편번호" onclick="zip_api();" class="btn bgGray" style="float:left;">
-							<input type="text" name="zipcode" id="zipcode" size="5" readonly>
-							<input type="text" name="addr1" id="addr1" readonly class="wid50" maxlength="15" style="float:left;">
-							<input type="text" name="addr2" id="addr2" class="wid200" style="float:left;">
+							<input type="text" name="zipcode" id="zipcode" size="5" readonly value="${vo.zipcode }" >
+							<input type="text" name="addr1" id="addr1" readonly class="wid50" maxlength="15" style="float:left;" value="${vo.addr1 }">
+							<input type="text" name="addr2" id="addr2" class="wid200" style="float:left;" value="${vo.addr2 }">
 						</td>
 					</tr>
 					</tbody>
