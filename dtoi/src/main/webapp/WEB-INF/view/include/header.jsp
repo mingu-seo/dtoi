@@ -85,11 +85,13 @@ function CookieVal(cookieName) {
                     
                     <a href="<%=request.getContextPath()%>/customer/write.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">회원가입</a>
                </c:if>
-               <c:if test="${!empty authUser}">
+               <c:if test="${!empty authUser}">               
+                   
                 	<a href="<%=request.getContextPath()%>/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">로그아웃</a>
                     <a href="">마이페이지</a>
                </c:if>
                 </div>
+                
 
                 <form action="/dtoi/customer/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
                 <input type="hidden" name="url" value="<%=request.getAttribute("javax.servlet.forward.request_uri")%>"/>

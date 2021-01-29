@@ -34,6 +34,15 @@ public class QnaVo extends CommonVo {
 	public String getQna_section() {
 		return qna_section;
 	}
+	public String getQna_name() {
+		if (qna_section.equals("1")) {
+			return "상품문의";
+		} else if (qna_section.equals("2")) {
+			return "반품";
+		} else {
+			return "기타";
+		}
+	}
 	public void setQna_section(String qna_section) {
 		this.qna_section = qna_section;
 	}

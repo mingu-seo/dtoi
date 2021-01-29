@@ -55,7 +55,7 @@ public class QnaController {
 		
 		req.setAttribute("vo", uv);		
 		// jsp 포워딩
-		return "board/qna/view";
+		return "board/qna/detail";
 	}
 	
 	@RequestMapping("/board/qna/reply.do")
@@ -76,32 +76,7 @@ public class QnaController {
 	
 	@RequestMapping("/board/qna/insert.do")
 	public void insert(QnaVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
-		// 등록처리
-		//res.getWriter().print(replyService.insert(vo));
 		
-		// 파일을 저장
-		if (!file.isEmpty()) { // 사용자가 첨부한 파일이 있으면
-			try {
-				String ext = "";
-				if (file.getOriginalFilename().indexOf(".") > -1 ) { // 파일명에 . 이 포함되어있는 경우
-					ext = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-					System.out.println(ext);
-				}
-				String filename = new Date().getTime()+ext;
-				
-				
-				// request.getRealPath() -> 실제 경로를 리턴
-				String path = req.getRealPath("/upload/");
-				System.out.println(path);
-				//path = "D:\\AI\\workspace\\user\\src\\main\\webapp\\upload\\";
-				file.transferTo(new File(path+filename));
-				// 파일명을 vo에 저장
-				//vo.setFilename(filename);
-				//vo.setFilename_org(file.getOriginalFilename());
-			} catch (Exception e) {
-				System.out.println(e.toString());
-			}
-		}
 		
 		res.setContentType("text/html;charset=utf-8");
 		PrintWriter out = res.getWriter();
@@ -119,32 +94,7 @@ public class QnaController {
 	
 	@RequestMapping("/board/qna/insertReply.do")
 	public void insertReply(QnaVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
-		// 등록처리
-		//res.getWriter().print(replyService.insert(vo));
 		
-		// 파일을 저장
-		if (!file.isEmpty()) { // 사용자가 첨부한 파일이 있으면
-			try {
-				String ext = "";
-				if (file.getOriginalFilename().indexOf(".") > -1 ) { // 파일명에 . 이 포함되어있는 경우
-					ext = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-					System.out.println(ext);
-				}
-				String filename = new Date().getTime()+ext;
-				
-				
-				// request.getRealPath() -> 실제 경로를 리턴
-				String path = req.getRealPath("/upload/");
-				System.out.println(path);
-				//path = "D:\\AI\\workspace\\user\\src\\main\\webapp\\upload\\";
-				file.transferTo(new File(path+filename));
-				// 파일명을 vo에 저장
-				//vo.setFilename(filename);
-				//vo.setFilename_org(file.getOriginalFilename());
-			} catch (Exception e) {
-				System.out.println(e.toString());
-			}
-		}
 		
 		res.setContentType("text/html;charset=utf-8");
 		PrintWriter out = res.getWriter();

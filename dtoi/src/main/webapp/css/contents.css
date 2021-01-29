@@ -119,7 +119,7 @@
 
 .bbsSearch {min-height:32px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; z-index:10; max-width:500px; width:100%; margin:20px auto 15px;} 
 .bbsSearch input[type='text'] {height:32px; box-sizing:border-box; padding:5px 30px 5px 5px; border:0; width:100%; line-height:32px; background-color:#fff; border:1px solid #c7c8cc; vertical-align:middle;}
-.bbsSearch input[type='button'] {border:0; height:32px; width:32px; text-indent:-9999em; position:absolute; top:0; right:5px; background:url('/img/ico_search.png') no-repeat center center ; display:inline-block;}
+.bbsSearch input[type='button'] {border:0; height:32px; width:32px; text-indent:-9999em; position:absolute; top:0; right:5px; background:url('/dtoi/img/user/ico_search.png') no-repeat center center ; display:inline-block;}
 .bbsSearch .srchSelect .selectric-dSelect {float:left; width:148px; color:#666;}
 .bbsSearch .searchWord {float:left; position:relative; width:345px; margin-left:5px;}
 .bbsSearch .srchSelect {float:left; display:block;  }

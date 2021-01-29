@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qna">
-
+	
+	<sql id="select_section">
+		<where> <!-- 아래 조건이 있으면 where 붙임 -->
+			<!-- 이름이나 아이디 검색 -->
+			<if test="searchWord != null and searchWord != ''"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+				and (qna_title like '%${searchWord}%')
+			</if>
+			<!-- 가입일 검색(기간 검색) 시작일 sdate, 종료일 edate -->
+			<if test="qna_section != null and qna_section != '' ">				
+				and qna_section = ${qna_section}
+				
+			</if>
+		</where>
+	</sql>
 	
 	<select id="count" parameterType="board.qna.QnaVo" resultType="int">
 		select count(*) as cnt from qna
@@ -11,6 +24,7 @@
 		select *,			
 			ifnull((select cst_id from customer where cst_no=qna.cst_no),'관리자') as user_name
 		from qna
+		<include refid="select_section"/>
 		ORDER BY ref DESC, seq ASC
 		limit ${startIdx}, ${pageRow}
 	</select>
@@ -29,7 +43,7 @@
 			#{qna_content},
 			NOW()			
 		)
-		<selectKey keyProperty="no" resultType="int" order="AFTER"> 
+		<selectKey keyProperty="qna_no" resultType="int" order="AFTER"> 
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
