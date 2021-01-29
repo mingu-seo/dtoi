@@ -56,7 +56,7 @@ function moveWrite() {
 								<tbody>
 								<c:forEach var="vo" items="${list}">
 									<tr>
-										<td class="first"><input type="checkbox" name="nos" id="re_no" value=""/></td>
+										<td class="first"><input type="checkbox" name="nos" id="re_no" value="${vo.re_no }"/></td>
 										<td>${vo.re_no }</td>
 										<td class="title"><a href="detail.do?re_no=${vo.re_no }">${vo.re_title}</a></td>
 										<td>${vo.re_regdate }</td>

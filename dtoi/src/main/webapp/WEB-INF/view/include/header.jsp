@@ -17,7 +17,7 @@ $(function() {
 	$(".login_info > .top_area > img").click(function() {
 		$(".login_info").hide();
 	});
-	
+
 });
 
 //로그인, 이메일 체크
@@ -100,8 +100,8 @@ function CookieVal(cookieName) {
                 	<div class="title_area"><span>DtoI 로그인</span></div>
                 	<div class="middle_area">
                 		<div class="input_area">
-                			<input type="text" id="cst_id" name="cst_id" placeholder="아이디"/>
-                			<input type="password" id="cst_pwd" name="cst_pwd" placeholder="비밀번호"/>
+                			<input type="text" id="cst_id1" name="cst_id" placeholder="아이디"/>
+                			<input type="password" id="cst_pwd1" name="cst_pwd" placeholder="비밀번호"/>
                 		</div>
                 		<div class="login_btn">
                 			<input type="submit" value="로그인"/>
@@ -123,14 +123,14 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="<%=request.getContextPath()%>" class="parent"><span>마이페이지</span></a>
                             <ul class="depth2">
-                                <li><a href="<%=request.getContextPath()%>"><span>개인정보 수정</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>"><span>개인정보 수정</span></a></li>
                                 <li><a href="<%=request.getContextPath()%>"><span>식단 입력</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>상품 목록</span></a>
                             <ul class="depth2">
-								<li><a href="<%=request.getContextPath()%>"><span>상품 주문/조회하기</span></a></li>
+								<li><a href="<%=request.getContextPath()%>/product/index.do"><span>상품 주문/조회하기</span></a></li>
 								<li><a href="<%=request.getContextPath()%>"><span>상품 주문 내역 조회</span></a></li>
                             </ul>
                         </li>
