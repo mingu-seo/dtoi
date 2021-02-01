@@ -52,15 +52,15 @@ function formCheck() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판 - [쓰기]</h2>
+					<h2>공지사항 - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form action="insert.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
-							<input type="hidden" name="cst_no" value="${authUser.cst_no }">
+							<form action="update.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
+							<input type='hidden' name='notice_no' value='${vo.notice_no }'>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -74,19 +74,17 @@ function formCheck() {
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="bb_title" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="title" name="notice_title" class="w100" title="제목을 입력해주세요" value=${vo.notice_title } />	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">*내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="bb_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+											<textarea id="contents" name="notice_contents" title="내용을 입력해주세요" style="width:100%;">${vo.notice_contents }</textarea>	
 										</td>
 									</tr>									
 								</tbody>
-							</table>
-															
-													
+							</table>							
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

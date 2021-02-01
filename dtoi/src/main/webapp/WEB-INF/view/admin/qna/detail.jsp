@@ -8,11 +8,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>DtoI</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
+<script>
+function del() {	
+	
+	if (confirm('정말 삭제하시겠습니까?')) {
+		$.ajax({
+			url:'delete.do',
+			data:{bb_no:${vo.qna_no}},
+			type:'HTML',
+			method:'GET',
+			cache:false,
+			async:false,
+			success:function(res) {
+				//console.log(data);
+				if (res == 'true') {
+					alert('정상적으로 삭제되었습니다.');
+					location.href='index.do';
+				} else {
+					alert('삭제 오류');
+				}
+			}
+		});
+	}
 
+}
+
+
+</script>
 </head>
 <body> 
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
-<input type='hidden' name='notice_no' value="${vo.notice_no }">
+<input type='hidden' name='qna_no' value="${vo.qna_no }">
  <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">공지사항</h3>
@@ -20,11 +46,12 @@
 				<div class="view">
 					<div class="title">
 						<dl>
-							<dt>${vo.notice_title }</dt>
-							<dd class="date">작성일 : ${vo.notice_regdate }</dd>
+							<dt>${vo.qna_title } </dt>
+							<dd class="date"><strong>분류 : ${vo.qna_section } &nbsp;&nbsp;</strong></dd>
+							<dd class="date">작성일 : ${vo.qna_regdate }</dd>
 						</dl>
 					</div>
-					<div class="cont">${vo.notice_contents } </div>
+					<div class="cont">${vo.qna_content } </div>
 					<tr>				
 					<td colspan="11">
 						

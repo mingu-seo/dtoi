@@ -59,6 +59,7 @@
 		</mvc:interceptor>
 		 -->
 	<mvc:view-controller path="/index.do"/>
+	<mvc:view-controller path="/admin/index.do"/>
 </beans>
 	
 

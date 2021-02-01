@@ -12,7 +12,7 @@ function del() {
 	if (confirm('정말 삭제하시겠습니까?')) {
 		$.ajax({
 			url:'delete.do',
-			data:{bb_no:${vo.bb_no}},
+			data:{notice_no:${vo.notice_no}},
 			type:'HTML',
 			method:'GET',
 			cache:false,
@@ -29,11 +29,7 @@ function del() {
 		});
 	}
 }
-function delComment(no){
-	if (confirm('삭제하시겠습니까')){
-		location.href='/dtoi/bulletin_board/deleteComment.do?no='+no+'&bb_no=${vo.bb_no}';
-	}
-}
+
 
 </script>
 </head>
@@ -49,7 +45,7 @@ function delComment(no){
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판</h2>
+					<h2>공지사항</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -69,67 +65,22 @@ function delComment(no){
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											${vo.bb_title }
+											${vo.notice_title }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">작성자</label></th>
 										<td colspan="10">
-											${vo.cst_id }
+											${vo.admin_id }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											${vo.bb_content }
+											${vo.notice_contents }
 										</td>
 									</tr>									
-									<tr>
-										<td colspan="11">
-											<div class="reple">
-												<form name="delete_frm" id="delete_frm" action="/manage/board/comment/process.jsp" method="post">
-													<c:if test='${empty clist }'>
-													<dl>
-														<dd class="bbsno">
-															댓글이 없습니다.
-														</dd>
-													</dl>
-													</c:if>
-													<c:forEach var="vo" items="${clist}">	
-													<dl>
-														<dt><strong>${vo.cst_no }</strong> ${vo.regdate }</dt>
-														<dd>${vo.bb_comment }
-															
-															<span class="reEdit">
-																<strong class="btn_in inbtn"><input type="button" class="r_delete" value="삭제" onclick='delComment(${vo.no })'/></strong>
-															</span>
-														</dd>
-													</dl>
-													</c:forEach>
-													<input type="hidden" name="no" id="bb_no" value=""/>
-													<input type="hidden" name="url"	id="url" value="<%=request.getAttribute("javax.servlet.forward.request_uri")%>"/>
-												</form>
-												<div class="rego">
-													<form name="comment_frm" id="comment_frm" action="insertComment.do" method="post">
-														<dl>
-															<dd>
-																<textarea class="focus_zone" name="bb_comment" id="bb_comment" title="내용을 입력해주세요"></textarea>
-																<div class="btn">
-																	<div class="btnLeft">
-																		<a class="btns" style="cursor:pointer;" onclick="$('#comment_frm').submit();"><strong>댓글입력</strong></a>
-																	</div>					
-																</div>					
-																<!--//btnAll--> 
-															</dd>
-														</dl>
-														<input type='hidden' name='bb_no' value="${vo.bb_no }">
-														<input type='hidden' name='cst_no' value="${vo.cst_no }">														
-													</form>
-												</div>
-												<!-- //rego -->
-											</div>
-										</td>
-									</tr>
+									
 								</tbody>
 							</table>
 							<div class="btn">
@@ -137,7 +88,7 @@ function delComment(no){
 									<a class="btns" href="index.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit.do?bb_no=${vo.bb_no }"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="edit.do?notice_no=${vo.notice_no }"><strong>수정</strong></a>
 									<a class="btns" style="cursor:pointer;" href="javascript:;" onclick='del()'><strong>삭제</strong></a>
 								</div>
 							</div>

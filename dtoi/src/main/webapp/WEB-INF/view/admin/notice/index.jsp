@@ -34,7 +34,7 @@ function moveWrite() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판</h2>
+					<h2>공지사항</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -65,11 +65,11 @@ function moveWrite() {
 								<tbody>
 								<c:forEach var="vo" items="${list}">
 									<tr>
-										<td class="first"><input type="checkbox" name="nos" id="no" value="${vo.bb_no }"/></td>
-										<td>${vo.bb_no }</td>
-										<td class="title"><a href="detail.do?bb_no=${vo.bb_no }">${vo.bb_title} [${vo.commentCount }]</a></td>
-										<td>${vo.bb_regdate }</td>
-										<td>${vo.user_name }</td>	
+										<td class="first"><input type="checkbox" name="nos" id="no" value="${vo.notice_no }"/></td>
+										<td>${vo.notice_no }</td>
+										<td class="title"><a href="detail.do?notice_no=${vo.notice_no }">${vo.notice_title} </a></td>
+										<td>${vo.notice_regdate }</td>
+										<td>${vo.admin_id }</td>	
 										<td scope="col">${vo.readCnt }</td>									
 									</tr>
 								</c:forEach>

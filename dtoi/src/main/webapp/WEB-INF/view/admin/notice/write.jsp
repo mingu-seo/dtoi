@@ -52,7 +52,7 @@ function formCheck() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판 - [쓰기]</h2>
+					<h2>공지사항 - [쓰기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -74,13 +74,13 @@ function formCheck() {
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="bb_title" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="title" name="notice_title" class="w100" title="제목을 입력해주세요" />	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">*내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="bb_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+											<textarea id="contents" name="notice_contents" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
 									</tr>									
 								</tbody>

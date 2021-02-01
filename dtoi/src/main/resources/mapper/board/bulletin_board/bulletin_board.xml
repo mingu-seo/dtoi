@@ -30,7 +30,9 @@
 	</select>
 	
 	<select id="selectOne" parameterType="board.bulletin_board.Bulletin_boardVo" resultType="board.bulletin_board.Bulletin_boardVo">
-		select * from bulletin_board where bb_no=${bb_no }
+		select *,
+		ifnull((select cst_id from customer where cst_no=bulletin_board.cst_no),'관리자') as user_name
+		 from bulletin_board where bb_no=${bb_no }
 	</select>
 	
 	<insert id="insert" parameterType="board.bulletin_board.Bulletin_boardVo">

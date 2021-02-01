@@ -1,40 +1,37 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="board.faq.*" %>
 <%@ page import="util.*" %>
-<%@ page import="customer.*" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<title>DtoI</title>
 <script>
-function moveWrite() {
+function goSearch() {
+	$("#searchForm").submit();
 	
-	<c:if test="${!empty authUser}">
-	location.href='write.do';
-	</c:if>
-	<c:if test="${empty authUser}">
-	alert('로그인 후 이용가능합니다.');
-	location.href='/dtoi/customer/login.do?url=/bulletin_board/index.do'
-	</c:if>	
 }
-
+function showTr(id) {
+	$("#tr"+id).toggle();
+}
 </script>
 </head>
-<body> 
+<body>
+<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 <div id="wrap">
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 		<!-- E N D :: headerArea--> 
 		
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판</h2>
+					<h2>공지사항</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -47,36 +44,38 @@ function moveWrite() {
 								<colgroup>
 									<col class="w3" />
 									<col class="w4" />
-									<col class="" />
 									<col class="w10" />
+									<col class="" />
 									<col class="w5" />
 									<col class="w6" />
 								</colgroup>
-								<thead>
+							<thead>
 									<tr>
 										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
-										<th scope="col">글번호</th>
-										<th scope="col">제목</th> 
-										<th scope="col">작성일</th> 
-										<th scope="col">작성자</th>
-										<th scope="col">조회수</th>
+										<th scope="col">번호</th>
+										<th scope="col">종류</th> 
+										<th scope="col">질문</th> 
 									</tr>
 								</thead>
-								<tbody>
-								<c:forEach var="vo" items="${list}">
-									<tr>
-										<td class="first"><input type="checkbox" name="nos" id="no" value="${vo.bb_no }"/></td>
-										<td>${vo.bb_no }</td>
-										<td class="title"><a href="detail.do?bb_no=${vo.bb_no }">${vo.bb_title} [${vo.commentCount }]</a></td>
-										<td>${vo.bb_regdate }</td>
-										<td>${vo.user_name }</td>	
-										<td scope="col">${vo.readCnt }</td>									
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
-							</form>
-							<div class="btn">
+						<tbody>
+						<c:forEach var="vo" items="${list}" varStatus="status">
+						<tr style='cursor:pointer;' onclick="showTr('${status.index}');">
+							<td class="first"><input type="checkbox" name="nos" id="faq_no" value="${vo.faq_no }"/></td>
+							<td>${vo.faq_no } </td>
+							<td>${vo.faq_section }</td>
+							<td class="txt_l">${vo.faq_title }</td>
+						</tr>
+						<tr id="tr${status.index}" style="display:none;">
+							<td class="first"></td>
+							<td> </td>
+							<td></td>
+							<td class="txt_l">${vo.faq_contents }</td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+				</form>
+			<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="javascript:;" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
 								</div>
@@ -119,18 +118,5 @@ function moveWrite() {
 		<!-- E N D :: containerArea-->
 	</div>
 	<!--//canvas -->
-</div>
-<!--//wrap -->
-<%
-// 세션객체 가져오기
-CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");
-%>
-<% if (authUser == null) { %>
-로그인전
-<% } %>
-<% if (authUser != null) { %>
-로그인후 
-<%=authUser.getCst_name() %>님 안녕하세요!
-<% } %>
 </body>
 </html>
