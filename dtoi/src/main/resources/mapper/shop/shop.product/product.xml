@@ -58,7 +58,7 @@
 			, pd_info = #{pd_info}
 			
 			<if test="pd_image != null">
-			, pd_image=#{pd_image}
+			 , pd_image=#{pd_image}
 			</if>
 		WHERE
 			pd_no = #{pd_no}

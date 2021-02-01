@@ -111,8 +111,8 @@ public class Admin_ProductController {
 		out.flush();
 	}
 	
-	@GetMapping("/admin/product/delete.do")
-	public void Delete(ProductVo vo, HttpServletResponse res,HttpServletRequest req) throws IOException {
+	@RequestMapping("/admin/product/groupDelete.do")
+	public void groupDelete(ProductVo vo, HttpServletResponse res,HttpServletRequest req) throws IOException {
 		/*
 		 컨트롤러에서 파라미터를 받는 3가지 방법
 		 1. request객체

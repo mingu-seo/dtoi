@@ -31,7 +31,7 @@
 		<td>${vo.pd_content }<a href="/admin/common/download.jsp?path=/upload/&r_file=${vo.pd_image}" target="_blank">${vo.pd_image}</a></td>
 	</tr>
 </table>
-<input type="button" value="수정" onclick='location.href="edit.do?no=${vo.pd_no}";'>
+<input type="button" value="수정" onclick='location.href="edit.do?pd_no=${vo.pd_no}";'>
 <input type="button" value="삭제" onclick="del();">
 <input type="button" value="목록" onclick='location.href="index.do";'>
 <script>

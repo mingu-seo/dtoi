@@ -60,7 +60,7 @@ function formCheck() {
 					<div id="bbs">
 						<div id="bread">
 							<form action="insert.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
-						
+							
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />

@@ -1,15 +1,12 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/admin/smarteditor/js/HuskyEZCreator.js"></script><!-- 에디터에서 사용될 스크립트 -->
-<script src="/admin/js/common.js"></script>
+<%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
 var oEditors = [];
 $(function() {
-	
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
 		elPlaceHolder: "contents", // textarea ID
@@ -29,7 +26,6 @@ $(function() {
 		fCreator: "createSEditor2"
 	});
 });
-
 function formCheck() {
 	if ($("#title").val().trim() == '') {
 		alert('제목을 입력하세요');
@@ -50,22 +46,22 @@ function formCheck() {
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
+		<%@ include file="/WEB-INF/view/include/top.jsp" %>
 		<!-- E N D :: headerArea--> 
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>상품목록 - [수정]</h2>
+					<h2>Product - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form action="update.do" onsubmit="return formCheck()" method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
-							<input type="hidden" name="pd_no" value="${vo.pd_no }">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 상품수정 관리 페이지입니다.">
+							<form action="update.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
+							<input type="hidden" name="pd_no" value="${data.pd_no }">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />
@@ -74,43 +70,56 @@ function formCheck() {
 									<col width="10%" />
 									<col width="15%" />
 								</colgroup>
-							<tbody>
+								<tbody>
 									<tr>
-										<th scope="row"><label for="">메인 이미지</label></th>
+								
+										<th scope="row"><label for="">상품이미지</label></th>
 										<td colspan="10">
-											<input type="file" id="filename_tmp" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
+											<input type="file" name="file">
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">*상품명</label></th>
+										<th scope="row"><label for="">상품이름</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="pd_name" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="title" name="pd_name" title="상품이름 입력란" style="width:100%;" value="${data.pd_name}">
 										</td>
-									</tr>
-
+									</tr>									
 									<tr>
-										<th scope="row"><label for="">카테고리</label></th>
+										<th scope="row"><label for="">상품가격</label></th>
 										<td colspan="10">
-											<input id="title" name="pd_category" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="text" name="pd_price" title="가격 입력란" style="width:100%;" value="${data.pd_price}">	
 										</td>
-									</tr>
-									
+									</tr>									
 									<tr>
-										<th scope="row"><label for="">*가격</label></th>
+										<th scope="row"><label for="">상품 카테고리</label></th>
 										<td colspan="10">
-											<textarea name="pd_price" title="가격입력" style="width:100%;"></textarea>	
+											<input type="text" id="text" name="pd_category" style="width:100%;" value="${data.pd_category}">
 										</td>
-									</tr>
-									
+									</tr>									
 									<tr>
-										<th scope="row"><label for="">*내용</label></th>
+										<th scope="row"><label for="">상품평점</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="pd_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+											<input type="text"  name="pd_recom" style="width:100%;" value="${data.pd_recom}">
 										</td>
-									</tr>
+									</tr><tr>
+										<th scope="row"><label for="">상품상세</label></th>
+										<td colspan="10">
+											<textarea id="contents" name="pd_content" title="상품 상세 입력란" style="width:100%;">${data.pd_content }</textarea>	
+										</td>
+									</tr>									
+									<tr>
+										<th scope="row"><label for="">상품 정보</label></th>
+										<td colspan="10">
+											<input type="text" id="contents" name="pd_info" title="상품 정보 입력란" style="width:100%;">
+										</td>
+									</tr>																		
+																
+																	
 								</tbody>
 							</table>
-							</form>
+															
+													
+						</form>
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="index.do"><strong>목록</strong></a>
@@ -118,6 +127,7 @@ function formCheck() {
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" href="javascript:$('#frm').submit();"><strong>저장</strong></a>
 								</div>
+								
 							</div>
 							<!--//btn-->
 						</div>

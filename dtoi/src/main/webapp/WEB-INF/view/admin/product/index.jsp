@@ -32,7 +32,7 @@ function moveWrite() {
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 ${totalCount }개</strong>  |  ${reqPage }/${totalPage } 페이지</span></p>
-							<form name="frm" id="frm" action="groupDelete2.do" method="post">
+							<form name="frm" id="frm" action="groupDelete.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 상품관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
