@@ -41,8 +41,8 @@ public class ProductService {
 		return productDao.selectList(vo);
 	}
 	
-	public ProductVo selectOne(ProductVo uv, boolean isView) {
-		if (isView) productDao.updateReadcnt(uv.getPd_no());
+	public ProductVo selectOne(ProductVo uv, boolean isUser) {
+		if (isUser) productDao.updateReadcnt(uv.getPd_no());
 		return productDao.selectOne(uv);
 	}
 	

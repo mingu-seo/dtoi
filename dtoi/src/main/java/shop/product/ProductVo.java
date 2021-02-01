@@ -16,7 +16,8 @@ public class ProductVo extends CommonVo{
 	private String pd_image;
 	private Timestamp pd_regdate;
 	private int pd_clickcount;
-	private int pd_ordercount;	
+	private int pd_ordercount;
+	private String[] nos;
 	
 	
 	
@@ -89,6 +90,12 @@ public class ProductVo extends CommonVo{
 		this.pd_image = pd_image;
 	}
 	
-	
+	public String[] getNos() {
+		return nos;
+	}
+
+	public void setNos(String[] nos) {
+		this.nos = nos;
+	}
 	
 }

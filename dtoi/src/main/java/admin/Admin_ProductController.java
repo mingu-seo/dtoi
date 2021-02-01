@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import board.bulletin_board.Bulletin_boardVo;
 import shop.product.ProductService;
 import shop.product.ProductVo;
 
@@ -112,10 +112,32 @@ public class Admin_ProductController {
 	}
 	
 	@GetMapping("/admin/product/delete.do")
-	public void delete(ProductVo vo, HttpServletResponse res) throws IOException {
-		res.getWriter().print(productService.delete(vo));
+	public void Delete(ProductVo vo, HttpServletResponse res,HttpServletRequest req) throws IOException {
+		/*
+		 컨트롤러에서 파라미터를 받는 3가지 방법
+		 1. request객체
+		 2. @RequestParam
+		 3. 커맨드객체 (스프링이 커맨드객체의 필드명과 클라이언트에서 전송되어 오는 파라미터)
+		 */		
+		int delCount = 0;
+		for(int i = 0; i < vo.getNos().length; i++) {			
+			vo.setPd_no(Integer.parseInt(vo.getNos()[i]));
+			if (productService.delete(vo)) delCount++;
+		}
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print("<script>");
+		if (delCount > 0) {
+			out.print("alert('"+vo.getNos().length+ "건중에"+delCount+ " 건이 삭제되었습니다.');");
+			out.print("location.href='/dtoi/admin/product/index.do';");
+		} else {
+			out.print("alert('삭제실패.');");
+			out.print("history.back();");
+		}
+		out.print("</script>");
+		out.flush();
 	}
-	
 
 	
 	@RequestMapping("/admin/product/edit.do")
