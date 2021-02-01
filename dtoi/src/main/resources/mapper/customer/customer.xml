@@ -97,7 +97,7 @@
 	</delete>
 	
 	<select id ="login" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
-		SELECT * FROM customer WHERE cst_id =#{cst_id } AND cst_pwd=password(#{cst_pwd})
+		SELECT * FROM customer WHERE cst_id =#{cst_id } AND cst_pwd=md5(#{cst_pwd})
 	</select>
 	
 	

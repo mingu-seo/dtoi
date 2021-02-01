@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="administrator">
+
+	<sql id ="administratorWhere">
+		<where> <!-- 아래 조건이 있으면 where 붙임 -->
+			<!-- 이름이나 아이디 검색 -->
+			<if test="searchWord != null and searchWord != ''"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+			and (ad_name like '%${searchWord}%' or ad_id like '%${searchWord}%')
+			</if>
+			<!-- 가입일 검색(기간 검색) 시작일 sdate, 종료일 edate -->
+			<if test="sdate != null and sdate != '' ">
+				<if test="edate != null and edate != '' ">
+					and ad_regdate between '${sdate} 00:00:00' and '${edate} 23:59:59'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<select id ="count" parameterType="administrator.CustomerVo" resultType="int">
+		select count(*) as cnt from administrator
+		<include refid="administratorWhere"/>
+	</select>
+	
+	<select id ="selectList" parameterType="administrator.CustomerVo" resultType="administrator.CustomerVo">
+		select * from administrator
+		<include refid="administratorWhere"/>
+		ORDER BY ${orderby} ${direct}
+		limit ${startIdx}, ${pageRow}
+	</select>
+	
+	<select id ="selectOne" parameterType="administrator.CustomerVo" resultType="administrator.CustomerVo">
+		select * from administrator where ad_no=${ad_no }
+	</select>
+	
+	<select id ="isDuplicateId" parameterType="String" resultType="int">
+		select count(*) from administrator where ad_id =#{ad_id }
+	</select>
+	
+	<insert id ="insertCustomer" parameterType="administrator.CustomerVo">
+		INSERT INTO administrator (
+			ad_id ,
+			ad_pwd,
+			ad_name,
+			ad_email,
+			ad_tel,
+			ad_gender,
+			ad_regdate,
+			ad_birth,
+			ad_disease,
+			ad_height,
+			ad_weight,
+			ad_grade,
+			zipcode,
+			addr1,
+			addr2
+		) VALUES (
+			#{ad_id},   
+			md5(#{ad_pwd}),
+			#{ad_name},
+			#{ad_email},
+			#{ad_tel},
+			#{ad_gender},
+			NOW(),
+			#{ad_birth},
+			#{ad_disease},
+			#{ad_height},
+			#{ad_weight},
+			#{ad_grade},
+			#{zipcode},
+			#{addr1},
+			#{addr2}
+		)
+	</insert>
+	
+	<update id ="updateCustomer" parameterType="administrator.CustomerVo">
+		UPDATE administrator SET
+			ad_name = #{ad_name},
+			ad_email = #{ad_email},
+			ad_tel = #{ad_tel},
+			ad_gender = #{ad_gender},
+			ad_birth = #{ad_birth},
+			ad_disease	= #{ad_disease},
+			ad_height = #{ad_height},
+			ad_weight = #{ad_weight},
+			ad_grade = #{ad_grade},
+			zipcode = #{zipcode},
+			addr1 = #{addr1},
+			addr2 = #{addr2},
+			ad_pwd = md5(#{ad_pwd})
+		WHERE
+			ad_no  = #{ad_no }
+	</update>
+	
+	<delete id ="deleteCustomer" parameterType="administrator.CustomerVo">
+		DELETE FROM administrator WHERE ad_no = #{ad_no}
+	</delete>
+	
+	<select id ="login" parameterType="administrator.CustomerVo" resultType="administrator.CustomerVo">
+		SELECT * FROM administrator WHERE ad_id =#{ad_id } AND ad_pwd=password(#{ad_pwd})
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
