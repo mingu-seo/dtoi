@@ -1,4 +1,4 @@
-package admin_administrator;
+package admin.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,22 +17,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class Admin_AdministratorController {
+public class AdminController {
 
 
 		@Autowired
-		private Admin_AdministratorService aService;
+		private AdminService aService;
 		
-		@GetMapping("/")
-		public String index() {
-			return "redirect:/administrator/index.do";
-		}
+		
 		
 		@RequestMapping("/administrator/index.do")
-		public String index(HttpServletRequest req, Admin_AdministratorVo vo) {
+		public String index(HttpServletRequest req, AdminVo vo) {
 			// 서비스(로직) 처리(호출)
 			int[] rowPageCount = aService.getRowPageCount(vo);
-			List<Admin_AdministratorVo> list = aService.getList(vo);
+			List<AdminVo> list = aService.getList(vo);
 			
 			// 값 저장
 			// totalPage, list, reqPage
@@ -50,9 +47,9 @@ public class Admin_AdministratorController {
 		}
 		
 		@RequestMapping("/administrator/detail.do")
-		public String detail(HttpServletRequest req, Admin_AdministratorVo vo) {
+		public String detail(HttpServletRequest req, AdminVo vo) {
 			
-			Admin_AdministratorVo uv = aService.selectOne(vo);
+			AdminVo uv = aService.selectOne(vo);
 			
 			req.setAttribute("vo", uv);
 			
@@ -67,7 +64,7 @@ public class Admin_AdministratorController {
 		}
 		
 		@RequestMapping("/administrator/insert.do")
-		public void insert(Admin_AdministratorVo vo, HttpServletResponse res) throws Exception {
+		public void insert(AdminVo vo, HttpServletResponse res) throws Exception {
 			// 등록처리
 			res.getWriter().print(aService.insert(vo));
 		}
@@ -79,9 +76,9 @@ public class Admin_AdministratorController {
 		}
 		
 		@RequestMapping("/administrator/edit.do")
-		public String edit(HttpServletRequest req, Admin_AdministratorVo vo) {
+		public String edit(HttpServletRequest req, AdminVo vo) {
 			
-			Admin_AdministratorVo uv = aService.selectOne(vo);
+			AdminVo uv = aService.selectOne(vo);
 			
 			req.setAttribute("vo", uv);
 			
@@ -90,12 +87,12 @@ public class Admin_AdministratorController {
 		}
 		
 		@PostMapping("/administrator/update.do")
-		public void update(Admin_AdministratorVo vo, HttpServletResponse res) throws IOException {
+		public void update(AdminVo vo, HttpServletResponse res) throws IOException {
 			res.getWriter().print(aService.update(vo));
 		}
 		
 		@GetMapping("/administrator/delete.do")
-		public void delete(Admin_AdministratorVo vo, HttpServletResponse res, HttpSession sess) throws IOException {
+		public void delete(AdminVo vo, HttpServletResponse res, HttpSession sess) throws IOException {
 			sess.invalidate();
 			res.getWriter().print(aService.delete(vo));
 		}
@@ -108,7 +105,7 @@ public class Admin_AdministratorController {
 		
 		// 로그인처리
 		@PostMapping("/administrator/login.do")
-		public String loginProcess(Admin_AdministratorVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		public String loginProcess(AdminVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 			/*
 			 세션(session) : 브라우저 단위로 저장되는 저장소		 
 			 
@@ -121,7 +118,7 @@ public class Admin_AdministratorController {
 			 - 로그인폼으로 이동
 			 */
 			// 사용자가 입력한 아이디와 비밀번호로 DB에서 조회한 결과
-			Admin_AdministratorVo uv = aService.login(vo);
+			AdminVo uv = aService.login(vo);
 			// 결과 확인
 			if (uv != null) { // 로그인 성공
 				// 세션객체 가져오기

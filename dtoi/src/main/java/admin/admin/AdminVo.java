@@ -1,8 +1,8 @@
-package admin_administrator;
+package admin.admin;
 
 import java.sql.Timestamp;
 
-public class Admin_AdministratorVo {
+public class AdminVo {
 	
 	private int ad_no;
 	private String ad_id;
@@ -22,7 +22,7 @@ public class Admin_AdministratorVo {
 	private String direct; // ASC, DESC
 	
 	// 초기화용 생성자
-	public Admin_AdministratorVo() {
+	public AdminVo() {
 		this.pageRow = 10;
 		this.reqPage = 1;
 		this.orderby = "cst_regdate";

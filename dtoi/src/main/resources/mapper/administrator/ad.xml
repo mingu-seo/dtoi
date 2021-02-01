@@ -17,19 +17,19 @@
 		</where>
 	</sql>
 	
-	<select id ="count" parameterType="administrator.Admin_AdministratorVo" resultType="int">
+	<select id ="count" parameterType="admin.admin.AdminVo" resultType="int">
 		select count(*) as cnt from admin
 		<include refid="administratorWhere"/>
 	</select>
 	
-	<select id ="selectList" parameterType="administrator.Admin_AdministratorVo" resultType="administrator.Admin_AdministratorVo">
+	<select id ="selectList" parameterType="admin.admin.AdminVo" resultType="admin.admin.AdminVo">
 		select * from admin
 		<include refid="administratorWhere"/>
 		ORDER BY ${orderby} ${direct}
 		limit ${startIdx}, ${pageRow}
 	</select>
 	
-	<select id ="selectOne" parameterType="administrator.Admin_AdministratorVo" resultType="administrator.Admin_AdministratorVo">
+	<select id ="selectOne" parameterType="admin.admin.AdminVo" resultType="admin.admin.AdminVo">
 		select * from admin where ad_no=${ad_no }
 	</select>
 	
@@ -37,7 +37,7 @@
 		select count(*) from admin where ad_id =#{ad_id }
 	</select>
 	
-	<insert id ="insertCustomer" parameterType="administrator.Admin_AdministratorVo">
+	<insert id ="insertCustomer" parameterType="admin.admin.AdminVo">
 		INSERT INTO admin (
 			ad_id ,
 			ad_pwd,
@@ -56,7 +56,7 @@
 		)
 	</insert>
 	
-	<update id ="updateCustomer" parameterType="administrator.Admin_AdministratorVo">
+	<update id ="updateCustomer" parameterType="admin.admin.AdminVo">
 		UPDATE administrator SET
 			ad_name = #{ad_name},
 			ad_email = #{ad_email},
@@ -66,11 +66,11 @@
 			ad_no  = #{ad_no }
 	</update>
 	
-	<delete id ="deleteCustomer" parameterType="administrator.Admin_AdministratorVo">
+	<delete id ="deleteCustomer" parameterType="admin.admin.AdminVo">
 		DELETE FROM admin WHERE ad_no = #{ad_no}
 	</delete>
 	
-	<select id ="login" parameterType="administrator.Admin_AdministratorVo" resultType="administrator.Admin_AdministratorVo">
+	<select id ="login" parameterType="admin.admin.AdminVo" resultType="admin.admin.AdminVo">
 		SELECT * FROM admin WHERE ad_id =#{ad_id } AND ad_pwd=md5(#{ad_pwd})
 	</select>
 	
