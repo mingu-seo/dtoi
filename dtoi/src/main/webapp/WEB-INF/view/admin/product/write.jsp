@@ -52,7 +52,7 @@ function formCheck() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판 - [쓰기]</h2>
+					<h2>Product - [작성]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -81,7 +81,7 @@ function formCheck() {
 									<tr>
 										<th scope="row"><label for="">상품이름</label></th>
 										<td colspan="10">
-											<textarea id="text" name="pd_name" title="상품이름 입력란" style="width:100%;"></textarea>	
+											<textarea id="title" name="pd_name" title="상품이름 입력란" style="width:100%;"></textarea>	
 										</td>
 									</tr>									
 									<tr>
@@ -91,30 +91,29 @@ function formCheck() {
 										</td>
 									</tr>									
 									<tr>
+										<th scope="row"><label for="">상품평점</label></th>
+										<td colspan="10">
+											<textarea id="text" name="pd_recom" style="width:100%;"></textarea>	
+										</td>
+									</tr>									
+									<tr>
 										<th scope="row"><label for="">상품상세</label></th>
 										<td colspan="10">
 											<textarea id="contents" name="pd_content" title="상품 상세 입력란" style="width:100%;"></textarea>	
 										</td>
 									</tr>									
-									<tr>
-										
-										<th scope="row"><label for="">상품이미지</label></th>
-										<td colspan="10">
-											<input type="file" name="pd_image">
-										</td>
-									</tr>									
+																	
 								</tbody>
 							</table>
 															
 													
-							</form>
+						</form>
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="index.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="index.do"><strong>저장</strong></a>
-									
+									<a class="btns" style="cursor:pointer;" href="javascript:$('#frm').submit();"><strong>저장</strong></a>
 								</div>
 								
 							</div>

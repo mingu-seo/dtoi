@@ -33,8 +33,8 @@ function formCheck() {
 	<div class="size">
 		<h3 class="sub_title">자유게시판-글쓰기</h3>
 			<div class="bbs">
-			<form action="insert.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
-			<input type="hidden" name="cst_no" value="${authUser.cst_no }">
+				<form action="insert.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
+				<input type="hidden" name="cst_no" value="${authUser.cst_no }">
 				<table class="write">
 					<tbody>
 					<tr>
