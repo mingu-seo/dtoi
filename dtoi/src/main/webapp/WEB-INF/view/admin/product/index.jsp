@@ -80,7 +80,7 @@ function moveWrite() {
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="#" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
+									<a class="btns" href="javascript:;" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
 									<a class="wbtn" href="write.do"><strong>등록</strong> </a>

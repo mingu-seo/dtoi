@@ -47,7 +47,7 @@ public class ProductController {
 	
 	@RequestMapping("/product/detail.do")
 	public String detail(HttpServletRequest req, ProductVo vo) {
-		ProductVo uv = productService.selectOne(vo, false);
+		ProductVo uv = productService.selectOne(vo, true);
 		List<PdReviewVo> rlist = rService.getList(uv.getPd_no());
 		
 		req.setAttribute("vo", uv);

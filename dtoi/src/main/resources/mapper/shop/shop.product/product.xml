@@ -20,28 +20,28 @@
 	
 	<insert id="insert" parameterType="shop.product.ProductVo">
 		INSERT INTO product (
-			pd_name,
-			pd_price,
-			pd_content,
-			pd_category,
-			pd_recom,
-			pd_info,
-			pd_image,
-			pd_regdate,
-			pd_clickcount,
-			pd_ordercount,
+			pd_name
+			,pd_price
+			,pd_content
+			,pd_category
+			,pd_recom
+			,pd_info
+			,pd_image
+			,pd_regdate
+			,pd_clickcount
+			,pd_ordercount
 			
 		) VALUES (
-			#{pd_name},
-			#{pd_price},
-			#{pd_content},
-			#{pd_category},
-			#{pd_recom},
-			#{pd_info},
-			#{pd_image},
-			NOW(),
-			#{pd_clickcount},
-			#{pd_ordercount},
+			#{pd_name}
+			,#{pd_price}
+			,#{pd_content}
+			,#{pd_category}
+			,#{pd_recom}
+			,#{pd_info}
+			,#{pd_image}
+			,NOW()
+			,#{pd_clickcount}
+			,#{pd_ordercount}
 		)
 	</insert>
 	

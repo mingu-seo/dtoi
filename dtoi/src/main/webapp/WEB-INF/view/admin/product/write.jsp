@@ -75,7 +75,7 @@ function formCheck() {
 								
 										<th scope="row"><label for="">상품이미지</label></th>
 										<td colspan="10">
-											<input type="file" name="pd_image">
+											<input type="file" name="file">
 										</td>
 									</tr>
 									<tr>
@@ -91,17 +91,29 @@ function formCheck() {
 										</td>
 									</tr>									
 									<tr>
+										<th scope="row"><label for="">상품 카테고리</label></th>
+										<td colspan="10">
+											<textarea id="text" name="pd_category" style="width:100%;"></textarea>	
+										</td>
+									</tr>									
+									<tr>
 										<th scope="row"><label for="">상품평점</label></th>
 										<td colspan="10">
 											<textarea id="text" name="pd_recom" style="width:100%;"></textarea>	
 										</td>
-									</tr>									
-									<tr>
+									</tr><tr>
 										<th scope="row"><label for="">상품상세</label></th>
 										<td colspan="10">
 											<textarea id="contents" name="pd_content" title="상품 상세 입력란" style="width:100%;"></textarea>	
 										</td>
 									</tr>									
+									<tr>
+										<th scope="row"><label for="">상품 정보</label></th>
+										<td colspan="10">
+											<textarea id="contents" name="pd_info" title="상품 정보 입력란" style="width:100%;"></textarea>	
+										</td>
+									</tr>																		
+																
 																	
 								</tbody>
 							</table>
