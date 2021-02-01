@@ -94,8 +94,8 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customer/delete.do")
-	public void delete(CustomerVo vo, HttpServletResponse res) throws IOException {
-		
+	public void delete(CustomerVo vo, HttpServletResponse res, HttpSession sess) throws IOException {
+		sess.invalidate();
 		res.getWriter().print(cService.delete(vo));
 	}
 	
@@ -138,8 +138,19 @@ public class CustomerController {
 			return "redirect: "+url; 
 			
 		} else { // 로그인 실패
-			req.setAttribute("msg", "아이디와 비밀번호가 올바르지 않습니다.");
-			return "redirect:/customer/login.do";
+		
+			res.setContentType("text/html; charset=utf-8"); // 한글처리
+			PrintWriter out = res.getWriter();
+			out.print("<script>");
+			out.print("alert('아이디와 비밀번호가 올바르지 않습니다.');");
+			String url = "/dtoi/customer/login.do";
+			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
+				url = req.getParameter("url"); 
+			}
+			out.print("location.href='"+url+"';");
+			out.print("</script>");
+			out.flush();
+			return null; 
 		}
 	}
 	
@@ -147,8 +158,8 @@ public class CustomerController {
 	public void logout(HttpServletResponse res, HttpSession sess, HttpServletRequest req) throws IOException {
 		
 		sess.invalidate(); // 세션초기화(모든 세션)
-		// authUser만 세션 제거
-		//sess.removeAttribute("authUser");
+		
+		//sess.removeAttribute("authUser"); (authUser만 세션 제거)
 		
 		res.setContentType("text/html; charset=utf-8"); // 한글처리
 		PrintWriter out = res.getWriter();

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>회원가입</title>
+<title>개인정보 수정</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
@@ -10,7 +10,7 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>dtoi 회원가입</title>
+<title>dtoi 개인정보 수정</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script>
 
@@ -34,7 +34,10 @@ $(function() {
 			$("#cst_tel").focus();
 			return false;
 		}
-
+		if(!$(':input:radio[id=cst_gender]:checked').val()) {   
+			   alert("성별을 선택해 주세요.");
+			   return;
+			}
 
 		if ($("#cst_birth").val().trim() == '') {
 			alert('생일을 입력해 주세요');
@@ -145,7 +148,7 @@ $(function() {
 </head>
 <body>
 
-<input type="hidden" name="cst_no" value="${vo.cst_no }">
+
 
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 
@@ -153,6 +156,7 @@ $(function() {
 		<div class="size">
 			<h3 class="sub_title">회원정보 수정</h3>
 			<form action="update.do" method="post" id="frm" name="frm"  enctype="multipart/form-data">
+			<input type="hidden" name="cst_no" value="${vo.cst_no }">
 			<table class="board_write">
 				<caption>회원정보 수정</caption>
 				<colgroup>
@@ -184,8 +188,8 @@ $(function() {
 					</tr>
 						<tr>
 							<th>*성별</th>
-							<td><input type="radio" name = "cst_gender" value="남성" id="cst_gender" value="${vo.cst_gender }">남성
-							<input type="radio" name = "cst_gender" value="여성" id="cst_gender" value="${vo.cst_gender }">여성 </td>
+							<td><input type="radio" name = "cst_gender" value="남성" id="cst_gender">남성
+							<input type="radio" name = "cst_gender" value="여성" id="cst_gender">여성 </td>
 						</tr>
 					<tr>
 						<th>*생년월일<br></th>
@@ -223,29 +227,30 @@ $(function() {
 					<div><input type="submit" class="btn" value="수정" id="submitBtn"> 
 					<a href="javascript:;" class="btn" onclick="history.back();">취소</a>
 					<input type="button" class = "btn" value="회원탈퇴" onclick="del();">
-<script>
-function del() {
-	if (confirm('정말 탈퇴하시겠습니까?')) {
-		$.ajax({
-			url:'/dtoi/customer/delete.do',
-			data:{cst_no:${vo.cst_no}},
-			type:'HTML',
-			method:'GET',
-			cache:false,
-			async:false,
-			success:function(res) {
-				//console.log(data);
-				if (res == 'true') {
-					alert('정상적으로 탈퇴되었습니다.');
-					location.href="${param.url}";
-				} else {
-					alert('탈퇴 오류');
-				}
-			}
-		});
-	}
-}
-</script>
+						<script>
+						function del() {
+							if (confirm('정말 탈퇴하시겠습니까?')) {
+								$.ajax({
+									url:'/dtoi/customer/delete.do',
+									data:{cst_no:${vo.cst_no}},
+									type:'HTML',
+									method:'GET',
+									cache:false,
+									async:false,
+									success:function(res) {
+										//console.log(data);
+										if (res == 'true') {
+											alert('정상적으로 탈퇴되었습니다.');
+											location.href="${param.url}";
+						
+										} else {
+											alert('탈퇴 오류');
+										}
+									}
+								});
+							}
+						}
+						</script>
 					</div>
 				</div>
 			</div>

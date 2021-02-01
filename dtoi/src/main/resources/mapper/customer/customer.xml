@@ -56,7 +56,7 @@
 			addr2
 		) VALUES (
 			#{cst_id},   
-			password(#{cst_pwd}),
+			md5(#{cst_pwd}),
 			#{cst_name},
 			#{cst_email},
 			#{cst_tel},
@@ -87,7 +87,7 @@
 			zipcode = #{zipcode},
 			addr1 = #{addr1},
 			addr2 = #{addr2},
-			cst_pwd = password(#{cst_pwd})
+			cst_pwd = md5(#{cst_pwd})
 		WHERE
 			cst_no  = #{cst_no }
 	</update>
