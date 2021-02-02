@@ -28,7 +28,7 @@
 						<a href="detail.do?pd_no=${vo.pd_no }";>
 							<dl>
 							<dt class="img">
-								<img src="/dtoi/img/product/main_image/${vo.pd_image }" alt=""/>
+								<img src="/dtoi/upload/${vo.pd_image }" alt=""/>
 							</dt>
 								<dd class="title">
 									${vo.pd_name }					

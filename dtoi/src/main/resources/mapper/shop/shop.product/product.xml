@@ -64,7 +64,7 @@
 			pd_no = #{pd_no}
 	</update>
 	
-	<update id="updateReadcount" parameterType="int">
+	<update id="updateReadcnt" parameterType="int">
 		UPDATE product SET pd_clickcount=pd_clickcount+1 WHERE pd_no=#{pd_no}
 	</update>
 	

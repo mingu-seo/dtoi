@@ -22,7 +22,7 @@
 				<div class="movie">
 					<div class="info">
 						<div class="img">
-							<img src="/dtoi/img/product/info_image/${vo.pd_image }" alt=""/>
+							<img src="/dtoi/upload/${vo.pd_image }" alt=""/>
 						</div>
 						<div class="movie_info">
 							<dl>
@@ -33,18 +33,29 @@
 									<strong>가격</strong>&nbsp; : ${vo.pd_price }
 								</dt>
 								<dt class="info_detail">
+									<strong>카테고리</strong>&nbsp; : ${vo.pd_category }
+								</dt>
+								<dt class="info_detail">
 									<strong>평점</strong>&nbsp; : ${vo.pd_recom }
 								</dt>
+								<dt class="info_detail">
+									<strong>상품 정보</strong>&nbsp; : ${vo.pd_info }
+								</dt>
+								<dt class="reser_btn">
+									<input type="button" class="btn" value="장바구니" onclick="showDialogue('${vo.pd_no }');"/>
+									<input type="button" class="btn" value="바로 구매" onclick="showDialogue('${vo.pd_no }');"/>
+								</dt>
+							</dl>
+						</div>
+						<div class="movie_info2">
+							<dl>
 								<dt class="synop">
 									<strong>시놉시스</strong> <br/>
 									<div class="synop_contents">
 										 ${vo.pd_content}
 									</div>
 								</dt>
-								<dt class="reser_btn">
-									<input type="button" class="btn" value="장바구니" onclick="showDialogue('${vo.pd_no }');"/>
-									<input type="button" class="btn" value="바로 구매" onclick="showDialogue('${vo.pd_no }');"/>
-								</dt>
+								
 							</dl>
 						</div>
 					</div>
