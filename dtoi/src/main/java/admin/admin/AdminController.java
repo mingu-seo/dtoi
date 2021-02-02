@@ -25,7 +25,7 @@ public class AdminController {
 		
 		
 		
-		@RequestMapping("/administrator/index.do")
+		@RequestMapping("/admin/admin/index.do")
 		public String index(HttpServletRequest req, AdminVo vo) {
 			// 서비스(로직) 처리(호출)
 			int[] rowPageCount = aService.getRowPageCount(vo);
@@ -37,16 +37,16 @@ public class AdminController {
 			req.setAttribute("startPage", rowPageCount[2]); // 시작페이지
 			req.setAttribute("endPage", rowPageCount[3]); // 마지막페이지
 			req.setAttribute("list", list);
-			// /administrator/index.do?reqPage=2 -> UserVo에 reqPage 필드에 바인딩 (커맨드객체)
-			// /administrator/index.do
+			// /admin/admin/index.do?reqPage=2 -> UserVo에 reqPage 필드에 바인딩 (커맨드객체)
+			// /admin/admin/index.do
 			req.setAttribute("reqPage", vo.getReqPage());
 			req.setAttribute("vo", vo);
 			
 			// jsp 포워딩
-			return "administrator/index";
+			return "admin/admin/index";
 		}
 		
-		@RequestMapping("/administrator/detail.do")
+		@RequestMapping("/admin/admin/detail.do")
 		public String detail(HttpServletRequest req, AdminVo vo) {
 			
 			AdminVo uv = aService.selectOne(vo);
@@ -54,28 +54,28 @@ public class AdminController {
 			req.setAttribute("vo", uv);
 			
 			// jsp 포워딩
-			return "administrator/detail";
+			return "admin/admin/detail";
 		}
 		
-		@GetMapping("/administrator/write.do")
+		@GetMapping("/admin/admin/write.do")
 		public String write() {
 			System.out.println("여기는 write.do");
-			return "administrator/write";
+			return "admin/admin/write";
 		}
 		
-		@RequestMapping("/administrator/insert.do")
+		@RequestMapping("/admin/admin/insert.do")
 		public void insert(AdminVo vo, HttpServletResponse res) throws Exception {
 			// 등록처리
 			res.getWriter().print(aService.insert(vo));
 		}
 		
-		@RequestMapping(value="/administrator/isDuplicateId.do", method=RequestMethod.GET)
+		@RequestMapping(value="/admin/admin/isDuplicateId.do", method=RequestMethod.GET)
 		public void isDuplicateId(HttpServletRequest req, HttpServletResponse res, @RequestParam("id") String userid) throws IOException{
 			boolean r = aService.isDuplicateId(userid);
 			res.getWriter().print(r);
 		}
 		
-		@RequestMapping("/administrator/edit.do")
+		@RequestMapping("/admin/admin/edit.do")
 		public String edit(HttpServletRequest req, AdminVo vo) {
 			
 			AdminVo uv = aService.selectOne(vo);
@@ -83,28 +83,28 @@ public class AdminController {
 			req.setAttribute("vo", uv);
 			
 			// jsp 포워딩
-			return "administrator/edit";
+			return "admin/admin/edit";
 		}
 		
-		@PostMapping("/administrator/update.do")
+		@PostMapping("/admin/admin/update.do")
 		public void update(AdminVo vo, HttpServletResponse res) throws IOException {
 			res.getWriter().print(aService.update(vo));
 		}
 		
-		@GetMapping("/administrator/delete.do")
+		@GetMapping("/admin/admin/delete.do")
 		public void delete(AdminVo vo, HttpServletResponse res, HttpSession sess) throws IOException {
 			sess.invalidate();
 			res.getWriter().print(aService.delete(vo));
 		}
 		
 		// 로그인폼
-		@GetMapping("/administrator/login.do")
+		@GetMapping("/admin/admin/login.do")
 		public String login() {
-			return "administrator/login";
+			return "admin/admin/login";
 		}
 		
 		// 로그인처리
-		@PostMapping("/administrator/login.do")
+		@PostMapping("/admin/admin/login.do")
 		public String loginProcess(AdminVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 			/*
 			 세션(session) : 브라우저 단위로 저장되는 저장소		 
@@ -128,7 +128,7 @@ public class AdminController {
 				
 				// 위 코드와 동일하게
 				//req.getSession().setAttribute("authUser", uv);
-				String url = "/dtoi/administrator/index.do";
+				String url = "/dtoi/admin/admin/index.do";
 				System.out.println(req.getParameter("url"));
 			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 					url = req.getParameter("url"); 
@@ -141,7 +141,7 @@ public class AdminController {
 				PrintWriter out = res.getWriter();
 				out.print("<script>");
 				out.print("alert('아이디와 비밀번호가 올바르지 않습니다.');");
-				String url = "/dtoi/administrator/login.do";
+				String url = "/dtoi/admin/admin/login.do";
 				if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 					url = req.getParameter("url"); 
 				}
@@ -152,7 +152,7 @@ public class AdminController {
 			}
 		}
 		
-		@RequestMapping("/administrator/logout.do")
+		@RequestMapping("/admin/admin/logout.do")
 		public void logout(HttpServletResponse res, HttpSession sess, HttpServletRequest req) throws IOException {
 			
 			sess.invalidate(); // 세션초기화(모든 세션)
@@ -163,7 +163,7 @@ public class AdminController {
 			PrintWriter out = res.getWriter();
 			out.print("<script>");
 			out.print("alert('로그아웃되었습니다.');");
-			String url = "/dtoi/administrator/index.do";
+			String url = "/dtoi/admin/admin/index.do";
 			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 				url = req.getParameter("url"); 
 			}
