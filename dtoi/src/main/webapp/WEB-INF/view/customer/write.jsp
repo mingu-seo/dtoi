@@ -43,6 +43,7 @@ function formCheck() {
 		$("#cst_id").focus();
 		return false;
 }
+	if (con == false) return false;
 	if ($("#cst_pwd").val().trim() == '') {
 		alert('비밀번호를 입력해 주세요');
 		$("#cst_pwd").focus();

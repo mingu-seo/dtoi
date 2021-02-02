@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
-	<sql id ="administratorWhere">
+	<sql id ="adminWhere">
 		<where> <!-- 아래 조건이 있으면 where 붙임 -->
 			<!-- 이름이나 아이디 검색 -->
 			<if test="searchWord != null and searchWord != ''"> <!-- where 다음에 and가 오면 자동으로 제거 -->
@@ -19,12 +19,12 @@
 	
 	<select id ="count" parameterType="admin.admin.AdminVo" resultType="int">
 		select count(*) as cnt from admin
-		<include refid="administratorWhere"/>
+		<include refid="adminWhere"/>
 	</select>
 	
 	<select id ="selectList" parameterType="admin.admin.AdminVo" resultType="admin.admin.AdminVo">
 		select * from admin
-		<include refid="administratorWhere"/>
+		<include refid="adminWhere"/>
 		ORDER BY ${orderby} ${direct}
 		limit ${startIdx}, ${pageRow}
 	</select>
