@@ -11,9 +11,12 @@
 			<!-- 마이페이지 -->
 			<if test="cst_no != 0">
 			and cst_no=#{cst_no}
-			</if>
+			</if>		
+			
 		</where>
 	</sql>
+	
+	
 	<select id="count" parameterType="board.bulletin_board.Bulletin_boardVo" resultType="int">
 		select count(*) as cnt from bulletin_board	
 		<include refid="bulletin_boardWhere"/>	

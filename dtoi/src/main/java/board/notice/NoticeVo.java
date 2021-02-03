@@ -34,8 +34,9 @@ public class NoticeVo extends CommonVo {
 	public void setNotice_contents(String notice_contents) {
 		this.notice_contents = notice_contents;
 	}
-	public Timestamp getNotice_regdate() {
-		return notice_regdate;
+	public String getNotice_regdate() {
+		String date = String.valueOf(notice_regdate);
+		return date.substring(0,10);		
 	}
 	public void setNotice_regdate(Timestamp notice_regdate) {
 		this.notice_regdate = notice_regdate;

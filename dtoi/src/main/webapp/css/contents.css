@@ -233,8 +233,9 @@
 .bbs .movie .trailler_area {width:100%; display:block;height:100%;overflow:auto;}
 .bbs .movie .trailler_area ul li {width:30%; height:300px;float:left; padding:1.5%;}
 
-.bbs .movie .review_area {width:100%; display:block;height:100%;overflow:auto;}
-.bbs .movie .review_area .review_write {width:100%; display:block;height:100px;}
+.bbs .movie .review_area {width:100%; display:block;height:100%;}
+.bbs .movie .review_area .review_write {width:100%; display:block;height:100%; margin-bottom:20px}
+.bbs .movie .review_area .review_write dt {margin-top:10px; margin-bottom:10px;}
 .bbs .movie .review_area .review_write .input {
 	overflow: hidden;
     height: 86px;

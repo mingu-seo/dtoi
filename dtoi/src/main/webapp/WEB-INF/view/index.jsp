@@ -52,8 +52,8 @@ $(function(){
         </div>
         <div class="movie">
         	<div class="poster">
-        		<div class="tit"><h4>BOXOFFICE</h4></div>
-        		<img src="/img/poster1.jpg">
+        		<div class="tit"><h4>뉴스</h4></div>
+        		<img src="/dtoi/img/user/workout.jpg">
         	</div>
         	<div class="bxoffice">
         		<ul>
