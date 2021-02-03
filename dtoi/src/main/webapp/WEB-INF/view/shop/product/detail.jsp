@@ -41,51 +41,61 @@
 								<dt class="info_detail">
 									<strong>상품 정보</strong>&nbsp; : ${vo.pd_info }
 								</dt>
+								<dt class="qty">
+									<strong>상품 수량</strong>&nbsp; 
+									<a href="javascript:" onclick="ct_countFunc('minus');" ><img src="/dtoi/img/product/cart/count_down.png"></a>
+									<input type="text" name="ct_count" id="ct_count" readonly value="1">
+									<a href="javascript:" onclick="ct_countFunc('plus');" ><img src="/dtoi/img/product/cart/count_up.png"></a>
+								</dt>
 								<dt class="reser_btn">
 									<input type="button" class="btn" value="장바구니" onclick="showDialogue('${vo.pd_no }');"/>
 									<input type="button" class="btn" value="바로 구매" onclick="showDialogue('${vo.pd_no }');"/>
 								</dt>
 							</dl>
 						</div>
+					</div>
 						<div class="movie_info2">
 							<dl>
-								<dt class="synop">
-									<strong>시놉시스</strong> <br/>
+								<dt class="info_detail">
+								<h5 class="movie_title"><strong>제품 상세</strong></h5>
 									<div class="synop_contents">
 										 ${vo.pd_content}
 									</div>
 								</dt>
-								
 							</dl>
 						</div>
-					</div>
-					<h5 class="movie_title"><strong>제품 상세</strong></h5>
-					<div class="stillcut_area">
-							<div class="swiper_stillcut swiper-container">
-				                <div class="swiper-wrapper">
-				               
-				                    	<ul>
-											<li>
-												<div class="img">
-													<img src="/dtoi/img/product/main_image/${vo.pd_image }" alt=""/>
-												</div>
-												
-											</li>
-											<li>
-												<div class="video_container">
-													<img src="/dtoi/img/product/info_image/${vo.pd_image }" alt=""/>	
-												</div>
-											</li>
-											<li>
-												<div class="video_container">
-													<img src="/dtoi/img/product/info_image/${vo.pd_image }" alt=""/>
-												</div>
-											</li>
-										</ul>
-				                    </div>
-		
-				            </div>
-					</div>
+					<h5 class="movie_title"><strong>제품 문의</strong></h5>
+					<div class="bbs">
+					<table class="list">
+
+					<caption>질문 목록</caption>
+					<colgroup>
+						<col width="80px" />
+						<col width="100px" />
+						<col width="*" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>카테고리</th>
+							<th>질문</th>
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="vo" items="${list}" varStatus="status">
+						<tr style='cursor:pointer;' onclick="showTr('${status.index}');">
+							<td>${vo.faq_no } </td>
+							<td>${vo.faq_section }</td>
+							<td class="txt_l">${vo.faq_title }</td>
+						</tr>
+						<tr id="tr${status.index}" style="display:none;">
+							<td colspan="2">↳</td>
+							<td class="txt_l">${vo.faq_contents }</td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+			</div>
 					<h5 class="movie_title"><strong>포토 리뷰</strong></h5>
 					<div class="trailler_area">
 						<ul>
@@ -132,6 +142,21 @@
 				</form>
 						
 <script>
+function ct_countFunc(type) {
+	var v = Number($("#ct_count").val());
+	if (type == 'minus') {
+		if (v > 1) {
+			$("#ct_count").val(v-1);
+		}
+	} else {
+		if (v < 10) {
+			$("#ct_count").val(v+1);
+		} else {
+			alert("더 이상 주문할 수 없습니다.");
+		}
+	}
+}
+
 $(function() {
 	getList();
 });

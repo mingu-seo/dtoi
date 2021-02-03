@@ -101,18 +101,19 @@ function formCheck() {
 										<td colspan="10">
 											<textarea id="text" name="pd_recom" style="width:100%;"></textarea>	
 										</td>
-									</tr><tr>
-										<th scope="row"><label for="">상품상세</label></th>
-										<td colspan="10">
-											<textarea id="contents" name="pd_content" title="상품 상세 입력란" style="width:100%;"></textarea>	
-										</td>
-									</tr>									
+									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 정보</label></th>
 										<td colspan="10">
 											<textarea id="contents" name="pd_info" title="상품 정보 입력란" style="width:100%;"></textarea>	
 										</td>
 									</tr>																		
+									<tr>
+										<th scope="row"><label for="">상품상세</label></th>
+										<td colspan="10">
+											<textarea id="contents" name="pd_content" title="상품 상세 입력란" style="width:100%;"></textarea>	
+										</td>
+									</tr>									
 																
 																	
 								</tbody>
