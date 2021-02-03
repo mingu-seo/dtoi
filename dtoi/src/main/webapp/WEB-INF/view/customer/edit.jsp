@@ -44,21 +44,6 @@ $(function() {
 			$("#cst_birth").focus();
 			return false;
 		}
-		if ($("#cst_height").val().trim() == '') {
-			alert('키를 입력해 주세요');
-			$("#cst_height").focus();
-			return false;
-		}
-		if ($("#cst_weight").val().trim() == '') {
-			alert('몸무게를 입력해 주세요');
-			$("#cst_weight").focus();
-			return false;
-		}
-		if ($("#cst_grade").val().trim() == '') {
-			alert('비만도를 입력해 주세요');
-			$("#cst_grade").focus();
-			return false;
-		}
 		if ($("#zipcode").val().trim() == '') {
 			alert('우편번호를 입력해 주세요');
 			$("#zipcode").focus();
@@ -184,12 +169,12 @@ $(function() {
 					</tr>
 					<tr>
 						<th>*연락처</th>
-						<td><input type="text" name="cst_tel" id="cst_tel" value=""  class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;" value="${vo.cst_tel }"></td>
+						<td><input type="text" name="cst_tel" id="cst_tel" class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;" value="${vo.cst_tel }"></td>
 					</tr>
 						<tr>
 							<th>*성별</th>
-							<td><input type="radio" name = "cst_gender" value="남성" id="cst_gender">남성
-							<input type="radio" name = "cst_gender" value="여성" id="cst_gender">여성 </td>
+							<td><input type="radio" name = "cst_gender" id="cst_gender" value="남성"<c:if test="${vo.cst_birth eq '남성'}">checked="checked"</c:if>/>남성 
+							<input type="radio" name = "cst_gender" id="cst_gender" value="여성"<c:if test="${vo.cst_birth eq '여성'}">checked="checked"</c:if>/>여성 </td>
 						</tr>
 					<tr>
 						<th>*생년월일<br></th>
@@ -199,7 +184,7 @@ $(function() {
 						<th>*기저질환(없으면 공란)</th>
 						<td><input type="text" name="cst_disease" id="cst_disease" class="wid200" style="float:left;" value="${vo.cst_disease }"></td>
 					</tr>
-					<tr>
+										<tr>
 						<th>*키(cm)</th>
 						<td><input type="text" name="cst_height" id="cst_height" class="wid200" style="float:left;" value="${vo.cst_height }"></td>
 					</tr>

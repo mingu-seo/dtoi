@@ -48,9 +48,6 @@
 			cst_regdate,
 			cst_birth,
 			cst_disease,
-			cst_height,
-			cst_weight,
-			cst_grade,
 			zipcode,
 			addr1,
 			addr2
@@ -64,9 +61,6 @@
 			NOW(),
 			#{cst_birth},
 			#{cst_disease},
-			#{cst_height},
-			#{cst_weight},
-			#{cst_grade},
 			#{zipcode},
 			#{addr1},
 			#{addr2}
