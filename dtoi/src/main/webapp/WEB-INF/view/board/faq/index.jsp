@@ -55,11 +55,11 @@ function showTr(id) {
 					</c:forEach>
 					</tbody>
 				</table>
+			</div>
 			
 				
 				<!-- 페이지처리 -->
 				
-			</div>
 		</div>
     </div>
 
