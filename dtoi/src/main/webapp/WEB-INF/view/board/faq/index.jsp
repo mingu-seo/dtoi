@@ -57,7 +57,13 @@ function showTr(id) {
 						</c:forEach>
 					</tbody>
 				</table>
+<<<<<<< HEAD
+=======
+			</div>
+			
+>>>>>>> branch 'master' of https://github.com/mingu-seo/dtoi.git
 				
+<<<<<<< HEAD
 				<div class="pagenate clear">								
 					<c:if test="${startPage > 10}">
 						<a href="index.do?reqPage=${startPage-1 }&searchWord=${param.searchWord}">[이전]</a>
@@ -87,6 +93,10 @@ function showTr(id) {
 						</span>				
 					</form>
 			</div>
+=======
+				<!-- 페이지처리 -->
+				
+>>>>>>> branch 'master' of https://github.com/mingu-seo/dtoi.git
 		</div>
 	</div>
 </div>

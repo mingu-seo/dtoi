@@ -16,7 +16,9 @@ function moveWrite() {
 	</c:if>
 	<c:if test="${empty authUser}">
 	alert('로그인 후 이용가능합니다.');
-	location.href='/dtoi/customer/login.do?url=/bulletin_board/index.do'
+	//location.href='/dtoi/board/bulletin_board/index.do'
+	$(".login_info").toggle();
+		useremail_chk();
 	</c:if>	
 }
 

@@ -67,7 +67,17 @@ function CookieVal(cookieName) {
 	return "null" ;
 }	
 
-
+function moveWrite() {
+	
+	<c:if test="${!empty authUser}">
+	location.href='<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>';
+	</c:if>
+	<c:if test="${empty authUser}">
+	alert('로그인 후 이용가능합니다.');
+	$(".login_info").toggle();
+	useremail_chk();
+	</c:if>	
+}
 
 </script>
 	<div id="header">
@@ -124,7 +134,7 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="<%=request.getContextPath()%>" class="parent"><span>마이페이지</span></a>
                             <ul class="depth2">
-                                <li><a href="<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>"><span>개인정보 수정</span></a></li>
+                                <li><a href="javascript:moveWrite();"><span>개인정보 수정</span></a></li>
                                 <li><a href="<%=request.getContextPath()%>"><span>식단 입력</span></a></li>
                             </ul>
                         </li>

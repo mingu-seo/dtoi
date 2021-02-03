@@ -74,21 +74,6 @@ function formCheck() {
 		$("#cst_birth").focus();
 		return false;
 	}
-	if ($("#cst_height").val().trim() == '') {
-		alert('키를 입력해 주세요');
-		$("#cst_height").focus();
-		return false;
-	}
-	if ($("#cst_weight").val().trim() == '') {
-		alert('몸무게를 입력해 주세요');
-		$("#cst_weight").focus();
-		return false;
-	}
-	if ($("#cst_grade").val().trim() == '') {
-		alert('비만도를 입력해 주세요');
-		$("#cst_grade").focus();
-		return false;
-	}
 	if ($("#zipcode").val().trim() == '') {
 		alert('우편번호를 입력해 주세요');
 		$("#zipcode").focus();
@@ -252,22 +237,6 @@ $(function() {
 					<tr>
 						<th>*생년월일<br></th>
 						<td><input type="text" name="cst_birth" id="cst_birth" class="wid200" style="float:left;"></td>
-					</tr>
-					<tr>
-						<th>*기저질환(없으면 공란)</th>
-						<td><input type="text" name="cst_disease" id="cst_disease" class="wid200" style="float:left;"></td>
-					</tr>
-					<tr>
-						<th>*키(cm)</th>
-						<td><input type="text" name="cst_height" id="cst_height" class="wid200" style="float:left;"></td>
-					</tr>
-					<tr>
-						<th>*몸무게(kg)</th>
-						<td><input type="text" name="cst_weight" id="cst_weight" class="wid200" style="float:left;"></td>
-					</tr>
-					<tr>
-						<th>*비만도</th>
-						<td><input type="text" name="cst_grade" id="cst_grade" class="wid200" style="float:left;"></td>
 					</tr>
 					<tr>
 						<th>*주소</th>
