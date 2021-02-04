@@ -7,12 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
+<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-function goSearch() {
-	$("#searchForm").submit();
-}
-
 function moveWrite() {
 	
 	<c:if test="${!empty authUser}">
@@ -26,82 +22,121 @@ function moveWrite() {
 
 </script>
 </head>
-<body>
-<%@ include file="/WEB-INF/view/include/header.jsp" %>
-
-    <div class="sub">
-		<div class="size">
-			<h3 class="sub_title">Q&A</h3>
-
-			<div class="bbs">
-				<table class="list">
-				<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
-					<caption> Q&A 목록</caption>
-					<colgroup>
-						<col width="80px" />
-						<col width="80px" />
-						<col width="*" />
-						<col width="100px" />
-						<col width="100px" />
-						<col width="100px" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>상태</th>
-							<th>제목</th>
-							<th>작성일</th>
-							<th>작성자</th>
-						</tr>
-					</thead>
-					<tbody>
-					<c:forEach var="vo" items="${list}">
-						<tr style='cursor:pointer;' onclick="location.href='detail.do?qna_no=${vo.qna_no }'">
-							<td>${vo.qna_no }</td>
-							<td class="hit" >${vo.qna_name }</td>
-							<td class="txt_l">
-							<c:forEach begin="1" end="${vo.lev }">&nbsp;&nbsp;</c:forEach>
-								<c:if test="${vo.lev > 0 }">
-									<img src="/dtoi/img/board/answer_icon.gif">
+<body> 
+<div id="wrap">
+	<!-- canvas -->
+	<div id="canvas">
+		<!-- S T A R T :: headerArea-->
+		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
+		<!-- E N D :: headerArea--> 
+		
+		<!-- S T A R T :: containerArea-->
+		<div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>Q&A</h2>
+				</div>
+				<!-- //con_tit -->
+				<div class="con">
+					<!-- 내용 : s -->
+					<div id="bbs">
+						<div id="blist">
+							<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
+							<form name="frm" id="frm" action="groupDelete.do" method="post">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+								<colgroup>
+										<col width="60px" />
+										<col width="60px" />
+										<col width="90px" />
+										<col width="*" />
+										<col width="120px" />									
+										<col width="50px" />									
+									</colgroup>
+								<thead>
+									<tr>
+										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
+										<th scope="col">글번호</th>
+										<th scope="col">분류</th>
+										<th scope="col">제목</th> 
+										<th scope="col">작성일</th> 
+										<th scope="col">작성자</th>
+									</tr>
+								</thead>
+								<tbody>
+								<c:forEach var="vo" items="${list}">
+									<tr style='cursor:pointer;' onclick="location.href='detail.do?qna_no=${vo.qna_no }'">
+										<td class="first"><input type="checkbox" name="nos" id="qna_no" value="${vo.qna_no }"/></td>
+										<td>${vo.qna_no }</td>
+										<td>${vo.qna_name }</td>
+										<td class="title">
+											<c:forEach begin="1" end="${vo.lev }">&nbsp;&nbsp;</c:forEach>
+												<c:if test="${vo.lev > 0 }">
+												<img src="/board/img/admin/answer_icon.gif">
+												</c:if>
+											${vo.qna_title }								
+										</td>
+										<td>${vo.qna_regdate }</td>
+										<td>${vo.user_name }</td>
+									</tr>
+								</c:forEach>
+								</tbody>
+							</table>
+							</form>
+							<div class="btn">
+								<div class="btnLeft">
+									<a class="btns" href="javascript:;" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
+								</div>
+								<div class="btnRight">
+									<a class="wbtn" href="javascript:moveWrite();"><strong>등록</strong> </a>
+								</div>
+							</div>
+							<!--//btn-->
+							<!-- 페이징 처리 -->
+							<div class='page'>								
+								<c:if test="${startPage > 10}">
+								<a href="index.do?reqPage=${startPage-1 }&searchWord=${param.searchWord}">[이전]</a>
 								</c:if>
-								${vo.qna_title} </td>
-							<td class="date">${vo.qna_regdate }</td>
-							<td class="writer"> ${vo.user_name}</td>
-						</tr>
-					</c:forEach>
-					</tbody>
-				</table>
-				<div class="btnSet"  style="text-align:right;">
-					<a class="btn" href="javascript:moveWrite();">질문작성 </a>
+								<c:forEach var="rp" begin="${startPage }" end="${endPage }">
+								<a href="index.do?reqPage=${rp }&searchWord=${param.searchWord}">[${rp }]</a>
+								</c:forEach>
+								<c:if test="${totalPage > endPage }">
+								<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
+								</c:if>
+							</div>
+							<!-- //페이징 처리 -->
+							<form name="searchForm" id="searchForm" action="index.do"  method="post">
+								<div class="search">									
+									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
+									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+								</div>
+							</form>
+							<!-- //search --> 
+						</div>
+						<!-- //blist -->
+					</div>
+					<!-- //bbs --> 
+					<!-- 내용 : e -->
 				</div>
-				<div class="bbsSearch">
-					<form method="get" name="searchForm" id="searchForm" action="index.do">
-						<span class="srchSelect">
-							<select name="qna_section">
-								<option value="" <c:if test="${param.qna_section == '' }">selected</c:if>>전체</option>
-								<option value="1" <c:if test="${param.qna_section == '1' }">selected</c:if>>상품문의</option>
-								<option value="2" <c:if test="${param.qna_section == '2' }">selected</c:if>>반품문의</option>
-								<option value="3" <c:if test="${param.qna_section == '3' }">selected</c:if>>기타문의</option>
-							</select>
-						</span>
-						<span class="searchWord">
-							
-							<input type="text" name="searchWord" value="${param.searchWord }">
-							<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
-						</span>
-						
-						
-
-					</form>
-					
-				</div>
-			
-				
+				<!--//con -->
 			</div>
+			<!--//content -->
 		</div>
-    </div>
-
-<%@ include file="/WEB-INF/view/include/footer.jsp" %>
-
+		<!--//container --> 
+		<!-- E N D :: containerArea-->
+	</div>
+	<!--//canvas -->
+</div>
+<!--//wrap -->
+<%
+// 세션객체 가져오기
+CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");
+%>
+<% if (authUser == null) { %>
+로그인전
+<% } %>
+<% if (authUser != null) { %>
+로그인후 
+<%=authUser.getCst_name() %>님 안녕하세요!
+<% } %>
 </body>
 </html>

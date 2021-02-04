@@ -63,6 +63,8 @@
    <mvc:interceptors>
       <mvc:interceptor>
          <mvc:mapping path="/board/bulletin_board/**"/>
+         
+         
          <mvc:exclude-mapping path="/board/bulletin_board/index.do"/>
          <mvc:exclude-mapping path="/board/bulletin_board/detail.do"/>
          <!-- 
@@ -74,14 +76,18 @@
           -->
          <bean class="interceptor.UserInterceptor"/>
       </mvc:interceptor>
-      <!-- 관리자 세션을 따로 체크 
+     <!-- 
       <mvc:interceptor>
-         <mvc:mapping path="/admin/user/write.do"/>
+     	 <mvc:mapping path="/admin/**"/>
+     	 
+     	 
+         <mvc:exclude-mapping path="/admin/index.do"/>
+         
          <bean class="interceptor.AdminInterceptor"/>
       </mvc:interceptor>
-       -->
+   	 -->
    </mvc:interceptors>
-   
+ 
    <!-- 사용자 정적페이지 -->
    
 	

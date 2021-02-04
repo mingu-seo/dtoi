@@ -56,7 +56,9 @@ function formCheck() {
 				<a href="javascript:$('#frm').submit();" class="btn"><strong>저장</strong></a>
 				<a href="index.do" class="btn">목록으로</a>			
 			</div>			
+		</div>
 	</div>
+</div>
 
     
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>

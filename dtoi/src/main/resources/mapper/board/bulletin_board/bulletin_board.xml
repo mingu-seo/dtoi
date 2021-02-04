@@ -5,9 +5,20 @@
 	<sql id="bulletin_boardWhere">
 		<where> <!-- 아래 조건이 있으면 where 붙임 -->
 			<!-- 이름이나 아이디 검색 -->
-			<if test="searchWord != null and searchWord != ''"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+			
+			<if test="searchWord != null and searchType == 1"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+			and (bb_title like '%${searchWord}%')
+			</if>
+			<if test="searchWord != null and searchType == 2"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+			and (bb_content like '%${searchWord}%')
+			</if>
+			<if test="searchWord != null and searchType == 3"> <!-- where 다음에 and가 오면 자동으로 제거 -->
 			and (bb_title like '%${searchWord}%' or bb_content like '%${searchWord}%')
 			</if>
+			<if test="searchWord != null and searchType == 4"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+			and (cst_no IN (SELECT cst_no FROM customer WHERE cst_id LIKE '%${searchWord}%'))
+			</if>
+			
 			<!-- 마이페이지 -->
 			<if test="cst_no != 0">
 			and cst_no=#{cst_no}

@@ -3,6 +3,7 @@
 <%@ page import="util.*" %>
 <%@ page import="customer.*" %>
 <%@ page import="java.util.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 function moveWrite() {
 	
 	<c:if test="${!empty authUser}">
-	location.href='write.do';
+	location.href='/dtoi/board/bulletin_board/write.do';
 	</c:if>
 	<c:if test="${empty authUser}">
 	alert('로그인 후 이용가능합니다.');
@@ -69,7 +70,7 @@ function goSearch() {
 			</table>	
 							
 			<div class="btnSet"  style="text-align:right;">
-				<a class="btn" href="javascript:moveWrite();">글쓰기 </a>
+				<a class="btn" href="write.do">글쓰기 </a>
 			</div>
 				
 			<div class="pagenate clear">								
@@ -87,17 +88,19 @@ function goSearch() {
 			<div class="bbsSearch">
 				<form method="get" name="searchForm" id="searchForm" action="index.do">
 					<span class="srchSelect">
-						<select name="qna_section">
-							<option value="" <c:if test="${param.qna_section == '' }">selected</c:if>>전체</option>
-							<option value="1" <c:if test="${param.qna_section == '1' }">selected</c:if>>제목만</option>
-							<option value="2" <c:if test="${param.qna_section == '2' }">selected</c:if>>제목 + 내용</option>
-							<option value="3" <c:if test="${param.qna_section == '3' }">selected</c:if>>작성자</option>
+						<select name="searchType">
+							<option value="" <c:if test="${param.searchType == 0 }">selected</c:if>>전체</option>
+							<option value="1" <c:if test="${param.searchType == 1 }">selected</c:if>>제목만</option>
+							<option value="2" <c:if test="${param.searchType == 2 }">selected</c:if>>내용만</option>
+							<option value="3" <c:if test="${param.searchType == 3 }">selected</c:if>>제목 + 내용</option>
+							<option value="4" <c:if test="${param.searchType == 4 }">selected</c:if>>작성자</option>
 						</select>
 					</span>
 					<span class="searchWord">							
 						<input type="text" name="searchWord" value="${param.searchWord }">
 						<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
 					</span>
+					
 				</form>					
 			</div>				
 		</div>

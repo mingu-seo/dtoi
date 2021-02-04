@@ -10,6 +10,7 @@ public class CommonVo {
 	private String edate; // 종료일
 	private String orderby; // 정렬기준이되는 컬럼명
 	private String direct; // ASC, DESC
+	private int searchType;
 	
 	public CommonVo() {
 		this.pageRow = 15;
@@ -25,9 +26,18 @@ public class CommonVo {
 //		this.direct = "DESC";
 //	}
 	
+	
+	public int getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(int searchType) {
+		this.searchType = searchType;
+	}
 	public int getReqPage() {
 		return reqPage;
 	}
+
 	public void setReqPage(int reqPage) {
 		this.reqPage = reqPage;
 	}

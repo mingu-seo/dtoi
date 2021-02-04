@@ -52,7 +52,7 @@ function formCheck() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판 - [쓰기]</h2>
+					<h2>FAQ - [쓰기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -60,7 +60,6 @@ function formCheck() {
 					<div id="bbs">
 						<div id="bread">
 							<form action="insert.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
-							<input type="hidden" name="cst_no" value="${authUser.cst_no }">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -74,13 +73,23 @@ function formCheck() {
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="bb_title" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="title" name="faq_title" class="w100" title="제목을 입력해주세요" />	
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">*분류</label></th>
+										<td colspan="10" height="80">
+											<select name="faq_section">
+												<option value="1" <c:if test="${param.faq_section == 1 }"></c:if>> 배송문의 </option>
+												<option value="2" <c:if test="${param.faq_section == 2 }"></c:if>> 상품문의 </option>
+												<option value="3" <c:if test="${param.faq_section == 3 }"></c:if>> 기타문의 </option>
+											</select>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">*내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="bb_content" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+											<textarea id="contents" name="faq_contents" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
 									</tr>									
 								</tbody>

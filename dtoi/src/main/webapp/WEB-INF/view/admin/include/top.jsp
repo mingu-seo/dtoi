@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="java.util.ArrayList"%>
+<title>DtoI 관리자</title>
 <script>
 
 function OpenWinCount(URL,width,height) {
@@ -61,12 +62,12 @@ $(window).load(function(){
 		<!-- util : s -->
 		<div class="util">
 			<ul>
-				<li class="frist"><a href="#" onclick="">Home</a></li>
-				<c:if test="${empty authUser}">
-					<li><a href='/dtoi/customer/login.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>'>LogIn</a></li>
+				<li class="frist"><a href="/dtoi/admin/admin/index.do" onclick="">Home</a></li>
+				<c:if test="${empty adminUser}">
+					<li><a href='/dtoi/admin/index.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>'>LogIn</a></li>
 				</c:if>
-				<c:if test="${!empty authUser}">
-					<li><span style="color:white">${authUser.cst_id }님 반갑습니다.</span></li>
+				<c:if test="${!empty adminUser}">
+					<li><span style="color:white">${adminUser.ad_name }님 반갑습니다.</span></li>
 					<li><a href="<%=request.getContextPath()%>/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">LogOut</a></li>
 				</c:if>
 				
@@ -79,23 +80,23 @@ $(window).load(function(){
 		
 		<div id="menu">
   			<ul class="menu">
-  				<li><a href="<%=request.getContextPath()%>/admin/member/index.do" class="parent"><span>마이페이지</span></a>
+  				<li><a href="<%=request.getContextPath()%>/admin/member/index.do" class="parent"><span>회원페이지</span></a>
   					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>개인정보 수정</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span>식단 입력</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>회원 목록</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span></span></a></li>
 					</ul>
 					</div>
   				</li>
-				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>상품 목록</span></a>
+				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>상품 목록 관리</span></a>
 					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>상품 주문/조회하기</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span>상품 주문 내역 조회</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>상품 주문/조회 관리</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span>상품 주문 내역 조회 관리</span></a></li>
 					</ul>
 					</div>
 				</li>
-				<li><a href="<%=request.getContextPath()%>/admin/board/index.do" class="parent"><span>게시판</span></a>
+				<li><a href="<%=request.getContextPath()%>/admin/notice/index.do" class="parent"><span>게시판 관리</span></a>
 					<div class="standard_left">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/admin/notice/index.do"><span>공지사항</span></a></li>
@@ -103,11 +104,19 @@ $(window).load(function(){
 					</ul>
 					</div>
 				</li>
-				<li><a href="<%=request.getContextPath()%>/admin/admin/index.do" class="parent"><span>고객센터</span></a>
+				<li><a href="<%=request.getContextPath()%>/admin/faq/index.do" class="parent"><span>고객센터 관리</span></a>
 					<div class="standard_left">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/admin/faq/index.do"><span>FAQ</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/qna/index.do"><span>1:1 문의</span></a></li>						
+					</ul>
+					</div>
+				</li>
+				<li><a href="<%=request.getContextPath()%>/admin/faq/index.do" class="parent"><span>관리자 페이지</span></a>
+					<div class="standard_left">
+					<ul>
+						<li><a href="<%=request.getContextPath()%>/admin/admin/index.do"><span>관리자 목록</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/qna/index.do"><span>관리자 접속기록 </span></a></li>						
 					</ul>
 					</div>
 				</li>

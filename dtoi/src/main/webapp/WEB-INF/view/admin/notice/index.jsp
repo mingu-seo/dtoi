@@ -11,12 +11,12 @@
 <script>
 function moveWrite() {
 	
-	<c:if test="${!empty authUser}">
+	<c:if test="${!empty adminUser}">
 	location.href='write.do';
 	</c:if>
-	<c:if test="${empty authUser}">
+	<c:if test="${empty adminUser}">
 	alert('로그인 후 이용가능합니다.');
-	location.href='/dtoi/customer/login.do?url=/bulletin_board/index.do'
+	location.href='/dtoi/admin/index.do?url=/bulletin_board/index.do'
 	</c:if>	
 }
 
@@ -43,6 +43,7 @@ function moveWrite() {
 						<div id="blist">
 							<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
 							<form name="frm" id="frm" action="groupDelete.do" method="post">
+							
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
@@ -69,7 +70,7 @@ function moveWrite() {
 										<td>${vo.notice_no }</td>
 										<td class="title"><a href="detail.do?notice_no=${vo.notice_no }">${vo.notice_title} </a></td>
 										<td>${vo.notice_regdate }</td>
-										<td>${vo.admin_id }</td>	
+										<td>${vo.admin_name }</td>	
 										<td scope="col">${vo.readCnt }</td>									
 									</tr>
 								</c:forEach>
@@ -97,30 +98,19 @@ function moveWrite() {
 								<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
 								</c:if>
 							</div>
-							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="index.do"  method="post">
 								<div class="search">									
 									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 								</div>
 							</form>
-							<!-- //search --> 
 						</div>
-						<!-- //blist -->
 					</div>
-					<!-- //bbs --> 
-					<!-- 내용 : e -->
 				</div>
-				<!--//con -->
 			</div>
-			<!--//content -->
 		</div>
-		<!--//container --> 
-		<!-- E N D :: containerArea-->
 	</div>
-	<!--//canvas -->
 </div>
-<!--//wrap -->
 <%
 // 세션객체 가져오기
 CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");

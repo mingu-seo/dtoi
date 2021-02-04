@@ -11,10 +11,10 @@
 <script>
 function moveWrite() {
 	
-	<c:if test="${!empty authUser}">
+	<c:if test="${!empty adminUser}">
 	location.href='write.do';
 	</c:if>
-	<c:if test="${empty authUser}">
+	<c:if test="${empty adminUser}">
 	alert('로그인 후 이용가능합니다.');
 	//location.href='/dtoi/board/bulletin_board/index.do'
 	$(".login_info").toggle();
@@ -100,10 +100,21 @@ function moveWrite() {
 								</c:if>
 							</div>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
-								<div class="search">									
+							<form name="searchForm" id="searchForm" action="index.do"  method="post">								
+								<div class="search">
+									<select name="searchType">
+										<option value="" <c:if test="${param.searchType == 0 }">selected</c:if>>전체</option>
+										<option value="1" <c:if test="${param.searchType == 1 }">selected</c:if>>제목만</option>
+										<option value="2" <c:if test="${param.searchType == 2 }">selected</c:if>>내용만</option>
+										<option value="3" <c:if test="${param.searchType == 3 }">selected</c:if>>제목 + 내용</option>
+										<option value="4" <c:if test="${param.searchType == 4 }">selected</c:if>>작성자</option>
+									</select>									
 									<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+									<a href="index.do"><input type="button" value="초기화" class="sbtn" alt="검색" /></a>
+									
+									
+									
 								</div>
 							</form>
 							<!-- //search --> 

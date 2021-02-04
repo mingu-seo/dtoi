@@ -13,9 +13,33 @@ public class NoticeVo extends CommonVo {
 	private String notice_contents;
 	private Timestamp notice_regdate;
 	private int readCnt;
-	private String admin_id;
+	private String ad_no;
+	private String admin_name;
+	private String[] nos;
 	
 	
+	
+	
+	
+	
+	public String getAd_no() {
+		return ad_no;
+	}
+	public void setAd_no(String ad_no) {
+		this.ad_no = ad_no;
+	}
+	public String getAdmin_name() {
+		return admin_name;
+	}
+	public void setAdmin_name(String admin_name) {
+		this.admin_name = admin_name;
+	}
+	public String[] getNos() {
+		return nos;
+	}
+	public void setNos(String[] nos) {
+		this.nos = nos;
+	}
 	public int getNotice_no() {
 		return notice_no;
 	}
@@ -47,12 +71,7 @@ public class NoticeVo extends CommonVo {
 	public void setReadCnt(int readCnt) {
 		this.readCnt = readCnt;
 	}
-	public String getAdmin_id() {
-		return admin_id;
-	}
-	public void setAdmin_id(String admin_id) {
-		this.admin_id = admin_id;
-	}
+	
 	
 	
 	
