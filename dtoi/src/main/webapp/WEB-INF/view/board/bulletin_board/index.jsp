@@ -18,7 +18,6 @@ function moveWrite() {
 	alert('로그인 후 이용가능합니다.');
 	$('html').scrollTop(0);
 	$(".login_info").toggle();
-	useremail_chk();
 	</c:if>	
 }
 

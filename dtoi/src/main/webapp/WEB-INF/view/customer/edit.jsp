@@ -161,7 +161,9 @@ $(function() {
 					</tr>
 					<tr>
 						<th>*이름</th>
-						<td><input type="text" name="cst_name" id="cst_name" class="wid200" style="float:left;" value="${vo.cst_name }" ></td>
+						<td>
+						"${vo.cst_name }"
+						</td>
 					</tr>
 					<tr>
 						<th>*이메일</th>
