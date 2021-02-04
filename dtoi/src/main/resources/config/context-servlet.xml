@@ -67,6 +67,8 @@
          
          <mvc:exclude-mapping path="/board/bulletin_board/index.do"/>
          <mvc:exclude-mapping path="/board/bulletin_board/detail.do"/>
+         <mvc:exclude-mapping path="/customer/edit.do"/>
+         <mvc:exclude-mapping path="/customer/write.do"/>
          <!-- 
          한꺼번에 url 매핑
          예) /user/로 시작하는 모든 url 매핑

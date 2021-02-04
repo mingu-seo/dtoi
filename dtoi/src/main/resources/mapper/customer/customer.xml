@@ -69,7 +69,6 @@
 	
 	<update id ="updateCustomer" parameterType="customer.CustomerVo">
 		UPDATE customer SET
-			cst_name = #{cst_name},
 			cst_email = #{cst_email},
 			cst_tel = #{cst_tel},
 			cst_gender = #{cst_gender},
