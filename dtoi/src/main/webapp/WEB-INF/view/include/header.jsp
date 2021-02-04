@@ -1,7 +1,24 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.security.SecureRandom"  %>
+<%@ page import="java.math.BigInteger"  %>
+<%@ page import="java.net.URLEncoder"  %>
+
 <script type="text/javascript" src="/dtoi/js/swiper.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
+<%
+String client_id = "mBXwunle4aCgU4nIy3Pi";
+String redirectURI = URLEncoder.encode("http://localhost:8080/dtoi/sns/naver/naverCallback.jsp");
+SecureRandom random = new SecureRandom();
+String state = new BigInteger(130, random).toString(32);
+session.setAttribute("state", state);
+String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id="+client_id+"&redirect_uri="+redirectURI+"&state="+state;
+%>
+
 
 $(function() {
 	$(".depth1 > li").mouseover(function(){
@@ -67,7 +84,7 @@ function CookieVal(cookieName) {
 	return "null" ;
 }	
 
-function moveWrite() {
+function moveWrite1() {
 	
 	<c:if test="${!empty authUser}">
 	location.href='<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>';
@@ -79,6 +96,61 @@ function moveWrite() {
 	</c:if>	
 }
 
+$(function() {
+	$("#naverLogin").click(function() {
+		window.open('<%=apiURL%>','naverLogin','width=400,height=400');
+	});
+});
+
+</script>
+<script type='text/javascript'>
+$(function() {
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('53bc1d6b243db7dc8d16a9b9aed747b4');
+    
+    /*
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao-login-btn',
+      success: function(authObj) {
+        alert(JSON.stringify(authObj));
+      },
+      fail: function(err) {
+         alert(JSON.stringify(err));
+      }
+    });
+    */
+    
+    $("#kakaoBtn").click(function() {
+        // 로그인 창을 띄웁니다.
+        Kakao.Auth.loginForm({
+			success: function(authObj) {
+           		console.log(JSON.stringify(authObj));
+
+				Kakao.API.request({
+					url: '/v2/user/me',
+					success: function(res) {
+				
+						console.log('kakao id : '+res.id);
+						console.log('kakao email : '+res.kakao_account.email);
+						console.log('kakao birthday : '+res.kakao_account.birthday);
+						console.log('kakao gender : '+res.kakao_account.gender);
+						console.log('kakao nickname : ' +res.properties['nickname']);
+				
+				 	},
+				 	fail: function(error) {
+						alert(JSON.stringify(error));
+				 	}
+				});
+			},
+			fail: function(err) {
+			  alert(JSON.stringify(err));
+			}
+        });
+    });
+  //]]>
+});
 </script>
 	<div id="header">
         <div class="head_top">
@@ -97,7 +169,7 @@ function moveWrite() {
                </c:if>
                <c:if test="${!empty authUser}">               
                    
-                	<a href="<%=request.getContextPath()%>/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>&param=<%=request.getQueryString() %>">로그아웃</a>
+                	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
                     <a href="">마이페이지</a>
                </c:if>
                 </div>
@@ -115,7 +187,11 @@ function moveWrite() {
                 			<input type="password" id="cst_pwd1" name="cst_pwd" placeholder="비밀번호"/>
                 		</div>
                 		<div class="login_btn">
-                			<input type="submit" value="로그인"/>
+                			<input type="submit" value="로그인"/><br>
+                		</div>
+                		<div class ="sns_btn">
+                			<img src="/dtoi/gallery/naver.PNG" id="naverLogin" alt="네이버로그인" width="50" height="50" align="left" border="20">
+							<img src="/dtoi/gallery/kakao.jpg" id="kakaoBtn" alt="카카오로그인" width="50" height="50" align="left" border="20">
                 		</div>
                 	</div>
                 	<div class="bottom_area">
@@ -134,7 +210,7 @@ function moveWrite() {
                         <li>
                             <a href="<%=request.getContextPath()%>" class="parent"><span>마이페이지</span></a>
                             <ul class="depth2">
-                                <li><a href="javascript:moveWrite();"><span>개인정보 수정</span></a></li>
+                                <li><a href="javascript:moveWrite1();"><span>개인정보 수정</span></a></li>
                                 <li><a href="<%=request.getContextPath()%>"><span>식단 입력</span></a></li>
                             </ul>
                         </li>
