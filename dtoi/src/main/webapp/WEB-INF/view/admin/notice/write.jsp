@@ -60,7 +60,7 @@ function formCheck() {
 					<div id="bbs">
 						<div id="bread">
 							<form action="insert.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
-							<input type="hidden" name="cst_no" value="${authUser.cst_no }">
+							<input type="hidden" name="ad_no" value="${adminUser.ad_no }">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />

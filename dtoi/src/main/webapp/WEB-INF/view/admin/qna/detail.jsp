@@ -6,15 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>DtoI</title>
-<%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
+<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 function del() {	
-	
 	if (confirm('정말 삭제하시겠습니까?')) {
 		$.ajax({
 			url:'delete.do',
-			data:{bb_no:${vo.qna_no}},
+			data:{qna_no:${vo.qna_no}},
 			type:'HTML',
 			method:'GET',
 			cache:false,
@@ -30,43 +28,85 @@ function del() {
 			}
 		});
 	}
-
 }
 
 
 </script>
 </head>
-<body> 
-<%@ include file="/WEB-INF/view/include/header.jsp" %>
+<body>
 <input type='hidden' name='qna_no' value="${vo.qna_no }">
- <div class="sub">
-		<div class="size">
-			<h3 class="sub_title">공지사항</h3>
-			<div class="bbs">
-				<div class="view">
-					<div class="title">
-						<dl>
-							<dt>${vo.qna_title } </dt>
-							<dd class="date"><strong>분류 : ${vo.qna_section } &nbsp;&nbsp;</strong></dd>
-							<dd class="date">작성일 : ${vo.qna_regdate }</dd>
-						</dl>
-					</div>
-					<div class="cont">${vo.qna_content } </div>
-					<tr>				
-					<td colspan="11">
-						
-					</td>
-					</tr>	
-					<div class="btnSet clear">
-						<div class="fl_l"><a href="index.do" class="btn">목록으로</a></div>
-						
-					</div>
-			
+<input type='hidden' name='cst_no' value="${vo.cst_no}">
+<div id="wrap">
+	<div id="canvas">
+		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
+		<div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>Q&A</h2>
 				</div>
+				<!-- //con_tit -->
+				<div class="con">
+					<!-- 내용 : s -->
+					<div id="bbs">
+						<div id="bread">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+								<colgroup>
+									<col width="10%" />
+									<col width="15%" />
+									<col width="10%" />
+									<col width="15%" />
+									<col width="25%" />
+									<col width="25%" />
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row"><label for="">제목</label></th>
+										<td colspan="10">
+											${vo.qna_title }
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">작성자</label></th>
+										<td colspan="10">
+											${vo.user_name }
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">내용</label></th>
+										<td colspan="10">
+											${vo.qna_content }
+										</td>
+									</tr>									
+									
+								</tbody>
+							</table>
+							<div class="btn">
+								<div class="btnLeft">
+									<a class="btns" href="index.do"><strong>목록</strong></a>
+								</div>
+								<div class="btnRight">
+									<a class="btns" style="cursor:pointer;" href="reply.do?qna_no=${vo.qna_no }"><strong>답글</strong></a>
+									<a class="btns" style="cursor:pointer;" href="edit.do?qna_no=${vo.qna_no }"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:;" onclick='del()'><strong>삭제</strong></a>
+								</div>
+							</div>
+							<!--//btn-->
+						</div>
+						<!-- //bread -->
+					</div>
+					<!-- //bbs --> 
+					<!-- 내용 : e -->
+				</div>
+				<!--//con -->
 			</div>
+			<!--//content -->
 		</div>
-    </div>
+		<!--//container --> 
+		<!-- E N D :: containerArea-->
+	</div>
+	<!--//canvas -->
+</div>
+<!--//wrap -->
 
- <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 </body>
 </html>

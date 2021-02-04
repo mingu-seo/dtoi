@@ -35,6 +35,7 @@ function del() {
 </head>
 <body> 
 <div id="wrap">
+
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
@@ -71,7 +72,7 @@ function del() {
 									<tr>
 										<th scope="row"><label for="">작성자</label></th>
 										<td colspan="10">
-											${vo.admin_id }
+											${vo.admin_name }
 										</td>
 									</tr>
 									<tr>

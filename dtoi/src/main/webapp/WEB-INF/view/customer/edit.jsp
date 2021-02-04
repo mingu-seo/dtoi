@@ -20,10 +20,7 @@ $(function() {
 			alert('비밀번호를 입력해 주세요');
 			return false;
 		}
-		if ($("#cst_name").val().trim() == '') {
-			alert('이름을 입력해 주세요');
-			return false;
-		}
+
 		if ($("#cst_email").val().trim() == '') {
 			alert('e메일 주소를 입력해 주세요');
 			$("#cst_email").focus();
@@ -161,7 +158,9 @@ $(function() {
 					</tr>
 					<tr>
 						<th>*이름</th>
-						<td><input type="text" name="cst_name" id="cst_name" class="wid200" style="float:left;" value="${vo.cst_name }" ></td>
+						<td>
+						${vo.cst_name }
+						</td>
 					</tr>
 					<tr>
 						<th>*이메일</th>
@@ -173,8 +172,8 @@ $(function() {
 					</tr>
 						<tr>
 							<th>*성별</th>
-							<td><input type="radio" name = "cst_gender" id="cst_gender" value="남성"<c:if test="${vo.cst_birth eq '남성'}">checked="checked"</c:if>/>남성 
-							<input type="radio" name = "cst_gender" id="cst_gender" value="여성"<c:if test="${vo.cst_birth eq '여성'}">checked="checked"</c:if>/>여성 </td>
+							<td><input type="radio" name = "cst_gender" id="cst_gender" value="남성"<c:if test="${vo.cst_gender=='남성'}">checked</c:if>>남성 
+							<input type="radio" name = "cst_gender" id="cst_gender" value="여성"<c:if test="${vo.cst_gender=='여성'}">checked</c:if>>여성 </td>
 						</tr>
 					<tr>
 						<th>*생년월일<br></th>

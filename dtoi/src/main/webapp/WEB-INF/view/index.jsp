@@ -9,7 +9,7 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>MOVIE</title>
+<title>DtoI</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script>
 $(function(){
@@ -52,8 +52,8 @@ $(function(){
         </div>
         <div class="movie">
         	<div class="poster">
-        		<div class="tit"><h4>BOXOFFICE</h4></div>
-        		<img src="/img/poster1.jpg">
+        		<div class="tit"><h4>뉴스</h4></div>
+        		<img src="/dtoi/img/user/workout.jpg">
         	</div>
         	<div class="bxoffice">
         		<ul>

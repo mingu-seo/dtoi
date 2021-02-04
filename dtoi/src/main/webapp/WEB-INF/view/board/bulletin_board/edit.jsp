@@ -44,14 +44,13 @@ function formCheck() {
 <body> 
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <div class="sub">
-<!-- canvas -->
 	<div class="size">
-	<h3 class="sub_title">자유게시판-글쓰기</h3>
+	<h3 class="sub_title">자유게시판-글 수정하기</h3>
 		<div class="bbs">
 			<form action="update.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
 			<input type='hidden' name='bb_no' value='${vo.bb_no }'>
-			<input type="hidden" name="cst_no" value="${authUser.cst_no }">
-			<table class="list">
+			<input type="hidden" name="cst_no" value="${vo.cst_no }">
+			<table class="write">
 				<colgroup>
 					<col width="80px" />
 					<col width="80px" />

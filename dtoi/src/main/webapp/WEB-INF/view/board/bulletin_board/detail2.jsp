@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="util.*" %>
-<%@ page import="customer.*" %>
 <%@ page import="java.util.*" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +34,7 @@ function del() {
 }
 function delComment(no){
 	if (confirm('삭제하시겠습니까')){
-		location.href='/dtoi/board/bulletin_board/deleteComment.do?no='+no+'&bb_no=${vo.bb_no}';
+		location.href='/dtoi/bulletin_board/deleteComment.do?no='+no+'&bb_no=${vo.bb_no}';
 	}
 }
 
@@ -59,59 +57,59 @@ function delComment(no){
 						</dl>
 					</div>
 					<div class="cont">${vo.bb_content } </div>
-					<h5 class="movie_title">댓글</h5>	
-					
-					<div class="movie">					
-						<form action='insertComment.do' method="post" name="frm" id="frm" action="" >
-						<input type='hidden' name='bb_no' value="${vo.bb_no }">
-						<input type='hidden' name='cst_no' value="${vo.cst_no }">
-						<div class="review_area">
-							<div class="review_write">
-								
+					<h5 class="movie_title">댓글</h5>		
+					<tr>		
+					<td colspan="11">
+						<div class="reple">
+							<form name="delete_frm" id="delete_frm" action="/manage/board/comment/process.jsp" method="post">
 								<c:if test='${empty clist }'>
-									<dl>
-										<dd class="bbsno">
-											댓글이 없습니다.
-										</dd>
-									</dl>
+								<dl>
+									<dd class="bbsno">
+										댓글이 없습니다.
+									</dd>
+								</dl>
 								</c:if>
 								
 								<c:forEach var="vo" items="${clist}">	
-								
 								<dl>
-									
-									<dt><strong>${vo.user_name }</strong> ${vo.regdate }</dt>
-									<dd><strong> 내용 : </strong>${vo.bb_comment }
+									<dt><strong>${vo.cst_no }</strong> ${vo.regdate }</dt>
+									<dd>${vo.bb_comment }
 										
-										<span class="reEdit" >
-											<c:if test="${authUser.cst_no == vo.cst_no}">
+										<span class="reEdit">
+											<c:if test="${authUser == authUser}">
 												<strong class="btn_in inbtn"><input type="button" class="r_delete" value="삭제" onclick='delComment(${vo.no })'/></strong>
 											</c:if>
 										</span>
 									</dd>
-									
 								</dl>
 								</c:forEach>
-								</div>
-						</div>
-						<div class="review_area">
-							<div class="review_write">
-								<div class="input">									
-									<div class="textarea">
-										<textarea name="bb_comment" id="contents"></textarea>
-									</div>
-									<div class="btn_area">
-										<input type="submit" class="btn" onclick="save();" value="등록">
-									</div>
-								</div>
+								<input type="hidden" name="no" id="bb_no" value=""/>
+								<input type="hidden" name="url"	id="url" value="<%=request.getAttribute("javax.servlet.forward.request_uri")%>"/>
+							</form>
+							<div class="rego">
+								<form name="comment_frm" id="comment_frm" action="insertComment.do" method="post">
+									<dl>
+										<dd>
+											<textarea class="focus_zone" name="bb_comment" id="bb_comment" title="내용을 입력해주세요"></textarea>
+											<div class="btn">
+												<div class="btnLeft">
+													<a class="btns" style="cursor:pointer;" onclick="$('#comment_frm').submit();"><strong>댓글입력</strong></a>
+												</div>					
+											</div>					
+											<!--//btnAll--> 
+										</dd>
+									</dl>
+									<input type='hidden' name='bb_no' value="${vo.bb_no }">
+									<input type='hidden' name='user' value="${vo.cst_id }">														
+								</form>
 							</div>
+							<!-- //rego -->
 						</div>
-					</form>
-					</div>
-					
+					</td>
+					</tr>	
 					<div class="btnSet clear">
 						<div class="fl_l"><a href="index.do" class="btn">목록으로</a></div>
-						<c:if test="${authUser.cst_no == vo.cst_no}">
+						<c:if test="${authUser == authUser}">
 							<div class="fl_l"><a href="edit.do?bb_no=${vo.bb_no }" class="btn"><strong>수정</strong></a></div>
 							<div class="fl_l"><a href="javascript:;" onclick='del()' class="btn"><strong>삭제</strong></a></div>
 						</c:if>
@@ -123,15 +121,5 @@ function delComment(no){
     </div>
 
  <%@ include file="/WEB-INF/view/include/footer.jsp" %>
- <%
-// 세션객체 가져오기
-CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");
-%>
-<% if (authUser == null) { %>
-로그인전
-<% } %>
-<% if (authUser != null) { %>
-<%=authUser.getCst_no() %>님 안녕하세요!
-<% } %>
 </body>
 </html>

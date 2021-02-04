@@ -2,14 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="faq">
 
+	<sql id="faqWhere">
+		<where> <!-- 아래 조건이 있으면 where 붙임 -->
+			<!-- 이름이나 아이디 검색 -->
+			<if test="searchWord != null and searchWord != ''"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+				and (faq_title like '%${searchWord}%' or faq_contents like '%${searchWord}%')
+			</if>			
+		</where>
+	</sql>
 	
 	<select id="count" parameterType="board.faq.FaqVo" resultType="int">
 		select count(*) as cnt from faq	
-			
+		<include refid="faqWhere"/>	
 	</select>
 	
 	<select id="selectList" parameterType="board.faq.FaqVo" resultType="board.faq.FaqVo">
 		select * from faq			
+		<include refid="faqWhere"/>
 		ORDER BY faq_no ${direct}
 		limit ${startIdx}, ${pageRow}	
 	</select>
@@ -20,12 +29,11 @@
 	
 	<insert id="insert" parameterType="board.faq.FaqVo">
 		INSERT INTO faq ( 
-			faq_section, faq_title, faq_contents, cst_no, fat_regdate
+			faq_section, faq_title, faq_contents, faq_regdate
 		) VALUES (		
 			#{faq_section},			
 			#{faq_title},
 			#{faq_contents},
-			#{cst_no},
 			NOW()
 		)
 	</insert>

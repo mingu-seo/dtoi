@@ -14,8 +14,17 @@ public class FaqVo extends CommonVo {
 	private String faq_contents;
 	private int cat_no;
 	private Timestamp faq_regdate;
+	private String[] nos;
 	
 	
+	
+	
+	public String[] getNos() {
+		return nos;
+	}
+	public void setNos(String[] nos) {
+		this.nos = nos;
+	}
 	public int getFaq_no() {
 		return faq_no;
 	}
@@ -23,7 +32,13 @@ public class FaqVo extends CommonVo {
 		this.faq_no = faq_no;
 	}
 	public String getFaq_section() {
-		return faq_section;
+		if (faq_section.equals("1")) {
+			return "배송문의";
+		} else if (faq_section.equals("2")) {
+			return "상품문의";
+		} else {
+			return "기타";
+		}
 	}
 	public void setFaq_section(String faq_section) {
 		this.faq_section = faq_section;
@@ -46,8 +61,9 @@ public class FaqVo extends CommonVo {
 	public void setCat_no(int cat_no) {
 		this.cat_no = cat_no;
 	}
-	public Timestamp getFaq_regdate() {
-		return faq_regdate;
+	public String getFaq_regdate() {
+		String date = String.valueOf(faq_regdate);
+		return date.substring(0,10);		
 	}
 	public void setFaq_regdate(Timestamp faq_regdate) {
 		this.faq_regdate = faq_regdate;

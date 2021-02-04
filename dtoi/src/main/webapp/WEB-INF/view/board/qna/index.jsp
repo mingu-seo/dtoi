@@ -16,7 +16,7 @@ function goSearch() {
 function moveWrite() {
 	
 	<c:if test="${!empty authUser}">
-	location.href='write.do';
+	location.href='/dtoi/board/qna/write.do';
 	</c:if>
 	<c:if test="${empty authUser}">
 	alert('로그인 후 이용가능합니다.');
@@ -28,11 +28,9 @@ function moveWrite() {
 </head>
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
-
-    <div class="sub">
-		<div class="size">
-			<h3 class="sub_title">Q&A</h3>
-
+<div class="sub">
+	<div class="size">
+		<h3 class="sub_title">Q&A</h3>
 			<div class="bbs">
 				<table class="list">
 				<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
@@ -69,39 +67,44 @@ function moveWrite() {
 							<td class="writer"> ${vo.user_name}</td>
 						</tr>
 					</c:forEach>
-					</tbody>
+					</tbody>					
 				</table>
-				<div class="btnSet"  style="text-align:right;">
-					<a class="btn" href="javascript:moveWrite();">질문작성 </a>
-				</div>
-				<div class="bbsSearch">
-					<form method="get" name="searchForm" id="searchForm" action="index.do">
-						<span class="srchSelect">
-							<select name="qna_section">
-								<option value="" <c:if test="${param.qna_section == '' }">selected</c:if>>전체</option>
-								<option value="1" <c:if test="${param.qna_section == '1' }">selected</c:if>>상품문의</option>
-								<option value="2" <c:if test="${param.qna_section == '2' }">selected</c:if>>반품문의</option>
-								<option value="3" <c:if test="${param.qna_section == '3' }">selected</c:if>>기타문의</option>
-							</select>
-						</span>
-						<span class="searchWord">
-							
-							<input type="text" name="searchWord" value="${param.searchWord }">
-							<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
-						</span>
-						
-						
-
-					</form>
-					
-				</div>
-			
 				
+			<div class="btnSet"  style="text-align:right;">
+				<a class="btn" href="write.do;">질문작성 </a>
 			</div>
+			
+			<div class="pagenate clear">								
+				<c:if test="${startPage > 10}">
+					<a href="index.do?reqPage=${startPage-1 }&searchWord=${param.searchWord}">[이전]</a>
+				</c:if>
+				<c:forEach var="rp" begin="${startPage }" end="${endPage }">
+					<a href="index.do?reqPage=${rp }&searchWord=${param.searchWord}">[${rp }]</a>
+				</c:forEach>
+					<c:if test="${totalPage > endPage }">
+					<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
+				</c:if>
+			</div>
+			
+			<div class="bbsSearch">
+				<form method="get" name="searchForm" id="searchForm" action="index.do">
+					<span class="srchSelect">
+						<select name="qna_section">
+							<option value="" <c:if test="${param.qna_section == '' }">selected</c:if>>전체</option>
+							<option value="1" <c:if test="${param.qna_section == '1' }">selected</c:if>>상품문의</option>
+							<option value="2" <c:if test="${param.qna_section == '2' }">selected</c:if>>반품문의</option>
+							<option value="3" <c:if test="${param.qna_section == '3' }">selected</c:if>>기타문의</option>
+						</select>
+					</span>
+					<span class="searchWord">
+						<input type="text" name="searchWord" value="${param.searchWord }">
+						<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
+					</span>						
+				</form>					
+			</div>				
 		</div>
-    </div>
-
+	</div>
+</div>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
-
 </body>
 </html>

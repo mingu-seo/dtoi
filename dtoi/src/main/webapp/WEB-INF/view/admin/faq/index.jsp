@@ -80,7 +80,7 @@ function showTr(id) {
 									<a class="btns" href="javascript:;" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="javascript:moveWrite();"><strong>등록</strong> </a>
+									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->
