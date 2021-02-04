@@ -54,8 +54,9 @@ public class Bulletin_boardVo extends CommonVo {
 	public void setCst_id(String cst_id) {
 		this.cst_id = cst_id;
 	}
-	public Timestamp getBb_regdate() {
-		return bb_regdate;
+	public String getBb_regdate() {
+		String date = String.valueOf(bb_regdate);
+		return date.substring(0,10);		
 	}
 	public void setBb_regdate(Timestamp bb_regdate) {
 		this.bb_regdate = bb_regdate;

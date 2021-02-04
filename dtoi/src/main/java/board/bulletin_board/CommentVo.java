@@ -8,9 +8,16 @@ public class CommentVo {
 	private String bb_comment;
 	private Timestamp regdate;
 	private int cst_no;
+	private String user_name;
 	
 	
 	
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -29,8 +36,9 @@ public class CommentVo {
 	public void setBb_comment(String bb_comment) {
 		this.bb_comment = bb_comment;
 	}
-	public Timestamp getRegdate() {
-		return regdate;
+	public String getRegdate() {
+		String date = String.valueOf(regdate);
+		return date.substring(0,10);		
 	}
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;

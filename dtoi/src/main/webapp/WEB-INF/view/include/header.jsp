@@ -93,11 +93,11 @@ function moveWrite() {
                 <c:if test="${empty authUser}">
                       <a id="login_click">로그인</a>
                     
-                    <a href="<%=request.getContextPath()%>/customer/write.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">회원가입</a>
+                    <a href="<%=request.getContextPath()%>/customer/write.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>&param=<%=request.getQueryString() %>">회원가입</a>
                </c:if>
                <c:if test="${!empty authUser}">               
                    
-                	<a href="<%=request.getContextPath()%>/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">로그아웃</a>
+                	<a href="<%=request.getContextPath()%>/customer/logout.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>&param=<%=request.getQueryString() %>">로그아웃</a>
                     <a href="">마이페이지</a>
                </c:if>
                 </div>
@@ -105,8 +105,9 @@ function moveWrite() {
 
                 <form action="/dtoi/customer/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
                 <input type="hidden" name="url" value="<%=request.getAttribute("javax.servlet.forward.request_uri")%>"/>
+                <input type="hidden" name="param" value="<%=request.getQueryString() %>"/>
                 <div class="login_info">
-                	<div class="top_area"><img src="/img/btn_del.gif"/></div>
+                	<div class="top_area"><img src="/dtoi/img/user/btn_del.gif"/></div>
                 	<div class="title_area"><span>DtoI 로그인</span></div>
                 	<div class="middle_area">
                 		<div class="input_area">

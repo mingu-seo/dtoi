@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="util.*" %>
 <%@ page import="customer.*" %>
+<%@ page import="board.faq.*" %>
 <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
@@ -30,7 +31,7 @@
 										${vo.pd_name }	
 								</dt>
 								<dt class="info_detail">
-									<strong>가격</strong>&nbsp; : ${vo.pd_price }
+									<strong>가격</strong>&nbsp; : ${vo.pd_price } 원
 								</dt>
 								<dt class="info_detail">
 									<strong>카테고리</strong>&nbsp; : ${vo.pd_category }
@@ -45,7 +46,11 @@
 									<strong>상품 수량</strong>&nbsp; 
 									<a href="javascript:" onclick="ct_countFunc('minus');" ><img src="/dtoi/img/product/cart/count_down.png"></a>
 									<input type="text" name="ct_count" id="ct_count" readonly value="1">
-									<a href="javascript:" onclick="ct_countFunc('plus');" ><img src="/dtoi/img/product/cart/count_up.png"></a>
+									<a href="javascript:" onclick="ct_countFunc('plus');" ><img src="/dtoi/img/product/cart/count_up.png"></a><br>
+									<dd>
+										<strong>${vo.pd_price }원</strong> 
+										<a href="javascript:" onclick="ct_countFunc('del');" ><img src="/dtoi/img/product/cart/count_del.png"></a>
+									</dd>	
 								</dt>
 								<dt class="reser_btn">
 									<input type="button" class="btn" value="장바구니" onclick="showDialogue('${vo.pd_no }');"/>
@@ -118,6 +123,7 @@
 						</ul>
 					</div>
 					
+		
 					<form method="post" name="frm" id="frm" action="" >
 					<input type="hidden" name="movie_pk" value="${vo.pd_no} }"/>
 					<h5 class="movie_title">리뷰</h5>
@@ -156,6 +162,15 @@ function ct_countFunc(type) {
 		}
 	}
 }
+
+function ct_countFunc(type) {
+	var v = Number($("#ct_count").val());
+	if (type == 'del') {
+		if (v >= 1) {
+			$("#ct_count").val(v=0);
+		}
+}
+
 
 $(function() {
 	getList();

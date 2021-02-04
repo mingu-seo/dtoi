@@ -50,7 +50,7 @@ function formCheck() {
 		<div class="bbs">
 			<form action="update.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
 			<input type='hidden' name='bb_no' value='${vo.bb_no }'>
-			<input type="hidden" name="cst_no" value="${authUser.cst_no }">
+			<input type="hidden" name="cst_no" value="${vo.cst_no }">
 			<table class="list">
 				<colgroup>
 					<col width="80px" />

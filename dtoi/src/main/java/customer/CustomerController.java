@@ -132,8 +132,11 @@ public class CustomerController {
 			//req.getSession().setAttribute("authUser", uv);
 			String url = "/dtoi/customer/index.do";
 			System.out.println(req.getParameter("url"));
-		if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
-				url = req.getParameter("url"); 
+			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
+				url = req.getParameter("url");
+				if (req.getParameter("param") != null && !"".equals(req.getParameter("param"))) {
+					url += "?"+req.getParameter("param");
+				}
 			}
 			return "redirect: "+url; 
 			
@@ -145,7 +148,10 @@ public class CustomerController {
 			out.print("alert('아이디와 비밀번호가 올바르지 않습니다.');");
 			String url = "/dtoi/customer/login.do";
 			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
-				url = req.getParameter("url"); 
+				url = req.getParameter("url");
+				if (req.getParameter("param") != null && !"".equals(req.getParameter("param"))) {
+					url += "?"+req.getParameter("param");
+				}
 			}
 			out.print("location.href='"+url+"';");
 			out.print("</script>");
@@ -168,6 +174,9 @@ public class CustomerController {
 		String url = "/dtoi/customer/index.do";
 		if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 			url = req.getParameter("url"); 
+			if (req.getParameter("param") != null && !"".equals(req.getParameter("param"))) {
+				url += "?"+req.getParameter("param");
+			}
 		}
 		out.print("location.href='"+url+"';");
 		out.print("</script>");

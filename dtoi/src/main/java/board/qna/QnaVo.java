@@ -58,8 +58,9 @@ public class QnaVo extends CommonVo {
 	public void setQna_content(String qna_content) {
 		this.qna_content = qna_content;
 	}
-	public Timestamp getQna_regdate() {
-		return qna_regdate;
+	public String getQna_regdate() {
+		String date = String.valueOf(qna_regdate);
+		return date.substring(0,10);		
 	}
 	public void setQna_regdate(Timestamp qna_regdate) {
 		this.qna_regdate = qna_regdate;

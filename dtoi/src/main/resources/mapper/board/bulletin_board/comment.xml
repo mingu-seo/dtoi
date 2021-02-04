@@ -3,7 +3,9 @@
 <mapper namespace="comment">	
 	
 	<select id="selectList" parameterType="int" resultType="board.bulletin_board.CommentVo">
-		select * from bb_comment where bb_no=#{bb_no}		
+		select *,
+		ifnull((select cst_id from customer where cst_no=bb_comment.cst_no),'관리자') as user_name
+		from bb_comment where bb_no=#{bb_no}		
 	</select>	
 	
 	<insert id="insert" parameterType="board.bulletin_board.CommentVo">
@@ -18,7 +20,7 @@
 	</insert>	
 	
 	<delete id="delete" parameterType="int">
-		DELETE FROM comment WHERE no = #{no}
+		DELETE FROM bb_comment WHERE no = #{no}
 	</delete>
 	
 	

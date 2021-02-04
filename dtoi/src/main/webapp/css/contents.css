@@ -95,7 +95,8 @@
 .bbs .list thead{border-top:2px solid #351f66; border-bottom:1px solid #351f66;}
 .bbs .list thead th{padding:15px 20px; font-size:13px; height:20px; line-height:14px; color:#333;}
 .bbs .list td{text-align:center; padding:8px 10px; border-bottom:1px solid #d9d9d9;}
-.bbs .list tbody tr:hover{background:#f6f6f6;} /*마우스오버 배경칼라지정*/
+
+s.bbs .list tbody tr:hover{background:#f6f6f6;} /*마우스오버 배경칼라지정*/
 .bbs .list .notice{background:#f9f9f9; } /*탑공지  배경칼라지정*/
 .bbs .list span.comment{color:#999; font-size:12px !important; font-weight:normal !important;} /*댓글수*/
 .bbs .list .notice_ico{display:none;}
@@ -229,7 +230,7 @@
 .bbs .movie .info .movie_info dt.qty a{width:24px;height:28px;}
 .bbs .movie .info .movie_info dt.qty a.countdown{background-image:url('/dtoi/img/product/cart/count_down.png');background-repeat: no-repeat;background-position: center;}
 .bbs .movie .info .movie_info dt.qty a.countup{background-image:url('/dtoi/img/product/cart/count_up.png');background-repeat: no-repeat;background-position: center;}
-
+.bbs .movie .info .movie_info dt.qty a.countdel{background-image:url('/dtoi/img/product/cart/count_del.png');background-repeat: no-repeat;background-position: center;}
 
 .bbs .movie .movie_title {width:100%; clear:both; font-size:25px; border-bottom:1px solid #999; margin-top:30px; margin-bottom:0px;}
 .bbs .movie .stillcut_area {width:100%; display:block;height:100%;overflow:auto;}
@@ -239,8 +240,9 @@
 .bbs .movie .trailler_area {width:100%; display:block;height:100%;overflow:auto;}
 .bbs .movie .trailler_area ul li {width:30%; height:300px;float:left; padding:1.5%;}
 
-.bbs .movie .review_area {width:100%; display:block;height:100%;overflow:auto;}
-.bbs .movie .review_area .review_write {width:100%; display:block;height:100px;}
+.bbs .movie .review_area {width:100%; display:block;height:100%;}
+.bbs .movie .review_area .review_write {width:100%; display:block;height:100%; margin-bottom:20px}
+.bbs .movie .review_area .review_write dt {margin-top:10px; margin-bottom:10px;}
 .bbs .movie .review_area .review_write .input {
 	overflow: hidden;
     height: 86px;

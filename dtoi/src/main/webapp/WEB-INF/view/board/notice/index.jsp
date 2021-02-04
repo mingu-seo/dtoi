@@ -55,19 +55,35 @@ function goSearch() {
 					</c:forEach>
 					</tbody>
 				</table>
-				<div class='page'>								
-					<c:if test="${startPage > 10}">
-					<a href="index.do?reqPage=${startPage-1 }&searchWord=${param.searchWord}">[이전]</a>
-					</c:if>
-					<c:forEach var="rp" begin="${startPage }" end="${endPage }">
-					<a href="index.do?reqPage=${rp }&searchWord=${param.searchWord}">[${rp }]</a>
-					</c:forEach>
-					<c:if test="${totalPage > endPage }">
-					<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
-					</c:if>
-				</div>
+				<!-- 페이징 처리 -->
+				<div class="pagenate clear">								
+						<c:if test="${startPage > 10}">
+						<a href="index.do?reqPage=${startPage-1 }&searchWord=${param.searchWord}">[이전]</a>
+						</c:if>
+						<c:forEach var="rp" begin="${startPage }" end="${endPage }">
+						<a href="index.do?reqPage=${rp }&searchWord=${param.searchWord}">[${rp }]</a>
+						</c:forEach>
+						<c:if test="${totalPage > endPage }">
+						<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
+						</c:if>
+					</div>
 				
-				<!-- 페이지처리 -->
+				<div class="bbsSearch">
+					<form method="get" name="searchForm" id="searchForm" action="index.do">
+						<span class="srchSelect">
+							<select name="qna_section">
+								<option value="" <c:if test="${param.qna_section == '' }">selected</c:if>>전체</option>
+								<option value="1" <c:if test="${param.qna_section == '1' }">selected</c:if>>제목만</option>
+								<option value="2" <c:if test="${param.qna_section == '2' }">selected</c:if>>제목 + 내용</option>
+							</select>
+						</span>
+						<span class="searchWord">
+							
+							<input type="text" name="searchWord" value="${param.searchWord }">
+							<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
+						</span>
+					</form>
+				</div>
 				
 			</div>
 		</div>

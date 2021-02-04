@@ -58,6 +58,33 @@
 			<bean class="interceptor.AdminInterceptor"/>
 		</mvc:interceptor>
 		 -->
+	
+	 <!-- 인터셉터 설정 -->
+   <mvc:interceptors>
+      <mvc:interceptor>
+         <mvc:mapping path="/board/bulletin_board/**"/>
+         <mvc:exclude-mapping path="/board/bulletin_board/index.do"/>
+         <mvc:exclude-mapping path="/board/bulletin_board/detail.do"/>
+         <!-- 
+         한꺼번에 url 매핑
+         예) /user/로 시작하는 모든 url 매핑
+         <mvc:exclude-mapping path="/user/index.do"/>
+         <mvc:exclude-mapping path="/user/login.do"/>
+         <mvc:exclude-mapping path="/user/detail.do"/>
+          -->
+         <bean class="interceptor.UserInterceptor"/>
+      </mvc:interceptor>
+      <!-- 관리자 세션을 따로 체크 
+      <mvc:interceptor>
+         <mvc:mapping path="/admin/user/write.do"/>
+         <bean class="interceptor.AdminInterceptor"/>
+      </mvc:interceptor>
+       -->
+   </mvc:interceptors>
+   
+   <!-- 사용자 정적페이지 -->
+   
+	
 	<mvc:view-controller path="/index.do"/>
 	<mvc:view-controller path="/admin/index.do"/>
 </beans>

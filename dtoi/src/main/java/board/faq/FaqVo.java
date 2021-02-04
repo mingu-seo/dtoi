@@ -46,8 +46,9 @@ public class FaqVo extends CommonVo {
 	public void setCat_no(int cat_no) {
 		this.cat_no = cat_no;
 	}
-	public Timestamp getFaq_regdate() {
-		return faq_regdate;
+	public String getFaq_regdate() {
+		String date = String.valueOf(faq_regdate);
+		return date.substring(0,10);		
 	}
 	public void setFaq_regdate(Timestamp faq_regdate) {
 		this.faq_regdate = faq_regdate;

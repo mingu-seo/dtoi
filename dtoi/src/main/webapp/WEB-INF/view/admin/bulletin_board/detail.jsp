@@ -75,7 +75,7 @@ function delComment(no){
 									<tr>
 										<th scope="row"><label for="">작성자</label></th>
 										<td colspan="10">
-											${vo.cst_id }
+											${vo.user_name }
 										</td>
 									</tr>
 									<tr>
