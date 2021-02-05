@@ -45,7 +45,7 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping("/product/detail.do")
+	@RequestMapping("/product/detail2.do")
 	public String detail(HttpServletRequest req, ProductVo vo) {
 		ProductVo uv = productService.selectOne(vo, true);
 		List<PdReviewVo> rlist = rService.getList(uv.getPd_no());
@@ -54,7 +54,7 @@ public class ProductController {
 		req.setAttribute("rlist", rlist);
 	
 		// jsp 포워딩
-		return "shop/product/detail";
+		return "shop/product/detail2";
 	}
 
 	@RequestMapping("/product/pdreviewInsert.do")
