@@ -31,7 +31,7 @@ public class FaqVo extends CommonVo {
 	public void setFaq_no(int faq_no) {
 		this.faq_no = faq_no;
 	}
-	public String getFaq_section() {
+	public String getFaq_name() {
 		if (faq_section.equals("1")) {
 			return "배송문의";
 		} else if (faq_section.equals("2")) {

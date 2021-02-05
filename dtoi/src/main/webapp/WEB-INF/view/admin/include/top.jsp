@@ -116,7 +116,7 @@ $(window).load(function(){
 					<div class="standard_left">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/admin/admin/index.do"><span>관리자 목록</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/qna/index.do"><span>관리자 접속기록 </span></a></li>						
+						<li><a href="<%=request.getContextPath()%>/admin/history/index.do"><span>관리자 접속기록 </span></a></li>						
 					</ul>
 					</div>
 				</li>

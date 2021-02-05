@@ -81,10 +81,7 @@ function moveWrite() {
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="javascript:;" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
-								</div>
-								<div class="btnRight">
-									<a class="wbtn" href="javascript:moveWrite();"><strong>등록</strong> </a>
-								</div>
+								</div>								
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
