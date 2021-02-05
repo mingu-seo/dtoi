@@ -74,9 +74,23 @@
 		DELETE FROM admin WHERE ad_no = #{ad_no}
 	</delete>
 	
+	<insert id="insertLoginHistory" parameterType="admin.admin.AdminVo" >
+        insert into admin_loginhistory
+        	(ad_id, ad_name, logindate, ip)
+        values
+        	(#{ad_id}, #{ad_name}, now(), #{ip})
+    </insert>
 	
 	
+	<select id ="historyCount" parameterType="admin.admin.AdminVo" resultType="int">
+		select count(*) as cnt from admin_loginhistory
+	</select>
 	
+	<select id ="historyList" parameterType="admin.admin.AdminVo" resultType="admin.admin.AdminVo">
+		select * from admin_loginhistory
+		ORDER BY no ${direct}
+		limit ${startIdx}, ${pageRow}
+	</select>
 	
 	
 	

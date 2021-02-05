@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="food">
+
+	<sql id ="foodWhere">
+		<where> <!-- 아래 조건이 있으면 where 붙임 -->
+			<!-- 이름이나 아이디 검색 -->
+			<if test="searchWord != null and searchWord != ''"> <!-- where 다음에 and가 오면 자동으로 제거 -->
+			and (name like '%${searchWord}%')
+			</if>
+		</where>
+	</sql>
+	
+	<select id ="selectOne" parameterType="diet.FoodVo" resultType="diet.FoodVo">
+		select * from food where fd_no=${fd_no}
+	</select>
+	
+	<select id ="selectName" parameterType="diet.FoodVo" resultType="diet.FoodVo">
+		select * from food where name=${name}
+	</select>
+	
+	<select id ="isDuplicateName" parameterType="String" resultType="int">
+		select count(*) from food where name = #{name}
+	</select>
+	
+	<insert id ="insertFood" parameterType="diet.FoodVo">
+		INSERT INTO food (
+			fd_no,
+			name,
+			calories,
+			carbohydrate,
+			fiber,
+			protein,
+			fat,
+			sodium,
+			sugar,
+			gdegree
+		) VALUES (
+			#{fd_no},
+			#{name},
+			#{calories},
+			#{carbohydrate},
+			#{fiber},
+			#{protein},
+			#{fat},
+			#{sodium},
+			#{sugar},
+			#{gdegree}
+		)
+	</insert>
+	
+	<update id ="updateFood" parameterType="diet.FoodVo">
+		UPDATE food SET
+			fd_no = #{fd_no},
+			name = 	#{name},
+			calories = #{calories},
+			carbohydrate = #{carbohydrate},
+			fiber = #{fiber},
+			protein = #{protein},
+			fat = #{fat},
+			sodium = #{sodium},
+			sugar = #{sugar},
+			gdegree = #{gdegree}
+		WHERE
+			fd_no  = #{fd_no}
+	</update>
+	
+	<delete id ="deleteFood" parameterType="diet.FoodVo">
+		DELETE FROM food WHERE fd_no = #{fd_no}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
