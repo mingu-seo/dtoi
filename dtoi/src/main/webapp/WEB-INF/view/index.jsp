@@ -9,7 +9,7 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>MOVIE</title>
+<title>DtoI홈페이지</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script>
 $(function(){

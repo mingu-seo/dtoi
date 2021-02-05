@@ -139,6 +139,13 @@ function moveWrite() {
                             </ul>
                         </li>
                         <li>
+                            <a href="<%=request.getContextPath()%>/diet/index.do" class="parent"><span>영양관리</span></a>
+                            <ul class="depth2">
+                                <li><a href="<%=request.getContextPath()%>/diet/index.do"><span>음식별 영양정보</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>"><span>식단 칼로리 계산</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>상품 목록</span></a>
                             <ul class="depth2">
 								<li><a href="<%=request.getContextPath()%>/product/index.do"><span>상품 주문/조회하기</span></a></li>
