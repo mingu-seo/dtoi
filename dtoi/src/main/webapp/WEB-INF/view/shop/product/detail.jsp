@@ -61,9 +61,9 @@
 						<div class="movie_info2">
 							<dl>
 								<dt class="info_detail">
-								<h5 class="movie_title"><strong>제품 상세</strong></h5>
+									<h5 class="movie_title"><strong>제품 상세</strong></h5>
 									<div class="synop_contents">
-										 ${vo.pd_content}
+										${vo.pd_content}
 									</div>
 								</dt>
 							</dl>
@@ -80,7 +80,7 @@
 					</colgroup>
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th></th>
 							<th>카테고리</th>
 							<th>질문</th>
 						</tr>
