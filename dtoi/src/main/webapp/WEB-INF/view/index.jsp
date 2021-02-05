@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+ㅇ<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="customer.*" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -9,7 +9,11 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
+
 <title>DtoI홈페이지</title>
+
+<title>DtoI</title>
+
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script>
 $(function(){

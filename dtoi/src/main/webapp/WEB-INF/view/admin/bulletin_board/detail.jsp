@@ -31,7 +31,7 @@ function del() {
 }
 function delComment(no){
 	if (confirm('삭제하시겠습니까')){
-		location.href='/dtoi/bulletin_board/deleteComment.do?no='+no+'&bb_no=${vo.bb_no}';
+		location.href='/dtoi/admin/bulletin_board/deleteComment.do?no='+no+'&bb_no=${vo.bb_no}';
 	}
 }
 

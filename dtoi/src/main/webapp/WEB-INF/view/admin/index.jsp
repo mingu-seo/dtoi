@@ -57,11 +57,11 @@ function CookieVal(cookieName) {
 <body onload="userid_chk();">
 <div id="login">
 	<div class="title">
-		<h1>SAMPLE <span>관리자모드</span></h1>
+		<h1>DtoI <span>관리자모드</span></h1>
 		<p>관리자 로그인 후 이용가능합니다.</p>
 	</div>
 	<div class="login"> 
-	<form name="board" id="board" method="post" action="" onsubmit="return loginCheck();">
+	<form name="board" id="board" method="post" action="index.do" onsubmit="return loginCheck();">
 		<fieldset>
 			<legend>관리자모드 로그인</legend>
 			<div class="bgBox">
@@ -71,7 +71,7 @@ function CookieVal(cookieName) {
 							<label for="id"><strong>아이디</strong></label>
 						</dt>
 						<dd>
-							<input type="text" id="id" name="id" value="" title="아이디를 입력해주세요." style="ime-mode:inactive"/>
+							<input type="text" id="id" name="ad_id" value="" title="아이디를 입력해주세요." style="ime-mode:inactive"/>
 						</dd>
 					</dl>
 					<dl>
@@ -79,7 +79,7 @@ function CookieVal(cookieName) {
 							<label for="password"><strong>비밀번호</strong></label>
 						</dt>
 						<dd>
-							<input type="password" id="password" name="password" value="" title="비밀번호를 입력해주세요." />
+							<input type="password" id="password" name="ad_pwd" value="" title="비밀번호를 입력해주세요." />
 						</dd>
 					</dl>
 				</div>

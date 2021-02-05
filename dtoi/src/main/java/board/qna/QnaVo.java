@@ -17,8 +17,17 @@ public class QnaVo extends CommonVo {
 	private int seq;
 	private int lev;
 	private String user_name;
+	private String[] nos;
 	
 	
+	
+	
+	public String[] getNos() {
+		return nos;
+	}
+	public void setNos(String[] nos) {
+		this.nos = nos;
+	}
 	public int getQna_no() {
 		return qna_no;
 	}

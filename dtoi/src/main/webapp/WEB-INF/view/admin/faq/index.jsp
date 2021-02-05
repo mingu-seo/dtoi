@@ -62,7 +62,7 @@ function showTr(id) {
 						<tr style='cursor:pointer;' onclick="showTr('${status.index}');">
 							<td class="first"><input type="checkbox" name="nos" id="faq_no" value="${vo.faq_no }"/></td>
 							<td>${vo.faq_no } </td>
-							<td>${vo.faq_section }</td>
+							<td>${vo.faq_name }</td>
 							<td class="txt_l">${vo.faq_title }</td>
 						</tr>
 						<tr id="tr${status.index}" style="display:none;">
@@ -80,7 +80,7 @@ function showTr(id) {
 									<a class="btns" href="javascript:;" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="javascript:moveWrite();"><strong>등록</strong> </a>
+									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->

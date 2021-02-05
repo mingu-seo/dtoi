@@ -47,9 +47,9 @@ function formCheck() {
 						<th>분류</th>
 						<td>
 							<select id="qna_section" name="qna_section">
-								<option value="1" <c:if test="${param.qna_section == 'refund' }">selected</c:if>>반품신청</option>
-								<option value="2" <c:if test="${param.qna_section == 'product' }">selected</c:if>>상품문의</option>
-								<option value="3" <c:if test="${param.qna_section == 'etc' }">selected</c:if>>기타</option>
+								<option value="1" <c:if test="${param.qna_section == '1' }">selected</c:if>>반품신청</option>
+								<option value="2" <c:if test="${param.qna_section == '2' }">selected</c:if>>상품문의</option>
+								<option value="3" <c:if test="${param.qna_section == '3' }">selected</c:if>>기타</option>
 							</select>
 						</td>
 					</tr>

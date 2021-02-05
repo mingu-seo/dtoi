@@ -16,7 +16,7 @@ function goSearch() {
 function moveWrite() {
 	
 	<c:if test="${!empty authUser}">
-	location.href='write.do';
+	location.href='/dtoi/board/qna/write.do';
 	</c:if>
 	<c:if test="${empty authUser}">
 	alert('로그인 후 이용가능합니다.');
@@ -71,7 +71,7 @@ function moveWrite() {
 				</table>
 				
 			<div class="btnSet"  style="text-align:right;">
-				<a class="btn" href="javascript:moveWrite();">질문작성 </a>
+				<a class="btn" href="write.do;">질문작성 </a>
 			</div>
 			
 			<div class="pagenate clear">								

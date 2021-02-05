@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
+	<select id ="login" parameterType="admin.admin.AdminVo" resultType="admin.admin.AdminVo">
+		SELECT * FROM admin WHERE ad_id =#{ad_id } AND ad_pwd=md5(#{ad_pwd})
+	</select>
+	
 	<sql id ="adminWhere">
 		<where> <!-- 아래 조건이 있으면 where 붙임 -->
 			<!-- 이름이나 아이디 검색 -->
@@ -25,7 +29,7 @@
 	<select id ="selectList" parameterType="admin.admin.AdminVo" resultType="admin.admin.AdminVo">
 		select * from admin
 		<include refid="adminWhere"/>
-		ORDER BY ${orderby} ${direct}
+		ORDER BY ad_no ${direct}
 		limit ${startIdx}, ${pageRow}
 	</select>
 	
@@ -70,12 +74,23 @@
 		DELETE FROM admin WHERE ad_no = #{ad_no}
 	</delete>
 	
-	<select id ="login" parameterType="admin.admin.AdminVo" resultType="admin.admin.AdminVo">
-		SELECT * FROM admin WHERE ad_id =#{ad_id } AND ad_pwd=md5(#{ad_pwd})
+	<insert id="insertLoginHistory" parameterType="admin.admin.AdminVo" >
+        insert into admin_loginhistory
+        	(ad_id, ad_name, logindate, ip)
+        values
+        	(#{ad_id}, #{ad_name}, now(), #{ip})
+    </insert>
+	
+	
+	<select id ="historyCount" parameterType="admin.admin.AdminVo" resultType="int">
+		select count(*) as cnt from admin_loginhistory
 	</select>
 	
-	
-	
+	<select id ="historyList" parameterType="admin.admin.AdminVo" resultType="admin.admin.AdminVo">
+		select * from admin_loginhistory
+		ORDER BY no ${direct}
+		limit ${startIdx}, ${pageRow}
+	</select>
 	
 	
 	

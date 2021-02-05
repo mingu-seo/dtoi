@@ -239,6 +239,7 @@ textarea{border:1px solid #cccccc;}
 #bbs #bread table tfoot td{padding:11px; border-bottom:1px solid #bec0c4; color:#656668;}
 #bbs #bread table tfoot td.line{background:url(/dtoi/img/admin/blist_td_line.gif) repeat-y left top;}
 #bbs #bread table tfoot td.tr{text-align:right;}
+#bbs #bread table tbody td img {max-width:300px;}
 
 
 /*답글*/

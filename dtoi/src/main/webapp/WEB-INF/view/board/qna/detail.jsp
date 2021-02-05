@@ -14,7 +14,7 @@ function del() {
 	if (confirm('정말 삭제하시겠습니까?')) {
 		$.ajax({
 			url:'delete.do',
-			data:{bb_no:${vo.qna_no}},
+			data:{qna_no:${vo.qna_no}},
 			type:'HTML',
 			method:'GET',
 			cache:false,
@@ -39,6 +39,7 @@ function del() {
 <body> 
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <input type='hidden' name='qna_no' value="${vo.qna_no }">
+<input type='hidden' name='cst_no' value="${vo.cst_no}">
  <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">공지사항</h3>
@@ -48,6 +49,7 @@ function del() {
 						<dl>
 							<dt>${vo.qna_title } </dt>
 							<dd class="date"><strong>분류 : ${vo.qna_section } &nbsp;&nbsp;</strong></dd>
+							<dd class="date"><strong>작성자 : ${vo.user_name} &nbsp;&nbsp;</strong></dd>
 							<dd class="date">작성일 : ${vo.qna_regdate }</dd>
 						</dl>
 					</div>

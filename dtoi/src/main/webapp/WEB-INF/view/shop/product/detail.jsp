@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="util.*" %>
 <%@ page import="customer.*" %>
+<%@ page import="board.faq.*" %>
 <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
 				<div class="movie">
 					<div class="info">
 						<div class="img">
-							<img src="/dtoi/upload/${vo.pd_image }" alt=""/>
+							<img src="/dtoi/upload/${vo.pd_image }" alt="" border="1"/>
 						</div>
 						<div class="movie_info">
 							<dl>
@@ -30,22 +31,25 @@
 										${vo.pd_name }	
 								</dt>
 								<dt class="info_detail">
-									<strong>가격</strong>&nbsp; : ${vo.pd_price }
+									<strong>가격</strong>&nbsp;  ${vo.pd_price } 원
 								</dt>
 								<dt class="info_detail">
-									<strong>카테고리</strong>&nbsp; : ${vo.pd_category }
+									<strong>카테고리</strong>&nbsp;  ${vo.pd_category }
 								</dt>
 								<dt class="info_detail">
-									<strong>평점</strong>&nbsp; : ${vo.pd_recom }
+									<strong>평점</strong>&nbsp;  ${vo.pd_recom }
 								</dt>
 								<dt class="info_detail">
-									<strong>상품 정보</strong>&nbsp; : ${vo.pd_info }
+									<strong>상품 정보</strong>&nbsp;  ${vo.pd_info }
 								</dt>
 								<dt class="qty">
 									<strong>상품 수량</strong>&nbsp; 
 									<a href="javascript:" onclick="ct_countFunc('minus');" ><img src="/dtoi/img/product/cart/count_down.png"></a>
 									<input type="text" name="ct_count" id="ct_count" readonly value="1">
 									<a href="javascript:" onclick="ct_countFunc('plus');" ><img src="/dtoi/img/product/cart/count_up.png"></a>
+									
+										<strong id="total_price" style=padding:20px;> ${vo.pd_price }</strong>원 &nbsp;
+									    <a href="javascript:" onclick="ct_countFunc('del');" ><img src="/dtoi/img/product/cart/count_del.png"></a>
 								</dt>
 								<dt class="reser_btn">
 									<input type="button" class="btn" value="장바구니" onclick="showDialogue('${vo.pd_no }');"/>
@@ -57,9 +61,9 @@
 						<div class="movie_info2">
 							<dl>
 								<dt class="info_detail">
-								<h5 class="movie_title"><strong>제품 상세</strong></h5>
+									<h5 class="movie_title"><strong>제품 상세</strong></h5>
 									<div class="synop_contents">
-										 ${vo.pd_content}
+										${vo.pd_content}
 									</div>
 								</dt>
 							</dl>
@@ -76,7 +80,7 @@
 					</colgroup>
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th></th>
 							<th>카테고리</th>
 							<th>질문</th>
 						</tr>
@@ -102,7 +106,7 @@
 						 
 							<li>
 								<div class="img">
-									<img src="/dtoi/img/product/main_image/${vo.pd_image }" alt=""/>
+									<iframe src="" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
 							<li>
@@ -118,10 +122,17 @@
 						</ul>
 					</div>
 					
+		
 					<form method="post" name="frm" id="frm" action="" >
 					<input type="hidden" name="movie_pk" value="${vo.pd_no} }"/>
 					<h5 class="movie_title">리뷰</h5>
+						
+					
 					<div class="review_area">
+							<div class="search" align="center">									
+								<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
+								<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+							</div>
 						<div class="review_write">
 							<div class="input">
 								<div class="rate" role="radiogroup">
@@ -148,14 +159,21 @@ function ct_countFunc(type) {
 		if (v > 1) {
 			$("#ct_count").val(v-1);
 		}
-	} else {
+	} else if (type == 'plus'){
 		if (v < 10) {
 			$("#ct_count").val(v+1);
 		} else {
 			alert("더 이상 주문할 수 없습니다.");
 		}
+	} else {
+		if (0 < v) {
+			$("#ct_count").val(v*0+1);
+		}
 	}
+	$("#total_price").text(Number($("#ct_count").val()) * ${vo.pd_price });
 }
+
+
 
 $(function() {
 	getList();
@@ -239,13 +257,7 @@ $(function(){
 								<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
 								</c:if>
 							</div>
-							<!-- //페이징 처리 -->
-						<form name="searchForm" id="searchForm" action="index.do"  method="post">
-							<div class="search">									
-								<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
-								<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
-							</div>
-						</form>
+						
 							
 							
 		<%@ include file="/WEB-INF/view/include/footer.jsp" %>
