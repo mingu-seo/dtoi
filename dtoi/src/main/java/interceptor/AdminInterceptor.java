@@ -15,7 +15,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws IOException {
 
 		// 세션을 체크 (authUser가 null인지)
-		if (req.getSession().getAttribute("authUser") == null) { // 비로그인상태
+		if (req.getSession().getAttribute("adminUser") == null) { // 비로그인상태
 			res.setContentType("text/html; charset=utf-8"); // 한글처리
 			PrintWriter out = res.getWriter();
 			out.print("<script>");

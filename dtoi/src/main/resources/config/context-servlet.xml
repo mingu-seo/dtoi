@@ -78,7 +78,7 @@
           -->
          <bean class="interceptor.UserInterceptor"/>
       </mvc:interceptor>
-     <!-- 
+     
       <mvc:interceptor>
      	 <mvc:mapping path="/admin/**"/>
      	 
@@ -87,7 +87,7 @@
          
          <bean class="interceptor.AdminInterceptor"/>
       </mvc:interceptor>
-   	 -->
+   	 
    </mvc:interceptors>
  
    <!-- 사용자 정적페이지 -->

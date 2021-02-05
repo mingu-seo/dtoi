@@ -80,6 +80,7 @@ public class AdminController {
 		
 		// 값 저장
 		// totalPage, list, reqPage
+		req.setAttribute("totCount", rowPageCount[0]);
 		req.setAttribute("totalPage", rowPageCount[1]);
 		req.setAttribute("startPage", rowPageCount[2]); // 시작페이지
 		req.setAttribute("endPage", rowPageCount[3]); // 마지막페이지
