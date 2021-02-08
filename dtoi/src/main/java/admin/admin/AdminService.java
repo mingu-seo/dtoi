@@ -20,6 +20,9 @@ public class AdminService {
 		AdminVo adminVo = adminDao.login(vo);
 		return adminVo;
 	}
+	public void insertLoginHistory(AdminVo vo) {
+		adminDao.insertLoginHistory(vo);
+	}
 	
 	// 총갯수와 총페이지수를 구하는 메서드
 	public int[] getRowPageCount(AdminVo vo) {
@@ -110,9 +113,6 @@ public class AdminService {
 		} else {
 			return false;
 		}
-	}
-	public void insertLoginHistory(AdminVo vo) {
-		adminDao.insertLoginHistory(vo);
 	}
 	
 	public List<AdminVo> historyList(AdminVo vo) {

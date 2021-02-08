@@ -34,19 +34,13 @@ public class Bulletin_boardController {
 		int[] rowPageCount = bulletin_boardService.getRowPageCount(vo);
 		List<Bulletin_boardVo> list = bulletin_boardService.getList(vo);
 
-		// 값 저장
-		// totalPage, list, reqPage
 		req.setAttribute("totCount", rowPageCount[0]);
 		req.setAttribute("totalPage", rowPageCount[1]);
 		req.setAttribute("startPage", rowPageCount[2]); // 시작페이지
 		req.setAttribute("endPage", rowPageCount[3]); // 마지막페이지
 		req.setAttribute("list", list);
-		// /board/index.do?reqPage=2 -> BoardVo에 reqPage 필드에 바인딩 (커맨드객체)
-		// /board/index.do
 		req.setAttribute("reqPage", vo.getReqPage());
 		req.setAttribute("vo", vo);
-
-		// jsp 포워딩
 		return "board/bulletin_board/index";
 	}
 	@GetMapping("/board/bulletin_board/write.do")

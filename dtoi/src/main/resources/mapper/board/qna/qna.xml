@@ -29,6 +29,7 @@
 		limit ${startIdx}, ${pageRow}
 	</select>
 	
+	
 	<select id="selectOne" parameterType="board.qna.QnaVo" resultType="board.qna.QnaVo">
 		select *, 
 		ifnull((select cst_id from customer where cst_no=qna.cst_no),'관리자') as user_name
