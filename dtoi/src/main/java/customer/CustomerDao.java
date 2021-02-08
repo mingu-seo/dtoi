@@ -44,7 +44,9 @@ public class CustomerDao {
 		return sqlSession.selectOne("customer.login", vo);
 	}
 	
-	
+	public CustomerVo kakaologin(CustomerVo vo) {
+		return sqlSession.selectOne("customer.login", vo);
+	}
 	
 	
 	

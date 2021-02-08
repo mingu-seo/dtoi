@@ -146,12 +146,16 @@ $(function() {
 						console.log('kakao birthday : '+res.kakao_account.birthday);
 						console.log('kakao gender : '+res.kakao_account.gender);
 						console.log('kakao nickname : ' +res.properties['nickname']);
-				var kakaoid = res.id;
-				var kakaoemail = res.kakao_account.email;
-				var kakaobirth = res.kakao_account.birthday;
-				var kakaogender = res.kakao_account.gender;
-				var kakaonickname = res.properties.nickname;
-				 window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/kakao/kakaocallback?kakaonickname="+kakaonickname);
+
+						
+						var authUser = res.properties.nickname;
+						 //window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/dtoi/sns/kakao/kakocallback.jsp?cst_name="+authUser);
+						 $.ajax({
+							 url : "/dtoi/sns/kakao/kakaocallback.jsp?cst_name="+authUser,
+							 success:function(data) {
+								 location.reload();
+							 }
+						 });
 				 	},
 				 	fail: function(error) {
 						alert(JSON.stringify(error));
@@ -204,8 +208,8 @@ $(function() {
                 			<input type="submit" value="로그인"/><br>
                 		</div>
                 		<div class ="sns_btn">
-                			<img src="/dtoi/gallery/naver.PNG" id="naverLogin" alt="네이버로그인" width="50" height="50" align="left" border="20">
-							<img src="/dtoi/gallery/kakao.jpg" id="kakaoBtn" alt="카카오로그인" width="50" height="50" align="left" border="20">
+                			<img src="/dtoi/gallery/naverlogin.PNG" id="naverLogin" alt="네이버로그인" vspace = "5" hspace="10" width="200" height="50" align="left" border="20"><br>
+							<img src="/dtoi/gallery/kakaologin.png" id="kakaoBtn" alt="카카오로그인" vspace = "2" hspace="10" width="200" height="50" align="left" border="20">
                 		</div>
                 	</div>
                 	<div class="bottom_area">

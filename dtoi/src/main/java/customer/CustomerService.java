@@ -85,6 +85,9 @@ public class CustomerService {
 		return cDao.login(vo);
 	}
 	
+	public CustomerVo kakaologin(CustomerVo vo) {
+		return cDao.kakaologin(vo);
+	}
 	
 	
 	

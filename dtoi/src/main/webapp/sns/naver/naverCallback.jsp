@@ -85,6 +85,7 @@ CustomerVo uv = new CustomerVo();
 uv.setCst_name((String)resJson.get("cst_name"));
 uv.setCst_email((String)resJson.get("cst_email"));
 uv.setCst_id((String)resJson.get("cst_id"));
+uv.setCst_name(request.getParameter("cst_name"));
 
 // 세션 저장
 session.setAttribute("authUser", uv);

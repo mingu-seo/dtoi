@@ -185,7 +185,7 @@ public class CustomerController {
 	
 	@PostMapping("/customer/kakaologin.do")
 	public String loginPro(CustomerVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {
-		CustomerVo uv = cService.login(vo);
+		CustomerVo uv = cService.kakaologin(vo);
 		// 결과 확인
 		if (uv != null) { // 로그인 성공
 			// 세션객체 가져오기
