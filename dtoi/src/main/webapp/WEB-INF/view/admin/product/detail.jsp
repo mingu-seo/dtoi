@@ -50,7 +50,7 @@ function del() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>자유게시판</h2>
+					<h2>상품 정보</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -85,8 +85,12 @@ function del() {
 		<td colspan="10">${vo.pd_price }</td>
 	</tr>
 	<tr>
-		<th scope="row"><label for="">내용</label></th>
+		<th scope="row"><label for="">상품 상세</label></th>
 		<td colspan="10">${vo.pd_content }<a href="/admin/common/download.jsp?path=/upload/&r_file=${vo.pd_image}" target="_blank" ></a></td>
+	</tr>
+	<tr>
+		<th scope="row"><label for="">내용</label></th>
+		<td colspan="10">${vo.pd_info }</td>
 	</tr>
 </table>
 	<div class="btn">
