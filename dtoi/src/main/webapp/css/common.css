@@ -118,7 +118,7 @@ html, body {
 
 .head_bot {width:100%; box-sizing:border-box; border-top:1px solid #dadada; border-bottom:1px solid #dadada;}
 .head_bot .gnb {width:100%; position:relative;}
-.head_bot .depth1 > li {float:left; width:25%; position:relative; }
+.head_bot .depth1 > li {float:left; width:20%; position:relative; }
 .head_bot .depth1 > li > a {display:block; height:48px; line-height:46px; text-align:center; color:#000000; font-size:18px; box-sizing:border-box; border-right:1px solid #dadada; transition:all .3s; -webkit-transition:all .3s; font-weight:500;}
  _:-ms-input-placeholder, :root .head_bot .depth1 > li > a {font-size:16px; font-weight:600;}
 
