@@ -111,5 +111,10 @@ public class AdminController {
 		out.print("</script>");
 		out.flush();
 	}
+	@RequestMapping(value="/admin/admin/isDuplicateId.do", method=RequestMethod.GET)
+	public void isDuplicateId(HttpServletRequest req, HttpServletResponse res, @RequestParam("id") String userid) throws IOException{
+		boolean r = adminService.isDuplicateId(userid);
+		res.getWriter().print(r);
+	}
 	
 }

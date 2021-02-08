@@ -59,32 +59,24 @@
 		</mvc:interceptor>
 		 -->
 	
-	 <!-- 인터셉터 설정 -->
+<!-- 인터셉터 설정 -->
    <mvc:interceptors>
       <mvc:interceptor>
          <mvc:mapping path="/board/bulletin_board/**"/>
-         
          
          <mvc:exclude-mapping path="/board/bulletin_board/index.do"/>
          <mvc:exclude-mapping path="/board/bulletin_board/detail.do"/>
          <mvc:exclude-mapping path="/customer/edit.do"/>
          <mvc:exclude-mapping path="/customer/write.do"/>
-         <!-- 
-         한꺼번에 url 매핑
-         예) /user/로 시작하는 모든 url 매핑
-         <mvc:exclude-mapping path="/user/index.do"/>
-         <mvc:exclude-mapping path="/user/login.do"/>
-         <mvc:exclude-mapping path="/user/detail.do"/>
-          -->
+        
          <bean class="interceptor.UserInterceptor"/>
       </mvc:interceptor>
      
       <mvc:interceptor>
      	 <mvc:mapping path="/admin/**"/>
      	 
-     	 
          <mvc:exclude-mapping path="/admin/index.do"/>
-         
+                  
          <bean class="interceptor.AdminInterceptor"/>
       </mvc:interceptor>
    	 

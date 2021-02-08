@@ -49,7 +49,7 @@ function goSearch() {
 							<td>${vo.notice_no }</td>
 							<td class="txt_l">${vo.notice_title} </td>
 							<td class="date">${vo.notice_regdate }</td>
-							<td class="writer"> ${vo.admin_id }</td>
+							<td class="writer"> ${vo.admin_name }</td>
 							<td class="hit" >${vo.readCnt }</td>
 						</tr>
 					</c:forEach>

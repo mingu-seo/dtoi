@@ -26,9 +26,7 @@ public class Admin_historyController {
 	@GetMapping("/admin/index.do")
 	public String login() {
 		return "admin/index";
-	}		
-
-
+	}
 	@PostMapping("/admin/index.do")
 	public String loginProcess(AdminVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
@@ -41,7 +39,6 @@ public class Admin_historyController {
 			adminVo.setIp(vo.getIp());
 			adminService.insertLoginHistory(adminVo);	
 			sess.setAttribute("adminUser", adminVo);				
-			//req.getSession().setAttribute("authUser", uv);
 			String url = "/dtoi/admin/admin/index.do";
 			System.out.println(req.getParameter("url"));
 			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {

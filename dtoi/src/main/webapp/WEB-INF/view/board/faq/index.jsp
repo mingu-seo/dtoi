@@ -45,7 +45,7 @@ function showTr(id) {
 						<c:forEach var="vo" items="${list}" varStatus="status">
 							<tr style='cursor:pointer;' onclick="showTr('${status.index}');">
 								<td>${vo.faq_no } </td>
-								<td>${vo.faq_section }</td>
+								<td>${vo.faq_name }</td>
 								<td class="txt_l">${vo.faq_title }</td>
 								<td>${vo.faq_regdate }</td>
 							</tr>

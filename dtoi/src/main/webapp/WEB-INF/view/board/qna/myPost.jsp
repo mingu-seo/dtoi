@@ -33,7 +33,6 @@ function moveWrite() {
 		<h3 class="sub_title">Q&A</h3>
 			<div class="bbs">
 				<table class="list">
-				<input type="hidden" name="cst_no" value="${authUser.cst_no }">
 				<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
 					<caption> Q&A 목록</caption>
 					<colgroup>
@@ -54,27 +53,29 @@ function moveWrite() {
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="vo" items="${list}">
-						<tr style='cursor:pointer;' onclick="location.href='detail.do?qna_no=${vo.qna_no }'">
-							<td>${vo.qna_no }</td>							
-							<input type="hidden" name="cst_no" value="${vo.cst_no }">
-							<td class="hit" >${vo.qna_name }
-							</td>
-							<td class="txt_l">
-							<c:forEach begin="1" end="${vo.lev }">&nbsp;&nbsp;</c:forEach>
-								<c:if test="${vo.lev > 0 }">
-									<img src="/dtoi/img/board/answer_icon.gif">
-								</c:if>
-								${vo.qna_title}	</td>
-							<td class="date">${vo.qna_regdate }</td>
-							<td class="writer"> ${vo.user_name}</td>
-						</tr>
-					</c:forEach>
+						<c:forEach var="vo" items="${list}">
+						<input type="hidden" name="cst_id" value="${authUser.cst_id }">
+						<input type="hidden" name="user_name" value="${vo.user_name }">
+							<c:if test= "${authUser.cst_id == vo.user_name}">
+							<tr style='cursor:pointer;' onclick="location.href='detail.do?qna_no=${vo.qna_no }'">
+								<td>${vo.qna_no }</td>
+								<td class="hit" >${vo.qna_name }</td>
+								<td class="txt_l">
+								<c:forEach begin="1" end="${vo.lev }">&nbsp;&nbsp;</c:forEach>
+									<c:if test="${vo.lev > 0 }">
+										<img src="/dtoi/img/board/answer_icon.gif">
+									</c:if>
+									${vo.qna_title} </td>
+								<td class="date">${vo.qna_regdate }</td>
+								<td class="writer"> ${vo.user_name}</td>
+							</tr>
+							</c:if>
+						</c:forEach>
 					</tbody>					
 				</table>
 				
 			<div class="btnSet"  style="text-align:right;">
-				<a class="btn" href="myPost.do">내가 작성한 글 </a>
+				<a class="btn" href="index.do">전체보기</a>
 				<a class="btn" href="write.do;">질문작성 </a>
 			</div>
 			<div class="btnSet"  style="text-align:right;">

@@ -17,6 +17,9 @@ public class AdminDao {
 	public AdminVo login(AdminVo vo) {
 		return sqlSession.selectOne("admin.login", vo);
 	}
+	public int insertLoginHistory(AdminVo vo) {
+		return sqlSession.insert("admin.insertLoginHistory", vo);
+	}
 	
 	public int count(AdminVo vo) {
 		return sqlSession.selectOne("admin.count", vo);
@@ -30,8 +33,8 @@ public class AdminDao {
 		return sqlSession.selectOne("admin.selectOne", vo);
 	}
 	
-	public int isDuplicateId(String cst_id) {
-		return sqlSession.selectOne("admin.isDuplicateId", cst_id);
+	public int isDuplicateId(String id) {
+		return sqlSession.selectOne("admin.isDuplicateId", id);
 	}
 	
 	public int insert(AdminVo vo) {
@@ -44,9 +47,6 @@ public class AdminDao {
 	
 	public int delete(AdminVo vo) {
 		return sqlSession.delete("admin.deleteCustomer", vo);
-	}
-	public int insertLoginHistory(AdminVo vo) {
-		return sqlSession.insert("admin.insertLoginHistory", vo);
 	}
 	public int historyCount(AdminVo vo) {
 		return sqlSession.selectOne("admin.historyCount", vo);

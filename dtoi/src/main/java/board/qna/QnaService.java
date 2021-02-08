@@ -43,6 +43,7 @@ public class QnaService {
 		return qnaDao.selectList(vo);
 	}
 	
+	
 	public QnaVo selectOne(QnaVo uv) {		
 		return qnaDao.selectOne(uv);
 	}
