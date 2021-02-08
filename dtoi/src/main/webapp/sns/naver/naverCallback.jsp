@@ -95,6 +95,6 @@ ID : <%=(String)resJson.get("cst_id")%><br/>
 성별 : <%=(String)resJson.get("cst_gender")%><br/>
 생일 : <%=(String)resJson.get("cst_birthday")%><br/>
 <script>
-opener.location.href="/dtoi/customer/index.do";
+opener.location.href='<%=request.getContextPath()%>/index.do';
 window.close();
 </script>

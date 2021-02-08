@@ -6,6 +6,9 @@
 <%@ page import="java.security.SecureRandom"  %>
 <%@ page import="java.math.BigInteger"  %>
 <%@ page import="java.net.URLEncoder"  %>
+<%@ page import="org.json.simple.*" %>
+<%@ page import="org.json.simple.parser.*" %>
+<%@ page import="customer.CustomerVo" %>
 
 
 <script type="text/javascript" src="/dtoi/js/swiper.min.js"></script>
@@ -21,7 +24,9 @@ SecureRandom random = new SecureRandom();
 String state = new BigInteger(130, random).toString(32);
 session.setAttribute("state", state);
 String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id="+client_id+"&redirect_uri="+redirectURI+"&state="+state;
+
 %>
+
 
 
 $(function() {
@@ -141,7 +146,12 @@ $(function() {
 						console.log('kakao birthday : '+res.kakao_account.birthday);
 						console.log('kakao gender : '+res.kakao_account.gender);
 						console.log('kakao nickname : ' +res.properties['nickname']);
-				
+				var kakaoid = res.id;
+				var kakaoemail = res.kakao_account.email;
+				var kakaobirth = res.kakao_account.birthday;
+				var kakaogender = res.kakao_account.gender;
+				var kakaonickname = res.properties.nickname;
+				 window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/kakao/kakaocallback?kakaonickname="+kakaonickname);
 				 	},
 				 	fail: function(error) {
 						alert(JSON.stringify(error));
