@@ -81,9 +81,9 @@ function formCheck() {
 										<th scope="row"><label for="">*분류</label></th>
 										<td colspan="10" height="80">
 											<select name="faq_section">
-												<option value="1" <c:if test="${param.faq_section == 1 }"></c:if>> 배송문의 </option>
-												<option value="2" <c:if test="${param.faq_section == 2 }"></c:if>> 상품문의 </option>
-												<option value="3" <c:if test="${param.faq_section == 3 }"></c:if>> 기타문의 </option>
+												<option value="1"> 배송문의 </option>
+												<option value="2"> 상품문의 </option>
+												<option value="3"> 기타문의 </option>
 											</select>
 										</td>
 									</tr>

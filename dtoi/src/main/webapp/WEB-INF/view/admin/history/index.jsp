@@ -20,14 +20,14 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-				<h2>관리자 목록</h2>
+				<h2>관리자 접속기록</h2>
 					</div>
 						<div class="con">
 							<div id="bbs">
 								<div id="blist">
-								<input type="hidden" name ="ad_name" value="${adminUser.ad_name }">
 								<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
 								<form name="frm" id="frm" action="groupDelete.do" method="post">
+								<input type="hidden" name='ad_no' value="${ad_no }">
 								<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 									<colgroup>
 										<col width="50px" />
@@ -36,30 +36,27 @@
 										<col width="150" />
 										<col width="150px" />
 										<col width="150px" />									
-										<col width="150px" />									
 									</colgroup>
 								<thead>
 									<tr>
 										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
-										<th scope="col">관리자번호</th>
+										<th scope="col">번호</th>
 										<th scope="col">관리자명</th> 
 										<th scope="col">아이디</th> 
-										<th scope="col">이메일</th>
-										<th scope="col">연락처</th>
-										<th scope="col">가입일</th>
+										<th scope="col">접속일</th>
+										<th scope="col">아이피</th>
 									</tr>
 								</thead>
 								
 								<tbody>
 								<c:forEach var="vo" items="${list}">
 									<tr>
-										<td class="first"><input type="checkbox" name="nos" id="ad_no" value="${vo.ad_no }"/></td>
-										<td><a href="detail.do?ad_no=${vo.ad_no }">${vo.ad_no }</a></td>
-										<td><a href="detail.do?ad_no=${vo.ad_no }">${vo.ad_name }</a></td>
-										<td ><a href="detail.do?ad_no=${vo.ad_no }">${vo.ad_id }</a></td>
-										<td><a href="detail.do?ad_no=${vo.ad_no }">${vo.ad_email }</a></td>
-										<td><a href="detail.do?ad_no=${vo.ad_no }">${vo.ad_tel }</a></td>	
-										<td scope="col"><a href="detail.do?ad_no=${vo.ad_no }">${vo.ad_regdate }</a></td>									
+										<td class="first"><input type="checkbox" name="nos" id="no" value="${vo.no }"/></td>
+										<td>${vo.no }</td>
+										<td>${vo.ad_name }</td>
+										<td >${vo.ad_id }</td>
+										<td>${vo.logindate }</td>
+										<td>${vo.ip }</td>	
 									</tr>
 								</c:forEach>
 								</tbody>

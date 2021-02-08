@@ -1,10 +1,12 @@
 package admin.admin;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class AdminDao {
@@ -43,7 +45,16 @@ public class AdminDao {
 	public int delete(AdminVo vo) {
 		return sqlSession.delete("admin.deleteCustomer", vo);
 	}
+	public int insertLoginHistory(AdminVo vo) {
+		return sqlSession.insert("admin.insertLoginHistory", vo);
+	}
+	public int historyCount(AdminVo vo) {
+		return sqlSession.selectOne("admin.historyCount", vo);
+	}
 	
+	public List<AdminVo> historyList(AdminVo vo) {
+		return sqlSession.selectList("admin.historyList", vo);
+	}
 	
 	
 	

@@ -14,7 +14,41 @@ public class AdminVo extends CommonVo{
 	private String ad_tel;
 	private Timestamp ad_regdate;
 	
+	private int no;	
+	private Timestamp logindate;
+	private String ip;
+	private String[] nos;
 	
+	
+	
+	
+	
+	
+	
+	public String[] getNos() {
+		return nos;
+	}
+	public void setNos(String[] nos) {
+		this.nos = nos;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public Timestamp getLogindate() {
+		return logindate;
+	}
+	public void setLogindate(Timestamp logindate) {
+		this.logindate = logindate;
+	}
+	public String getIp() {
+		return ip;
+	}
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
 	public int getAd_no() {
 		return ad_no;
 	}

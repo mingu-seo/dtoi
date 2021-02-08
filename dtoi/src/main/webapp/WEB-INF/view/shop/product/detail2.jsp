@@ -58,21 +58,62 @@
 							</dl>
 						</div>
 					</div>
+					
+					<div class="tab_area">
+						<ul class ="tab_menu">
+							<li>
+								<a href="#" onclick="tab_move('0'); return false;" class="active">제품 상세</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('1'); return false;" >제품 리뷰</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('2'); return false;" >제품 문의</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('3'); return false;" >주문 가이드</a>
+							</li>
+							
+						</ul>
+					</div>
+					<!-- 상품 정보 -->
+					
 						<div class="movie_info2">
 							<dl>
 								<dt class="info_detail">
 
-								<h5 class="movie_title"><strong>제품 상세</strong></h5>
 									<div class="synop_contents" >
 										 ${vo.pd_content}
+									</div>
 								</dt>
 							</dl>
 						</div>
-					<h5 class="movie_title"><strong>제품 문의</strong></h5>
+						
+						
+					<div class="tab_area">
+						<ul class ="tab_menu">
+							<li>
+								<a href="#" onclick="tab_move('0'); return false;" >제품 상세</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('1'); return false;" class="active">제품 리뷰</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('2'); return false;" >제품 문의</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('3'); return false;" >주문 가이드</a>
+							</li>
+							
+						</ul>
+					</div>
+					
+					<!-- 제품리뷰 -->
+					
 					<div class="bbs">
 					<table class="list">
 
-					<caption>질문 목록</caption>
+
 					<colgroup>
 						<col width="80px" />
 						<col width="100px" />
@@ -80,7 +121,7 @@
 					</colgroup>
 					<thead>
 						<tr>
-							<th></th>
+							<th>번호</th>
 							<th>카테고리</th>
 							<th>질문</th>
 						</tr>
@@ -100,7 +141,26 @@
 					</tbody>
 				</table>
 			</div>
-					<h5 class="movie_title"><strong>포토 리뷰</strong></h5>
+			
+					<div class="tab_area">
+						<ul class ="tab_menu">
+							<li>
+								<a href="#" onclick="tab_move('0'); return false;" >제품 상세</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('1'); return false;" >제품 리뷰</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('2'); return false;" class="active">제품 문의</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('3'); return false;" >주문 가이드</a>
+							</li>
+							
+						</ul>
+					</div>
+					
+					<!-- 제품 문의 -->
 					<div class="trailler_area">
 						<ul>
 						 
@@ -121,12 +181,26 @@
 							</li>
 						</ul>
 					</div>
-					
-		
-					<form method="post" name="frm" id="frm" action="" >
-					<input type="hidden" name="movie_pk" value="${vo.pd_no} }"/>
-					<h5 class="movie_title">리뷰</h5>
 						
+					<div class="tab_area">
+						<ul class ="tab_menu">
+							<li>
+								<a href="#" onclick="tab_move('0'); return false;" >제품 상세</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('1'); return false;" >제품 리뷰</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('2'); return false;" >제품 문의</a>
+							</li>
+							<li>
+								<a href="#" onclick="tab_move('3'); return false;" class="active">주문 가이드</a>
+							</li>
+							
+						</ul>
+					</div>
+		
+					<!-- 주문 가이드 -->	
 					
 					<div class="review_area">
 							<div class="search" align="center">									
@@ -150,7 +224,7 @@
 							</div>
 						</div>
 					</div>
-				</form>
+				
 						
 <script>
 function ct_countFunc(type) {
