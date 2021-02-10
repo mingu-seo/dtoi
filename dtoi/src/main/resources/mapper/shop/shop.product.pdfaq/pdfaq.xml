@@ -7,7 +7,7 @@
 	</select>
 	
 	<select id="selectList" resultType="shop.product.pdfaq.PdFaqVo">
-		select * from pd_faq
+		select * from pd_faq where pd_no=#{pd_no}
 		
 		ORDER BY pdfaq_no DESC
 		limit ${startIdx}, ${pageRow}
@@ -23,19 +23,21 @@
 	<insert id="insert" parameterType="shop.product.pdfaq.PdFaqVo">
 		INSERT INTO pd_faq (
 		
-			pdfaq_no,
-			pdfaq_title,
-			pdfaq_contents,
-			pdfaq_regdate,
-			cst_no 
+			pdfaq_no
+			,pdfaq_title
+			,pdfaq_contents
+			,pdfaq_regdate
+			,cst_no
+			,pd_no
 						
 		) VALUES (
 		
-			#{pdfaq_no},
-			#{pdfaq_title},
-			#{pdfaq_contents},
-			NOW(),
-			#{cst_no }
+			#{pdfaq_no}
+			,#{pdfaq_title}
+			,#{pdfaq_contents}
+			,NOW()
+			,#{cst_no }
+			,#{pd_no }
 		)
 	</insert>
 	

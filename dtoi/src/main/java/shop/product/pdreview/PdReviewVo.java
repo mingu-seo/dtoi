@@ -7,7 +7,7 @@ public class PdReviewVo extends CommonVo {
 
 	private int re_no;
 	private int pd_no;
-	private String cst_id;
+	private String cst_no;
 	private String re_title;
 	private String re_content;
 	private String re_file;
@@ -50,11 +50,11 @@ public class PdReviewVo extends CommonVo {
 	public void setPd_no(int pd_no) {
 		this.pd_no = pd_no;
 	}
-	public String getCst_id() {
-		return cst_id;
+	public String getCst_no() {
+		return cst_no;
 	}
-	public void setCst_id(String cst_id) {
-		this.cst_id = cst_id;
+	public void setCst_no(String cst_no) {
+		this.cst_no = cst_no;
 	}
 	public String getRe_title() {
 		return re_title;

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="board.faq.*" %>
+
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>

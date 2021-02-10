@@ -64,6 +64,8 @@
    <mvc:interceptors>
       <mvc:interceptor>
          <mvc:mapping path="/board/bulletin_board/**"/>
+         <mvc:mapping path="/product/pdreview/write.do"/>
+         <mvc:mapping path="/product/pdfaq/write.do"/>
          
          <mvc:exclude-mapping path="/board/bulletin_board/index.do"/>
          <mvc:exclude-mapping path="/board/bulletin_board/detail.do"/>

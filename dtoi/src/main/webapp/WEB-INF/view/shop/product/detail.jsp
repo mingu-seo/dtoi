@@ -134,12 +134,12 @@
 				</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="vo" items="${list}">							
+				<c:forEach var="vo" items="${rlist}">							
 					<tr style='cursor:pointer;' onclick="location.href='detail.do?re_no=${vo.re_no }'">
 					
 						<td class="first">${vo.re_no }</td>
 						<td class="txt_l">${vo.re_title}</td>
-						<td class="writer"> ${vo.cst_id }</td>
+						<td class="writer"> ${vo.cst_no }</td>
 						<td class="date">${vo.re_regdate }</td>
 						
 					</tr>						
@@ -148,7 +148,7 @@
 			</table>	
 							
 			<div class="btnSet"  style="text-align:right;">
-				<a class="btn" href="pdreview/write.do">글쓰기 </a>
+				<a class="btn" href="pdreview/write.do?pd_no=${vo.pd_no }">글쓰기 </a>
 			</div>
 				
 			<div class="pagenate clear">								
@@ -224,7 +224,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="vo" items="${list}" varStatus="status">
+						<c:forEach var="vo" items="${flist}" varStatus="status">
 						<tr style='cursor:pointer;' onclick="showTr('${status.index}');">
 							<td class="first"><input type="checkbox" name="nos" id="pdfaq_no" value="${vo.pdfaq_no }"/></td>
 							<td>${vo.pdfaq_no } </td>
@@ -312,7 +312,7 @@ function ct_countFunc(type) {
 
 function moveWrite() {
 	<c:if test="${!empty authUser}">
-	location.href='/dtoi/board/bulletin_board/write.do';
+	location.href='/dtoi/shop/product/pdreview/write.do';
 	</c:if>
 	<c:if test="${empty authUser}">
 	alert('로그인 후 이용가능합니다.');	
@@ -324,11 +324,11 @@ function moveWrite() {
 
 function moveWrite() {
 	<c:if test="${!empty authUser}">
-	location.href='/dtoi/board/qna/write.do';
+	location.href='/dtoi/shop/product/pdfaq/write.do';
 	</c:if>
 	<c:if test="${empty authUser}">
 	alert('로그인 후 이용가능합니다.');
-	location.href='/dtoi/customer/login.do?url=/bulletin_board/index.do'
+	location.href='/dtoi/customer/login.do?url=/shop/product/index.do'
 	</c:if>	
 }
 
@@ -368,7 +368,7 @@ function getList() {
 function goDelete(re_no) {
 	if (confirm("삭제하시겠습니까?")) {
 		$.ajax({
-			url : "/dtoi/shop/pdreview/delete.do",
+			url : "/dtoi/shop/product/pdreview/delete.do",
 			data : data,
 			async : true,
 			success : function(data) {

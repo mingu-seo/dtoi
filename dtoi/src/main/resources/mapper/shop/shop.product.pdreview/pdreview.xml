@@ -25,7 +25,7 @@
 		
 			re_no,
 			pd_no,
-			cst_id,
+			cst_no,
 			re_title,
 			re_content,
 			re_file,
@@ -37,7 +37,7 @@
 		
 			#{re_no},
 			#{pd_no},
-			#{cst_id},
+			#{cst_no},
 			#{re_title},
 			#{re_content},
 			#{re_file},
@@ -53,7 +53,8 @@
 			re_title = #{re_title},
 			re_content = #{re_content},	
 			re_file = #{re_file},
-			re_ori_file = #{re_ori_file}			
+			re_ori_file = #{re_ori_file},
+			re_score = #{re_score}			
 		WHERE
 			re_no = #{re_no}
 	</update>

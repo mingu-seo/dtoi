@@ -13,9 +13,18 @@ public class PdFaqVo extends CommonVo {
 	private String pdfaq_contents;
 	private Timestamp pdfaq_regdate;
 	private int cst_no;
+	private int pd_no;
 	private String[] nos;
 	
 	
+	
+	
+	public int getPd_no() {
+		return pd_no;
+	}
+	public void setPd_no(int pd_no) {
+		this.pd_no = pd_no;
+	}
 	public int getPdfaq_no() {
 		return pdfaq_no;
 	}

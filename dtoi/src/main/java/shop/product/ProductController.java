@@ -55,11 +55,15 @@ public class ProductController {
 	public String detail(HttpServletRequest req, ProductVo vo) {
 		ProductVo uv = productService.selectOne(vo, true);
 		PdReviewVo pdrvo = new PdReviewVo();
+		PdFaqVo pdfvo = new PdFaqVo();
 		pdrvo.setPd_no(uv.getPd_no());
+		pdfvo.setPd_no(uv.getPd_no());
 		List<PdReviewVo> rlist = rService.getList(pdrvo);
+		List<PdFaqVo> flist = fService.getList(pdfvo);
 		
 		req.setAttribute("vo", uv);
 		req.setAttribute("rlist", rlist);
+		req.setAttribute("flist", flist);
 	
 		// jsp 포워딩
 		return "shop/product/detail";
@@ -73,7 +77,7 @@ public class ProductController {
 		out.print("<script>");
 		if (rService.insert(vo)) {
 			out.print("alert('정상적으로 등록되었습니다.');");
-			out.print("location.href='/shop/product/detail.do?pd_no="+vo.getRe_no()+"';");
+			out.print("location.href='/dtoi/product/detail.do?pd_no="+vo.getPd_no()+"';");
 		} else {
 			out.print("alert('등록실패.');");
 			out.print("history.back();");
@@ -90,7 +94,7 @@ public class ProductController {
 		out.print("<script>");
 		if (rService.insert(vo)) {
 			out.print("alert('정상적으로 수정되었습니다.');");
-			out.print("location.href='/shop/product/detail.do?pd_no="+vo.getRe_no()+"';");
+			out.print("location.href='/dtoi/product/detail.do?pd_no="+vo.getPd_no()+"';");
 		} else {
 			out.print("alert('등록실패.');");
 			out.print("history.back();");
@@ -107,7 +111,7 @@ public class ProductController {
 		out.print("<script>");
 		if (rService.delete(vo)) {
 			out.print("alert('정상적으로 삭제되었습니다.');");
-			out.print("location.href='/shop/product/detail.do?pd_no="+vo.getRe_no()+"';");
+			out.print("location.href='/dtoi/product/detail.do?pd_no="+vo.getPd_no()+"';");
 		} else {
 			out.print("alert('삭제실패.');");
 			out.print("history.back();");
@@ -125,7 +129,7 @@ public class ProductController {
 		out.print("<script>");
 		if (fService.insert(vo)) {
 			out.print("alert('정상적으로 등록되었습니다.');");
-			out.print("location.href='/shop/product/detail.do?pd_no="+vo.getPdfaq_no()+"';");
+			out.print("location.href='/dtoi/product/detail.do?pd_no="+vo.getPd_no()+"';");
 		} else {
 			out.print("alert('등록실패.');");
 			out.print("history.back();");
@@ -142,7 +146,7 @@ public class ProductController {
 		out.print("<script>");
 		if (fService.insert(vo)) {
 			out.print("alert('정상적으로 수정되었습니다.');");
-			out.print("location.href='/shop/product/detail.do?pd_no="+vo.getPdfaq_no()+"';");
+			out.print("location.href='/dtoi/product/detail.do?pd_no="+vo.getPd_no()+"';");
 		} else {
 			out.print("alert('등록실패.');");
 			out.print("history.back();");
@@ -159,7 +163,7 @@ public class ProductController {
 		out.print("<script>");
 		if (fService.delete(vo)) {
 			out.print("alert('정상적으로 삭제되었습니다.');");
-			out.print("location.href='/shop/product/detail.do?pd_no="+vo.getPdfaq_no()+"';");
+			out.print("location.href='/dtoi/product/detail.do?pd_no="+vo.getPd_no()+"';");
 		} else {
 			out.print("alert('삭제실패.');");
 			out.print("history.back();");
