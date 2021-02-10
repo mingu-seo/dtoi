@@ -1,9 +1,14 @@
 package customer;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
+import customer.CustomerVo;
+
 
 @Service
 public class CustomerService {
@@ -85,14 +90,12 @@ public class CustomerService {
 		return cDao.login(vo);
 	}
 	
-	public CustomerVo kakaologin(CustomerVo vo) {
-		return cDao.kakaologin(vo);
+	
+	public CustomerVo searchId(CustomerVo vo) throws SQLException {
+		return cDao.searchId(vo);
 	}
 	
-	
-	
-	
-	
+
 	
 	
 	

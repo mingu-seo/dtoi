@@ -10,11 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 @Controller
 public class CustomerController {
@@ -183,46 +186,20 @@ public class CustomerController {
 		out.flush();
 	}
 	
-	@PostMapping("/customer/kakaologin.do")
-	public String loginPro(CustomerVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {
-		CustomerVo uv = cService.kakaologin(vo);
-		// 결과 확인
-		if (uv != null) { // 로그인 성공
-			// 세션객체 가져오기
-			HttpSession sess = req.getSession();
-			// 세션객체에 로그인정보 저장
-			sess.setAttribute("authUser", uv);
-			
-			// 위 코드와 동일하게
-			//req.getSession().setAttribute("authUser", uv);
-			String url = "/dtoi/customer/index.do";
-			System.out.println(req.getParameter("url"));
-			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
-				url = req.getParameter("url");
-				if (req.getParameter("param") != null && !"".equals(req.getParameter("param"))) {
-					url += "?"+req.getParameter("param");
-				}
-			}
-			return "redirect: "+url; 
-			
-		} else { // 로그인 실패
+	
 		
-			res.setContentType("text/html; charset=utf-8"); // 한글처리
-			PrintWriter out = res.getWriter();
-			out.print("<script>");
-			out.print("alert('아이디와 비밀번호가 올바르지 않습니다.');");
-			String url = "/dtoi/customer/login.do";
-			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
-				url = req.getParameter("url");
-				if (req.getParameter("param") != null && !"".equals(req.getParameter("param"))) {
-					url += "?"+req.getParameter("param");
-				}
-			}
-			out.print("location.href='"+url+"';");
-			out.print("</script>");
-			out.flush();
-			return null; 
-		}
+	@RequestMapping("/customer/idsearch.do")
+	public String emailsearch(Model model, CustomerVo param) throws Exception {
+		model.addAttribute("vo", param);
 		
+		return "customer/idsearch";
 	}
+	
+	@RequestMapping("/customer/pwsearch.do")
+	public String pwsearch(Model model, CustomerVo param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "customer/pwsearch";
+	}
+	
 }
