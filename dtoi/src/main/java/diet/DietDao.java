@@ -12,7 +12,14 @@ public class DietDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public List<FoodVo> selectFoodName(FoodVo vo) {
+	public List<FoodVo> selectName(FoodVo vo) {
 		return sqlSession.selectOne("food.selectName", vo);
+	}
+	public FoodVo selectNameOne(FoodVo vo) {
+		return sqlSession.selectOne("food.selectName", vo);
+	}
+	
+	public int countName(String name) {
+		return sqlSession.selectOne("food.countName", name);
 	}
 }

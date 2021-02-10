@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import shop.pdreview.PdReviewService;
-import shop.pdreview.PdReviewVo;
+import shop.product.pdfaq.PdFaqService;
+import shop.product.pdfaq.PdFaqVo;
+import shop.product.pdreview.PdReviewService;
+import shop.product.pdreview.PdReviewVo;
 
 @Controller
 public class ProductController {
@@ -24,6 +26,10 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private PdReviewService rService;
+	@Autowired
+	private PdFaqService fService;
+	
+	
 	
 	@RequestMapping("/product/index.do")
 	public String index(HttpServletRequest req, ProductVo vo) {
@@ -45,16 +51,18 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping("/product/detail2.do")
+	@RequestMapping("/product/detail.do")
 	public String detail(HttpServletRequest req, ProductVo vo) {
 		ProductVo uv = productService.selectOne(vo, true);
-		List<PdReviewVo> rlist = rService.getList(uv.getPd_no());
+		PdReviewVo pdrvo = new PdReviewVo();
+		pdrvo.setPd_no(uv.getPd_no());
+		List<PdReviewVo> rlist = rService.getList(pdrvo);
 		
 		req.setAttribute("vo", uv);
 		req.setAttribute("rlist", rlist);
 	
 		// jsp 포워딩
-		return "shop/product/detail2";
+		return "shop/product/detail";
 	}
 
 	@RequestMapping("/product/pdreviewInsert.do")
@@ -108,4 +116,57 @@ public class ProductController {
 		out.flush();
 	}
 	
+	
+	@RequestMapping("/product/pdfaqInsert.do")
+	public void pdfaqInsert(PdFaqVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print("<script>");
+		if (fService.insert(vo)) {
+			out.print("alert('정상적으로 등록되었습니다.');");
+			out.print("location.href='/shop/product/detail.do?pd_no="+vo.getPdfaq_no()+"';");
+		} else {
+			out.print("alert('등록실패.');");
+			out.print("history.back();");
+		}
+		out.print("</script>");
+		out.flush();
+	}
+	
+	@RequestMapping("/product/pdfaqUpdate.do")
+	public void pdfaqUpdate(PdFaqVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print("<script>");
+		if (fService.insert(vo)) {
+			out.print("alert('정상적으로 수정되었습니다.');");
+			out.print("location.href='/shop/product/detail.do?pd_no="+vo.getPdfaq_no()+"';");
+		} else {
+			out.print("alert('등록실패.');");
+			out.print("history.back();");
+		}
+		out.print("</script>");
+		out.flush();
+	}
+	
+	
+	@GetMapping("/product/pdfaqDelete.do")
+	public void pdfaqDelete(PdFaqVo vo, HttpServletResponse res) throws IOException {
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print("<script>");
+		if (fService.delete(vo)) {
+			out.print("alert('정상적으로 삭제되었습니다.');");
+			out.print("location.href='/shop/product/detail.do?pd_no="+vo.getPdfaq_no()+"';");
+		} else {
+			out.print("alert('삭제실패.');");
+			out.print("history.back();");
+		}
+		out.print("</script>");
+		out.flush();
+	}
+	
 }
+	

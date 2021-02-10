@@ -10,7 +10,7 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>음식영양정보조회페이지</title>
+<title>식단 칼로리 계산 페이지</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>

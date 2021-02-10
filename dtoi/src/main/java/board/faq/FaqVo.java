@@ -12,7 +12,6 @@ public class FaqVo extends CommonVo {
 	private String faq_section;
 	private String faq_title;
 	private String faq_contents;
-	private int cat_no;
 	private Timestamp faq_regdate;
 	private String[] nos;
 	
@@ -55,12 +54,7 @@ public class FaqVo extends CommonVo {
 	public void setFaq_contents(String faq_contents) {
 		this.faq_contents = faq_contents;
 	}
-	public int getCat_no() {
-		return cat_no;
-	}
-	public void setCat_no(int cat_no) {
-		this.cat_no = cat_no;
-	}
+
 	public String getFaq_regdate() {
 		String date = String.valueOf(faq_regdate);
 		return date.substring(0,10);		
