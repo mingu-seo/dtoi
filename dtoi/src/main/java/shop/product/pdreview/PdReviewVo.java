@@ -1,4 +1,4 @@
-package shop.pdreview;
+package shop.product.pdreview;
 
 import java.sql.Timestamp;
 import util.CommonVo;

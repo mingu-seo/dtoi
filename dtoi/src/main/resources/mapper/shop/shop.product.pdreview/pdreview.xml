@@ -2,25 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pdreview">
 
-	<select id="count" parameterType="shop.pdreview.PdReviewVo" resultType="int">
+	<select id="count" parameterType="shop.product.pdreview.PdReviewVo" resultType="int">
 		select count(*) as cnt from pd_review
 	</select>
 	
-	<select id="selectList" resultType="shop.pdreview.PdReviewVo">
+	<select id="selectList" resultType="shop.product.pdreview.PdReviewVo">
 		select * from pd_review
 		
-		ORDER BY pd_no DESC
+		ORDER BY re_no DESC
 		limit ${startIdx}, ${pageRow}
 	</select>
 	
-	<select id="selectOne" parameterType="shop.pdreview.PdReviewVo" resultType="shop.pdreview.PdReviewVo">
+	<select id="selectOne" parameterType="shop.product.pdreview.PdReviewVo" resultType="shop.pdreview.PdReviewVo">
 		select * from pd_review where re_no=${re_no}
 	</select>
 	
 	
 	
 	
-	<insert id="insert" parameterType="shop.pdreview.PdReviewVo">
+	<insert id="insert" parameterType="shop.product.pdreview.PdReviewVo">
 		INSERT INTO pd_review (
 		
 			re_no,
@@ -48,7 +48,7 @@
 	</insert>
 	
 	
-	<update id="update" parameterType="shop.pdreview.PdReviewVo">
+	<update id="update" parameterType="shop.product.pdreview.PdReviewVo">
 		UPDATE pd_review SET
 			re_title = #{re_title},
 			re_content = #{re_content},	
@@ -59,7 +59,7 @@
 	</update>
 
 	
-	<delete id="delete" parameterType="shop.pdreview.PdReviewVo">
+	<delete id="delete" parameterType="shop.product.pdreview.PdReviewVo">
 		DELETE FROM pd_review WHERE re_no = #{re_no}
 	</delete>
 

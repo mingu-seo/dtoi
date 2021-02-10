@@ -1,4 +1,4 @@
-package shop.pdreview;
+package shop.product.pdreview;
 
 import java.util.List;
 
