@@ -14,7 +14,19 @@ public class PdReviewVo extends CommonVo {
 	private String re_ori_file;
 	private Timestamp re_regdate;
 	private int re_score;
+	private String[] nos;
 	
+	
+	
+
+	public String[] getNos() {
+		return nos;
+	}
+
+	public void setNos(String[] nos) {
+		this.nos = nos;
+	}
+
 	public PdReviewVo() {
 		super.setOrderby("re_regdate");
 	}

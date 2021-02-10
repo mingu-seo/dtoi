@@ -17,8 +17,8 @@ public class PdReviewDao {
 	public int count(PdReviewVo vo) { 
 		return sqlSession .selectOne("pdreview.count",vo);
 	}
-	public List<PdReviewVo> selectList(int pd_no) {
-		List<PdReviewVo> list = sqlSession.selectList("pdreview.selectList", pd_no);
+	public List<PdReviewVo> selectList(PdReviewVo vo) {
+		List<PdReviewVo> list = sqlSession.selectList("pdreview.selectList", vo);
 		return list;
 	}
 	public PdReviewVo selectOne(PdReviewVo vo) {

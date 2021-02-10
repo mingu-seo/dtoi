@@ -7,13 +7,13 @@
 	</select>
 	
 	<select id="selectList" resultType="shop.product.pdreview.PdReviewVo">
-		select * from pd_review
+		select * from pd_review where pd_no=#{pd_no}
 		
 		ORDER BY re_no DESC
 		limit ${startIdx}, ${pageRow}
 	</select>
 	
-	<select id="selectOne" parameterType="shop.product.pdreview.PdReviewVo" resultType="shop.pdreview.PdReviewVo">
+	<select id="selectOne" parameterType="shop.product.pdreview.PdReviewVo" resultType="shop.product.pdreview.PdReviewVo">
 		select * from pd_review where re_no=${re_no}
 	</select>
 	
