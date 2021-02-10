@@ -12,6 +12,11 @@ public class FoodVo {
 	private float sodium;
 	private float sugar;
 	private int gdegree;
+	private int foodCount;
+	
+	FoodVo(){
+		gdegree = 100;
+	}
 	public int getFd_no() {
 		return fd_no;
 	}
@@ -71,5 +76,11 @@ public class FoodVo {
 	}
 	public void setGdegree(int gdegree) {
 		this.gdegree = gdegree;
+	}
+	public int getFoodCount() {
+		return foodCount;
+	}
+	public void setFoodCount(int foodCount) {
+		this.foodCount = foodCount;
 	}
 }

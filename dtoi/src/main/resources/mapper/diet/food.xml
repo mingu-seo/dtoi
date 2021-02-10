@@ -16,10 +16,10 @@
 	</select>
 	
 	<select id ="selectName" parameterType="diet.FoodVo" resultType="diet.FoodVo">
-		select * from food where name=${name}
+		select * from food where name=#{name}
 	</select>
 	
-	<select id ="isDuplicateName" parameterType="String" resultType="int">
+	<select id ="countName" parameterType="String" resultType="int">
 		select count(*) from food where name = #{name}
 	</select>
 	

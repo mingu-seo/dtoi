@@ -12,6 +12,14 @@ public class DietService {
 	private DietDao dao;
 	
 	public List<FoodVo> selectName(FoodVo vo) {
-		return dao.selectFoodName(vo);
+		return dao.selectName(vo);
+	}
+	
+	public FoodVo selectNameOne(FoodVo vo) {
+		return dao.selectNameOne(vo);
+	}
+	
+	public int countName(String name) {
+		return dao.countName(name);
 	}
 }
