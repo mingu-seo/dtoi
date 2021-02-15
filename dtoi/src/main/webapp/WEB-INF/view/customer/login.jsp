@@ -28,12 +28,12 @@ String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&cli
 	$(function() {
 		$("form input[type='button']").click(function(){
 			if ($("#cst_id1").val().trim() == '') {
-				alert('아이디를 입력하세요');
+				alert('아이디를 입력해 주세요');
 				$("#cst_id").focus();
 				return false;
 			}
 			if ($("#cst_pwd1").val().trim() == '') {
-				alert('비밀번호를 입력하세요');
+				alert('비밀번호를 입력해 주세요');
 				$("#cst_pwd1").focus();
 				return false;
 			}

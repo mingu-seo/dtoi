@@ -13,20 +13,20 @@ CustomerVo data = (CustomerVo)request.getAttribute("data");
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>MOVIE</title>
-<%@ include file="/WEB-INF/view/include/header.jsp" %>
+<title>DTOI</title>
+<%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 </head>
 <script>
 function goSave() {
 	
-	if ($("#email").val() == "") {
-		alert("이메일을 입력해주세요.");
-		$("#email").focus();
+	if ($("#cst_id3").val() == "") {
+		alert("아이디를 입력해주세요.");
+		$("#cst_id3").focus();
 		return false;
 	}
-	if ($("#hp").val() == "") {
+	if ($("#cst_tel").val() == "") {
 		alert("휴대폰 번호를 입력해주세요.");
-		$("#hp").focus();
+		$("#cst_tel").focus();
 		return false;
 	}
 	
@@ -41,12 +41,12 @@ function goSave() {
 			
 			<div class="member">
 				<div class="box">
-					<p>이름과 휴대폰 번호를 입력해 주세요.
+					<p>아이디와 휴대폰 번호를 입력해 주세요.
 					</p>
 					<fieldset class="login_form">
 						<ul>
-							<li><input type="text" name="email" id="email" placeholder="이메일"></li>
-							<li><input type="text" name="hp" id="hp" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" placeholder="휴대폰번호"></li>
+							<li><input type="text" name="cst_id3" id="cst_id3" placeholder="아이디"></li>
+							<li><input type="text" name="cst_tel" id="cst_tel" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" placeholder="휴대폰번호"></li>
 						</ul>
 						<div class="login_btn">
 						<input type="submit" value="비밀번호찾기" onclick="goSave();" alt="비밀번호찾기" />
@@ -54,7 +54,7 @@ function goSave() {
 					</fieldset>
 					<div class="btnSet clear">
 						<div>
-							<a href="emailsearch.do" class="btn" >아이디 찾기</a> 
+							<a href="idsearch.do" class="btn" >아이디 찾기</a> 
 						</div>
 					</div>
 				</div>

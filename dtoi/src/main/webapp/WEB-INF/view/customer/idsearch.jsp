@@ -8,21 +8,21 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>MOVIE</title>
-<%@ include file="/WEB-INF/view/include/header.jsp" %>
+<title>DTOI</title>
+<%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 </head>
 <script>
 //아이디 찾기
 function searchEmail(){
-	var datas = {"name":$("#name").val(), "hp" : $("#hp").val()};
-	if($("#name").val()==null){
+	var datas = {"cst_name":$("#cst_name").val(), "cst_tel" : $("#cst_tel").val()};
+	if($("#cst_name").val()==null){
 		alert("회원님의 이름을 입력해주세요.");
-	}else if($("#hp").val()==null){
+	}else if($("#cst_tel").val()==null){
 		alert("회원님의 휴대폰 번호를 입력해주세요.");
-	}else if($("#name").val()!=null && $("#hp").val()!=null){
+	}else if($("#cst_name").val()!=null && $("#cst_tel").val()!=null){
 		$.ajax ({
 			type:'POST',
-			url:"/member/searchemail.do",
+			url:"/customer/searchid.do",
 			data:datas,
 			async:false,
 			success:function(data) {
@@ -40,7 +40,7 @@ function searchEmail(){
 </script>
 <body>
     <%@ include file="/WEB-INF/view/include/header.jsp" %>
-	<form id="searchemail" action="searchemail.do" method="post">
+	<form id="searchid" action="searchid.do" method="post">
     <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">아이디 찾기</h3>
@@ -51,14 +51,14 @@ function searchEmail(){
 					</p>
 					<fieldset class="login_form">
 						<ul>
-							<li><input type="text" name="name" id="name" placeholder="이름"></li>
-							<li><input type="text" name="hp" id="hp" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" placeholder="휴대폰번호"></li>
+							<li><input type="text" name="cst_name" id="cst_name" placeholder="이름"></li>
+							<li><input type="text" name="cst_tel" id="cst_tel" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" placeholder="휴대폰번호"></li>
 						</ul>
-						<div class="login_btn"><input type="submit" value="아이디찾기" alt="아이디찾기" onclick="searchEmail();"/></div>
+						<div class="login_btn"><input type="submit" value="아이디찾기" alt="아이디찾기" onclick="searchId();"/></div>
 					</fieldset>
 					<div class="btnSet clear">
 						<div>
-							<a href="pwsearch.do" class="btn">비밀번호 찾기</a> 
+							<a href="pwdsearch.do" class="btn">비밀번호 찾기</a> 
 						</div>
 					</div>
 				</div>
