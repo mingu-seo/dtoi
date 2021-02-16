@@ -15,10 +15,16 @@ public class PdFaqVo extends CommonVo {
 	private int cst_no;
 	private int pd_no;
 	private String[] nos;
+	private String cst_name;	
 	
 	
 	
-	
+	public String getCst_name() {
+		return cst_name;
+	}
+	public void setCst_name(String cst_name) {
+		this.cst_name = cst_name;
+	}
 	public int getPd_no() {
 		return pd_no;
 	}

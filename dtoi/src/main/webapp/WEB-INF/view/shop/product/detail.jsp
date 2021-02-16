@@ -139,7 +139,7 @@
 					
 						<td class="first">${vo.re_no }</td>
 						<td class="txt_l">${vo.re_title}</td>
-						<td class="writer"> ${vo.cst_no }</td>
+						<td class="writer"> ${vo.cst_name }</td>
 						<td class="date">${vo.re_regdate }</td>
 						
 					</tr>						
@@ -226,25 +226,39 @@
 					<tbody>
 						<c:forEach var="vo" items="${flist}" varStatus="status">
 						<tr style='cursor:pointer;' onclick="showTr('${status.index}');">
-							<td class="first"><input type="checkbox" name="nos" id="pdfaq_no" value="${vo.pdfaq_no }"/></td>
-							<td>${vo.pdfaq_no } </td>
-							<td>${vo.pdfaq_name }</td>
-							<td class="txt_l">${vo.pdfaq_title }</td>
+						
+							<td class="first">${vo.pdfaq_no }</td>
+							<td class="txt_l">${vo.pdfaq_title}</td>
+							<td class="writer"> ${vo.cst_name }</td>
+							<td class="date">${vo.pdfaq_regdate }</td>
+							<td class=""></td>
 						</tr>
 						<tr id="tr${status.index}" style="display:none;">
 							<td class="first"></td>
 							<td> </td>
-							<td></td>
+							<td> </td>
 							<td class="txt_l">${vo.pdfaq_contents }</td>
+							<td> </td>
 						</tr>
 					</c:forEach>
 					</tbody>
 				</table>
 				<div class="btnSet"  style="text-align:right;">
 				<a class="btn" href="myPost.do">내가 작성한 글 </a>
-				<a class="btn" href="pdfaq/write.do">질문작성 </a>
+				<a class="btn" href="pdfaq/write.do?pd_no=${vo.pd_no }">질문작성 </a>
 				</div>
 				<div class="btnSet"  style="text-align:right;">
+				</div>
+				<div class="pagenate clear">								
+				<c:if test="${startPage > 10}">
+					<a href="index.do?reqPage=${startPage-1 }&searchWord=${param.searchWord}">[이전]</a>
+				</c:if>
+				<c:forEach var="rp" begin="${startPage }" end="${endPage }">
+					<a href="index.do?reqPage=${rp }&searchWord=${param.searchWord}">[${rp }]</a>
+				</c:forEach>
+				<c:if test="${totalPage > endPage }">
+					<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
+				</c:if>
 				</div>
 				<div class="bbsSearch">
 				<form method="get" name="searchForm" id="searchForm" action="index.do">
@@ -284,11 +298,67 @@
 					</div>
 		
 					<!-- 주문 가이드 -->	
+			<div class="bbs">
+				<table class="tbl_row guide" cellspacing="0" cellpadding="0">
+					<colgroup>
+						<col style="width:276px;">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+						 <th scope="row"> 배송안내</th>
+						 <td>
+						 	<ul>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 	</ul>
+						 </td>
+						</tr>
+						<tr>
+						 <th scope="row"> 교환/반품(환불)안내</th>
+						 <td>
+						 	<ul>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 	</ul>
+						 </td>
+						</tr>
+						<tr>
+						 <th scope="row"> 결제 완료 후 주문취소</th>
+						 <td>
+						 	<ul>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 	</ul>
+						 </td>
+						</tr>
+						<tr>
+						 <th scope="row"> 소비자보호 예외조항</th>
+						 <td>
+						 	<ul>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 	</ul>
+						 </td>
+						</tr>
+					</tbody>
+				</table>		
+			</div>
+				
 					
 					
 				
 						
 <script>
+
 function ct_countFunc(type) {
 	var v = Number($("#ct_count").val());
 	if (type == 'minus') {
@@ -324,7 +394,7 @@ function moveWrite() {
 
 function moveWrite() {
 	<c:if test="${!empty authUser}">
-	location.href='/dtoi/shop/product/pdfaq/write.do';
+	location.href='/dtoi/shop/product/pdfaq/write2.do';
 	</c:if>
 	<c:if test="${empty authUser}">
 	alert('로그인 후 이용가능합니다.');

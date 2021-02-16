@@ -40,7 +40,9 @@
 								<dd class="txt_l">
 									평점 : ${vo.pd_recom }
 								</dd>
-							
+								<dd class="txt_l">
+									상품 정보 : ${vo.pd_content }
+								</dd>
 							</dl>
 						</a>	
 					</li>

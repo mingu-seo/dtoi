@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="selectOne" parameterType="shop.product.pdfaq.PdFaqVo" resultType="shop.product.pdfaq.PdFaqVo">
-		select * from pd_faq where re_no=${pdfaq_no}
+		select * from pd_faq where pdfaq_no=${pdfaq_no}
 	</select>
 	
 	
@@ -28,6 +28,7 @@
 			,pdfaq_contents
 			,pdfaq_regdate
 			,cst_no
+			,cst_name
 			,pd_no
 						
 		) VALUES (
@@ -37,6 +38,7 @@
 			,#{pdfaq_contents}
 			,NOW()
 			,#{cst_no }
+			,#{cst_name }
 			,#{pd_no }
 		)
 	</insert>

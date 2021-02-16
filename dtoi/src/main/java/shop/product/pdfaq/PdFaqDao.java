@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public class PdFaqDao {
 
@@ -17,7 +18,8 @@ public class PdFaqDao {
 	}
 	
 	public List<PdFaqVo> selectList(PdFaqVo vo) {
-		return sqlSession.selectList("pdfaq.selectList", vo);
+		List<PdFaqVo> list = sqlSession.selectList("pdfaq.selectList", vo);
+		return list;
 	}
 	
 	public PdFaqVo selectOne(PdFaqVo vo) {

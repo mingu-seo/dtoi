@@ -5,15 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class PdFaqService {
 
 	@Autowired
-	private PdFaqDao faqDao;
+	private PdFaqDao pdfaqDao;
 	
 	// 총갯수와 총페이지수를 구하는 메서드
 	public int[] getRowPageCount(PdFaqVo vo) {
-		int totCount = faqDao.count(vo); // 총갯수
+		int totCount = pdfaqDao.count(vo); // 총갯수
 		// 총페이지 수 = 총갯수/페이지당갯수, 만약 총갯수에서 페이지당갯수로 나눈 나머지가 있으면 +1
 		int totPage = totCount / vo.getPageRow();
 		if (totCount % vo.getPageRow() > 0) totPage++;
@@ -38,15 +39,15 @@ public class PdFaqService {
 		// limit 시작값 = (사용자가 요청한 페이지번호 - 1) * 페이지당갯수
 		//int startIdx = (vo.getReqPage() - 1) * vo.getPageRow();
 		//vo.setStartIdx((vo.getReqPage() - 1) * vo.getPageRow());
-		return faqDao.selectList(vo);
+		return pdfaqDao.selectList(vo);
 	}
 	
 	public PdFaqVo selectOne(PdFaqVo uv) {
-		return faqDao.selectOne(uv);
+		return pdfaqDao.selectOne(uv);
 	}
 	
 	public boolean insert(PdFaqVo vo) {
-		int r = faqDao.insert(vo);
+		int r = pdfaqDao.insert(vo);
 		if (r > 0) {
 			return true;
 		} else {
@@ -55,7 +56,7 @@ public class PdFaqService {
 	}
 	
 	public boolean update(PdFaqVo vo) {
-		int r = faqDao.update(vo);
+		int r = pdfaqDao.update(vo);
 		if (r > 0) {
 			return true;
 		} else {
@@ -64,7 +65,7 @@ public class PdFaqService {
 	}
 	
 	public boolean delete(PdFaqVo vo) {
-		int r = faqDao.delete(vo);
+		int r = pdfaqDao.delete(vo);
 		if (r > 0) {
 			return true;
 		} else {
