@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import customer.CustomerVo;
 
 
 
@@ -102,9 +103,9 @@ public class CustomerService {
 		int cnt = cDao.update(vo);
 		return cnt;
 	}
+	
 
-	
-	
+
 	
 	
 	

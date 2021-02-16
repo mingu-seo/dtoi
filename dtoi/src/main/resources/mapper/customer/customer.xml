@@ -94,7 +94,7 @@
 	</select>
 	
 	<select id="idcheck" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
-        SELECT count(*) as cnt FROM customer WHERE cst_name=#{cst_name}
+        SELECT count(*) FROM customer WHERE cst_name=#{cst_name}
     </select>
     
     
