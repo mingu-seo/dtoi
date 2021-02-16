@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
+
+
+
 @Controller
 public class CustomerController {
 
@@ -186,20 +189,35 @@ public class CustomerController {
 		out.flush();
 	}
 	
-	
-		
 	@RequestMapping("/customer/idsearch.do")
-	public String emailsearch(Model model, CustomerVo param) throws Exception {
+	public String idsearch(Model model, CustomerVo param) throws Exception {
 		model.addAttribute("vo", param);
 		
 		return "customer/idsearch";
 	}
 	
-	@RequestMapping("/customer/pwsearch.do")
-	public String pwsearch(Model model, CustomerVo param) throws Exception {
+	@RequestMapping("/customer/pwdsearch.do")
+	public String pwdsearch(Model model, CustomerVo param) throws Exception {
 		model.addAttribute("vo", param);
 		
-		return "customer/pwsearch";
+		return "customer/pwdsearch";
+	}
+		
+	@RequestMapping("/customer/searchid.do")
+	public String searchid (Model model, CustomerVo param) throws Exception {
+		CustomerVo data = cService.searchId(param);
+		String cst_id = "";
+		if (data != null) {cst_id = data.getCst_id();}
+		model.addAttribute("value", cst_id);
+		
+		return "include/return";
+	}
+	
+	@RequestMapping("/customer/searchpwd.do")
+	public String searchpwd(Model model, CustomerVo param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "customer/pwdsearch";
 	}
 	
 }

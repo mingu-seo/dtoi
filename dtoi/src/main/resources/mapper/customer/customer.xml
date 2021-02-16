@@ -93,7 +93,26 @@
 		SELECT * FROM customer WHERE cst_id =#{cst_id } AND cst_pwd=md5(#{cst_pwd})
 	</select>
 	
-	
+	<select id="idcheck" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
+        SELECT count(*) FROM customer WHERE cst_name=#{cst_name}
+    </select>
+    
+    
+    <select id="searchId" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
+        SELECT cst_id FROM customer WHERE cst_name=#{cst_name} AND cst_tel=#{cst_tel}
+    </select>
+    
+    <!-- 비밀번호 찾기 할시 기존 비밀번호랑 맞는지 체크 -->
+    <select id="searchPwd" parameterType="customer.CustomerVo" resultType="customer.CustomerVo">
+        SELECT * FROM customer WHERE cst_id=#{cst_id} AND cst_tel=#{cst_tel}
+    </select>
+    
+    <!-- 임시 비밀번호 생성 -->
+    <update id="updatePwd" parameterType="customer.CustomerVo">
+        UPDATE customer SET
+        	    cst_pwd = md5(#{cst_pwd})
+        WHERE cst_id=#{cst_id} AND cst_tel=#{cst_tel}
+    </update>
 	
 	
 	

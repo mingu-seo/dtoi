@@ -24,7 +24,6 @@ SecureRandom random = new SecureRandom();
 String state = new BigInteger(130, random).toString(32);
 session.setAttribute("state", state);
 String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id="+client_id+"&redirect_uri="+redirectURI+"&state="+state;
-
 %>
 
 
@@ -48,12 +47,12 @@ $(function() {
 
 //로그인, 이메일 체크
 function loginCheck(){
-	if ( $("#loginEmail").val().length < 1 ) {
+	if ( $("#loginId").val().length < 1 ) {
 		alert("이메일을 입력해주세요.");
 		$("#loginEmail").focus();
 		return false;
 	}
-	if ( $("#loginPw").val().length < 1 ) {
+	if ( $("#loginPwd").val().length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
 		$("#loginPw").focus();
 		return false;
@@ -214,7 +213,7 @@ $(function() {
                 	</div>
                 	<div class="bottom_area">
                 		<input type="checkbox" id="reg" name="reg"/><label for="reg">아이디 저장</label>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;
-                		<a href="/member/emailsearch.do">아이디찾기</a>&nbsp;/&nbsp;<a href="/member/pwsearch.do">비밀번호 찾기</a>
+                		<a href="/dtoi/customer/idsearch.do">아이디찾기</a>&nbsp;/&nbsp;<a href="/dtoi/customer/pwdsearch.do">비밀번호 찾기</a>
                 	</div>
                 </div>
                 </form>

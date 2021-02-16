@@ -53,12 +53,16 @@ public class CustomerDao {
 		return sqlSession.selectOne("customer.searchId", vo);
 	}
 	
-	public CustomerVo searchpw(CustomerVo vo) throws SQLException {
-		return sqlSession.selectOne("customer.searchPw", vo);
+	public CustomerVo searchpwd(CustomerVo vo) throws SQLException {
+		return sqlSession.selectOne("customer.searchPwd", vo);
+	}
+	
+	public int idcheck(CustomerVo param) throws SQLException {
+		return sqlSession.selectOne("customer.idcheck", param);
 	}
 	
 	public int updatePw(CustomerVo vo) throws SQLException {
-		return sqlSession.selectOne("customer.updatePw", vo);
+		return sqlSession.selectOne("customer.updatePwd", vo);
 	}
 	
 	

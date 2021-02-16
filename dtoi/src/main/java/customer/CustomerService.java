@@ -6,8 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import customer.CustomerVo;
+
+
 
 
 @Service
@@ -90,14 +91,21 @@ public class CustomerService {
 		return cDao.login(vo);
 	}
 	
+	public int idcheck(CustomerVo param) throws SQLException {
+		return cDao.idcheck(param);
+	}
 	
 	public CustomerVo searchId(CustomerVo vo) throws SQLException {
 		return cDao.searchId(vo);
 	}
 	
+	public int tempPwd(CustomerVo vo) throws SQLException {
+		int cnt = cDao.update(vo);
+		return cnt;
+	}
+	
 
-	
-	
+
 	
 	
 	
