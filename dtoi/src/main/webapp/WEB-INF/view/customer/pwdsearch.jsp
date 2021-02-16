@@ -34,7 +34,7 @@ function goSave() {
 </script>
 <body>
     <%@ include file="/WEB-INF/view/include/header.jsp" %>
-	<form action="searchpw.do" name="board" method="post">
+	<form action="searchpwd.do" name="board" method="post">
     <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">비밀번호 찾기</h3>
