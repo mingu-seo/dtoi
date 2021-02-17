@@ -61,8 +61,8 @@ public class CustomerDao {
 		return sqlSession.selectOne("customer.idcheck", param);
 	}
 	
-	public int updatePw(CustomerVo vo) throws SQLException {
-		return sqlSession.selectOne("customer.updatePwd", vo);
+	public int updatePwd(CustomerVo vo) throws SQLException {
+		return sqlSession.update("customer.updatePwd", vo);
 	}
 	
 	

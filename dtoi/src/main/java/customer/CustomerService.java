@@ -111,10 +111,10 @@ public class CustomerService {
 			success = false;
 		} else {
 			success = true;
-			String tmpPwd = Function.randomNumber("");
+			String tmpPwd = Function.randomNumber("DTOI");
 			param.setCst_pwd(tmpPwd);
-			cDao.updatePw(param);
-			SendMail.sendEmail("humans13@naver.com", param.getCst_email(), "DTOI 비밀번호 찾기 서비스입니다.", "회원님의 임시 비밀번호는  "+tmpPwd+"입니다.");
+			cDao.updatePwd(param);
+			SendMail.sendEmail("humans13@naver.com", vo.getCst_email(), "DTOI 비밀번호 찾기 서비스입니다.", "회원님의 임시 비밀번호는  "+tmpPwd+"입니다.");
 		}
 		return success;
 	}

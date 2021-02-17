@@ -37,6 +37,7 @@ function formCheck() {
 					con = false;
 				}
 			}
+
 		});
 	} else {
 		alert('아이디는 3자 이상 입력해 주세요');

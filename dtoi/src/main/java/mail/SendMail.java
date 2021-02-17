@@ -69,5 +69,13 @@ public class SendMail {
 		}
 	}
 	
+	public static void main(String[] args) {
+		try {
+			SendMail.sendEmail("humans13@naver.com", "ush730@daum.net", "DTOI 비밀번호 찾기 서비스입니다.", "회원님의 임시 비밀번호는  zzzzz입니다.");
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
+	}
+	
 	
 }

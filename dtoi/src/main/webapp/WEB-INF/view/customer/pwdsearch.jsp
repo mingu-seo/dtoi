@@ -19,9 +19,9 @@ CustomerVo data = (CustomerVo)request.getAttribute("data");
 <script>
 function goSave() {
 	
-	if ($("#cst_id3").val() == "") {
+	if ($("#cst_id").val() == "") {
 		alert("아이디를 입력해주세요.");
-		$("#cst_id3").focus();
+		$("#cst_id").focus();
 		return false;
 	}
 	if ($("#cst_tel").val() == "") {
@@ -45,7 +45,7 @@ function goSave() {
 					</p>
 					<fieldset class="login_form">
 						<ul>
-							<li><input type="text" name="cst_id3" id="cst_id3" placeholder="아이디"></li>
+							<li><input type="text" name="cst_id" id="cst_id3" placeholder="아이디"></li>
 							<li><input type="text" name="cst_tel" id="cst_tel" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" placeholder="휴대폰번호"></li>
 						</ul>
 						<div class="login_btn">

@@ -215,9 +215,19 @@ public class CustomerController {
 	
 	@RequestMapping("/customer/searchpwd.do")
 	public String searchpwd(Model model, CustomerVo param) throws Exception {
-		model.addAttribute("vo", param);
+		boolean success = cService.searchPwd(param);
 		
-		return "customer/pwdsearch";
+		if (success) {
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", "임시 비밀번호가 메일로 전달되었습니다.");
+			model.addAttribute("url", "pwdsearch.do");
+		} else {
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", "임시 비밀번호 발급에 실패하였습니다.");
+			model.addAttribute("url", "pwdsearch.do");
+		}
+		
+		return "include/alert";
 	}
 	
 }

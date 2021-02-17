@@ -24,7 +24,7 @@ public class Function {
 		int n =	(int) Math.round(Math.random()*9);
 		num += n;
 		}
-	
+		str += sr+num;
 		
 		return str;
 	}
