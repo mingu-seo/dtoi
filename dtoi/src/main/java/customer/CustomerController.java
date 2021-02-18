@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
+
 @Controller
 public class CustomerController {
 
@@ -66,10 +67,29 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customer/write.do")
-	public String write() {
-		System.out.println("여기는 write.do");
+	public String write(HttpServletRequest req, HttpServletResponse res) {
+		
 		return "customer/write";
+
 	}
+	@PostMapping("/customer/write.do")
+	public String write(CustomerVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		CustomerVo uv = cService.login(vo);
+		// 결과 확인
+		if (uv != null) { 
+			HttpSession sess = req.getSession();
+			// 세션객체에 로그인정보 저장
+			sess.setAttribute("authUser", uv);
+		}
+		return "customer/index";
+		
+	}
+
+
+
+
+
+	
 	
 	@RequestMapping("/customer/insert.do")
 	public void insert(CustomerVo vo, HttpServletResponse res) throws Exception {
@@ -128,15 +148,18 @@ public class CustomerController {
 		// 사용자가 입력한 아이디와 비밀번호로 DB에서 조회한 결과
 		CustomerVo uv = cService.login(vo);
 		// 결과 확인
-		if (uv != null) { // 로그인 성공
+		if (uv != null) { 
+			// 로그인 성공
+
 			// 세션객체 가져오기
 			HttpSession sess = req.getSession();
 			// 세션객체에 로그인정보 저장
 			sess.setAttribute("authUser", uv);
+			req.setAttribute("msg", "로그인 되었습니다.");
 			
 			// 위 코드와 동일하게
 			//req.getSession().setAttribute("authUser", uv);
-			String url = "/dtoi/customer/index.do";
+			String url = "/dtoi/index.do";
 			System.out.println(req.getParameter("url"));
 			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 				url = req.getParameter("url");
@@ -229,5 +252,6 @@ public class CustomerController {
 		
 		return "include/alert";
 	}
+
 	
 }
