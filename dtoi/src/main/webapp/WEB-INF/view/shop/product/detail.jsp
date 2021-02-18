@@ -58,27 +58,30 @@
 							</dl>
 						</div>
 					</div>
-					
-					<div class="tab_area">
+			
+		
+				
+					<div class="tab_area" id="product_info">
 						<ul class ="tab_menu">
 							<li>
-								<a href="#" onclick="tab_move('0'); return false;" class="active">제품 상세</a>
+								<a href="#product_info" onclick="tab_move('0'); return false;" class="active">제품 상세</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('1'); return false;" >제품 리뷰</a>
+								<a href="#product_review" onclick="tab_move('1'); return false;" >제품 리뷰</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('2'); return false;" >제품 문의</a>
+								<a href="#product_qna" onclick="tab_move('2'); return false;" >제품 문의</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('3'); return false;" >주문 가이드</a>
+								<a href="#order_guide" onclick="tab_move('3'); return false;" >주문 가이드</a>
 							</li>
 							
 						</ul>
 					</div>
-					<!-- 상품 정보 -->
+		
+					<!-- 제품 상세 -->
 			<div class="bbs">
-				<div class="movie">
+				<div class="movie" style="border-top:2px solid #fff; border-bottom:1px solid #fff;">
 					<div class="info">
 						<div class="movie_info2" style="margin-top:30px;">
 							<dd> ${vo.pd_info}
@@ -90,19 +93,19 @@
 	
 
 
-					<div class="tab_area">
+					<div class="tab_area" id="product_review">
 						<ul class ="tab_menu">
 							<li>
-								<a href="#" onclick="tab_move('0'); return false;" >제품 상세</a>
+								<a href="#product_info" onclick="tab_move('0'); return false;" >제품 상세</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('1'); return false;" class="active">제품 리뷰</a>
+								<a href="#product_review" onclick="tab_move('1'); return false;" class="active">제품 리뷰</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('2'); return false;" >제품 문의</a>
+								<a href="#product_qna" onclick="tab_move('2'); return false;" >제품 문의</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('3'); return false;" >주문 가이드</a>
+								<a href="#order_guide" onclick="tab_move('3'); return false;" >주문 가이드</a>
 							</li>
 							
 						</ul>
@@ -139,7 +142,7 @@
 					
 						<td class="first">${vo.re_no }</td>
 						<td class="txt_l">${vo.re_title}</td>
-						<td class="writer"> ${vo.cst_name }</td>
+						<td class="writer"> ${vo.cst_no }</td>
 						<td class="date">${vo.re_regdate }</td>
 						
 					</tr>						
@@ -183,19 +186,19 @@
 			</div>				
 		</div>
 
-					<div class="tab_area">
+					<div class="tab_area" id="product_qna">
 						<ul class ="tab_menu">
 							<li>
-								<a href="#" onclick="tab_move('0'); return false;" >제품 상세</a>
+								<a href="#product_info" onclick="tab_move('0'); return false;" >제품 상세</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('1'); return false;" >제품 리뷰</a>
+								<a href="#product_review" onclick="tab_move('1'); return false;" >제품 리뷰</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('2'); return false;" class="active">제품 문의</a>
+								<a href="#product_qna" onclick="tab_move('2'); return false;" class="active">제품 문의</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('3'); return false;" >주문 가이드</a>
+								<a href="#order_guide" onclick="tab_move('3'); return false;" >주문 가이드</a>
 							</li>
 							
 						</ul>
@@ -229,7 +232,7 @@
 						
 							<td class="first">${vo.pdfaq_no }</td>
 							<td class="txt_l">${vo.pdfaq_title}</td>
-							<td class="writer"> ${vo.cst_name }</td>
+							<td class="writer"> ${vo.cst_no }</td>
 							<td class="date">${vo.pdfaq_regdate }</td>
 							<td class=""></td>
 						</tr>
@@ -279,19 +282,19 @@
 				
 			</div>
 						
-					<div class="tab_area">
+					<div class="tab_area" id="order_guide">
 						<ul class ="tab_menu">
 							<li>
-								<a href="#" onclick="tab_move('0'); return false;" >제품 상세</a>
+								<a href="#product_info" onclick="tab_move('0'); return false;" >제품 상세</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('1'); return false;" >제품 리뷰</a>
+								<a href="#product_review" onclick="tab_move('1'); return false;" >제품 리뷰</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('2'); return false;" >제품 문의</a>
+								<a href="#product_qna" onclick="tab_move('2'); return false;" >제품 문의</a>
 							</li>
 							<li>
-								<a href="#" onclick="tab_move('3'); return false;" class="active">주문 가이드</a>
+								<a href="#order_guide" onclick="tab_move('3'); return false;" class="active">주문 가이드</a>
 							</li>
 							
 						</ul>
@@ -299,6 +302,7 @@
 		
 					<!-- 주문 가이드 -->	
 			<div class="bbs">
+			
 				<table class="tbl_row guide" cellspacing="0" cellpadding="0">
 					<colgroup>
 						<col style="width:276px;">
@@ -454,6 +458,8 @@ function goDelete(re_no) {
 				console.log(msg);
 			}
 		});
+	}
+}
 
 
 </script>
