@@ -41,7 +41,7 @@ public class CartController {
 
 	
 	@GetMapping("/cart/delete.do")
-	public void delete(HttpServletResponse res, ProductVo vo) throws IOException {
+	public void delete(HttpServletResponse res, CartVo vo) throws IOException {
 		int delCount = 0;
 		res.setContentType("text/html;charset=utf-8");
 		PrintWriter out = res.getWriter();

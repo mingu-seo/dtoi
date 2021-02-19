@@ -51,14 +51,13 @@
 										<strong id="total_price" style=padding:20px;> ${vo.pd_price }</strong>원 &nbsp;
 									    <a href="javascript:" onclick="ct_countFunc('del');" ><img src="/dtoi/img/product/cart/count_del.png"></a>
 								</dt>
-								<dt class="reser_btn">
-									<input type="button" class="btn" value="장바구니" onclick="showDialogue('${vo.pd_no }');"/>
-									<input type="button" class="btn" value="바로 구매" onclick="showDialogue('${vo.pd_no }');"/>
+								<dt class="reser_btn" style="padding-bottom:5px">
+									<input type="button" class="btn" value="장바구니" href="cart/index.do" />
+									<input type="button" class="btn" value="바로 구매" onclick="showDialogue('${vo.pd_no }');" />
 								</dt>
 							</dl>
 						</div>
 					</div>
-			
 		
 				
 					<div class="tab_area" id="product_info">
@@ -249,8 +248,6 @@
 				<div class="btnSet"  style="text-align:right;">
 				<a class="btn" href="myPost.do">내가 작성한 글 </a>
 				<a class="btn" href="pdfaq/write.do?pd_no=${vo.pd_no }">질문작성 </a>
-				</div>
-				<div class="btnSet"  style="text-align:right;">
 				</div>
 				<div class="pagenate clear">								
 				<c:if test="${startPage > 10}">
