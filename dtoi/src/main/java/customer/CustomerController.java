@@ -252,6 +252,16 @@ public class CustomerController {
 		
 		return "include/alert";
 	}
+	
+	@RequestMapping("/customer/pwdcheck.do")
+	public String pwcheck(Model model, CustomerVo param) throws Exception {
+		model.addAttribute("vo", param);
+		int value = cService.idcheck(param);
+		
+		model.addAttribute("value", value);
+		
+		return "include/return";
+	}
 
 	
 }
