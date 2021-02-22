@@ -51,7 +51,6 @@ $(function(){
 단백질(g) :<input id='protein' name='protein' class='FoodNutrOutput' type='text'><br>
 지방(g) :<input id='fat' name='fat' class='FoodNutrOutput' type='text'><br>
 나트륨(mg) :<input id='sodium' name='sodium' class='FoodNutrOutput' type='text'><br>
-    
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 <%
 // 세션객체 가져오기

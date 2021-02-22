@@ -232,10 +232,10 @@ $(function() {
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/diet/index.do" class="parent"><span>영양관리</span></a>
+                            <a href="<%=request.getContextPath()%>/diet/index.do" class="parent"><span>칼로리사전</span></a>
                             <ul class="depth2">
-                                <li><a href="<%=request.getContextPath()%>/diet/index.do"><span>음식별 영양정보</span></a></li>
-                                <li><a href="<%=request.getContextPath()%>/diet/calculate.do"><span>식단 칼로리 계산</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>/diet/index.do"><span>음식칼로리</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>/diet/calculate.do"><span>my 칼로리 섭취량</span></a></li>
                             </ul>
                         </li>
                         <li>

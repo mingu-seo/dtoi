@@ -12,7 +12,7 @@ public class FoodVo {
 	private float sodium;
 	private float sugar;
 	private int gdegree;
-	private int foodCount;
+	private int searchCount;
 	
 	FoodVo(){
 		gdegree = 100;
@@ -77,10 +77,10 @@ public class FoodVo {
 	public void setGdegree(int gdegree) {
 		this.gdegree = gdegree;
 	}
-	public int getFoodCount() {
-		return foodCount;
+	public int getSearchCount() {
+		return searchCount;
 	}
-	public void setFoodCount(int foodCount) {
-		this.foodCount = foodCount;
+	public void setSearchCount(int searchCount) {
+		this.searchCount = searchCount;
 	}
 }
