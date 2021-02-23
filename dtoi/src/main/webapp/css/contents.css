@@ -15,6 +15,42 @@
 }
 
 
+/*칼로리사전*/
+.sub .size .topcontents{
+	height: 350px;
+}
+.sub .size .topcontents .left {
+	width: 45%;
+    float: left;
+    box-sizing: border-box;
+}
+.sub .size .topcontents .right {
+	width: 40%;
+    float: right;
+    box-sizing: border-box;
+}
+.sub .size .topcontents .right .exercise {
+	width: 300px;
+	box-sizing: border-box;
+	position: absolute;
+}
+
+.sub .size .topcontents .right .exercise .img {
+	height: 90px;
+}
+.sub .size .topcontents .right .exercise .name {
+	height: 20px;
+}
+.sub .size .topcontents .right .exercise .min {
+	height: 20px;
+}
+.sub .size .topcontents .right .exercise .padding {
+	height: 30px;
+}
+
+
+
+
 /* 게시판 */
 .board_write {border-top:2px solid #351f66; border-bottom:1px solid #999;}
 .board_write thead th{text-align:center;}
