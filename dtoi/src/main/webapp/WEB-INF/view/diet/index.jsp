@@ -31,7 +31,8 @@ $(function(){
 					$("#fat").val(v.fat);
 					$("#sodium").val(v.sodium);
 					var walking = 4;
-					$("#walking").text(parseInt(v.calories)/parseInt(walking));
+					var num = parseInt(v.calories);
+					$("#walking").text(num/walking);
 					$("#running").text(v.name);
 					$("#jumping").text(v.name);
 					$("#cycling").text(v.name);
