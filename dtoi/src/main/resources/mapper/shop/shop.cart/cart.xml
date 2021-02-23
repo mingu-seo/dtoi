@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+
+	<select id="count" parameterType="shop.cart.CartVo" resultType="int">
+		select count(*) as cnt from cart
+	</select>
+	
+	<select id="selectList" resultType="shop.cart.CartVo">
+		select * from cart
+		
+	</select>
+	
+	<select id="selectOne" parameterType="shop.cart.CartVo" resultType="shop.cart.CartVo">
+		select * from cart where pd_no=${pd_no}
+	</select>
+	
+	<insert id="insert" parameterType="shop.cart.CartVo">
+		INSERT INTO cart (
+			cart_no
+			,pd_no
+			,cst_no
+			,pd_name
+			,pd_price
+			,ct_count
+			,ct_price
+			
+		) VALUES (
+			#{cart_no}
+			,#{pd_no}
+			,#{cst_no}
+			,#{pd_name}
+			,#{pd_price}
+			,#{ct_count}
+			,#{ct_price}
+
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="shop.cart.CartVo">
+		DELETE FROM cart WHERE pd_no = #{pd_no}
+	</delete>
+
+
+	
+</mapper>

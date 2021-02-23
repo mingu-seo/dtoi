@@ -16,11 +16,17 @@
 	</select>
 	
 	<select id ="selectName" parameterType="diet.FoodVo" resultType="diet.FoodVo">
-		select * from food where name=${name}
+		select * from food where name=#{name}
 	</select>
 	
-	<select id ="isDuplicateName" parameterType="String" resultType="int">
+	<select id ="countName" parameterType="String" resultType="int">
 		select count(*) from food where name = #{name}
+	</select>
+	
+	<select id="selectTopList" resultType="diet.FoodVo">
+		select * from food
+		order by searchCount
+		limit 0, 30
 	</select>
 	
 	<insert id ="insertFood" parameterType="diet.FoodVo">
@@ -64,11 +70,17 @@
 		WHERE
 			fd_no  = #{fd_no}
 	</update>
+	<update id="updateSearchCount" parameterType="int">
+		UPDATE food SET
+			searchCount = searchCount + 1			
+		WHERE
+			fd_no = ${fd_no}
+	</update>
+
 	
 	<delete id ="deleteFood" parameterType="diet.FoodVo">
 		DELETE FROM food WHERE fd_no = #{fd_no}
 	</delete>
-	
 	
 	
 	

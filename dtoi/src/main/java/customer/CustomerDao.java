@@ -1,5 +1,6 @@
 package customer;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -44,8 +45,25 @@ public class CustomerDao {
 		return sqlSession.selectOne("customer.login", vo);
 	}
 	
+	public CustomerVo kakaologin(CustomerVo vo) {
+		return sqlSession.selectOne("customer.login", vo);
+	}
 	
+	public CustomerVo searchId(CustomerVo vo) throws SQLException {
+		return sqlSession.selectOne("customer.searchId", vo);
+	}
 	
+	public CustomerVo searchpwd(CustomerVo vo) throws SQLException {
+		return sqlSession.selectOne("customer.searchPwd", vo);
+	}
+	
+	public int idcheck(CustomerVo param) throws SQLException {
+		return sqlSession.selectOne("customer.idcheck", param);
+	}
+	
+	public int updatePwd(CustomerVo vo) throws SQLException {
+		return sqlSession.update("customer.updatePwd", vo);
+	}
 	
 	
 	

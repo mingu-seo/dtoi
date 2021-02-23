@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pdfaq">
+
+	<select id="count" parameterType="shop.product.pdfaq.PdFaqVo" resultType="int">
+		select count(*) as cnt from pd_faq
+	</select>
+	
+	<select id="selectList" resultType="shop.product.pdfaq.PdFaqVo">
+		select * from pd_faq where pd_no=#{pd_no}
+		
+		ORDER BY pdfaq_no DESC
+		limit ${startIdx}, ${pageRow}
+	</select>
+	
+	<select id="selectOne" parameterType="shop.product.pdfaq.PdFaqVo" resultType="shop.product.pdfaq.PdFaqVo">
+		select * from pd_faq where pdfaq_no=${pdfaq_no}
+	</select>
+	
+	
+	
+	
+	<insert id="insert" parameterType="shop.product.pdfaq.PdFaqVo">
+		INSERT INTO pd_faq (
+		
+			pdfaq_no
+			,pdfaq_title
+			,pdfaq_contents
+			,pdfaq_regdate
+			,cst_no
+			,cst_name
+			,pd_no
+						
+		) VALUES (
+		
+			#{pdfaq_no}
+			,#{pdfaq_title}
+			,#{pdfaq_contents}
+			,NOW()
+			,#{cst_no }
+			,#{cst_name }
+			,#{pd_no }
+		)
+	</insert>
+	
+	
+	<update id="update" parameterType="shop.product.pdfaq.PdFaqVo">
+		UPDATE pd_faq SET
+			pdfaq_title = #{pdfaq_title},
+			pdfaq_contents = #{pdfaq_contents},			
+		WHERE
+			pdfaq_no = #{pdfaq_no}
+	</update>
+
+	
+	<delete id="delete" parameterType="shop.product.pdfaq.PdFaqVo">
+		DELETE FROM pd_faq WHERE pdfaq_no = #{pdfaq_no}
+	</delete>
+
+	
+</mapper>

@@ -6,6 +6,9 @@
 <%@ page import="java.security.SecureRandom"  %>
 <%@ page import="java.math.BigInteger"  %>
 <%@ page import="java.net.URLEncoder"  %>
+<%@ page import="org.json.simple.*" %>
+<%@ page import="org.json.simple.parser.*" %>
+<%@ page import="customer.CustomerVo" %>
 
 
 <script type="text/javascript" src="/dtoi/js/swiper.min.js"></script>
@@ -22,6 +25,7 @@ String state = new BigInteger(130, random).toString(32);
 session.setAttribute("state", state);
 String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id="+client_id+"&redirect_uri="+redirectURI+"&state="+state;
 %>
+
 
 
 $(function() {
@@ -43,12 +47,12 @@ $(function() {
 
 //로그인, 이메일 체크
 function loginCheck(){
-	if ( $("#loginEmail").val().length < 1 ) {
+	if ( $("#loginId").val().length < 1 ) {
 		alert("이메일을 입력해주세요.");
 		$("#loginEmail").focus();
 		return false;
 	}
-	if ( $("#loginPw").val().length < 1 ) {
+	if ( $("#loginPwd").val().length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
 		$("#loginPw").focus();
 		return false;
@@ -141,7 +145,16 @@ $(function() {
 						console.log('kakao birthday : '+res.kakao_account.birthday);
 						console.log('kakao gender : '+res.kakao_account.gender);
 						console.log('kakao nickname : ' +res.properties['nickname']);
-				
+
+						
+						var authUser = res.properties.nickname;
+						 //window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/dtoi/sns/kakao/kakocallback.jsp?cst_name="+authUser);
+						 $.ajax({
+							 url : "/dtoi/sns/kakao/kakaocallback.jsp?cst_name="+authUser,
+							 success:function(data) {
+								 location.reload();
+							 }
+						 });
 				 	},
 				 	fail: function(error) {
 						alert(JSON.stringify(error));
@@ -194,13 +207,13 @@ $(function() {
                 			<input type="submit" value="로그인"/><br>
                 		</div>
                 		<div class ="sns_btn">
-                			<img src="/dtoi/gallery/naver.PNG" id="naverLogin" alt="네이버로그인" width="50" height="50" align="left" border="20">
-							<img src="/dtoi/gallery/kakao.jpg" id="kakaoBtn" alt="카카오로그인" width="50" height="50" align="left" border="20">
+                			<img src="/dtoi/gallery/naverlogin.PNG" id="naverLogin" alt="네이버로그인" vspace = "5" hspace="10" width="200" height="50" align="left" border="20"><br>
+							<img src="/dtoi/gallery/kakaologin.png" id="kakaoBtn" alt="카카오로그인" vspace = "2" hspace="10" width="200" height="50" align="left" border="20">
                 		</div>
                 	</div>
                 	<div class="bottom_area">
                 		<input type="checkbox" id="reg" name="reg"/><label for="reg">아이디 저장</label>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;
-                		<a href="/member/emailsearch.do">아이디찾기</a>&nbsp;/&nbsp;<a href="/member/pwsearch.do">비밀번호 찾기</a>
+                		<a href="/dtoi/customer/idsearch.do">아이디찾기</a>&nbsp;/&nbsp;<a href="/dtoi/customer/pwdsearch.do">비밀번호 찾기</a>
                 	</div>
                 </div>
                 </form>
@@ -219,10 +232,10 @@ $(function() {
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/diet/index.do" class="parent"><span>영양관리</span></a>
+                            <a href="<%=request.getContextPath()%>/diet/index.do" class="parent"><span>칼로리사전</span></a>
                             <ul class="depth2">
-                                <li><a href="<%=request.getContextPath()%>/diet/index.do"><span>음식별 영양정보</span></a></li>
-                                <li><a href="<%=request.getContextPath()%>"><span>식단 칼로리 계산</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>/diet/index.do"><span>음식칼로리</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>/diet/calculate.do"><span>my 칼로리 섭취량</span></a></li>
                             </ul>
                         </li>
                         <li>

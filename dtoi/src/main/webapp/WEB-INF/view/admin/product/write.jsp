@@ -81,25 +81,25 @@ function formCheck() {
 									<tr>
 										<th scope="row"><label for="">상품이름</label></th>
 										<td colspan="10">
-											<textarea id="title" name="pd_name" title="상품이름 입력란" style="width:100%;"></textarea>	
+											<input type="text" name="pd_name" title="상품이름 입력란" style="width:100%;">	
 										</td>
 									</tr>									
 									<tr>
 										<th scope="row"><label for="">상품가격</label></th>
 										<td colspan="10">
-											<textarea id="text" name="pd_price" title="가격 입력란" style="width:100%;"></textarea>	
+											<input type="text" name="pd_price" title="가격 입력란" style="width:100%;">	
 										</td>
 									</tr>									
 									<tr>
 										<th scope="row"><label for="">상품 카테고리</label></th>
 										<td colspan="10">
-											<textarea id="text" name="pd_category" style="width:100%;"></textarea>	
+											<input type="text" name="pd_category" style="width:100%;">
 										</td>
 									</tr>									
 									<tr>
 										<th scope="row"><label for="">상품평점</label></th>
 										<td colspan="10">
-											<textarea id="text" name="pd_recom" style="width:100%;"></textarea>	
+											<input type="text" name="pd_recom" style="width:100%;">	
 										</td>
 									</tr>
 									<tr>
@@ -111,7 +111,7 @@ function formCheck() {
 									<tr>
 										<th scope="row"><label for="">상품상세</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="pd_content" title="상품 상세 입력란" style="width:100%;"></textarea>	
+											<input type="text" name="pd_content" title="상품 상세 입력란" style="width:100%;">
 										</td>
 									</tr>									
 																

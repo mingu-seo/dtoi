@@ -9,7 +9,7 @@
 <html lang="ko">
 <head>
 
-<title>상품 정보</title>
+<title>DtoI</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
@@ -31,7 +31,7 @@
 										${vo.pd_name }	
 								</dt>
 								<dt class="info_detail">
-									<strong>가격</strong>&nbsp;  ${vo.pd_price } 원
+									<strong>가격</strong>&nbsp; ${vo.pd_price } 원
 								</dt>
 								<dt class="info_detail">
 									<strong>카테고리</strong>&nbsp;  ${vo.pd_category }
@@ -40,7 +40,7 @@
 									<strong>평점</strong>&nbsp;  ${vo.pd_recom }
 								</dt>
 								<dt class="info_detail">
-									<strong>상품 정보</strong>&nbsp;  ${vo.pd_info }
+									<strong>상품 정보</strong>&nbsp;  ${vo.pd_content }
 								</dt>
 								<dt class="qty">
 									<strong>상품 수량</strong>&nbsp; 
@@ -51,108 +51,315 @@
 										<strong id="total_price" style=padding:20px;> ${vo.pd_price }</strong>원 &nbsp;
 									    <a href="javascript:" onclick="ct_countFunc('del');" ><img src="/dtoi/img/product/cart/count_del.png"></a>
 								</dt>
-								<dt class="reser_btn">
-									<input type="button" class="btn" value="장바구니" onclick="showDialogue('${vo.pd_no }');"/>
-									<input type="button" class="btn" value="바로 구매" onclick="showDialogue('${vo.pd_no }');"/>
+								<dt class="reser_btn" style="padding-bottom:5px">
+									<input type="button" class="btn" value="장바구니" href="cart/index.do" />
+									<input type="button" class="btn" value="바로 구매" onclick="showDialogue('${vo.pd_no }');" />
 								</dt>
 							</dl>
 						</div>
 					</div>
-						<div class="movie_info2">
-							<dl>
-								<dt class="info_detail">
-
-								<h5 class="movie_title"><strong>제품 상세</strong></h5>
-									<div class="synop_contents" >
-										 ${vo.pd_content}
-								</dt>
-							</dl>
+		
+				
+					<div class="tab_area" id="product_info">
+						<ul class ="tab_menu">
+							<li>
+								<a href="#product_info" onclick="tab_move('0'); return false;" class="active">제품 상세</a>
+							</li>
+							<li>
+								<a href="#product_review" onclick="tab_move('1'); return false;" >제품 리뷰</a>
+							</li>
+							<li>
+								<a href="#product_qna" onclick="tab_move('2'); return false;" >제품 문의</a>
+							</li>
+							<li>
+								<a href="#order_guide" onclick="tab_move('3'); return false;" >주문 가이드</a>
+							</li>
+							
+						</ul>
+					</div>
+		
+					<!-- 제품 상세 -->
+			<div class="bbs">
+				<div class="movie" style="border-top:2px solid #fff; border-bottom:1px solid #fff;">
+					<div class="info">
+						<div class="movie_info2" style="margin-top:30px;">
+							<dd> ${vo.pd_info}
+							</dd>
 						</div>
-					<h5 class="movie_title"><strong>제품 문의</strong></h5>
+					</div>
+				</div>
+			</div>
+	
+
+
+					<div class="tab_area" id="product_review">
+						<ul class ="tab_menu">
+							<li>
+								<a href="#product_info" onclick="tab_move('0'); return false;" >제품 상세</a>
+							</li>
+							<li>
+								<a href="#product_review" onclick="tab_move('1'); return false;" class="active">제품 리뷰</a>
+							</li>
+							<li>
+								<a href="#product_qna" onclick="tab_move('2'); return false;" >제품 문의</a>
+							</li>
+							<li>
+								<a href="#order_guide" onclick="tab_move('3'); return false;" >주문 가이드</a>
+							</li>
+							
+						</ul>
+					</div>
+					
+					<!-- 제품리뷰 -->
+
+			<div class="bbs">
+			<table class="list">
+			<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
+			<form><input type="hidden" name="cst_no" value="${authUser.cst_no }"></form>
+				
+				<colgroup>
+					
+					<col width="80px" />
+					<col width="*" />
+					<col width="100px" />
+					<col width="100px" />
+				
+				</colgroup>
+				<thead>
+				<tr>
+	
+					<th scope="col" class="first">번호</th>
+					<th scope="col">리뷰</th> 
+					<th scope="col">작성자</th>
+					<th scope="col">작성일</th> 
+					
+				</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="vo" items="${rlist}">							
+					<tr style='cursor:pointer;' onclick="location.href='detail.do?re_no=${vo.re_no }'">
+					
+						<td class="first">${vo.re_no }</td>
+						<td class="txt_l">${vo.re_title}</td>
+						<td class="writer"> ${vo.cst_no }</td>
+						<td class="date">${vo.re_regdate }</td>
+						
+					</tr>						
+				</c:forEach>					
+				</tbody>
+			</table>	
+							
+			<div class="btnSet"  style="text-align:right;">
+				<a class="btn" href="pdreview/write.do?pd_no=${vo.pd_no }">글쓰기 </a>
+			</div>
+				
+			<div class="pagenate clear">								
+				<c:if test="${startPage > 10}">
+					<a href="index.do?reqPage=${startPage-1 }&searchWord=${param.searchWord}">[이전]</a>
+				</c:if>
+				<c:forEach var="rp" begin="${startPage }" end="${endPage }">
+					<a href="index.do?reqPage=${rp }&searchWord=${param.searchWord}">[${rp }]</a>
+				</c:forEach>
+				<c:if test="${totalPage > endPage }">
+					<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
+				</c:if>
+			</div>
+	
+	<!-- 상품 인덱스에 넣어서 조회수와 별점과 판매량순으로 정렬해서 볼수있게 변경예정  -->
+			<div class="bbsSearch">
+				<form method="get" name="searchForm" id="searchForm" action="index.do">
+					<span class="srchSelect">
+						<select name="searchType">
+							<option value="" <c:if test="${param.searchType == 0 }">selected</c:if>>전체</option>
+							<option value="1" <c:if test="${param.searchType == 1 }">selected</c:if>>제목만</option>
+							<option value="2" <c:if test="${param.searchType == 2 }">selected</c:if>>내용만</option>
+							<option value="3" <c:if test="${param.searchType == 3 }">selected</c:if>>작성자</option>
+						</select>
+					</span>
+					<span class="searchWord">							
+						<input type="text" name="searchWord" value="${param.searchWord }">
+						<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
+					</span>
+					
+				</form>					
+			</div>				
+		</div>
+
+					<div class="tab_area" id="product_qna">
+						<ul class ="tab_menu">
+							<li>
+								<a href="#product_info" onclick="tab_move('0'); return false;" >제품 상세</a>
+							</li>
+							<li>
+								<a href="#product_review" onclick="tab_move('1'); return false;" >제품 리뷰</a>
+							</li>
+							<li>
+								<a href="#product_qna" onclick="tab_move('2'); return false;" class="active">제품 문의</a>
+							</li>
+							<li>
+								<a href="#order_guide" onclick="tab_move('3'); return false;" >주문 가이드</a>
+							</li>
+							
+						</ul>
+					</div>
+					
+					<!-- 제품 문의 -->
 					<div class="bbs">
 					<table class="list">
-
-					<caption>질문 목록</caption>
+					<input type="hidden" name="cst_no" value="${authUser.cst_no }">
+					<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>
+				
 					<colgroup>
 						<col width="80px" />
-						<col width="100px" />
 						<col width="*" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="100px" />
 					</colgroup>
 					<thead>
 						<tr>
-							<th></th>
-							<th>카테고리</th>
-							<th>질문</th>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>답변여부</th>
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="vo" items="${list}" varStatus="status">
+						<c:forEach var="vo" items="${flist}" varStatus="status">
 						<tr style='cursor:pointer;' onclick="showTr('${status.index}');">
-							<td>${vo.faq_no } </td>
-							<td>${vo.faq_section }</td>
-							<td class="txt_l">${vo.faq_title }</td>
+						
+							<td class="first">${vo.pdfaq_no }</td>
+							<td class="txt_l">${vo.pdfaq_title}</td>
+							<td class="writer"> ${vo.cst_no }</td>
+							<td class="date">${vo.pdfaq_regdate }</td>
+							<td class=""></td>
 						</tr>
 						<tr id="tr${status.index}" style="display:none;">
-							<td colspan="2">↳</td>
-							<td class="txt_l">${vo.faq_contents }</td>
+							<td class="first"></td>
+							<td> </td>
+							<td> </td>
+							<td class="txt_l">${vo.pdfaq_contents }</td>
+							<td> </td>
 						</tr>
 					</c:forEach>
 					</tbody>
 				</table>
+				<div class="btnSet"  style="text-align:right;">
+				<a class="btn" href="myPost.do">내가 작성한 글 </a>
+				<a class="btn" href="pdfaq/write.do?pd_no=${vo.pd_no }">질문작성 </a>
+				</div>
+				<div class="pagenate clear">								
+				<c:if test="${startPage > 10}">
+					<a href="index.do?reqPage=${startPage-1 }&searchWord=${param.searchWord}">[이전]</a>
+				</c:if>
+				<c:forEach var="rp" begin="${startPage }" end="${endPage }">
+					<a href="index.do?reqPage=${rp }&searchWord=${param.searchWord}">[${rp }]</a>
+				</c:forEach>
+				<c:if test="${totalPage > endPage }">
+					<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
+				</c:if>
+				</div>
+				<div class="bbsSearch">
+				<form method="get" name="searchForm" id="searchForm" action="index.do">
+					<span class="srchSelect">
+						<select name="qna_section">
+							<option value="" <c:if test="${param.qna_section == '' }">selected</c:if>>전체</option>
+							<option value="1" <c:if test="${param.qna_section == '1' }">selected</c:if>>상품문의</option>
+							<option value="2" <c:if test="${param.qna_section == '2' }">selected</c:if>>반품문의</option>
+							<option value="3" <c:if test="${param.qna_section == '3' }">selected</c:if>>기타문의</option>
+						</select>
+					</span>
+					<span class="searchWord">
+						<input type="text" name="searchWord" value="${param.searchWord }">
+						<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
+					</span>						
+				</form>					
 			</div>
-					<h5 class="movie_title"><strong>포토 리뷰</strong></h5>
-					<div class="trailler_area">
-						<ul>
-						 
+				
+			</div>
+						
+					<div class="tab_area" id="order_guide">
+						<ul class ="tab_menu">
 							<li>
-								<div class="img">
-									<iframe src="" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
-								</div>
+								<a href="#product_info" onclick="tab_move('0'); return false;" >제품 상세</a>
 							</li>
 							<li>
-								<div class="video_container">
-									<iframe src="" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
-								</div>
+								<a href="#product_review" onclick="tab_move('1'); return false;" >제품 리뷰</a>
 							</li>
 							<li>
-								<div class="video_container">
-									<iframe src="" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
-								</div>
+								<a href="#product_qna" onclick="tab_move('2'); return false;" >제품 문의</a>
 							</li>
+							<li>
+								<a href="#order_guide" onclick="tab_move('3'); return false;" class="active">주문 가이드</a>
+							</li>
+							
 						</ul>
 					</div>
-					
 		
-					<form method="post" name="frm" id="frm" action="" >
-					<input type="hidden" name="movie_pk" value="${vo.pd_no} }"/>
-					<h5 class="movie_title">리뷰</h5>
-						
+					<!-- 주문 가이드 -->	
+			<div class="bbs">
+			
+				<table class="tbl_row guide" cellspacing="0" cellpadding="0">
+					<colgroup>
+						<col style="width:276px;">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+						 <th scope="row"> 배송안내</th>
+						 <td>
+						 	<ul>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 	</ul>
+						 </td>
+						</tr>
+						<tr>
+						 <th scope="row"> 교환/반품(환불)안내</th>
+						 <td>
+						 	<ul>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 	</ul>
+						 </td>
+						</tr>
+						<tr>
+						 <th scope="row"> 결제 완료 후 주문취소</th>
+						 <td>
+						 	<ul>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 	</ul>
+						 </td>
+						</tr>
+						<tr>
+						 <th scope="row"> 소비자보호 예외조항</th>
+						 <td>
+						 	<ul>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 		<li><strong>배송지역 : 국내 지역, 일부 해외 지역</strong></li>
+						 	</ul>
+						 </td>
+						</tr>
+					</tbody>
+				</table>		
+			</div>
+				
 					
-					<div class="review_area">
-							<div class="search" align="center">									
-								<input type="text" name="searchWord" value="${param.searchWord }" title="검색할 내용을 입력해주세요" />
-								<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
-							</div>
-						<div class="review_write">
-							<div class="input">
-								<div class="rate" role="radiogroup">
-									<select name="score">
-									</select>
-								</div>
-								
-								<div class="textarea">
-									<textarea name="contents" id="contents"></textarea>
-								</div>
-								<div class="btn_area">
-									<input type="button" class="btn" onclick="save();" value="등록">
-									<a href="/dtoi/shop/pdreview/index.do"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
+					
+				
 						
 <script>
+
 function ct_countFunc(type) {
 	var v = Number($("#ct_count").val());
 	if (type == 'minus') {
@@ -174,10 +381,44 @@ function ct_countFunc(type) {
 }
 
 
+function moveWrite() {
+	<c:if test="${!empty authUser}">
+	location.href='/dtoi/shop/product/pdreview/write.do';
+	</c:if>
+	<c:if test="${empty authUser}">
+	alert('로그인 후 이용가능합니다.');	
+	$(".login_info").toggle();
+	$('html, body').scrollTop(0);
+	useremail_chk();
+	</c:if>	
+}
+
+function moveWrite() {
+	<c:if test="${!empty authUser}">
+	location.href='/dtoi/shop/product/pdfaq/write2.do';
+	</c:if>
+	<c:if test="${empty authUser}">
+	alert('로그인 후 이용가능합니다.');
+	location.href='/dtoi/customer/login.do?url=/shop/product/index.do'
+	</c:if>	
+}
+
+
+function goSearch() {
+	$("#searchForm").submit();
+	
+}
+
+
+function showTr(id) {
+	$("#tr"+id).toggle();
+}
+
 
 $(function() {
 	getList();
 });
+
 
 function getList() {
 	$.ajax({
@@ -194,10 +435,11 @@ function getList() {
 	});
 }
 
+
 function goDelete(re_no) {
 	if (confirm("삭제하시겠습니까?")) {
 		$.ajax({
-			url : "/dtoi/shop/pdreview/delete.do",
+			url : "/dtoi/shop/product/pdreview/delete.do",
 			data : data,
 			async : true,
 			success : function(data) {
@@ -216,10 +458,9 @@ function goDelete(re_no) {
 	}
 }
 
+
 </script>
-						<div class="review_list">
-							
-						</div>
+					
 					</div>
 				</div>
 			</div>
@@ -227,23 +468,7 @@ function goDelete(re_no) {
     
 
 
-<script>
-$(function(){
-	var swiper = new Swiper('.swiper-container', {
-		loop: true,
-		autoplay: {
-		    delay: 5000,
-		  },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-       	},
-	});
-});
-</script>
+
 	<!--//btn-->
 							<!-- 페이징 처리 -->
 							<div class='page'>								
@@ -260,6 +485,18 @@ $(function(){
 						
 							
 							
-		<%@ include file="/WEB-INF/view/include/footer.jsp" %>
+<%@ include file="/WEB-INF/view/include/footer.jsp" %>
+<%
+// 세션객체 가져오기
+CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");
+%>
+<% if (authUser == null) { %>
+로그인전
+<% } %>
+<% if (authUser != null) { %>
+로그인후 
+<%=authUser.getCst_name() %>님 안녕하세요!
+<% } %>		
+		
 </body>
 </html>

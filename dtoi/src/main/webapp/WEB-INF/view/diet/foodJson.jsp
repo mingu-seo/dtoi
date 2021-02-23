@@ -1,14 +1,17 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="diet.*" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-</head>
-<body>
-"foods" : [
-	
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+[
+
+	{
+		"name" : "${vo.name}", 
+		"calories" : "${vo.calories}", 
+		"carbohydrate" : "${vo.carbohydrate}", 
+		"fiber" : "${vo.fiber}", 
+		"sugar" : "${vo.sugar}", 
+		"protein" : "${vo.protein}", 
+		"fat": "${vo.fat}", 
+		"sodium" : "${vo.sodium}",
+		"searchCount" : "${vo.searchCount}"
+	}
 ]
-</body>
-</html>

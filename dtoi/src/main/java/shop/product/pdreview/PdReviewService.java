@@ -1,15 +1,17 @@
-package shop.pdreview;
+package shop.product.pdreview;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service  
 public class PdReviewService {
 
 	@Autowired
 	private PdReviewDao pdreviewDao;
+
 	
 		public int[] getRowPageCount(PdReviewVo vo) {
 			int totCount = pdreviewDao.count(vo);
@@ -30,9 +32,13 @@ public class PdReviewService {
 			return rowPageCount;
 		}
 
-		public List<PdReviewVo> getList(int pd_no) {
+		public List<PdReviewVo> getList(PdReviewVo vo) {
 	
-			return pdreviewDao.selectList(pd_no);
+			return pdreviewDao.selectList(vo);
+		}
+		
+		public PdReviewVo selectOne(PdReviewVo uv) {
+			return pdreviewDao.selectOne(uv);
 		}
 		
 		

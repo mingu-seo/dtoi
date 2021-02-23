@@ -1,9 +1,15 @@
 package customer;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import mail.SendMail;
+import util.Function;
+
+
 
 @Service
 public class CustomerService {
@@ -85,13 +91,34 @@ public class CustomerService {
 		return cDao.login(vo);
 	}
 	
+	public int idcheck(CustomerVo param) throws SQLException {
+		return cDao.idcheck(param);
+	}
 	
+	public CustomerVo searchId(CustomerVo vo) throws SQLException {
+		return cDao.searchId(vo);
+	}
 	
+	public int tempPwd(CustomerVo vo) throws SQLException {
+		int cnt = cDao.update(vo);
+		return cnt;
+	}
 	
-	
-	
-	
-	
+	public boolean searchPwd(CustomerVo param) throws Exception {
+		boolean success = false;
+		CustomerVo vo = cDao.searchpwd(param);
+		if (vo == null) {
+			success = false;
+		} else {
+			success = true;
+			String tmpPwd = Function.randomNumber("DTOI");
+			param.setCst_pwd(tmpPwd);
+			cDao.updatePwd(param);
+			SendMail.sendEmail("humans13@naver.com", vo.getCst_email(), "DTOI 비밀번호 찾기 서비스입니다.", "회원님의 임시 비밀번호는  "+tmpPwd+"입니다.");
+		}
+		return success;
+	}
+
 	
 	
 	

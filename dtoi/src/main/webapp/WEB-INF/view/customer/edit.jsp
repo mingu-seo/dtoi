@@ -157,6 +157,10 @@ $(function() {
 						<td><input type="password" name="cst_pwd" id="cst_pwd" class="wid200" style="float:left;" value=""> </td>
 					</tr>
 					<tr>
+						<th>*비밀번호<span>확인</span></th>
+						<td><input type="password" name="cst_pwd_check" id="cst_pwd_check" class="wid200" style="float:left;" value=""> </td>
+					</tr>
+					<tr>
 						<th>*이름</th>
 						<td>
 						${vo.cst_name }

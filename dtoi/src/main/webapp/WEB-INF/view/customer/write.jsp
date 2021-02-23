@@ -37,12 +37,14 @@ function formCheck() {
 					con = false;
 				}
 			}
+
 		});
 	} else {
 		alert('아이디는 3자 이상 입력해 주세요');
 		$("#cst_id").focus();
 		return false;
 }
+
 	if (con == false) return false;
 	if ($("#cst_pwd").val().trim() == '') {
 		alert('비밀번호를 입력해 주세요');
@@ -83,7 +85,8 @@ function formCheck() {
 		alert('주소를 입력해 주세요');
 		$("#addr1").focus();
 		return false;
-	}
+	
+}
 	// 폼에 있는 모든 데이터를 한번에 읽어오는 방법
 	var data = $("#frm").serialize();
 	console.log(data);
@@ -218,6 +221,10 @@ $(function() {
 						<td><input type="password" name="cst_pwd" id="cst_pwd" class="wid200" style="float:left;"> </td>
 					</tr>
 					<tr>
+						<th>*비밀번호<span>확인</span></th>
+						<td><input type="password" name="cst_pwd_check" id="cst_pwd_check" class="wid200" style="float:left;"></td>
+					</tr>
+					<tr>
 						<th>*이름</th>
 						<td><input type="text" name="cst_name" id="cst_name" class="wid200" style="float:left;"></td>
 					</tr>
@@ -251,7 +258,7 @@ $(function() {
 				</table>
 				</form>
 				<div class="btnSet clear">
-					<div><input type="submit" class="btn" value="등록" id="submitBtn"> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
+					<div><input type="submit" class="btn" value="가입" id="submitBtn"> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
 				</div>
 			</div>
     	</div>

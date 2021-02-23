@@ -86,6 +86,7 @@ uv.setCst_name((String)resJson.get("cst_name"));
 uv.setCst_email((String)resJson.get("cst_email"));
 uv.setCst_id((String)resJson.get("cst_id"));
 
+
 // 세션 저장
 session.setAttribute("authUser", uv);
 %>
@@ -95,6 +96,6 @@ ID : <%=(String)resJson.get("cst_id")%><br/>
 성별 : <%=(String)resJson.get("cst_gender")%><br/>
 생일 : <%=(String)resJson.get("cst_birthday")%><br/>
 <script>
-opener.location.href="/dtoi/customer/index.do";
+opener.location.href='<%=request.getContextPath()%>/index.do';
 window.close();
 </script>

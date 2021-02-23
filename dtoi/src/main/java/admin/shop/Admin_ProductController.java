@@ -33,21 +33,9 @@ public class Admin_ProductController {
 	
 	@RequestMapping("/admin/product/index.do")
 	public String index(HttpServletRequest req, ProductVo vo) {
-		// 서비스(로직) 처리(호출)
-		//int[] rowPageCount = productService.getRowPageCount(vo);
 		List<ProductVo> list = productService.getList(vo);
-		
-		// 값 저장
-		// totalPage, list, reqPage
-//		req.setAttribute("totalPage", rowPageCount[1]);
-//		req.setAttribute("startPage", rowPageCount[2]); // 시작페이지
-//		req.setAttribute("endPage", rowPageCount[3]); // 마지막페이지
 		req.setAttribute("list", list);
-		// /board/index.do?reqPage=2 -> ProductVo에 reqPage 필드에 바인딩 (커맨드객체)
-		// /board/index.do
-//		req.setAttribute("reqPage", vo.getReqPage());
 		req.setAttribute("vo", vo);
-		
 		// jsp 포워딩
 		return "admin/product/index";
 	}

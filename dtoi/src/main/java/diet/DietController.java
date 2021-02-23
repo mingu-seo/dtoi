@@ -13,15 +13,30 @@ public class DietController {
 	private DietService service;
 	
 	@GetMapping("/diet/index.do")
-	public String index() {
+	public String index(HttpServletRequest req) {
+		System.out.println(service.selectTopList().toString());
+		req.setAttribute("list", service.selectTopList());
+		
+		
 		return "diet/index";
 	}
 	
 	@GetMapping("/diet/getFoodJson.do")
 	public String getFoodJson(HttpServletRequest req) {
 		FoodVo vo = new FoodVo();
-		vo.setName((String)req.getAttribute("food"));
-		req.setAttribute("flist", service.selectName(vo));
+		String name = req.getParameter("name");
+		int fc = service.countName(name); // food count
+		vo.setName(name);
+//		System.out.println(vo.getName());
+		
+		req.setAttribute("vo", service.selectNameOne(vo));
+		
+		
 		return "diet/foodJson";
+	}
+	
+	@GetMapping("/diet/calculate.do")
+	public String calculate() {
+		return "diet/calculate";
 	}
 }
