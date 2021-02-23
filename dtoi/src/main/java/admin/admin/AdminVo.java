@@ -7,6 +7,7 @@ import util.CommonVo;
 public class AdminVo extends CommonVo{
 	
 	private int ad_no;
+	
 	private String ad_id;
 	private String ad_pwd;
 	private String ad_email;
