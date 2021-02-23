@@ -30,6 +30,11 @@ $(function(){
 					$("#protein").val(v.protein);
 					$("#fat").val(v.fat);
 					$("#sodium").val(v.sodium);
+					var walking = 4;
+					$("#walking").text(parseInt(v.calories)/parseInt(walking));
+					$("#running").text(v.name);
+					$("#jumping").text(v.name);
+					$("#cycling").text(v.name);
 					console.log("ajax executed")
 				});
 			},
@@ -71,11 +76,11 @@ $(function(){
 				<table class="exercise">
 					<tr class="img"><th></th><th></th></tr>
 					<tr class="name"><th>걷기</th><th>달리기</th></tr>
-					<tr class="min"><th>- 분</th><th>- 분</th></tr>
+					<tr class="min"><th><span id="walking"></span> 분</th><th><span id="running"></span> 분</th></tr>
 					<tr class="padding"></tr>
 					<tr class="img"><th></th><th></th></tr>
 					<tr class="name"><th>줄넘기</th><th>자전거</th></tr>
-					<tr class="min"><th>- 분</th><th>- 분</th></tr>
+					<tr class="min"><th><span id="jumping"></span> 분</th><th><span id="cycling"></span> 분</th></tr>
 				</table>
 			</div>
 		</div>

@@ -44,6 +44,14 @@
 .sub .size .topcontents .right .exercise .min {
 	height: 20px;
 }
+.sub .size .topcontents .right .exercise .min th {
+	color: #ff7302;
+	width: 50%;
+	box-sizing: border-box;
+}
+.sub .size .topcontents .right .exercise .min span {
+	color: #ff7302;
+}
 .sub .size .topcontents .right .exercise .padding {
 	height: 30px;
 }
