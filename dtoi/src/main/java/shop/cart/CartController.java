@@ -11,10 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.product.ProductService;
 import shop.product.ProductVo;
+import shop.product.pdreview.PdReviewVo;
 
 
 @Controller
@@ -56,7 +57,24 @@ public class CartController {
 		out.print("</script>");
 		out.flush();
 	}
-
+	
+	@RequestMapping("/cart/insert.do")
+	public void insert(CartVo vo, HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(cartService.insert(vo));
+		out.flush();
+	}
+	
+	@RequestMapping("/cart/check.do")
+	public void check(CartVo vo, HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(cartService.check(vo));
+		out.flush();
+	}
 
 }
 	

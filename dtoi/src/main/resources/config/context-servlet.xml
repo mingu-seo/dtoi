@@ -31,7 +31,7 @@
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
-		<property name="url" value="jdbc:mariadb://localhost:3306/dtoi"/>
+		<property name="url" value="jdbc:mariadb://localhost:3306/dtoi?allowPublicKeyRetrieval=true"/>
 		<property name="username" value="root"/>
 		<property name="password" value="db1234"/>
 	</bean>
@@ -75,14 +75,11 @@
          <bean class="interceptor.UserInterceptor"/>
       </mvc:interceptor>
      
-      <mvc:interceptor>
-     	 <mvc:mapping path="/admin/**"/>
-     	 
-         <mvc:exclude-mapping path="/admin/index.do"/>
-                  
+      <mvc:interceptor>      
+     	 <mvc:mapping path="/admin/**"/>     	 
+         <mvc:exclude-mapping path="/admin/index.do"/>                  
          <bean class="interceptor.AdminInterceptor"/>
-      </mvc:interceptor>
-   	 
+      </mvc:interceptor>   	 
    </mvc:interceptors>
  
    <!-- 사용자 정적페이지 -->

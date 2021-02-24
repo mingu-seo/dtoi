@@ -16,7 +16,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 
 		// 세션을 체크 (authUser가 null인지)
 		if (req.getSession().getAttribute("adminUser") == null) { // 비로그인상태
-			res.setContentType("text/html; charset=utf-8"); // 한글처리
+			res.setContentType("text/html; charset=utf-8");
 			PrintWriter out = res.getWriter();
 			out.print("<script>");
 			out.print("alert('로그인 후 사용가능합니다.');");
@@ -25,7 +25,9 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 			out.flush();
 			return false;
 		}
-
 		return true; // 기존 매핑된 URL의 컨트롤러로 전달
 	}
 }
+
+
+

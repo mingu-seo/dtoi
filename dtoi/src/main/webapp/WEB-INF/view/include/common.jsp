@@ -11,7 +11,7 @@ ${authUser.cst_name}님 반갑습니다.<br>
 <input type="button" value="메인창" onclick="location.href='/dtoi/';">
 <input type="button" value="고객정보" onclick="location.href='/dtoi/customer/index.do';">
 <input type="button" value="자유게시판" onclick="location.href='/dtoi/index.do';">
-<input type="button" value="상품후기 게시판" onclick="location.href='/dtoi/pdreview/index.do';">
+<input type="button" value="상품후기 게시판" onclick="location.href='/dtoi/product/detail.do?pd_no=${pd_no}#product_review';">
 <br>
 
 <!-- 현재 URL 가져오는 방법 request.getAttribute("javax.servlet.forward.request_uri") -->

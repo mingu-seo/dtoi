@@ -48,7 +48,7 @@ function formCheck() {
 		return false;
 	}
 	var con = true;
-	if ($("#id").val().length >= 5) { // 아이디 값이 3자 이상인 경우
+	if ($("#id").val().length >= 5) { // 아이디 값이 5자 이상인 경우
 		$.ajax({
 			url:'/dtoi/admin/admin/isDuplicateId.do',
 			data:{id:$("#id").val()},

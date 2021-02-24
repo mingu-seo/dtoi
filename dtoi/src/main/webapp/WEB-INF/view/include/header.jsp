@@ -186,10 +186,13 @@ $(function() {
                     
                     <a href="<%=request.getContextPath()%>/customer/write.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>&param=<%=request.getQueryString() %>">회원가입</a>
                </c:if>
-               <c:if test="${!empty authUser}">               
-                   
+               <c:if test="${!empty authUser}">     
                 	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
+<<<<<<< HEAD
  
+=======
+                    <a href="<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">마이페이지</a>
+>>>>>>> branch 'master' of https://github.com/mingu-seo/dtoi.git
                </c:if>
                 </div>
                 
@@ -236,15 +239,15 @@ $(function() {
                         <li>
                             <a href="<%=request.getContextPath()%>/diet/index.do" class="parent"><span>칼로리사전</span></a>
                             <ul class="depth2">
-                                <li><a href="<%=request.getContextPath()%>/diet/index.do"><span>음식칼로리</span></a></li>
-                                <li><a href="<%=request.getContextPath()%>/diet/calculate.do"><span>my 칼로리 섭취량</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>/diet/index.do"><span>칼로리사전</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>/diet/calculate.do"><span>하루 칼로리 섭취량</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>상품 목록</span></a>
+                            <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>DtoI 샐러드</span></a>
                             <ul class="depth2">
-								<li><a href="<%=request.getContextPath()%>/product/index.do"><span>상품 주문/조회하기</span></a></li>
-								<li><a href="<%=request.getContextPath()%>"><span>상품 주문 내역 조회</span></a></li>
+								<li><a href="<%=request.getContextPath()%>/product/index.do"><span>전체상품</span></a></li>
+								<li><a href="<%=request.getContextPath()%>/cart/index.do"><span>장바구니</span></a></li>
                             </ul>
                         </li>
                         <li>
