@@ -1847,3 +1847,22 @@ var SetComma = function(str) {
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+function YMDFormatter(num){
+     if(!num) return "";
+     var formatNum = '';
+     // 공백제거
+     num=num.replace(/\s/gi, "");
+     try{
+          if(num.length == 8) {
+               formatNum = num.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+          }
+     } catch(e) {
+          formatNum = num;
+          console.log(e);
+     }
+     return formatNum;
+}
+
+
+

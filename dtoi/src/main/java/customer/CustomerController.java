@@ -66,6 +66,17 @@ public class CustomerController {
 		return "customer/detail";
 	}
 	
+	@RequestMapping("/customer/mypage.do")
+	public String mypage(HttpServletRequest req, CustomerVo vo) {
+		
+		CustomerVo uv = cService.selectOne(vo);
+		
+		req.setAttribute("vo", uv);
+		
+		// jsp 포워딩
+		return "customer/mypage";
+	}
+	
 	@GetMapping("/customer/write.do")
 	public String write(HttpServletRequest req, HttpServletResponse res) {
 		
