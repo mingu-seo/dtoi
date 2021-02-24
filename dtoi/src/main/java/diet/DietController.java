@@ -13,7 +13,11 @@ public class DietController {
 	private DietService service;
 	
 	@GetMapping("/diet/index.do")
-	public String index() {
+	public String index(HttpServletRequest req) {
+		System.out.println(service.selectTopList().toString());
+		req.setAttribute("list", service.selectTopList());
+		
+		
 		return "diet/index";
 	}
 	
@@ -23,16 +27,9 @@ public class DietController {
 		String name = req.getParameter("name");
 		int fc = service.countName(name); // food count
 		vo.setName(name);
-		vo.setFoodCount(fc);
 //		System.out.println(vo.getName());
 		
-		req.setAttribute("foodCount", fc);
-		if(fc > 1) {
-			req.setAttribute("flist", service.selectName(vo));
-		}
-		else {
-			req.setAttribute("vo", service.selectNameOne(vo));
-		}
+		req.setAttribute("vo", service.selectNameOne(vo));
 		
 		
 		return "diet/foodJson";

@@ -28,8 +28,7 @@ public class Admin_historyController {
 		return "admin/index";
 	}
 	@PostMapping("/admin/index.do")
-	public String loginProcess(AdminVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {
-		
+	public String loginProcess(AdminVo vo, HttpServletRequest req, HttpServletResponse res) throws IOException {		
 		AdminVo adminVo = adminService.login(vo);
 		// 결과 확인
 		if (adminVo != null) { // 로그인 성공
