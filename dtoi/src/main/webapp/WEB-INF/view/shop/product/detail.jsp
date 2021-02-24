@@ -478,7 +478,7 @@ function goCart() {
 				});
 		</c:if>
 		<c:if test="${empty authUser}">
-		alert('로그인 후 작성가능합니다.');
+		alert('로그인 후 장바구니에 담을수 있습니다.');
 		$(".login_info").toggle();
 		useremail_chk();
 		</c:if>	

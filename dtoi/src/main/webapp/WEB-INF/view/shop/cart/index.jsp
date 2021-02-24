@@ -26,6 +26,12 @@
 					</div>
 				
 					<table class="tbl_col prd">
+					<form>
+					<input type="hidden" name="cst_no" value="${authUser.cst_no }">
+					<input type="hidden" name="cart_no" value="${cart_no }">
+					<input type="hidden" name="pd_no" value="${pd_no }">
+					
+					</form>
 					<caption class="hidden">장바구니</caption>
 					<colgroup>
 						<col style="width:110px;">
@@ -41,25 +47,29 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:if test="${empty clist}">
 						<tr>
 							<td class="tal" colspan="4">
-									<p class="no_data">장바구니에 담긴 상품이 없습니다.</p>
+								<p class="no_data">장바구니에 담긴 상품이 없습니다.</p>
 							</td>
 						</tr>
+					</c:if>
+					<c:if test="${!empty clist}">	
+					<c:forEach var="vo" items="${clist}">		
 						<tr>
 							<td class="img">
-								<div class="check">
+								<div class="check"colspan="1">
 								<input type="checkbox" class="cartIdxs">
 								</div>
 								<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank" >
-								<img src="/dtoi/upload/${vo.pd_image }" alt=""/>
+								<img src="/dtoi/upload/" alt=""/>
 								</a>
 							</td>
 							<td class="tal">
 								<form class="cart-form">
 		
 									<div class="name">
-										<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank"> ${vo.pd_name }</a>
+										<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank"> ${vo.pd_no }</a>
 									</div>
 									<div class="qty">
 										<a href="javascript:" onclick="ct_countFunc('minus');" ><img src="/dtoi/img/product/cart/count_down.png"></a>
@@ -75,6 +85,8 @@
 							<a href="javascript:" onclick="ct_countFunc('del');" ><img src="/dtoi/img/product/cart/count_del.png"></a>
 							</td>						
 						</tr>
+						</c:forEach>
+						</c:if>
 					</tbody>
 					</table>
 					
@@ -134,7 +146,13 @@ function ct_countFunc(type) {
 	$("#total_price").text(Number($("#ct_count").val()) * ${vo.pd_price });
 }
 
-
+function ct_list() {
+	//상품 리스트 확인
+	<c:if test="${!empty cartList}">
+	</c:if>
+	<c:if test="${empty cartList}">
+	</c:if>	
+	// 
 
 
 

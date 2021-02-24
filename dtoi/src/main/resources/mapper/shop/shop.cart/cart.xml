@@ -6,8 +6,8 @@
 		select count(*) from cart
 	</select>
 	
-	<select id="selectList" resultType="shop.cart.CartVo">
-		select * from cart
+	<select id="selectList" resultType="shop.cart.CartVo" parameterType="shop.cart.CartVo">
+		select * from cart where cst_no=${cst_no}
 		
 	</select>
 	
