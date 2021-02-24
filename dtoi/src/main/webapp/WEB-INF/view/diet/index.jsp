@@ -10,7 +10,7 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>음식 칼로리 페이지</title>
+<title>칼로리 사전 페이지</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
@@ -30,6 +30,12 @@ $(function(){
 					$("#protein").val(v.protein);
 					$("#fat").val(v.fat);
 					$("#sodium").val(v.sodium);
+					var walking = 4;
+					var num = parseInt(v.calories);
+					$("#walking").text(num/walking);
+					$("#running").text(v.name);
+					$("#jumping").text(v.name);
+					$("#cycling").text(v.name);
 					console.log("ajax executed")
 				});
 			},
@@ -51,7 +57,7 @@ $(function(){
 			<div class="left">
 			<table border="1">
 				<tr>
-					<th>빠른검색 <input id='name' name='name' type='text'></th>
+					<th colspan="2">빠른검색 <input id='name' name='name' type='text'></th>
 					<th>칼로리(kal) :<input id='calories' name='calories' class='FoodNutrOutput' type='text'></th>
 				</tr>
 				<tr>
@@ -67,17 +73,18 @@ $(function(){
 			</table>
 			</div>
 			<div class="right">
-				
+				<img alt="운동 이미지" src="/dtoi/img/diet/exercise.png" class="exercise">
+				<table class="exercise">
+					<tr class="img"><th></th><th></th></tr>
+					<tr class="name"><th>걷기</th><th>달리기</th></tr>
+					<tr class="min"><th><span id="walking"></span> 분</th><th><span id="running"></span> 분</th></tr>
+					<tr class="padding"></tr>
+					<tr class="img"><th></th><th></th></tr>
+					<tr class="name"><th>줄넘기</th><th>자전거</th></tr>
+					<tr class="min"><th><span id="jumping"></span> 분</th><th><span id="cycling"></span> 분</th></tr>
+				</table>
 			</div>
 		</div>
-			<div class="bbsSearch">
-				<form method="get" name="searchForm" id="searchForm" action="index.do">
-					<span class="searchWord">							
-						<input type="text" name="searchWord" value="${param.searchWord }">
-						<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
-					</span>
-				</form>					
-			</div>				
 		
 		<h3 class="sub_title">검색 순위 TOP 30</h3>
 		<div class="bbs">
@@ -111,6 +118,14 @@ $(function(){
 				</c:forEach>					
 				</tbody>
 			</table>	
+			<div class="bbsSearch">
+				<form method="get" name="searchForm" id="searchForm" action="index.do">
+					<span class="searchWord">							
+						<input type="text" name="searchWord" value="${param.searchWord }">
+						<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
+					</span>
+				</form>					
+			</div>				
 			
 		</div>
 	</div>
