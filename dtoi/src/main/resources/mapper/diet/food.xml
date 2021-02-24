@@ -12,11 +12,19 @@
 	</sql>
 	
 	<select id ="selectOne" parameterType="diet.FoodVo" resultType="diet.FoodVo">
-		select * from food where fd_no=${fd_no}
+		select * from food
+		<choose>
+			<when test="fd_no != 0 and fd_no != null">
+				where fd_no=${fd_no}				
+			</when>
+			<otherwise>
+				where name=#{name}
+			</otherwise>
+		</choose>
 	</select>
 	
 	<select id ="selectName" parameterType="diet.FoodVo" resultType="diet.FoodVo">
-		select * from food where name=#{name}
+		select * from food 
 	</select>
 	
 	<select id ="countName" parameterType="String" resultType="int">
@@ -25,7 +33,7 @@
 	
 	<select id="selectTopList" resultType="diet.FoodVo">
 		select * from food
-		order by searchCount
+		order by searchCount DESC
 		limit 0, 30
 	</select>
 	

@@ -20,6 +20,16 @@ $(function() {
 			alert('비밀번호를 입력해 주세요');
 			return false;
 		}
+		if ($("#cst_pwd_check").val().trim() == '') {
+			alert('비밀번호를 확인해주세요');
+			$("#cst_pwd_check").focus();
+			return false;
+		}
+		if ($("#cst_pwd_check").val().trim() !== $("#cst_pwd").val()) {
+			alert('비밀번호가 일치하지 않습니다.');
+			$("#cst_pwd_check").focus();
+			return false;
+		}
 
 		if ($("#cst_email").val().trim() == '') {
 			alert('e메일 주소를 입력해 주세요');
@@ -65,7 +75,7 @@ $(function() {
 					// 모든 입력란을 초기화
 					//$("input[type='text'], input[type='password']").val("");
 					//$("#frm")[0].reset();
-					location.href="${param.url}";
+					location.href="/dtoi/index.do";
 				} else {
 					alert("등록 실패");
 				}
@@ -181,7 +191,7 @@ $(function() {
 						</tr>
 					<tr>
 						<th>*생년월일<br></th>
-						<td><input type="text" name="cst_birth" id="cst_birth" class="wid200" style="float:left;" value="${vo.cst_birth }"></td>
+						<td><input type="text" name="cst_birth" id="cst_birth" class="wid200" onkeyup="isNumberOrHyphen(this);cvtDateTime(this);" style="float:left;" value="${vo.cst_birth }"></td>
 					</tr>
 					<tr>
 						<th>*기저질환(없으면 공란)</th>
@@ -214,31 +224,6 @@ $(function() {
 				<div class="btnSet clear">
 					<div><input type="submit" class="btn" value="수정" id="submitBtn"> 
 					<a href="javascript:;" class="btn" onclick="history.back();">취소</a>
-					<input type="button" class = "btn" value="회원탈퇴" onclick="del();">
-						<script>
-						function del() {
-							if (confirm('정말 탈퇴하시겠습니까?')) {
-								$.ajax({
-									url:'/dtoi/customer/delete.do',
-									data:{cst_no:${vo.cst_no}},
-									type:'HTML',
-									method:'GET',
-									cache:false,
-									async:false,
-									success:function(res) {
-										//console.log(data);
-										if (res == 'true') {
-											alert('정상적으로 탈퇴되었습니다.');
-											location.href="${param.url}";
-						
-										} else {
-											alert('탈퇴 오류');
-										}
-									}
-								});
-							}
-						}
-						</script>
 					</div>
 				</div>
 			</div>

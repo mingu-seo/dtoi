@@ -51,6 +51,16 @@ function formCheck() {
 		$("#cst_pwd").focus();
 		return false;
 	}
+	if ($("#cst_pwd_check").val().trim() == '') {
+		alert('비밀번호를 확인해주세요');
+		$("#cst_pwd_check").focus();
+		return false;
+	}
+	if ($("#cst_pwd_check").val().trim() !== $("#cst_pwd").val()) {
+		alert('비밀번호가 일치하지 않습니다.');
+		$("#cst_pwd_check").focus();
+		return false;
+	}
 	if ($("#cst_name").val().trim() == '') {
 		alert('이름을 입력해 주세요');
 		$("#cst_name").focus();
@@ -234,7 +244,7 @@ $(function() {
 					</tr>
 					<tr>
 						<th>*연락처</th>
-						<td><input type="text" name="cst_tel" id="cst_tel" value=""  class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;"></td>
+						<td><input type="text" name="cst_tel" id="cst_tel" class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;"></td>
 					</tr>
 						<tr>
 							<th>*성별</th>
@@ -243,7 +253,7 @@ $(function() {
 						</tr>
 					<tr>
 						<th>*생년월일<br></th>
-						<td><input type="text" name="cst_birth" id="cst_birth" class="wid200" style="float:left;"></td>
+						<td><input type="text" name="cst_birth" id="cst_birth" class="wid200" onkeyup="isNumberOrHyphen(this);cvtDateTime(this);" style="float:left;"></td>
 					</tr>
 					<tr>
 						<th>*주소</th>

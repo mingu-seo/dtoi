@@ -23,19 +23,22 @@ $(function(){
 			data:{name:$('#name').val()},
 			success:function(data){
 				$.each(data, function(k,v){
-					$("#calories").val(v.calories);
+					var cal = parseInt(v.calories);
+					$("#calories").val(cal);
 					$("#carbohydrate").val(v.carbohydrate);
 					$("#fiber").val(v.fiber);
 					$("#sugar").val(v.sugar);
 					$("#protein").val(v.protein);
 					$("#fat").val(v.fat);
 					$("#sodium").val(v.sodium);
-					var walking = 4;
-					var num = parseInt(v.calories);
-					$("#walking").text(num/walking);
-					$("#running").text(v.name);
-					$("#jumping").text(v.name);
-					$("#cycling").text(v.name);
+					var walking = 7.6;
+					var running = 13.2;
+					var jumping = 17.5;
+					var cycling = 11;					
+					$("#walking").text(parseInt(cal/walking));
+					$("#running").text(parseInt(cal/running));
+					$("#jumping").text(parseInt(cal/jumping));
+					$("#cycling").text(parseInt(cal/cycling));
 					console.log("ajax executed")
 				});
 			},
@@ -46,6 +49,43 @@ $(function(){
 		});
 	});	
 });
+function itemSelect(no){
+	$.ajax({
+		url:'getFoodJson.do?',
+		cache : false,
+		dataType:'json',
+		data:{fd_no:no},
+		success:function(data){
+			$.each(data, function(k,v){
+				var cal = parseInt(v.calories);
+				$("#name").val(v.name);
+				$("#calories").val(cal);
+				$("#carbohydrate").val(v.carbohydrate);
+				$("#fiber").val(v.fiber);
+				$("#sugar").val(v.sugar);
+				$("#protein").val(v.protein);
+				$("#fat").val(v.fat);
+				$("#sodium").val(v.sodium);
+				var walking = 7.6;
+				var running = 13.2;
+				var jumping = 17.5;
+				var cycling = 11;					
+				$("#walking").text(parseInt(cal/walking));
+				$("#running").text(parseInt(cal/running));
+				$("#jumping").text(parseInt(cal/jumping));
+				$("#cycling").text(parseInt(cal/cycling));
+				console.log("ajax executed")
+			});
+		},
+		error:function(data, status, error){
+			console.log(status);
+			console.log(error);
+		}
+	});
+}
+function goSearch(){
+	$("#searchForm").submit();
+}
 </script>
 </head>
 <body>
@@ -58,17 +98,17 @@ $(function(){
 			<table border="1">
 				<tr>
 					<th colspan="2">빠른검색 <input id='name' name='name' type='text'></th>
-					<th>칼로리(kal) :<input id='calories' name='calories' class='FoodNutrOutput' type='text'></th>
+					<th>칼로리(kal) :<input id='calories' name='calories' class='FoodNutrOutput' type='text' readonly="readonly"></th>
 				</tr>
 				<tr>
-					<th>탄수화물(g) :<input id='carbohydrate' name='carbohydrate' class='FoodNutrOutput' type='text'></th>
-					<th>식이섬유(g) :<input id='fiber' name='fiber' class='FoodNutrOutput' type='text'></th>
-					<th>당(g) :<input id='sugar' name='sugar' class='FoodNutrOutput' type='text'></th>
+					<th>탄수화물(g) :<input id='carbohydrate' name='carbohydrate' class='FoodNutrOutput' type='text' readonly="readonly"></th>
+					<th>식이섬유(g) :<input id='fiber' name='fiber' class='FoodNutrOutput' type='text' readonly="readonly"></th>
+					<th>당(g) :<input id='sugar' name='sugar' class='FoodNutrOutput' type='text' readonly="readonly"></th>
 				</tr>
 				<tr>
-					<th>단백질(g) :<input id='protein' name='protein' class='FoodNutrOutput' type='text'></th>
-					<th>지방(g) :<input id='fat' name='fat' class='FoodNutrOutput' type='text'></th>
-					<th>나트륨(mg) :<input id='sodium' name='sodium' class='FoodNutrOutput' type='text'></th>
+					<th>단백질(g) :<input id='protein' name='protein' class='FoodNutrOutput' type='text' readonly="readonly"></th>
+					<th>지방(g) :<input id='fat' name='fat' class='FoodNutrOutput' type='text' readonly="readonly"></th>
+					<th>나트륨(mg) :<input id='sodium' name='sodium' class='FoodNutrOutput' type='text' readonly="readonly"></th>
 				</tr>
 			</table>
 			</div>
@@ -86,7 +126,15 @@ $(function(){
 			</div>
 		</div>
 		
-		<h3 class="sub_title">검색 순위 TOP 30</h3>
+		<c:choose>
+			<c:when test="${empty param.searchWord}">
+				<h3 class="sub_title">검색 순위 TOP 30</h3>
+			</c:when>
+			<c:otherwise>
+				<h3 class="sub_title">검색 결과</h3>
+			</c:otherwise>
+		</c:choose>
+		
 		<div class="bbs">
 			<table class="list">
 				<colgroup>
@@ -107,24 +155,42 @@ $(function(){
 				</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="vo" items="${list}">
-					<tr style='cursor:pointer;' onclick="location.href='detail.do?bb_no=${vo.fd_no }'">
-						<td class="rank">${vo.fd_no }</td>
+				<c:forEach var="vo" items="${list}" varStatus="status">
+					<tr style='cursor:pointer;' onclick="itemSelect(${vo.fd_no});">
+						<td class="rank">${status.count}</td>
 						<td class="Ranking_name">${vo.name }</td>
-						<td class="writer"></td>
-						<td class="date">${vo.calories }</td>
-						<td class="hit" >${vo.searchCount }</td>
+						<td class=""></td>
+						<td class="">${vo.calories }</td>
+						<td class="" >${vo.searchCount }</td>
 					</tr>						
 				</c:forEach>					
 				</tbody>
-			</table>	
+			</table>
+			
+			<c:choose>
+				<c:when test="${empty param.searchWord}"></c:when>
+				<c:otherwise>
+					<div class="pagenate clear">								
+						<c:if test="${startPage > 10}">
+							<a href="index.do?reqPage=${startPage-1 }&searchWord=${param.searchWord}">[이전]</a>
+						</c:if>
+						<c:forEach var="rp" begin="${startPage }" end="${endPage }">
+							<a href="index.do?reqPage=${rp }&searchWord=${param.searchWord}">[${rp }]</a>
+						</c:forEach>
+						<c:if test="${totalPage > endPage }">
+							<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
+						</c:if>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			
 			<div class="bbsSearch">
 				<form method="get" name="searchForm" id="searchForm" action="index.do">
-					<span class="searchWord">							
+					<span class="searchWord">
 						<input type="text" name="searchWord" value="${param.searchWord }">
 						<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
 					</span>
-				</form>					
+				</form>
 			</div>				
 			
 		</div>

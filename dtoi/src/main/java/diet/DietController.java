@@ -24,12 +24,13 @@ public class DietController {
 	@GetMapping("/diet/getFoodJson.do")
 	public String getFoodJson(HttpServletRequest req) {
 		FoodVo vo = new FoodVo();
+		String no = req.getParameter("fd_no");
 		String name = req.getParameter("name");
-		int fc = service.countName(name); // food count
+		if(no != null) {vo.setFd_no(Integer.parseInt(no));}
 		vo.setName(name);
 //		System.out.println(vo.getName());
 		
-		req.setAttribute("vo", service.selectNameOne(vo));
+		req.setAttribute("vo", service.selectOne(vo));
 		
 		
 		return "diet/foodJson";
