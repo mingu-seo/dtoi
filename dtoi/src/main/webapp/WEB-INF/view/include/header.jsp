@@ -184,10 +184,9 @@ $(function() {
                     
                     <a href="<%=request.getContextPath()%>/customer/write.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>&param=<%=request.getQueryString() %>">회원가입</a>
                </c:if>
-               <c:if test="${!empty authUser}">               
-                   
+               <c:if test="${!empty authUser}">     
                 	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
-                    <a href="">마이페이지</a>
+                    <a href="<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">마이페이지</a>
                </c:if>
                 </div>
                 

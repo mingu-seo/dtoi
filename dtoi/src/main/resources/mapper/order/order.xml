@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+
+	<select id="selectList" parameterType="shop.order.OrderVo" resultType="shop.order.OrderVo">
+		SELECT *,
+			(SELECT zipcode from customer where cst_no = dtoi.order.cst_no) AS zipcode,
+			(SELECT addr1 from customer where cst_no = dtoi.order.cst_no) AS addr1,
+			(SELECT addr2 from customer where cst_no = dtoi.order.cst_no) AS addr2
+		 from dtoi.order
+		ORDER BY or_no ${direct}
+		limit ${startIdx}, ${pageRow}	
+	</select>
+	
+	
+	<select id="count" parameterType="shop.order.OrderVo" resultType="int">
+		select count(*) as cnt from dtoi.order
+	</select>
+	
+	
+	<select id="selectOne" parameterType="shop.order.OrderVo" resultType="shop.order.OrderVo">
+		select *,
+			(SELECT zipcode from customer where cst_no = dtoi.order.cst_no) AS zipcode,
+			(SELECT addr1 from customer where cst_no = dtoi.order.cst_no) AS addr1,
+			(SELECT addr2 from customer where cst_no = dtoi.order.cst_no) AS addr2		
+		from dtoi.order where or_no=${or_no }
+	</select>
+	
+</mapper>

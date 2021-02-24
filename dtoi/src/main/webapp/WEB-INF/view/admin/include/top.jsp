@@ -80,18 +80,18 @@ $(window).load(function(){
 		
 		<div id="menu">
   			<ul class="menu">
-  				<li><a href="<%=request.getContextPath()%>/admin/member/index.do" class="parent"><span>회원페이지</span></a>
+  				<li><a href="<%=request.getContextPath()%>/admin/customer/index.do" class="parent"><span>회원페이지</span></a>
   					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>회원 목록</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span></span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/customer/index.do"><span>회원 목록</span></a></li>
 					</ul>
 					</div>
   				</li>
-				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>상품 목록 관리</span></a>
+				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>상품 관리</span></a>
 					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>상품 주문/조회 관리</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/product/index.do"><span>상품 목록 관리</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/order/index.do"><span>회원 주문 목록 관리</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/reply/index.do"><span>상품 주문 내역 조회 관리</span></a></li>
 					</ul>
 					</div>
