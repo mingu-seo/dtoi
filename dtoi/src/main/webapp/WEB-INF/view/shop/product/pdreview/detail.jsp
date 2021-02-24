@@ -33,7 +33,7 @@
 </table>
 <input type="button" value="수정" onclick='location.href="edit.do?no=${vo.re_no}";'>
 <input type="button" value="삭제" onclick="del();">
-<input type="button" value="목록" onclick='location.href="shop/pdreview/index.do";'>
+<input type="button" value="목록" onclick='location.href="shop/product/detail.do?pd_no=${vo.pd_no}";'>
 <script>
 function del() {
 	/*

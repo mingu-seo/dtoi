@@ -31,6 +31,10 @@ public class CartDao {
 		return sqlSession.insert("cart.insert",vo);
 	}
 	
+	public int check(CartVo vo) {
+		return sqlSession.selectOne("cart.check",vo);
+	}
+	
 	public int update(CartVo vo) {
 		return sqlSession.update("cart.update",vo);
 	}

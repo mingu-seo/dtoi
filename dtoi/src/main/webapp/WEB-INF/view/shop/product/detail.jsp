@@ -52,8 +52,8 @@
 									    <a href="javascript:" onclick="ct_countFunc('del');" ><img src="/dtoi/img/product/cart/count_del.png"></a>
 								</dt>
 								<dt class="reser_btn" style="padding-bottom:5px">
-									<input type="button" class="btn" value="장바구니" href="cart/index.do" />
-									<input type="button" class="btn" value="바로 구매" onclick="showDialogue('${vo.pd_no }');" />
+									<input type="button" class="btn" style="cursor:pointer;" value="장바구니" onclick="goCart();"/>
+									<input type="button" class="btn" style="cursor:pointer;" value="바로 구매" onclick="showDialogue('${vo.pd_no }');" />
 								</dt>
 							</dl>
 						</div>
@@ -386,7 +386,7 @@ function moveWrite() {
 	location.href='/dtoi/shop/product/pdreview/write.do';
 	</c:if>
 	<c:if test="${empty authUser}">
-	alert('로그인 후 이용가능합니다.');	
+	alert('로그인 후 작성가능합니다.');	
 	$(".login_info").toggle();
 	$('html, body').scrollTop(0);
 	useremail_chk();
@@ -395,10 +395,10 @@ function moveWrite() {
 
 function moveWrite() {
 	<c:if test="${!empty authUser}">
-	location.href='/dtoi/shop/product/pdfaq/write2.do';
+	location.href='/dtoi/shop/product/pdfaq/write.do';
 	</c:if>
 	<c:if test="${empty authUser}">
-	alert('로그인 후 이용가능합니다.');
+	alert('로그인 후 작성가능합니다.');
 	location.href='/dtoi/customer/login.do?url=/shop/product/index.do'
 	</c:if>	
 }
@@ -414,26 +414,6 @@ function showTr(id) {
 	$("#tr"+id).toggle();
 }
 
-
-$(function() {
-	getList();
-});
-
-
-function getList() {
-	$.ajax({
-		url : "pdreviewInsert.do",
-		dataType : "html",
-		data : data,  
-		async : true,
-		success : function(data) {
-			$(".review_list").html(data);
-		},
-		error : function(msg) {
-			console.log(msg);
-		}
-	});
-}
 
 
 function goDelete(re_no) {
@@ -458,7 +438,52 @@ function goDelete(re_no) {
 	}
 }
 
+function goCart() {
+	//로그인 확인	
+	<c:if test="${!empty authUser}">	
+	// 상품 중복 확인
+	$.ajax({
+		url : "/dtoi/cart/check.do",
+		data : {pd_no:${vo.pd_no}, cst_no:${authUser.cst_no}},
+		async : true,
+		success : function(data) {
+			var d = data.trim();
+			if (d == 'true') {
+				if (confirm("장바구니에 담긴 상품입니다. 장바구니로 이동하시겠습니까?")) {
+					location.href='/dtoi/cart/index.do';	
+				}
+			} else { //상품 등록
+				$.ajax({
+					url : "/dtoi/cart/insert.do",
+					data : {pd_no:${vo.pd_no}, ct_count:$("#ct_count").val(), cst_no:${authUser.cst_no}}, //authUser.cst_no
+					async : true,
+					success : function(data) {
+						var d = data.trim();
+						if (d == 'true') {
+							if (confirm("장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?")) {
+								location.href='/dtoi/cart/index.do';	
+							}
+						} else {
+							alert("장바구니 담기실패");
+								}
+							},
+					error : function(msg) {
+							console.log(msg);
+							}
+						});
+					} },
+			error : function(msg) {
+					console.log(msg);
+					} 
+				});
+		</c:if>
+		<c:if test="${empty authUser}">
+		alert('로그인 후 작성가능합니다.');
+		$(".login_info").toggle();
+		useremail_chk();
+		</c:if>	
 
+}
 </script>
 					
 					</div>
@@ -486,17 +511,5 @@ function goDelete(re_no) {
 							
 							
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
-<%
-// 세션객체 가져오기
-CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");
-%>
-<% if (authUser == null) { %>
-로그인전
-<% } %>
-<% if (authUser != null) { %>
-로그인후 
-<%=authUser.getCst_name() %>님 안녕하세요!
-<% } %>		
-		
 </body>
 </html>
