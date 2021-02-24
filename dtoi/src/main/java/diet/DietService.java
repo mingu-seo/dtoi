@@ -15,9 +15,10 @@ public class DietService {
 		return dao.selectName(vo);
 	}
 	
-	public FoodVo selectNameOne(FoodVo vo) {
-		dao.countSearch(vo.getFd_no());
-		return dao.selectNameOne(vo);
+	public FoodVo selectOne(FoodVo vo) {
+		FoodVo vout = dao.selectOne(vo); 
+		dao.countSearch(vout.getFd_no());
+		return vout;
 	}
 	
 	public int countName(String name) {
