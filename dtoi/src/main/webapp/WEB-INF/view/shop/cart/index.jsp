@@ -9,6 +9,43 @@
 <title>DtoI</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script>
+$(function() {
+	total();
+	$(".plus_btn").click(function() {
+		var idx = $(".plus_btn").index($(this));
+		var v = Number($(".ct_count").eq(idx).val());
+		
+		if (v < 10) {
+			$(".ct_count").eq(idx).val(v+1);
+		}
+		$(".cal_price").eq(idx).text(Number($(".ct_count").eq(idx).val()) * Number($(".pd_price").eq(idx).val()));
+		total();
+	});
+	
+	$(".minus_btn").click(function() {
+		var idx = $(".minus_btn").index($(this));
+		var v = Number($(".ct_count").eq(idx).val());
+		
+		if (v > 1) {
+			$(".ct_count").eq(idx).val(v-1);
+		}
+		$(".cal_price").eq(idx).text(Number($(".ct_count").eq(idx).val()) * Number($(".pd_price").eq(idx).val()));
+		total();
+	});
+});
+
+function total() {
+	var total = 0;
+	$(".cal_price").each(function(idx, val) {
+		//console.log(idx, val);
+		total += Number($(".cal_price").eq(idx).text());	
+	});
+	$(".total_price").text(total);
+	$(".last_price").text((total+3000));
+}
+
+</script>
 </head>
 <body>
  <%@ include file="/WEB-INF/view/include/header.jsp" %>
@@ -26,24 +63,21 @@
 					</div>
 				
 					<table class="tbl_col prd">
-					<form>
-					<input type="hidden" name="cst_no" value="${authUser.cst_no }">
-					<input type="hidden" name="cart_no" value="${cart_no }">
-					<input type="hidden" name="pd_no" value="${pd_no }">
-					
-					</form>
 					<caption class="hidden">장바구니</caption>
 					<colgroup>
-						<col style="width:110px;">
-						<col>
-						<col style="width:142px;">
-						<col style="width:56px;">
+						<col style="width:50px;">
+						<col style="width:160px;">
+						<col style="">
+						<col style="width:120px;">
+						<col style="width:60px;">
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col" colspan="2">상품</th>
+							<th scope="col">선택</th>
+							<th scope="col">  </th>
+							<th scope="col">상품</th>
 							<th scope="col">가격</th>
-							<th scope="col"></th>
+							<th scope="col">  </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,33 +91,36 @@
 					<c:if test="${!empty clist}">	
 					<c:forEach var="vo" items="${clist}">		
 						<tr>
-							<td class="img">
-								<div class="check"colspan="1">
-								<input type="checkbox" class="cartIdxs">
+							<td>
+								<div class="check">
+									<input type="checkbox" class="cartIdxs">
 								</div>
-								<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank" >
-								<img src="/dtoi/upload/" alt=""/>
+							</td>
+							<td class="img">
+								<a href="/dtoi/product/detail.do?=${vo.pd_no }" target="_blank" >
+								<img src="/dtoi/upload/${vo.pd_image }" alt=""/>
 								</a>
 							</td>
 							<td class="tal">
 								<form class="cart-form">
 		
 									<div class="name">
-										<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank"> ${vo.pd_no }</a>
+										<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank"> ${vo.pd_name }</a>
 									</div>
 									<div class="qty">
-										<a href="javascript:" onclick="ct_countFunc('minus');" ><img src="/dtoi/img/product/cart/count_down.png"></a>
-										<input type="text" name="ct_count" id="ct_count" readonly value="1">
-										<a href="javascript:" onclick="ct_countFunc('plus');" ><img src="/dtoi/img/product/cart/count_up.png"></a>
+										<a href="javascript:" ><img class="minus_btn" src="/dtoi/img/product/cart/count_down.png"></a>
+										<input type="text" name="ct_count" class="ct_count" readonly value="1">
+										<a href="javascript:" ><img  class="plus_btn" src="/dtoi/img/product/cart/count_up.png"></a>
+										<input type="hidden" class="pd_price" value="${vo.pd_price }">
 									</div>
 								</form>
 							</td>
 							<td class="qty">
-								<strong id="total_price" style=padding:20px;> ${vo.pd_price }</strong>원 &nbsp;
+								<strong class="cal_price" style=padding:20px;> ${vo.pd_price }</strong>원 &nbsp;
 							</td>
 							<td class="qty">
 							<a href="javascript:" onclick="ct_countFunc('del');" ><img src="/dtoi/img/product/cart/count_del.png"></a>
-							</td>						
+							</td>						                  
 						</tr>
 						</c:forEach>
 						</c:if>
@@ -95,23 +132,20 @@
 			<!-- area_top -->
 			
 			<div class="area_bottom">
-					<div class="orderCart__total__calc">
-						<span class="calc__total"> 총 상품금액 <span class="price"><strong> 0</strong>원</span></span>
-						<span class="calc__deli">+ 배송비 <span class="price"><strong>3000</strong>원</span></span>
+					<div class="total_cal">총 상품금액 <strong> <span class="total_price"> </strong> 원</span>
+						<a class="cartplus"><img src="/dtoi/img/product/cart/order_price_plus.png"></a> 배송비 <span class="price"> <strong>3000</strong> 원</span>
+						
+						<a class="carttotal"><img src="/dtoi/img/product/cart/order_price_total.png"></a> 총 결제 금액 <strong> <span class="last_price"> </strong> 원</span>
 					</div>
-
-					<div class="orderCart__total__cont">
-						<p class="orderCart__total__txt">총 결제 예정금액</p>
-					</div>
-					<ul class="cart_btn">
+					<ul class="cart_btn" style="padding:20px;">
 					<li class="box_btn">
-					<a href="javascript:" onclick="choose_buy();">선택상품 주문</a>
+					<a href="javascript:"  onclick="choose_buy();">선택상품 주문</a>
 					</li>
 					<li class="box_btn">
 					<a href="javascript:" onclick="choose_del();">선택상품 삭제</a>
 					</li>
 					<li class="box_btn">
-					<a href="javascript:" onclick="cart_all_del()();">장바구니 비우기</a>
+					<a href="javascript:" onclick="cart_all_del();">장바구니 비우기</a>
 					</li>
 				</ul>
 
@@ -119,44 +153,10 @@
 			
 			
 
-			<div class="pagenate clear">
-			</div>
 		</div>
 		<!-- bbs -->
 	</div>
 </div>
-<script>
-function ct_countFunc(type) {
-	var v = Number($("#ct_count").val());
-	if (type == 'minus') {
-		if (v > 1) {
-			$("#ct_count").val(v-1);
-		}
-	} else if (type == 'plus'){
-		if (v < 10) {
-			$("#ct_count").val(v+1);
-		} else {
-			alert("더 이상 주문할 수 없습니다.");
-		}
-	} else {
-		if (0 < v) {
-			$("#ct_count").val(v*0+1);
-		}
-	}
-	$("#total_price").text(Number($("#ct_count").val()) * ${vo.pd_price });
-}
-
-function ct_list() {
-	//상품 리스트 확인
-	<c:if test="${!empty cartList}">
-	</c:if>
-	<c:if test="${empty cartList}">
-	</c:if>	
-	// 
-
-
-
-</script>
    <%@ include file="/WEB-INF/view/include/footer.jsp" %>
      
 </body>
