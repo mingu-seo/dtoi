@@ -7,7 +7,6 @@ public class CartVo {
 	private int cart_no;
 	private int pd_no;
 	private int cst_no;
-	private String pd_name;
 	private String pd_price;
 	private String ct_count;
 	private String ct_price;
@@ -29,12 +28,7 @@ public class CartVo {
 	public void setCst_no(int cst_no) {
 		this.cst_no = cst_no;
 	}
-	public String getPd_name() {
-		return pd_name;
-	}
-	public void setPd_name(String pd_name) {
-		this.pd_name = pd_name;
-	}
+	
 	public String getPd_price() {
 		return pd_price;
 	}

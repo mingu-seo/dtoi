@@ -47,38 +47,38 @@ $(function() {
 
 //로그인, 이메일 체크
 function loginCheck(){
-	if ( $("#loginId").val().length < 1 ) {
-		alert("이메일을 입력해주세요.");
-		$("#loginEmail").focus();
+	if ( $("#cst_id1").val().length < 1 ) {
+		alert("아이디를 입력해주세요.");
+		$("#cst_id").focus();
 		return false;
 	}
-	if ( $("#loginPwd").val().length < 1 ) {
+	if ( $("#cst_pwd1").val().length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
-		$("#loginPw").focus();
+		$("#cst_pwd1").focus();
 		return false;
 	}
 	var f = document.loginFrm;
 	if (f.reg.checked) {
-	   document.cookie = "cookie_cst_id=" + $("#cst_id").val() + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	   document.cookie = "cookie_cst_id1=" + $("#cst_id1").val() + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_cst_id=null;path=/;expires="+now;
+	   document.cookie = "cookie_cst_id1=null;path=/;expires="+now;
 	}
 	return true;
 }
 
 function useremail_chk() {
 	var f=document.loginFrm;
-	var useremail = CookieVal("cookie_useremail");
+	var cst_id = CookieVal("cookie_cst_id1");
 	
-	if (useremail=="null"){	
-		f.loginEmail.focus();
-		f.loginEmail.value="";
+	if (cst_id=="null"){	
+		f.cst_id.focus();
+		f.cst_id.value="";
 	} else {
-		f.loginPw.focus();
-		f.loginEmail.value=useremail;
+		f.cst_pwd.focus();
+		f.cst_id.value=cst_id;
 		f.reg.checked=true;
-		$("#loginPw").focus();
+		$("#cst_pwd1").focus();
 	}
 }
 
@@ -92,10 +92,12 @@ function CookieVal(cookieName) {
 	return "null" ;
 }	
 
-function moveWrite1() {
+
+
+function moveWrite2() {
 	
 	<c:if test="${!empty authUser}">
-	location.href='<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>';
+	location.href='<%=request.getContextPath()%>/customer/mypage.do?cst_no=${authUser.cst_no }';
 	</c:if>
 	<c:if test="${empty authUser}">
 	alert('로그인 후 이용가능합니다.');
@@ -186,7 +188,11 @@ $(function() {
                </c:if>
                <c:if test="${!empty authUser}">     
                 	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
+<<<<<<< HEAD
+ 
+=======
                     <a href="<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">마이페이지</a>
+>>>>>>> branch 'master' of https://github.com/mingu-seo/dtoi.git
                </c:if>
                 </div>
                 
@@ -226,7 +232,7 @@ $(function() {
                         <li>
                             <a href="<%=request.getContextPath()%>" class="parent"><span>마이페이지</span></a>
                             <ul class="depth2">
-                                <li><a href="javascript:moveWrite1();"><span>개인정보 수정</span></a></li>
+                                <li><a href="javascript:moveWrite2();"><span>마이페이지</span></a></li>
                                 <li><a href="<%=request.getContextPath()%>"><span>식단 입력</span></a></li>
                             </ul>
                         </li>
@@ -238,10 +244,10 @@ $(function() {
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>상품 목록</span></a>
+                            <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>DtoI 샐러드</span></a>
                             <ul class="depth2">
-								<li><a href="<%=request.getContextPath()%>/product/index.do"><span>상품 주문/조회하기</span></a></li>
-								<li><a href="<%=request.getContextPath()%>"><span>상품 주문 내역 조회</span></a></li>
+								<li><a href="<%=request.getContextPath()%>/product/index.do"><span>전체상품</span></a></li>
+								<li><a href="<%=request.getContextPath()%>/cart/index.do"><span>장바구니</span></a></li>
                             </ul>
                         </li>
                         <li>

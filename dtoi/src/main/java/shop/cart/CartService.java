@@ -32,6 +32,15 @@ public class CartService {
 		}
 	}
 	
+	public boolean check(CartVo vo) {
+		int r = cartDao.check(vo);
+		if (r > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public boolean update(CartVo vo) {
 		int r = cartDao.update(vo);
 		if (r > 0) {

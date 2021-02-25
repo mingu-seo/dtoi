@@ -6,15 +6,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import customer.CustomerVo;
 import shop.product.ProductService;
-import shop.product.ProductVo;
+
+
+
 
 
 @Controller
@@ -29,12 +32,14 @@ public class CartController {
 	
 	
 	@RequestMapping("/cart/index.do")
-	public String index(HttpServletRequest req, ProductVo vo, CartVo uv) {
-		List<CartVo> clist = cartService.getList(uv);
-		List<ProductVo> list = productService.getList(vo);
+	public String index(HttpServletRequest req, CartVo cvo, CustomerVo vo) {
+		HttpSession sess = req.getSession(); // 세션객체 생성
+		CustomerVo uv = (CustomerVo)sess.getAttribute("authUser"); // 세션에 저장되어 있는 객체 가져오기
+		cvo.setCst_no(uv.getCst_no()); 
+		
+		List<CartVo> clist = cartService.getList(cvo);
 		req.setAttribute("clist", clist);
-		req.setAttribute("list", list);
-		req.setAttribute("vo", vo);
+		req.setAttribute("vo",cvo);
 				return "shop/cart/index";
 	}
 	
@@ -56,7 +61,24 @@ public class CartController {
 		out.print("</script>");
 		out.flush();
 	}
-
+	
+	@RequestMapping("/cart/insert.do")
+	public void insert(CartVo vo, HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(cartService.insert(vo));
+		out.flush();
+	}
+	
+	@RequestMapping("/cart/check.do")
+	public void check(CartVo vo, HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(cartService.check(vo));
+		out.flush();
+	}
 
 }
 	

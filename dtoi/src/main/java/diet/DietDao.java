@@ -20,15 +20,15 @@ public class DietDao {
 		return sqlSession.selectList("food.selectTopList");
 	}
 	
-	public FoodVo selectNameOne(FoodVo vo) {
-		return sqlSession.selectOne("food.selectName", vo);
+	public FoodVo selectOne(FoodVo vo) {
+		return sqlSession.selectOne("food.selectOne", vo);
 	}
 	
 	public int countName(String name) {
 		return sqlSession.selectOne("food.countName", name);
 	}
 	
-	public int countSearch(int FoodNo) {
-		return sqlSession.update("food.updateSearchCount", FoodNo);
+	public int countSearch(int fd_no) {
+		return sqlSession.update("food.updateSearchCount", fd_no);
 	}
 }

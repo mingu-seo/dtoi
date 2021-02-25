@@ -3,39 +3,35 @@
 <mapper namespace="cart">
 
 	<select id="count" parameterType="shop.cart.CartVo" resultType="int">
-		select count(*) as cnt from cart
+		select count(*) from cart
 	</select>
 	
-	<select id="selectList" resultType="shop.cart.CartVo">
-		select * from cart
+	<select id="selectList" resultType="shop.cart.CartVo" parameterType="shop.cart.CartVo">
+		select * from cart where cst_no=${cst_no}
 		
 	</select>
 	
 	<select id="selectOne" parameterType="shop.cart.CartVo" resultType="shop.cart.CartVo">
 		select * from cart where pd_no=${pd_no}
 	</select>
+
 	
 	<insert id="insert" parameterType="shop.cart.CartVo">
 		INSERT INTO cart (
-			cart_no
-			,pd_no
+			pd_no
 			,cst_no
-			,pd_name
-			,pd_price
 			,ct_count
-			,ct_price
 			
 		) VALUES (
-			#{cart_no}
-			,#{pd_no}
+			#{pd_no}
 			,#{cst_no}
-			,#{pd_name}
-			,#{pd_price}
 			,#{ct_count}
-			,#{ct_price}
-
 		)
 	</insert>
+	
+	<select id="check" parameterType="shop.cart.CartVo" resultType="int">
+		select count(*) from cart where cst_no = #{cst_no} and pd_no = #{pd_no} 
+	</select>	
 	
 	<delete id="delete" parameterType="shop.cart.CartVo">
 		DELETE FROM cart WHERE pd_no = #{pd_no}
