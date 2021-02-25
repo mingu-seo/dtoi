@@ -14,8 +14,7 @@
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script>
 
-$(function() {
-	$("#submitBtn").click(function() {
+function goSave() {
 		if ($("#cst_pwd").val().trim() == '') {
 			alert('비밀번호를 입력해 주세요');
 			return false;
@@ -60,7 +59,7 @@ $(function() {
 			alert('주소를 입력해 주세요');
 			$("#addr1").focus();
 			return false;
-		}
+	}
 		var data = $("#frm").serialize();
 		$.ajax({
 			url:'/dtoi/customer/update.do',
@@ -81,8 +80,8 @@ $(function() {
 				}
 			}
 		});
-	});
-});
+}
+	
 </script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -222,7 +221,7 @@ $(function() {
 				</table>
 				</form>
 				<div class="btnSet clear">
-					<div><input type="submit" class="btn" value="수정" id="submitBtn"> 
+					<div><a href="javascript:;" class="btn" onclick="goSave();">수정</a> 
 					<a href="javascript:;" class="btn" onclick="history.back();">취소</a>
 					</div>
 				</div>
