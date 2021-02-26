@@ -8,7 +8,7 @@
 	
 	<select id="selectList" resultType="shop.order.OrderVo" parameterType="shop.order.OrderVo">
 		select * from dtoi.order where cst_no=${cst_no}
-		
+
 	</select>
 	
 	<select id="selectOne" parameterType="shop.order.OrderVo" resultType="shop.order.OrderVo">

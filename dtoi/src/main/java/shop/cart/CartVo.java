@@ -13,6 +13,15 @@ public class CartVo {
 	
 	private String pd_image;
 	private String pd_name;
+	private String[] cartNos;
+	
+	
+	public String[] getCartNos() {
+		return cartNos;
+	}
+	public void setCartNos(String[] cartNos) {
+		this.cartNos = cartNos;
+	}
 	
 	
 	public String getPd_image() {

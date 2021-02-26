@@ -52,8 +52,8 @@
 									    <a href="javascript:" onclick="ct_countFunc('del');" ><img src="/dtoi/img/product/cart/count_del.png"></a>
 								</dt>
 								<dt class="reser_btn" style="padding-bottom:5px">
-									<input type="button" class="btn" style="cursor:pointer;" value="장바구니" onclick="goCart();"/>
-									<input type="button" class="btn" style="cursor:pointer;" value="바로 구매" onclick="showDialogue('${vo.pd_no }');" />
+									<a href="javascript:goCart();"><input type="button" class="btn" style="cursor:pointer;" value="장바구니"/></a>
+									<a href="javascript:goOrder()"><input type="button" class="btn" style="cursor:pointer;" value="바로 구매"/>
 								</dt>
 							</dl>
 						</div>
@@ -483,6 +483,36 @@ function goCart() {
 		useremail_chk();
 		</c:if>	
 
+}
+
+function goOrder() {
+	//로그인 확인	
+	<c:if test="${!empty authUser}">	
+	//상품 바로 주문 
+	$.ajax({
+		url : "/dtoi/order/insert.do",
+		data : {pd_no:${vo.pd_no}, ct_count:$("#ct_count").val(), cst_no:${authUser.cst_no}}, //authUser.cst_no
+		async : true,
+		success : function(data) {
+			var d = data.trim();
+			if (d == 'true') {
+				if (confirm("장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?")) {
+					location.href='/dtoi/order/index.do';	
+				}
+			} else {
+				alert("상품 주문에 실패하였습니다.");
+					}
+				},
+		error : function(msg) {
+				console.log(msg);
+				}
+			});
+		</c:if>
+		<c:if test="${empty authUser}">
+		alert('로그인 후 주문 가능합니다.');
+		$(".login_info").toggle();
+		useremail_chk();
+		</c:if>	
 }
 </script>
 					

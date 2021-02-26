@@ -94,36 +94,39 @@
 			</div>
 			<div class="area_bottom">
 			<h3 class="sub_title">주문자 정보</h3>
+				<table>
 					<tr>
-						<th>주문자 이름</th>
+						<th scope="row"><span>주문자 이름</span></th>
 						<td><input type="text" style="float:left;"></td>
 					</tr>
 					<tr>
-						<th>전화번호</th>
+						<th scope="row"><span>전화번호</span></th>
 						<td><input type="text" style="float:left;"></td>
 					</tr>
 					<tr>
-						<th>이메일</th>
+						<th scope="row"><span>이메일</span></th>
 						<td><input type="text" style="float:left;"></td>
 					</tr>
+				</table>
 			</div>
 			<div class="area_bottom">
 			<h3 class="sub_title">배송지 정보</h3>
+			<table>
 					<tr>
-						<th>배송지</th>
+						<th scope="row"><span>배송지</span></th>
 						<td><input type="radio" value="직접입력">직접입력</td>
 						<td><input type="radio" value="주문자 정보와 동일">주문자 정보와 동일</td>
 					</tr>
 					<tr>
-						<th>받는분 이름</th>
+						<th scope="row"><span>받는분 이름</span></th>
 						<td><input type="text" style="float:left;"></td>
 					</tr>
 					<tr>
-						<th>받는분 전화번호</th>
+						<th scope="row"><span>받는분 전화번호</span></th>
 						<td><input type="text" style="float:left;"></td>
 					</tr>
 					<tr>
-						<th>배송주소</th>
+						<th scope="row"><span>배송주소</span></th>
 						<td>
 							<input type="button" value="우편번호" onclick="zip_api();" class="btn bgGray" style="float:left;">
 							<input type="text" name="zipcode" id="zipcode" size="5" readonly value="${vo.zipcode }" >
@@ -132,20 +135,23 @@
 						</td>
 					</tr>
 					<tr>
-						<th>배송 요청사항</th>
+						<th scope="row"><span>배송 요청사항</span></th>
 						<td><input type="text" style="float:left;"></td>
 					</tr>
+			</table>
 			</div>
 			<div class="area_bottom">
 			<h3 class="sub_title">결제 정보</h3>
+			<table>
 					<tr>
-						<th>일반 결제</th>
+						<th scope="row">일반 결제</th>
 						<td><input type="radio" value="무통장 입금">무통장입금</td>
 						<td>입금자명: <input type="text" style="float:left;"></td>
 						<td>입금은행: <select name="bank" size="1" >
 							<option value="농협">농협 212-175684-25431 Dtoi</option>
 						</td>
 					</tr>
+			</table>
 			</div>
 			
 			<div class="btnSet"  style="text-align:center;">

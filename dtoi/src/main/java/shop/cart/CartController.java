@@ -43,16 +43,24 @@ public class CartController {
 				return "shop/cart/index";
 	}
 	
-
-	
 	@GetMapping("/cart/delete.do")
 	public void delete(HttpServletResponse res, CartVo vo) throws IOException {
+		res.getWriter().print(cartService.delete(vo));
+	}
+		
+		
+	@GetMapping("/cart/cartDelete.do")
+	public void cartDelete(HttpServletResponse res, CartVo vo) throws IOException {
 		int delCount = 0;
+		for(int i = 0; i < vo.getCartNos().length; i++) {			
+			vo.setCart_no(Integer.parseInt(vo.getCartNos()[i]));
+			if (cartService.delete(vo)) delCount++;
+		}
 		res.setContentType("text/html;charset=utf-8");
 		PrintWriter out = res.getWriter();
 		out.print("<script>");
 		if (delCount > 0) {
-			out.print("alert('" +delCount+ " 건이 삭제되었습니다.');");
+			out.print("alert('"+vo.getCartNos().length+ "건중에"+delCount+ " 건이 삭제되었습니다.');");
 			out.print("location.href='/dtoi/cart/index.do';");
 		} else {
 			out.print("alert('삭제실패.');");
@@ -61,6 +69,9 @@ public class CartController {
 		out.print("</script>");
 		out.flush();
 	}
+	
+	
+	
 	
 	@RequestMapping("/cart/insert.do")
 	public void insert(CartVo vo, HttpServletRequest req, HttpServletResponse res) throws Exception {
