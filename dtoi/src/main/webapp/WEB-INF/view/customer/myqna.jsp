@@ -83,11 +83,6 @@
 						</c:forEach>
 					</tbody>					
 				</table>
-				
-			<div class="btnSet"  style="text-align:right;">
-				<a class="btn" href="index.do">전체보기</a>
-				<a class="btn" href="write.do;">질문작성 </a>
-			</div>
 			<div class="btnSet"  style="text-align:right;">
 			</div>
 			
@@ -102,23 +97,7 @@
 					<a href="index.do?reqPage=${endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
 				</c:if>
 			</div>
-			
-			<div class="bbsSearch">
-				<form method="get" name="searchForm" id="searchForm" action="index.do">
-					<span class="srchSelect">
-						<select name="qna_section">
-							<option value="" <c:if test="${param.qna_section == '' }">selected</c:if>>전체</option>
-							<option value="1" <c:if test="${param.qna_section == '1' }">selected</c:if>>상품문의</option>
-							<option value="2" <c:if test="${param.qna_section == '2' }">selected</c:if>>반품문의</option>
-							<option value="3" <c:if test="${param.qna_section == '3' }">selected</c:if>>기타문의</option>
-						</select>
-					</span>
-					<span class="searchWord">
-						<input type="text" name="searchWord" value="${param.searchWord }">
-						<input type="button" id="" value="검색" title="검색" onclick="goSearch();">
-					</span>						
-				</form>					
-			</div>				
+						
 		</div>
 	</div>
 </div>
