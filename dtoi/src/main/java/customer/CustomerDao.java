@@ -2,10 +2,13 @@ package customer;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import board.qna.QnaVo;
 
 @Repository
 public class CustomerDao {
@@ -65,14 +68,24 @@ public class CustomerDao {
 		return sqlSession.update("customer.updatePwd", vo);
 	}
 	
+	public int count(QnaVo vo) {
+		return sqlSession.selectOne("qna.count", vo);
+	}
 	
+	public List<QnaVo> selectList(QnaVo vo) {
+		return sqlSession.selectList("qna.selectList", vo);
+	}
 	
+	public QnaVo selectOne(QnaVo vo) {
+		return sqlSession.selectOne("qna.selectOne", vo);
+	}
 	
-	
-	
-	
-	
-	
+	public void refUpdate(int no) {
+		sqlSession.update("qna.refUpdate", no);
+	}
+	public void updateSeq(Map map) {
+		sqlSession.update("qna.updateSeq", map);
+	}
 	
 	
 	
