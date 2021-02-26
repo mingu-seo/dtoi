@@ -15,7 +15,7 @@
 </head>
 <script>
 function edit() {
-	location.href='<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>';
+	location.href='<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }';
 }
 </script>
 

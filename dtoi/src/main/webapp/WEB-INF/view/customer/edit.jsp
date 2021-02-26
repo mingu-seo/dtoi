@@ -74,7 +74,7 @@ function goSave() {
 					// 모든 입력란을 초기화
 					//$("input[type='text'], input[type='password']").val("");
 					//$("#frm")[0].reset();
-					location.href="/dtoi/index.do";
+					location.href="/dtoi/customer/detail.do?cst_no=${authUser.cst_no }";
 				} else {
 					alert("등록 실패");
 				}
