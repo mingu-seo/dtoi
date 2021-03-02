@@ -200,12 +200,7 @@ $(function() {
 
                 	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
 
- 
-
-
-                	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
-
-                    <a href="<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">마이페이지</a>
+                    <a href="<%=request.getContextPath()%>/customer/mypage.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">마이페이지</a>
 
 
 
