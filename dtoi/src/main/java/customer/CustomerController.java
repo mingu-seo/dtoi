@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import board.bulletin_board.Bulletin_boardService;
+import board.bulletin_board.Bulletin_boardVo;
 import board.qna.QnaService;
 import board.qna.QnaVo;
 
@@ -34,6 +36,9 @@ public class CustomerController {
 	
 	@Autowired
 	private QnaService qnaService;
+	
+	@Autowired
+	private Bulletin_boardService bulletin_boardService;
 	
 	@GetMapping("/")
 	public String index() {
@@ -304,7 +309,21 @@ public class CustomerController {
 		return "customer/myqna";
 	}
 	
+	@RequestMapping("/customer/mypost.do")
+	public String index(HttpServletRequest req, Bulletin_boardVo vo) {
+		// 서비스(로직) 처리(호출)
+		int[] rowPageCount = bulletin_boardService.getRowPageCount(vo);
+		List<Bulletin_boardVo> list = bulletin_boardService.getList(vo);
 
+		req.setAttribute("totCount", rowPageCount[0]);
+		req.setAttribute("totalPage", rowPageCount[1]);
+		req.setAttribute("startPage", rowPageCount[2]); // 시작페이지
+		req.setAttribute("endPage", rowPageCount[3]); // 마지막페이지
+		req.setAttribute("list", list);
+		req.setAttribute("reqPage", vo.getReqPage());
+		req.setAttribute("vo", vo);
+		return "customer/mypost";
+	}
 
 	
 }

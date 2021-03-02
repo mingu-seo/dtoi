@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="board.faq.*" %>
+<%@ page import="board.bulletin_board.*" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,7 +15,7 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<title>dtoi 나의 질문</title>
+<title>dtoi 내가 쓴 글</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 </head>
 <body>
@@ -34,10 +34,10 @@
 								<a href="<%=request.getContextPath()%>/customer/food.do?cst_no=${authUser.cst_no }" onclick="tab_move('1'); return false;" >주문내역</a>
 							</li>
 							<li>
-								<a href="<%=request.getContextPath()%>/customer/myqna.do?cst_no=${authUser.cst_no }" onclick="tab_move('2'); return false;" class="active">나의 질문</a>
+								<a href="<%=request.getContextPath()%>/customer/myqna.do?cst_no=${authUser.cst_no }" onclick="tab_move('2'); return false;">나의 질문</a>
 							</li>
 							<li>
-								<a href="<%=request.getContextPath()%>/customer/mypost.do?cst_no=${authUser.cst_no }" onclick="tab_move('3'); return false;">내가 쓴 글</a>
+								<a href="<%=request.getContextPath()%>/customer/mypost.do?cst_no=${authUser.cst_no }" onclick="tab_move('3'); return false;" class="active">내가 쓴 글</a>
 							</li>
 						</ul>
 					</div>
@@ -55,30 +55,26 @@
 					</colgroup>
 					<thead>
 						<tr>
-							
-							<th>번호</th>
-							<th>상태</th>
+							<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
+							<th>글번호</th>
 							<th>제목</th>
-							<th>작성일</th>
 							<th>작성자</th>
+							<th>작성일</th>
+							<th>조회수</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="vo" items="${list}">
 						<input type="hidden" name="cst_id" value="${authUser.cst_id }">
 						<input type="hidden" name="user_name" value="${vo.user_name }">
-							<c:if test= "${authUser.cst_id == vo.user_name}">
-							<tr style='cursor:pointer;' onclick="location.href='/dtoi/board/qna/detail.do?qna_no=${vo.qna_no }'">
-								<td>${vo.qna_no }</td>
-								<td class="hit" >${vo.qna_name }</td>
-								<td class="txt_l">
-								<c:forEach begin="1" end="${vo.lev }">&nbsp;&nbsp;</c:forEach>
-									<c:if test="${vo.lev > 0 }">
-										<img src="/dtoi/img/board/answer_icon.gif">
-									</c:if>
-									${vo.qna_title} </td>
-								<td class="date">${vo.qna_regdate }</td>
-								<td class="writer"> ${vo.user_name}</td>
+						<c:if test= "${authUser.cst_id == vo.user_name}">
+							<tr style='cursor:pointer;' onclick="location.href='/dtoi/board/bulletin_board/detail.do?bb_no=${vo.bb_no }'">
+								<td class="first"><input type="checkbox" name="nos" id="no" value="${vo.bb_no }"/></td>
+								<td>${vo.bb_no }</td>
+								<td class="txt_l">${vo.bb_title} [${vo.commentCount }]</td>
+								<td class="writer"> ${vo.user_name }</td>
+								<td class="date">${vo.bb_regdate }</td>
+								<td class="hit" >${vo.readCnt }</td>
 							</tr>
 							</c:if>
 						</c:forEach>
