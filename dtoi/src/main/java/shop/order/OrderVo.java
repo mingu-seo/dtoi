@@ -13,9 +13,16 @@ public class OrderVo extends CommonVo {
 	private int zipcode;
 	private String addr1;
 	private String addr2;
+	private int pd_no;
 	private String[] nos;
 	
 	
+	public int getPd_no() {
+		return pd_no;
+	}
+	public void setPd_no(int pd_no) {
+		this.pd_no = pd_no;
+	}
 	public int getOr_no() {
 		return or_no;
 	}

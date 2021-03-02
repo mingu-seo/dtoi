@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop.order">
+
+	<select id="count" parameterType="shop.order.OrderVo" resultType="int">
+		select count(*) from dtoi.order
+	</select>
+	
+	<select id="selectList" resultType="shop.order.OrderVo" parameterType="shop.order.OrderVo">
+		select * from dtoi.order where cst_no=${cst_no}
+
+	</select>
+	
+	<select id="selectOne" parameterType="shop.order.OrderVo" resultType="shop.order.OrderVo">
+		select * from dtoi.order where pd_no=${pd_no}
+	</select>
+
+	
+	<insert id="insert" parameterType="shop.order.OrderVo">
+		INSERT INTO dtoi.order (
+			or_no
+			,cst_no
+			,zipcode
+			,addr1
+			,addr2
+			,or_pay
+			,or_pay_price
+			,pd_no
+			
+		) VALUES (
+			#{or_no}
+			,#{cst_no}
+			,#{zipcode}
+			,#{addr1}
+			,#{addr2}
+			,#{or_pay}
+			,#{or_pay_price}
+			,#{pd_no}
+		)
+	</insert>
+	
+	<select id="check" parameterType="shop.order.OrderVo" resultType="int">
+		select count(*) from dtoi.order where cst_no = #{cst_no} and pd_no = #{pd_no} 
+	</select>	
+	
+</mapper>

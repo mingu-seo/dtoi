@@ -92,7 +92,17 @@ function CookieVal(cookieName) {
 	return "null" ;
 }	
 
-
+function cartindex() {
+	
+	<c:if test="${!empty authUser}">
+	location.href='<%=request.getContextPath()%>/cart/index.do';
+	</c:if>
+	<c:if test="${empty authUser}">
+	alert('로그인 후 이용가능합니다.');
+	$(".login_info").toggle();
+	useremail_chk();
+	</c:if>	
+}
 
 function moveWrite2() {
 	
@@ -187,12 +197,20 @@ $(function() {
                     <a href="<%=request.getContextPath()%>/customer/write.do?url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>&param=<%=request.getQueryString() %>">회원가입</a>
                </c:if>
                <c:if test="${!empty authUser}">     
+<<<<<<< HEAD
                 	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
 
  
 
+=======
+                	<a href="<%=request.getContextPath()%>/customer/logout.do">로그아웃</a>
+>>>>>>> branch 'master' of https://github.com/mingu-seo/dtoi.git
                     <a href="<%=request.getContextPath()%>/customer/edit.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>">마이페이지</a>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/mingu-seo/dtoi.git
                </c:if>
                 </div>
                 
@@ -247,7 +265,7 @@ $(function() {
                             <a href="<%=request.getContextPath()%>/product/index.do" class="parent"><span>DtoI 샐러드</span></a>
                             <ul class="depth2">
 								<li><a href="<%=request.getContextPath()%>/product/index.do"><span>전체상품</span></a></li>
-								<li><a href="<%=request.getContextPath()%>/cart/index.do"><span>장바구니</span></a></li>
+								<li><a href="javascript:cartindex();"><span>장바구니</span></a></li>
                             </ul>
                         </li>
                         <li>

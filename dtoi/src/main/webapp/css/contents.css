@@ -280,20 +280,22 @@ s.bbs .list tbody tr:hover{background:#f6f6f6;} /*마우스오버 배경칼라�
 .bbs .area_bottom ul.cart_btn {padding-top:10px; text-align:right; bottom:0;}
 .bbs .area_bottom ul.cart_btn li.box_btn {font-size:14px; text-decoration:none !important; white-space:nowrap; display:inline-block; 
 										  vertical-align:baseline; position:relative; cursor:pointer; padding:4px 20px; min-width:64px; border:2px solid #351f66; color:#fff !important; margin:0 2px; text-align:center; font-weight:bold; border-radius:5px; background-color:#351f66; }
-.bbs .area_bottom {margin: 0px 0 0 0; padding: 30px 60px 30px 60px; text-align: center; font-size:15px;}
+.bbs .area_bottom {margin: 0px 0 0 0; padding: 30px 60px 30px 60px; text-align: center; font-size:17px;}
 .bbs .area_bottom .box {margin-bottom:3px; background:#fff; font-size:15px;}
 .bbs .area_bottom .box .deliveryInfo {position:relative; padding:23px 0 31px; color:#888; font-size:15px; letter-spacing:0px;}
+.bbs .area_bottom .total_cal a.cartplus {margin:5px; background-image:url('/dtoi/img/product/cart/order_price_plus.png');background-repeat: no-repeat;background-position: center;}
+.bbs .area_bottom .total_cal a.carttotal {margin:5px; background-image:url('/dtoi/img/product/cart/order_price_total.png');background-repeat: no-repeat;background-position: center;}
 .tbl_col.prd > tbody > tr > th *,
 .tbl_col.prd > tbody > tr > td * {color:inherit; font:inherit;}
 .tbl_col.prd > tbody > tr > td * {color:inherit; font:inherit;}
 .tbl_col.prd > thead > tr > th {padding:16px 0 15px; border-top:1px solid #351f66; border-bottom:1px solid #351f66; color:#333;}
-.tbl_col.prd > tbody > tr > td {padding:60px 0; border-bottom:1px solid #351f66;}
+.tbl_col.prd > tbody > tr > td {padding:20px 0; border-bottom:1px solid #351f66;}
 .tbl_col.prd > tbody > tr > td img {vertical-align:middle;}
-.tbl_col.prd > tbody > tr > td.tal {padding-left:20px !important;}
+.tbl_col.prd > tbody > tr > td.tal {padding-left:30px !important;}
 .tbl_col.prd > tbody > tr > td.tal .no_data{padding:60px 0; margin:0 0 20px 0; text-align:center; color:#444;}
 .tbl_col.prd > tbody > tr > td.price del {color:#a9a9a9;}
 .tbl_col.prd > tbody > tr > td.delete a {display:inline-block; position:relative; margin:0 2px;}
-.tbl_col.prd > tbody > tr > td.img img {width:200px; height:auto;}
+.tbl_col.prd > tbody > tr > td.img img {width:100px; height:auto;}
 .tbl_col.prd > tbody > tr > td .img {text-align:left;}
 .tbl_col.prd > tbody > tr > td .name a {color:#333;}
 .tbl_col.prd > tbody > tr > td.tal .qty .form_input{width:50px;}

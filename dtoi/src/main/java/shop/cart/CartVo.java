@@ -10,6 +10,32 @@ public class CartVo {
 	private String pd_price;
 	private String ct_count;
 	private String ct_price;
+	
+	private String pd_image;
+	private String pd_name;
+	private String[] cartNos;
+	
+	
+	public String[] getCartNos() {
+		return cartNos;
+	}
+	public void setCartNos(String[] cartNos) {
+		this.cartNos = cartNos;
+	}
+	
+	
+	public String getPd_image() {
+		return pd_image;
+	}
+	public void setPd_image(String pd_image) {
+		this.pd_image = pd_image;
+	}
+	public String getPd_name() {
+		return pd_name;
+	}
+	public void setPd_name(String pd_name) {
+		this.pd_name = pd_name;
+	}
 	public int getCart_no() {
 		return cart_no;
 	}

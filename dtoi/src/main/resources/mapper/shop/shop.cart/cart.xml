@@ -7,7 +7,17 @@
 	</select>
 	
 	<select id="selectList" resultType="shop.cart.CartVo" parameterType="shop.cart.CartVo">
-		select * from cart where cst_no=${cst_no}
+		SELECT p.pd_no, 
+		       p.pd_price, 
+		       p.pd_image, 
+		       c.ct_count,
+		       p.pd_name,
+		       c.cart_no
+		FROM product AS p, 
+		     cart AS c, 
+		     customer AS cst
+		WHERE p.pd_no=c.pd_no 
+		AND c.cst_no=cst.cst_no
 		
 	</select>
 	
@@ -34,7 +44,7 @@
 	</select>	
 	
 	<delete id="delete" parameterType="shop.cart.CartVo">
-		DELETE FROM cart WHERE pd_no = #{pd_no}
+		DELETE FROM cart WHERE cart_no = #{cart_no}
 	</delete>
 
 

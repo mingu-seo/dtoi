@@ -5,12 +5,16 @@ package shop.order;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import customer.CustomerVo;
+import shop.cart.CartService;
+import shop.cart.CartVo;
+import shop.product.ProductService;
 
 
 
@@ -19,23 +23,29 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private CartService cartService;
+	@Autowired
+	private ProductService productService;
+	
+	
 	
 	@RequestMapping("/order/index.do")
-	public String index(HttpServletRequest req, OrderVo vo) {
+	public String index(HttpServletRequest req, OrderVo vo, CartVo cvo, CustomerVo uv) {
 		// 서비스(로직) 처리(호출)
-		int[] rowPageCount = orderService.getRowPageCount(vo);
+		HttpSession sess = req.getSession(); // 세션객체 생성
+		CustomerVo uv1 = (CustomerVo)sess.getAttribute("authUser"); // 세션에 저장되어 있는 객체 가져오기
+		cvo.setCst_no(uv1.getCst_no()); 
+		
 		List<OrderVo> list = orderService.getList(vo);
-
-		req.setAttribute("totCount", rowPageCount[0]);
-		req.setAttribute("totalPage", rowPageCount[1]);
-		req.setAttribute("startPage", rowPageCount[2]); // 시작페이지
-		req.setAttribute("endPage", rowPageCount[3]); // 마지막페이지
+		List<CartVo> clist = cartService.getList(cvo);
 		req.setAttribute("list", list);
-		req.setAttribute("reqPage", vo.getReqPage());
+		req.setAttribute("clist", clist);
 		req.setAttribute("vo", vo);
-		return "order/index";
+				return "shop/order/index";
 	}
 	
+
 	@RequestMapping("/order/detail.do")
 	public String detail(HttpServletRequest req, OrderVo vo) {
 		OrderVo uv = orderService.selectOne(vo);	

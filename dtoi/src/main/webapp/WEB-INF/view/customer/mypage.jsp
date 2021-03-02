@@ -20,7 +20,7 @@
 </head>
 <script>
 function detail() {
-	location.href='<%=request.getContextPath()%>/customer/detail.do?cst_no=${authUser.cst_no }&url=<%=request.getAttribute("javax.servlet.forward.request_uri")%>';
+	location.href='<%=request.getContextPath()%>/customer/detail.do?cst_no=${authUser.cst_no }';
 }
 </script>
 <script>
@@ -67,16 +67,16 @@ function del() {
 					<div class="tab_area" id="product_info">
 						<ul class ="tab_menu">
 							<li>
-								<a href="<%=request.getContextPath()%>/customer/mypage.do?cst_no=${authUser.cst_no }/food" onclick="tab_move('0'); return false;" >식단입력 내역</a>
+								<a href="<%=request.getContextPath()%>/customer/food.do?cst_no=${authUser.cst_no }" onclick="tab_move('0'); return false;" >식단입력 내역</a>
 							</li>
 							<li>
-								<a href="/order" onclick="tab_move('1'); return false;" >주문내역</a>
+								<a href="<%=request.getContextPath()%>/customer/food.do?cst_no=${authUser.cst_no }" onclick="tab_move('1'); return false;" >주문내역</a>
 							</li>
 							<li>
-								<a href="/qna" onclick="tab_move('2'); return false;">질문</a>
+								<a href="<%=request.getContextPath()%>/customer/myqna.do?cst_no=${authUser.cst_no }" onclick="tab_move('2'); return false;">나의 질문</a>
 							</li>
 							<li>
-								<a href="/board" onclick="tab_move('3'); return false;">내가 쓴 글</a>
+								<a href="<%=request.getContextPath()%>/customer/mypost.do?cst_no=${authUser.cst_no }" onclick="tab_move('3'); return false;">내가 쓴 글</a>
 							</li>
 							
 						</ul>
@@ -88,6 +88,7 @@ function del() {
 					<div><a href="javascript:detail();" class="btn" id="submitBtn">내 정보</a> 
 					<a href="javascript:del();" class="btn" id="submitBtn">회원탈퇴</a>
 					</div>
+			</div>
 			</div>
 				
 					

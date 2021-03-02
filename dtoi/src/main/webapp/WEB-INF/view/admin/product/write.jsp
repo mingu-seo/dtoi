@@ -27,9 +27,9 @@ $(function() {
 	});
 });
 function formCheck() {
-	if ($("#title").val().trim() == '') {
+	if ($("#pd_name").val().trim() == '') {
 		alert('제목을 입력하세요');
-		$("#title").focus();
+		$("#pd_name").focus();
 		return false;
 	}
 	//
@@ -81,7 +81,7 @@ function formCheck() {
 									<tr>
 										<th scope="row"><label for="">상품이름</label></th>
 										<td colspan="10">
-											<input type="text" name="pd_name" title="상품이름 입력란" style="width:100%;">	
+											<input type="text" name="pd_name" id="pd_name" title="상품이름 입력란" style="width:100%;">	
 										</td>
 									</tr>									
 									<tr>

@@ -9,6 +9,111 @@
 <title>DtoI</title>
 <%@ include file="/WEB-INF/view/include/userHeadHtml.jsp" %>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script>
+
+//수량 변경
+$(function() {
+	total();
+	$(".plus_btn").click(function() {
+		var idx = $(".plus_btn").index($(this));
+		var v = Number($(".ct_count").eq(idx).val());
+		
+		if (v < 10) {
+			$(".ct_count").eq(idx).val(v+1);
+		}
+		$(".cal_price").eq(idx).text(Number($(".ct_count").eq(idx).val()) * Number($(".pd_price").eq(idx).val()));
+		total();
+	});
+	
+	$(".minus_btn").click(function() {
+		var idx = $(".minus_btn").index($(this));
+		var v = Number($(".ct_count").eq(idx).val());
+		
+		if (v > 1) {
+			$(".ct_count").eq(idx).val(v-1);
+		}
+		$(".cal_price").eq(idx).text(Number($(".ct_count").eq(idx).val()) * Number($(".pd_price").eq(idx).val()));
+		total();
+	});
+	
+	$(".each_del_btn").click(function() {
+		var idx = $(".each_del_btn").index($(this));
+		var v = Number($(".ct_count").eq(idx).val());
+		
+		if (v > 1) {
+			$(".ct_count").eq(idx).val(v*0+1);
+		}
+		$(".cal_price").eq(idx).text(Number($(".ct_count").eq(idx).val()) * Number($(".pd_price").eq(idx).val()));
+		total();
+	});
+});
+
+//전체 가격
+function total() {
+	var total = 0;
+	$(".cal_price").each(function(idx, val) {
+		//console.log(idx, val);
+		total += Number($(".cal_price").eq(idx).text());	
+	});
+	$(".total_price").text(total);
+	$(".last_price").text((total+3000));
+}
+
+
+//전체 & 개별선택
+$(function() {
+	$(".all_select").click(function() {
+		if ($(this).prop('checked')) {
+			$(".cartIdx").prop('checked',true);
+		} else {
+			$(".cartIdx").prop('checked',false);
+		}
+	});
+});
+
+//선택상품 삭제
+function cart_all_del() {
+	
+	var cnt = 0;
+	$('.cartIdx').each(function() {
+		if ($(this).prop("checked") == true) cnt += 1;		
+	});
+	if (cnt == 0) {
+		alert('장바구니 상품을 하나 이상 선택해 주세요');
+		return false;
+	} else {
+		if (confirm('선택한 장바구니 상품을 삭제하시겠습니까?')) {
+			$("#frmCart").submit();	
+		}
+	}
+}
+//선택상품 주문
+function cart_buy() {
+	//선택상품 주문 
+	$.ajax({
+		url : "/dtoi/order/insert.do",
+		data : {pd_no:${vo.pd_no}, ct_count:$("#ct_count").val(), cst_no:${vo.cst_no}}, 
+		async : true,
+		success : function(data) {
+			var d = data.trim();
+			if (d == 'true') {
+				if (confirm("선택한 상품을 주문하시겠습니까?")) {
+					location.href='/dtoi/order/index.do';	
+				}
+			} else {
+				alert("상품 주문에 실패하였습니다.");
+					}
+				},
+		error : function(msg) {
+				console.log(msg);
+				}
+			});
+}
+
+//수량 DB저장
+
+
+</script>
 </head>
 <body>
  <%@ include file="/WEB-INF/view/include/header.jsp" %>
@@ -21,97 +126,88 @@
 				<div class="area_top">
 
 					<div class="check_all">
-						<input type="checkbox" id="allCheck" onclick="cartIdxs">
+						<input type="checkbox" id="allCheck" class="all_select" checked="checked">
 						<label for="allCheck" style="cursor: pointer;">전체선택</label>
 					</div>
-				
+					<form class="cart-form" id="frmCart" action="cartDelete.do">
 					<table class="tbl_col prd">
-					<form>
-					<input type="hidden" name="cst_no" value="${authUser.cst_no }">
-					<input type="hidden" name="cart_no" value="${cart_no }">
-					<input type="hidden" name="pd_no" value="${pd_no }">
-					
-					</form>
 					<caption class="hidden">장바구니</caption>
 					<colgroup>
-						<col style="width:110px;">
-						<col>
-						<col style="width:142px;">
-						<col style="width:56px;">
+						<col style="width:50px;">
+						<col style="width:160px;">
+						<col style="">
+						<col style="width:120px;">
+						<col style="width:60px;">
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col" colspan="2">상품</th>
+							<th scope="col">선택</th>
+							<th scope="col">  </th>
+							<th scope="col">상품</th>
 							<th scope="col">가격</th>
-							<th scope="col"></th>
+							<th scope="col">  </th>
 						</tr>
 					</thead>
 					<tbody>
 					<c:if test="${empty clist}">
 						<tr>
 							<td class="tal" colspan="4">
-								<p class="no_data">장바구니에 담긴 상품이 없습니다.</p>
+								<p class="no_data"><strong>장바구니에 담긴 상품이 없습니다.</strong></p>
 							</td>
 						</tr>
 					</c:if>
 					<c:if test="${!empty clist}">	
-					<c:forEach var="vo" items="${clist}">		
+					<c:forEach var="vo" items="${clist}">	
 						<tr>
-							<td class="img">
-								<div class="check"colspan="1">
-								<input type="checkbox" class="cartIdxs">
+							<td>
+								<div class="check">
+									<input type="checkbox" class="cartIdx" checked name="cartNos" value="${vo.cart_no}">
 								</div>
-								<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank" >
-								<img src="/dtoi/upload/" alt=""/>
+							</td>
+							<td class="img">
+								<a href="/dtoi/product/detail.do?=${vo.pd_no }" target="_blank" >
+								<img src="/dtoi/upload/${vo.pd_image }" alt=""/>
 								</a>
 							</td>
 							<td class="tal">
-								<form class="cart-form">
-		
 									<div class="name">
-										<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank"> ${vo.pd_no }</a>
+										<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank"> ${vo.pd_name }</a>
 									</div>
 									<div class="qty">
-										<a href="javascript:" onclick="ct_countFunc('minus');" ><img src="/dtoi/img/product/cart/count_down.png"></a>
-										<input type="text" name="ct_count" id="ct_count" readonly value="1">
-										<a href="javascript:" onclick="ct_countFunc('plus');" ><img src="/dtoi/img/product/cart/count_up.png"></a>
+										<a href="javascript:" ><img class="minus_btn" src="/dtoi/img/product/cart/count_down.png"></a>
+										<input type="text" name="ct_count" class="ct_count" readonly value="1">
+										<a href="javascript:" ><img  class="plus_btn" src="/dtoi/img/product/cart/count_up.png"></a>
+										<input type="hidden" class="pd_price" value="${vo.pd_price }">
 									</div>
-								</form>
 							</td>
 							<td class="qty">
-								<strong id="total_price" style=padding:20px;> ${vo.pd_price }</strong>원 &nbsp;
+								<strong class="cal_price" style=padding:20px;> ${vo.pd_price }</strong>원 &nbsp;
 							</td>
 							<td class="qty">
-							<a href="javascript:" onclick="ct_countFunc('del');" ><img src="/dtoi/img/product/cart/count_del.png"></a>
-							</td>						
+							<a href="javascript:"><img class="each_del_btn" src="/dtoi/img/product/cart/count_del.png"></a>
+							</td>						                  
 						</tr>
 						</c:forEach>
 						</c:if>
 					</tbody>
 					</table>
-					
+					</form>
 
 			</div>
 			<!-- area_top -->
 			
 			<div class="area_bottom">
-					<div class="orderCart__total__calc">
-						<span class="calc__total"> 총 상품금액 <span class="price"><strong> 0</strong>원</span></span>
-						<span class="calc__deli">+ 배송비 <span class="price"><strong>3000</strong>원</span></span>
+					<div class="total_cal">총 상품금액 <strong> <span class="total_price"> </strong> 원</span>
+						<a class="cartplus"><img src="/dtoi/img/product/cart/order_price_plus.png"></a> 배송비 <span class="price"> <strong>3000</strong> 원</span>
+						
+						<a class="carttotal"><img src="/dtoi/img/product/cart/order_price_total.png"></a> 총 결제 금액 <strong> <span class="last_price"> </strong> 원</span>
 					</div>
-
-					<div class="orderCart__total__cont">
-						<p class="orderCart__total__txt">총 결제 예정금액</p>
-					</div>
-					<ul class="cart_btn">
+					<ul class="cart_btn" style="padding:20px;">
 					<li class="box_btn">
-					<a href="javascript:" onclick="choose_buy();">선택상품 주문</a>
+					<a href="javascript:"  onclick="cart_buy();">선택상품 주문</a>
 					</li>
 					<li class="box_btn">
-					<a href="javascript:" onclick="choose_del();">선택상품 삭제</a>
-					</li>
-					<li class="box_btn">
-					<a href="javascript:" onclick="cart_all_del()();">장바구니 비우기</a>
+					<a href="javascript:" onclick="cart_all_del();">선택상품 삭제</a>
 					</li>
 				</ul>
 
@@ -119,44 +215,10 @@
 			
 			
 
-			<div class="pagenate clear">
-			</div>
 		</div>
 		<!-- bbs -->
 	</div>
 </div>
-<script>
-function ct_countFunc(type) {
-	var v = Number($("#ct_count").val());
-	if (type == 'minus') {
-		if (v > 1) {
-			$("#ct_count").val(v-1);
-		}
-	} else if (type == 'plus'){
-		if (v < 10) {
-			$("#ct_count").val(v+1);
-		} else {
-			alert("더 이상 주문할 수 없습니다.");
-		}
-	} else {
-		if (0 < v) {
-			$("#ct_count").val(v*0+1);
-		}
-	}
-	$("#total_price").text(Number($("#ct_count").val()) * ${vo.pd_price });
-}
-
-function ct_list() {
-	//상품 리스트 확인
-	<c:if test="${!empty cartList}">
-	</c:if>
-	<c:if test="${empty cartList}">
-	</c:if>	
-	// 
-
-
-
-</script>
    <%@ include file="/WEB-INF/view/include/footer.jsp" %>
      
 </body>

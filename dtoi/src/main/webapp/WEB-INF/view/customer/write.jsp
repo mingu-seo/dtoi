@@ -36,6 +36,10 @@ function formCheck() {
 					$("#cst_id").focus();
 					con = false;
 				}
+				else if (data == 'false'){
+					alert('이 아이디는 사용할 수 있습니다.');
+					con = false;
+				}
 			}
 
 		});
@@ -43,9 +47,11 @@ function formCheck() {
 		alert('아이디는 3자 이상 입력해 주세요');
 		$("#cst_id").focus();
 		return false;
+	}
 }
 
-	if (con == false) return false;
+function goSave() {
+
 	if ($("#cst_pwd").val().trim() == '') {
 		alert('비밀번호를 입력해 주세요');
 		$("#cst_pwd").focus();
@@ -80,9 +86,13 @@ function formCheck() {
 		   alert("성별을 선택해 주세요.");
 		   return;
 		}
-
 	if ($("#cst_birth").val().trim() == '') {
 		alert('생일을 입력해 주세요');
+		$("#cst_birth").focus();
+		return false;
+	}
+	if ($("#cst_birth").val().length < 10) {
+		alert('생일을 xxxx(년)-xx(월)-xx(일) 순으로 정확히 입력해 주세요');
 		$("#cst_birth").focus();
 		return false;
 	}
@@ -121,35 +131,7 @@ function formCheck() {
 		}
 	});
 }
-// 아이디에 keyup이벤트를 걸어서 ajax로 중복여부 체크
-$(function() {
-	$("#submitBtn").click(function() {
-		formCheck();
-	});
-	$("#cst_id").keyup(function() {
-		//console.log($(this).val());
-		//console.log($(this).val().length);
-		if ($(this).val().length >= 3) { // 아이디 값이 3자 이상인 경우
-			$.ajax({
-				url:'/dtoi/customer/isDuplicateId.do',
-				data:{id:$(this).val()},
-				type:'HTML',
-				method:'GET',
-				cache:false,
-				success:function(data) {
-					//console.log(data);
-					if (data == 'true') {
-						$("#idMsg").text('아이디 중복');
-					} else {
-						$("#idMsg").text('아이디 사용 가능');
-					}
-				}
-			});
-		} else {
-			$("#idMsg").text('아이디를 입력하세요');
-		}
-	});
-});
+
 </script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -266,9 +248,10 @@ $(function() {
 					</tr>
 					</tbody>
 				</table>
+							<input type="hidden" name="cst_id_check" id="cst_id_check" value="0"/>
 				</form>
 				<div class="btnSet clear">
-					<div><input type="submit" class="btn" value="가입" id="submitBtn"> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
+					<div><a href="javascript:;" class="btn" onclick="goSave();">가입</a> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
 				</div>
 			</div>
     	</div>
