@@ -246,14 +246,13 @@ $(function() {
                             <a href="<%=request.getContextPath()%>" class="parent"><span>마이페이지</span></a>
                             <ul class="depth2">
                                 <li><a href="javascript:moveWrite2();"><span>마이페이지</span></a></li>
-                                <li><a href="<%=request.getContextPath()%>"><span>식단 입력</span></a></li>
+                                <li><a href="<%=request.getContextPath()%>/customer/diet/index.do"><span>내 식단</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="<%=request.getContextPath()%>/diet/index.do" class="parent"><span>칼로리사전</span></a>
                             <ul class="depth2">
                                 <li><a href="<%=request.getContextPath()%>/diet/index.do"><span>칼로리사전</span></a></li>
-                                <li><a href="<%=request.getContextPath()%>/diet/calculate.do"><span>하루 칼로리 섭취량</span></a></li>
                             </ul>
                         </li>
                         <li>

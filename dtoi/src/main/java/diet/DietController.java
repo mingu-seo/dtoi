@@ -35,9 +35,4 @@ public class DietController {
 		
 		return "diet/foodJson";
 	}
-	
-	@GetMapping("/diet/calculate.do")
-	public String calculate() {
-		return "diet/calculate";
-	}
 }
