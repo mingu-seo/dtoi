@@ -23,6 +23,12 @@
 	<div class="sub">
 		<div class="size">
 			<h3 class="sub_title">마이페이지</h3>
+			<h5 class="sub_title"><%CustomerVo authUser = (CustomerVo)session.getAttribute("authUser");%>
+				<% if (authUser == null) { %>
+				<% } %>
+				<% if (authUser != null) { %>
+				<%=authUser.getCst_name() %>님 안녕하세요!
+				<% } %></h5>
 				<div class="bbs">
 					<div class="movie">
 					<div class="tab_area" id="product_info">

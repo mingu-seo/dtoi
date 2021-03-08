@@ -48,7 +48,7 @@ function delComment(no){
 <input type='hidden' name='cst_no' value="${vo.cst_no }">		
  <div class="sub">
 		<div class="size">
-			<h3 class="sub_title">공지사항</h3>
+			<h3 class="sub_title">자유게시판</h3>
 			<div class="bbs">
 				<div class="view">
 					<div class="title">
