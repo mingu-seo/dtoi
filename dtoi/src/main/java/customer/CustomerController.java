@@ -21,6 +21,8 @@ import board.bulletin_board.Bulletin_boardService;
 import board.bulletin_board.Bulletin_boardVo;
 import board.qna.QnaService;
 import board.qna.QnaVo;
+import shop.cart.CartService;
+import shop.cart.CartVo;
 
 
 
@@ -39,6 +41,9 @@ public class CustomerController {
 	
 	@Autowired
 	private Bulletin_boardService bulletin_boardService;
+	
+	@Autowired
+	private CartService cartService;
 	
 	@GetMapping("/")
 	public String index() {
@@ -107,12 +112,6 @@ public class CustomerController {
 		
 	}
 
-
-
-
-
-	
-	
 	@RequestMapping("/customer/insert.do")
 	public void insert(CustomerVo vo, HttpServletResponse res) throws Exception {
 		// 등록처리
@@ -323,6 +322,18 @@ public class CustomerController {
 		req.setAttribute("reqPage", vo.getReqPage());
 		req.setAttribute("vo", vo);
 		return "customer/mypost";
+	}
+	
+	@RequestMapping("/customer/mycart.do")
+	public String index(HttpServletRequest req, CartVo cvo, CustomerVo vo) {
+		HttpSession sess = req.getSession(); // 세션객체 생성
+		CustomerVo uv = (CustomerVo)sess.getAttribute("authUser"); // 세션에 저장되어 있는 객체 가져오기
+		cvo.setCst_no(uv.getCst_no()); 
+		
+		List<CartVo> clist = cartService.getList(cvo);
+		req.setAttribute("clist", clist);
+		req.setAttribute("vo",cvo);
+				return "customer/mycart";
 	}
 
 	

@@ -37,7 +37,7 @@
 								<a href="<%=request.getContextPath()%>/customer/food.do?cst_no=${authUser.cst_no }" onclick="tab_move('0'); return false;" >식단입력 내역</a>
 							</li>
 							<li>
-								<a href="<%=request.getContextPath()%>/customer/food.do?cst_no=${authUser.cst_no }" onclick="tab_move('1'); return false;" >주문내역</a>
+								<a href="<%=request.getContextPath()%>/customer/food.do?cst_no=${authUser.cst_no }" onclick="tab_move('1'); return false;" >내 장바구니</a>
 							</li>
 							<li>
 								<a href="<%=request.getContextPath()%>/customer/myqna.do?cst_no=${authUser.cst_no }" onclick="tab_move('2'); return false;" class="active">나의 질문</a>
