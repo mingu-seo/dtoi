@@ -5,11 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import board.qna.QnaVo;
+import shop.cart.CartVo;
+
 @Service
 public class OrderService {
 
 	@Autowired
 	private OrderDao orderDao;
+	
 	
 	// 총갯수와 총페이지수를 구하는 메서드
 	public int[] getRowPageCount(OrderVo vo) {
@@ -33,6 +37,8 @@ public class OrderService {
 		return rowPageCount;
 	}
 	
+	
+	
 	// 목록을 구하는 메서드
 	public List<OrderVo> getList(OrderVo vo) {
 		// limit 시작값 = (사용자가 요청한 페이지번호 - 1) * 페이지당갯수
@@ -45,7 +51,14 @@ public class OrderService {
 		return orderDao.selectOne(uv);
 	}
 	
-	
+	public boolean insert(OrderVo vo) {
+		int r = orderDao.insert(vo);
+		if (r > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	
 	

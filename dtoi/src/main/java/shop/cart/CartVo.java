@@ -14,7 +14,7 @@ public class CartVo {
 	private String pd_image;
 	private String pd_name;
 	private String[] cartNos;
-	
+	private String nos;
 	
 	public String[] getCartNos() {
 		return cartNos;
@@ -24,6 +24,12 @@ public class CartVo {
 	}
 	
 	
+	public String getNos() {
+		return nos;
+	}
+	public void setNos(String nos) {
+		this.nos = nos;
+	}
 	public String getPd_image() {
 		return pd_image;
 	}

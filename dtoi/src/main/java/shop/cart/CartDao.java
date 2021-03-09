@@ -22,6 +22,9 @@ public class CartDao {
 	public List<CartVo> selectList(CartVo vo) {
 		return sqlSession.selectList("cart.selectList", vo);
 	}
+	public List<CartVo> selectListCart(CartVo vo) {
+		return sqlSession.selectList("cart.selectListCart", vo);
+	}
 	
 	public CartVo selectOne(CartVo vo) {
 		return sqlSession.selectOne("cart.selectOne", vo);

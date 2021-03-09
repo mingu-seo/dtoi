@@ -13,8 +13,7 @@
 	
 	<select id="count" parameterType="board.notice.NoticeVo" resultType="int">
 		select count(*) as cnt from notice	
-		<include refid="noticeWhere"/>
-			
+		<include refid="noticeWhere"/>			
 	</select>
 	
 	<select id="selectList" parameterType="board.notice.NoticeVo" resultType="board.notice.NoticeVo">

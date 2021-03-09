@@ -19,6 +19,10 @@ public class CartService {
 		return cartDao.selectList(uv);
 	}
 	
+	public List<CartVo> getListCart(CartVo uv) {
+		return cartDao.selectListCart(uv);
+	}
+	
 	public CartVo selectOne(CartVo uv) {
 		return cartDao.selectOne(uv);
 	}

@@ -70,7 +70,14 @@ public class CartController {
 		out.flush();
 	}
 	
-	
+	@RequestMapping("/cart/update.do")
+	public void update(CartVo vo, HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		res.setContentType("text/html;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(cartService.update(vo));
+		out.flush();
+	}
 	
 	
 	@RequestMapping("/cart/insert.do")
