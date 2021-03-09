@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import board.qna.QnaVo;
+
 @Repository
 public class DietDao {
 
@@ -31,4 +33,11 @@ public class DietDao {
 	public int countSearch(int fd_no) {
 		return sqlSession.update("food.updateSearchCount", fd_no);
 	}
+	public List<FoodVo> selectList(FoodVo vo) {
+		return sqlSession.selectList("food.selectList", vo);
+	}
+	public int count(FoodVo vo) {
+		return sqlSession.selectOne("food.count", vo);
+	}
+	
 }

@@ -1,6 +1,8 @@
 package diet;
 
-public class FoodVo {
+import util.CommonVo;
+
+public class FoodVo extends CommonVo {
 
 	private int fd_no;
 	private String name;

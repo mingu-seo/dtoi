@@ -18,6 +18,7 @@ public class Bulletin_boardVo extends CommonVo {
 	private int readCnt;
 	private String[] nos;
 	
+	
 	public Bulletin_boardVo() {
 		// 부모에서 초기값으로 10을 대입했지만, 자식에서 5로 변경
 		// 부모객체가 먼저 생성되고 나서, 자식 객체가 생성되기 때문에
@@ -105,6 +106,7 @@ public class Bulletin_boardVo extends CommonVo {
 	public void setReadCnt(int readCnt) {
 		this.readCnt = readCnt;
 	}
+	
 	
 	
 }

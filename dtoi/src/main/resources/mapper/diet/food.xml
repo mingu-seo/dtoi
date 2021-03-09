@@ -12,7 +12,7 @@
 	</sql>
 	
 	<select id ="selectOne" parameterType="diet.FoodVo" resultType="diet.FoodVo">
-		select * from food
+		select * from food		
 		<choose>
 			<when test="fd_no != 0 and fd_no != null">
 				where fd_no=${fd_no}				
@@ -30,12 +30,22 @@
 	<select id ="countName" parameterType="String" resultType="int">
 		select count(*) from food where name = #{name}
 	</select>
+	<select id="count" parameterType="diet.FoodVo" resultType="int">
+		select count(*) as cnt from food
+	</select>
 	
 	<select id="selectTopList" resultType="diet.FoodVo">
 		select * from food
 		order by searchCount DESC
 		limit 0, 30
 	</select>
+	<select id="selectList" parameterType="diet.FoodVo" resultType="diet.FoodVo">
+		select * from food
+		<include refid="foodWhere"/>
+		order by searchCount DESC
+		limit ${startIdx}, ${pageRow}
+	</select>
+	
 	
 	<insert id ="insertFood" parameterType="diet.FoodVo">
 		INSERT INTO food (
