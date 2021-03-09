@@ -23,6 +23,7 @@ $(function() {
 		}
 		$(".cal_price").eq(idx).text(Number($(".ct_count").eq(idx).val()) * Number($(".pd_price").eq(idx).val()));
 		total();
+		count_save($(".cart_no").eq(idx).val(), $(".ct_count").eq(idx).val());
 	});
 	
 	$(".minus_btn").click(function() {
@@ -34,6 +35,7 @@ $(function() {
 		}
 		$(".cal_price").eq(idx).text(Number($(".ct_count").eq(idx).val()) * Number($(".pd_price").eq(idx).val()));
 		total();
+		count_save($(".cart_no").eq(idx).val(), $(".ct_count").eq(idx).val());
 	});
 	
 	$(".each_del_btn").click(function() {
@@ -41,10 +43,11 @@ $(function() {
 		var v = Number($(".ct_count").eq(idx).val());
 		
 		if (v > 1) {
-			$(".ct_count").eq(idx).val(v*0+1);
+			$(".ct_count").eq(idx).val(1);
 		}
 		$(".cal_price").eq(idx).text(Number($(".ct_count").eq(idx).val()) * Number($(".pd_price").eq(idx).val()));
 		total();
+		count_save($(".cart_no").eq(idx).val(), 1);
 	});
 });
 
@@ -58,6 +61,21 @@ function total() {
 	$(".total_price").text(total);
 	$(".last_price").text((total+3000));
 }
+
+//수량 DB저장
+function count_save(cart_no, ct_count) {
+	$.ajax({
+		url : "/dtoi/cart/update.do",
+		data : {cart_no:cart_no, ct_count:ct_count}, 
+		async : true,
+		success : function(data) {
+			},
+		error : function(msg) {
+				console.log(msg);
+				}
+			});
+}
+
 
 
 //전체 & 개별선택
@@ -83,34 +101,29 @@ function cart_all_del() {
 		return false;
 	} else {
 		if (confirm('선택한 장바구니 상품을 삭제하시겠습니까?')) {
+			$("#frmCart").attr("action","cartDelete.do");
 			$("#frmCart").submit();	
 		}
 	}
 }
 //선택상품 주문
 function cart_buy() {
-	//선택상품 주문 
-	$.ajax({
-		url : "/dtoi/order/insert.do",
-		data : {pd_no:${vo.pd_no}, ct_count:$("#ct_count").val(), cst_no:${vo.cst_no}}, 
-		async : true,
-		success : function(data) {
-			var d = data.trim();
-			if (d == 'true') {
-				if (confirm("선택한 상품을 주문하시겠습니까?")) {
-					location.href='/dtoi/order/index.do';	
-				}
-			} else {
-				alert("상품 주문에 실패하였습니다.");
-					}
-				},
-		error : function(msg) {
-				console.log(msg);
-				}
-			});
+	var cnt = 0;
+	$('.cartIdx').each(function() {
+		if ($(this).prop("checked") == true) cnt += 1;		
+	});
+	if (cnt == 0) {
+		alert('장바구니 상품을 하나 이상 선택해 주세요');
+		return false;
+	} else {
+		if (confirm('선택한 장바구니 상품을 주문하시겠습니까?')) {
+			$("#frmCart").attr("action","/dtoi/order/index.do");
+			$("#frmCart").submit();	
+		}
+	}
 }
 
-//수량 DB저장
+
 
 
 </script>
@@ -129,7 +142,7 @@ function cart_buy() {
 						<input type="checkbox" id="allCheck" class="all_select" checked="checked">
 						<label for="allCheck" style="cursor: pointer;">전체선택</label>
 					</div>
-					<form class="cart-form" id="frmCart" action="cartDelete.do">
+					<form class="cart-form" method="post" id="frmCart" action="cartDelete.do">
 					<table class="tbl_col prd">
 					<caption class="hidden">장바구니</caption>
 					<colgroup>
@@ -175,10 +188,11 @@ function cart_buy() {
 									</div>
 									<div class="qty">
 										<a href="javascript:" ><img class="minus_btn" src="/dtoi/img/product/cart/count_down.png"></a>
-										<input type="text" name="ct_count" class="ct_count" readonly value="1">
+										<input type="text" name="ct_count" class="ct_count" readonly value="${vo.ct_count }">
 										<a href="javascript:" ><img  class="plus_btn" src="/dtoi/img/product/cart/count_up.png"></a>
 										<input type="hidden" class="pd_price" value="${vo.pd_price }">
 									</div>
+									<input type="hidden" name="cart_no" class="cart_no" value="${vo.cart_no }">
 							</td>
 							<td class="qty">
 								<strong class="cal_price" style=padding:20px;> ${vo.pd_price }</strong>원 &nbsp;
@@ -204,7 +218,7 @@ function cart_buy() {
 					</div>
 					<ul class="cart_btn" style="padding:20px;">
 					<li class="box_btn">
-					<a href="javascript:"  onclick="cart_buy();">선택상품 주문</a>
+					<a href="javascript:" onclick="cart_buy();">선택상품 주문</a>
 					</li>
 					<li class="box_btn">
 					<a href="javascript:" onclick="cart_all_del();">선택상품 삭제</a>

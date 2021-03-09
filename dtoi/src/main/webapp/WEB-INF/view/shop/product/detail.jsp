@@ -53,7 +53,7 @@
 								</dt>
 								<dt class="reser_btn" style="padding-bottom:5px">
 									<a href="javascript:goCart();"><input type="button" class="btn" style="cursor:pointer;" value="장바구니"/></a>
-									<a href="javascript:goOrder()"><input type="button" class="btn" style="cursor:pointer;" value="바로 구매"/>
+									<a href="javascript:goOrder()"><input type="button" class="btn" style="cursor:pointer;" value="바로 구매"/></a>
 								</dt>
 							</dl>
 						</div>

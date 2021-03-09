@@ -26,59 +26,54 @@
 					<input type="hidden" name="cst_no" value="${authUser.cst_no }">
 					<input type="hidden" name="cart_no" value="${cart_no }">
 					<input type="hidden" name="pd_no" value="${pd_no }">
-					</form>
 					
+					</form>
 					<caption class="hidden">주문서 / 결제</caption>
 					<colgroup>
+						<col style="width:90px;">
+						<col>
 						<col style="width:100px;">
-						<col style="width:160px;">
-						<col style="">
-						<col style="width:120px;">
-						<col style="width:100px;">
+						<col style="width:40px;">
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col"></th>
-							<th scope="col">  </th>
-							<th scope="col">결제할 상품</th>
+							<th scope="col" colspan="2">상품</th>
 							<th scope="col">가격</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
+		
 					<c:if test="${!empty clist}">	
-					<c:set var="sum" value="0" property="int"/>
-					<c:forEach var="vo" items="${clist}">	
+					<c:forEach var="vo" items="${clist}">		
 						<tr>
-							<td>
-								<div>
-									<input type="hidden" value="${vo.pd_no }">
-									<input type="hidden" value="${vo.cart_no }">
-								</div>
-							</td>
 							<td class="img">
-								<a href="/dtoi/product/detail.do?=${vo.pd_no }" target="_blank" >
-								<img src="/dtoi/upload/${vo.pd_image }" alt=""/>
+								<div class="check"colspan="1">
+								<input type="checkbox" class="cartIdxs">
+								</div>
+								<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank" >
+								<img src="/dtoi/upload/" alt=""/>
 								</a>
 							</td>
 							<td class="tal">
+								<form class="cart-form">
+		
 									<div class="name">
-										<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank"> ${vo.pd_name }</a>
+										<a href="/dtoi/product/detail.do?${vo.pd_no }" target="_blank"> ${vo.pd_no }</a>
 									</div>
 									<div class="qty">
-								
-										<input type="text" name="ct_count" class="ct_count" readonly value="${vo.ct_count }">
-								
-										<input type="hidden" class="pd_price" value="${vo.pd_price }">
+										
+										<input type="text" name="ct_count" id="ct_count">
+										
 									</div>
+								</form>
 							</td>
 							<td class="qty">
-								<strong class="cal_price" style=padding:20px;> ${vo.pd_price * vo.ct_count }</strong>원 &nbsp;
-							</td>					                  
-							<td class="qty">
-							</td>					                  
+								<strong id="total_price" style=padding:20px;> ${vo.pd_price }</strong>원 &nbsp;
+							</td>
+							<td style=padding:20px; target="_blank" > &nbsp;
+							</td>
 						</tr>
-						<c:set var="sum" value="${sum + (vo.pd_price * vo.ct_count) }" />${sum }
 						</c:forEach>
 						</c:if>
 					</tbody>
@@ -89,47 +84,50 @@
 			<!-- area_top -->
 			
 			<div class="area_bottom" style=" border-bottom:1px solid #351f66;">
-					<div class="total_cal">총 상품금액 <strong> <span class="total_price"></strong> ${sum }원</span>
-						<a class="cartplus"><img src="/dtoi/img/product/cart/order_price_plus.png"></a> 배송비 <span class="price"> <strong>3000</strong> 원</span>
-						
-						<a class="carttotal"><img src="/dtoi/img/product/cart/order_price_total.png"></a> 총 결제 금액 <strong> <span class="last_price"> </strong>${sum +3000}  원</span>
+					<div class="orderCart__total__calc">
+						<span class="calc__total"> 총 상품금액 <span class="price"><strong> 0</strong>원</span></span>
+						<span class="calc__deli">+ 배송비 <span class="price"><strong>3000</strong>원</span></span>
+					</div>
+
+					<div class="orderCart__total__cont">
+						<p class="orderCart__total__txt">총 결제 예정금액</p>
 					</div>
 			</div>
-			<h3 class="sub_title" style="padding: 50px 10px 10px 10px;">주문자 정보</h3>
+			<h3 class="sub_title" style="padding: 100px 10px 10px 10px;">주문자 정보</h3>
 		
 			<div class="area_bottom" style=" text-align:left;border-top:1px solid #e4e4e4; border-bottom:1px solid #351f66;">
 				<table>
 					<tr>
 						<th scope="row"><span>주문자 이름</span></th>
-						<td><input type="text" id="cst_name1" style="margin: 10px 0 0 0;"></td>
+						<td><input type="text" style="margin: 10px 0 0 0;""></td>
 					</tr>
 					<tr>
 						<th scope="row"><span>전화번호</span></th>
-						<td><input type="text" id="cst_tel1" style="margin: 10px 0 0 0;"></td>
+						<td><input type="text" style="margin: 10px 0 0 0;""></td>
 					</tr>
 					<tr>
 						<th scope="row"><span>이메일</span></th>
-						<td><input type="text" style="margin: 10px 0 0 0;"></td>
+						<td><input type="text" style="margin: 10px 0 0 0;""></td>
 					</tr>
 				</table>
 			</div>
 		
 
-			<h3 class="sub_title" style="padding:50px 10px 10px 10px;">배송지 정보</h3>
+			<h3 class="sub_title" style="padding:100px 10px 10px 10px;">배송지 정보</h3>
 			<div class="area_bottom" style=" text-align:left;border-top:1px solid #e4e4e4; border-bottom:1px solid #351f66; ">
 			<table>
 					<tr>
 						<th scope="row" ><span>배송지</span></th>
 						<td><input type="radio" name="myRadio" value="직접입력">직접입력</td>
-						<td><input type="radio" name="myRadio" onclick="same_cst_info();" value="주문자 정보와 동일">주문자 정보와 동일</td>
+						<td><input type="radio" name="myRadio" value="주문자 정보와 동일">주문자 정보와 동일</td>
 					</tr>
 					<tr>
 						<th scope="row"><span>받는분 이름</span></th>
-						<td><input type="text" id="cst_name2" style="float:left; margin: 10px 0 0 0;"></td>
+						<td><input type="text" style="float:left; margin: 10px 0 0 0;"></td>
 					</tr>
 					<tr>
 						<th scope="row"><span>받는분 전화번호</span></th>
-						<td><input type="text"id="cst_tel2" style="float:left; margin: 10px 0 0 0;"></td>
+						<td><input type="text" style="float:left; margin: 10px 0 0 0;"></td>
 					</tr>
 					<tr>
 						<th scope="row"><span>배송주소</span></th>
@@ -177,11 +175,17 @@
 	</div>
 </div>
 <script>
-//주문자 정보 동일
-function same_cst_info() {
-	$("#cst_name2").val($("#cst_name1").val());
-	$("#cst_tel2").val($("#cst_tel1").val());
+
+function total() {
+	var total = 0;
+	$(".cal_price").each(function(idx, val) {
+		//console.log(idx, val);
+		total += Number($(".cal_price").eq(idx).text());	
+	});
+	$(".total_price").text(total);
+	$(".last_price").text((total+3000));
 }
+
 
 
 $(function() {
@@ -200,7 +204,7 @@ $(function() {
 		$("#addr1").focus();
 		return false;
 	}
-});  
+}
 </script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

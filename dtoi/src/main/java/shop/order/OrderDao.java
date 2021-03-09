@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import shop.cart.CartVo;
+
 @Repository
 public class OrderDao {
 
@@ -24,5 +26,7 @@ public class OrderDao {
 		return sqlSession.selectOne("order.selectOne", vo);
 	}
 	
-	
+	public int insert(OrderVo vo) {
+		return sqlSession.insert("order.insert",vo);
+	}
 }
