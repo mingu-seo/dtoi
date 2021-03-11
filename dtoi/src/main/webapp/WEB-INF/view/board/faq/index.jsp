@@ -22,7 +22,7 @@ function showTr(id) {
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <div class="sub">
 	<div class="size">
-		<h3 class="sub_title">자주하는질문</h3>
+		<h3 class="sub_title">자주하는 질문</h3>
 			<div class="bbs">
 				<table class="list">
 					<p><span><strong>총 ${totCount }개</strong>  |  ${reqPage }/${totalPage }</span></p>

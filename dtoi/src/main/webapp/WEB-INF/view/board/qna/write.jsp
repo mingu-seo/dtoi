@@ -31,7 +31,7 @@ function formCheck() {
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <div class="sub">
 	<div class="size">
-		<h3 class="sub_title">QNA-글쓰기</h3>
+		<h3 class="sub_title">Q&A-글쓰기</h3>
 			<div class="bbs">
 			<form action="insert.do" method="post" name="frm" id="frm" action="" enctype="multipart/form-data" onsubmit="return formCheck()">
 			<input type="hidden" name="cst_no" value="${authUser.cst_no }">

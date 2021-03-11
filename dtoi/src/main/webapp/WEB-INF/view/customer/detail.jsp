@@ -26,7 +26,7 @@ function edit() {
 
 	  <div class="sub">
 		<div class="size">
-			<h3 class="sub_title">회원정보</h3>
+			<h3 class="sub_title">내 정보</h3>
 			<form action="update.do" method="post" id="frm" name="frm"  enctype="multipart/form-data">
 			<input type="hidden" name="cst_no" value="${vo.cst_no }">
 			<table class="board_write">
@@ -61,7 +61,7 @@ function edit() {
 						<td>${vo.cst_birth }</td>
 					</tr>
 					<tr>
-						<th>*기저질환(없으면 공란)</th>
+						<th>*기저질환</th>
 						<td>${vo.cst_disease }</td>
 					</tr>
 										<tr>
